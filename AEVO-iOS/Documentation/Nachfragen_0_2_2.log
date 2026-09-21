@@ -1,0 +1,21 @@
+[0/1] Planning build
+Building for debugging...
+[0/2] Write swift-version--4AAC353FFE5FE9EA.txt
+Build complete! (0.20s)
+Test Suite 'Selected tests' started at 2026-09-20 19:09:52.225
+Test Suite 'AEVOCoreTests' started at 2026-09-20 19:09:52.226
+Test Case 'AEVOCoreTests.testBackupPreservesAllOptOutsAndReminderAndExamSettings' started at 2026-09-20 19:09:52.226
+Test Case 'AEVOCoreTests.testBackupPreservesAllOptOutsAndReminderAndExamSettings' passed (0.03 seconds)
+Test Case 'AEVOCoreTests.testBothExamDatesSuppressPromptsWithoutInventingCompletion' started at 2026-09-20 19:09:52.256
+Test Case 'AEVOCoreTests.testBothExamDatesSuppressPromptsWithoutInventingCompletion' passed (0.13 seconds)
+Test Case 'AEVOCoreTests.testReviewNeedsAllUsageThresholdsAndRespectsSuppressedOSDialog' started at 2026-09-20 19:09:52.386
+Test Case 'AEVOCoreTests.testReviewNeedsAllUsageThresholdsAndRespectsSuppressedOSDialog' passed (0.125 seconds)
+Test Case 'AEVOCoreTests.testTipPolicyRespectsCoolDownLimitsPurchaseAndPermanentOptOut' started at 2026-09-20 19:09:52.510
+Test Case 'AEVOCoreTests.testTipPolicyRespectsCoolDownLimitsPurchaseAndPermanentOptOut' passed (0.035 seconds)
+Test Suite 'AEVOCoreTests' passed at 2026-09-20 19:09:52.545
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.32 (0.32) seconds
+Test Suite 'Selected tests' passed at 2026-09-20 19:09:52.545
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.32 (0.32) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

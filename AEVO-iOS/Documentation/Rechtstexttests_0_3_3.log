@@ -1,0 +1,34 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write sources
+[1/4] Copying legal.json
+[2/4] Write swift-version--4AAC353FFE5FE9EA.txt
+[4/6] Compiling AEVOCoreTests LegalContentTests.swift
+[5/6] Emitting module AEVOCoreTests
+[6/13] /workspace/scratch/72be31c4ef5d/AEVO-iOS/.build/x86_64-unknown-linux-gnu/debug/AEVOLernenPackageDiscoveredTests.derived/all-discovered-tests.swift
+[7/14] Write sources
+[8/14] Wrapping AST for AEVOCoreTests for debugging
+[10/17] Emitting module AEVOLernenPackageDiscoveredTests
+[11/17] Compiling AEVOLernenPackageDiscoveredTests all-discovered-tests.swift
+[12/17] Compiling AEVOLernenPackageDiscoveredTests AEVOCoreTests.swift
+[13/18] /workspace/scratch/72be31c4ef5d/AEVO-iOS/.build/x86_64-unknown-linux-gnu/debug/AEVOLernenPackageTests.derived/runner.swift
+[14/19] Write sources
+[15/19] Wrapping AST for AEVOLernenPackageDiscoveredTests for debugging
+[17/21] Emitting module AEVOLernenPackageTests
+[18/21] Compiling AEVOLernenPackageTests runner.swift
+[19/21] Write Objects.LinkFileList
+[20/21] Linking AEVOLernenPackageTests.xctest
+Build complete! (1.95s)
+Test Suite 'Selected tests' started at 2026-09-20 21:12:09.629
+Test Suite 'LegalContentTests' started at 2026-09-20 21:12:09.630
+Test Case 'LegalContentTests.testBundledPrivacyLoadsOfflineAndUsesConfiguredContact' started at 2026-09-20 21:12:09.630
+Test Case 'LegalContentTests.testBundledPrivacyLoadsOfflineAndUsesConfiguredContact' passed (0.006 seconds)
+Test Case 'LegalContentTests.testSupportMailOpensOnlyAUserControlledDraftWithoutPrivateData' started at 2026-09-20 21:12:09.636
+Test Case 'LegalContentTests.testSupportMailOpensOnlyAUserControlledDraftWithoutPrivateData' passed (0.0 seconds)
+Test Suite 'LegalContentTests' passed at 2026-09-20 21:12:09.637
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+Test Suite 'Selected tests' passed at 2026-09-20 21:12:09.637
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

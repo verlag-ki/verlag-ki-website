@@ -1,0 +1,64 @@
+{
+  "identifier": "AEC4258B",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "100001",
+      "localizations": [
+        {
+          "description": "Ein Filterkaffee als freiwilliges Dankeschön.",
+          "displayName": "Trinkgeld: Filterkaffee",
+          "locale": "de_DE"
+        }
+      ],
+      "productID": "de.juliankuerten.aevo.tip.small",
+      "referenceName": "Kleines Trinkgeld",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "5.99",
+      "familyShareable": false,
+      "internalID": "100002",
+      "localizations": [
+        {
+          "description": "Ein Cappuccino als freiwilliges Dankeschön.",
+          "displayName": "Trinkgeld: Cappuccino",
+          "locale": "de_DE"
+        }
+      ],
+      "productID": "de.juliankuerten.aevo.tip.medium",
+      "referenceName": "Mittleres Trinkgeld",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "100003",
+      "localizations": [
+        {
+          "description": "Ein Döner als freiwilliges Dankeschön.",
+          "displayName": "Trinkgeld: Döner",
+          "locale": "de_DE"
+        }
+      ],
+      "productID": "de.juliankuerten.aevo.tip.large",
+      "referenceName": "Großes Trinkgeld",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "0",
+    "_developerTeamID": "",
+    "_failTransactionsEnabled": false,
+    "_locale": "de_DE",
+    "_storefront": "DEU",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}
