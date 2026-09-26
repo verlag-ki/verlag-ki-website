@@ -1,0 +1,162 @@
+import type { VerificationItem } from "./schema";
+import { SOURCES } from "./sources";
+
+/**
+ * Alle strittigen oder unbelegten Geschäftsangaben. Die Demo zeigt betroffene
+ * Stellen mit „in Prüfung“-Hinweis (abschaltbar über NEXT_PUBLIC_SHOW_REVIEW_MARKERS=false).
+ * Nichts davon darf ohne Freigabe live gehen.
+ */
+export const verificationQueue: VerificationItem[] = [
+  {
+    id: "V01",
+    topic: "Eis/Slush-Wertgrenze Geburtstagspakete Kiel",
+    location: "kiel",
+    priority: "P0",
+    finding: "Standortseite nennt 1,50 €, Geburtstagsseite und Speisekarte (10/2025) nennen 2,00 €.",
+    values: [
+      { value: "1,50 €", sourceUrl: SOURCES.kiel },
+      { value: "2,00 €", sourceUrl: SOURCES.birthdayKiel },
+      { value: "2,00 €", sourceUrl: SOURCES.menuImgKielFood },
+    ],
+    handlingInDemo: "Leistung ohne Wertgrenze angezeigt und als „in Prüfung“ markiert.",
+    clientQuestion: "Gilt in Kiel für Eis/Slush im Geburtstagspaket 1,50 € oder 2,00 €?",
+  },
+  {
+    id: "V02",
+    topic: "Buchbare Wochentage Geburtstage Westerrönfeld",
+    location: "westerroenfeld",
+    priority: "P0",
+    finding: "Paketübersicht auf der Standortseite: „Montag – Sonntag“; Formular: „nur Freitag bis Sonntag – an Feiertagen & in den Ferien möglich“.",
+    values: [
+      { value: "Montag – Sonntag", sourceUrl: SOURCES.rd },
+      { value: "Freitag – Sonntag + Ferien/Feiertage", sourceUrl: SOURCES.birthdayRd },
+    ],
+    handlingInDemo: "Keine Wochentagsbeschränkung behauptet; Formular nimmt Wunschtermin als Anfrage entgegen.",
+    clientQuestion: "An welchen Tagen sind Geburtstage in Westerrönfeld buchbar?",
+  },
+  {
+    id: "V03",
+    topic: "Kaffee/Tee im Paket Pepe Large",
+    location: "global",
+    priority: "P1",
+    finding: "Kiel: „Kaffee-/Teespezialität“ vs. „Filterkaffee oder Tee“ vs. „Becher Kaffee oder Tee“. Westerrönfeld: „Kaffee-/Teespezialität“ vs. „Kaffee/Tee“.",
+    values: [
+      { value: "2× Kaffee-/Teespezialität", sourceUrl: SOURCES.kiel },
+      { value: "2× Filterkaffee oder Tee", sourceUrl: SOURCES.birthdayKiel },
+      { value: "2× Becher Kaffee oder Tee", sourceUrl: SOURCES.menuImgKielFood },
+    ],
+    handlingInDemo: "Neutral „2× Kaffee oder Tee“, markiert.",
+    clientQuestion: "Welche Heißgetränke sind im Paket Pepe Large enthalten?",
+  },
+  {
+    id: "V04",
+    topic: "Telefonnummer Zentrale",
+    location: "global",
+    priority: "P0",
+    finding: "Überwiegend 0431 533 330 (tel:0431533330); auf der Kiel-Standortseite 0431 533 33 30 (tel:04315333330).",
+    values: [
+      { value: "0431 533 330", sourceUrl: SOURCES.imprint },
+      { value: "0431 533 33 30", sourceUrl: SOURCES.kiel },
+    ],
+    handlingInDemo: "Mehrheitlich genutzte Nummer 0431 533 330 angezeigt, markiert.",
+    clientQuestion: "Welche Telefonnummer ist für die Zentrale korrekt?",
+  },
+  {
+    id: "V05",
+    topic: "E-Mail Westerrönfeld",
+    location: "westerroenfeld",
+    priority: "P0",
+    finding: "Sichtbar rendsburg@pepelino-fun.de, verlinkt teilweise mailto:pepelino-rendsburg@gmx.de. Alt-FAQ nennt außerdem info@sfc-mettenhof.de für Buchungen.",
+    values: [
+      { value: "rendsburg@pepelino-fun.de", sourceUrl: SOURCES.rd },
+      { value: "pepelino-rendsburg@gmx.de", sourceUrl: SOURCES.rd },
+      { value: "info@sfc-mettenhof.de", sourceUrl: SOURCES.rd },
+    ],
+    handlingInDemo: "rendsburg@pepelino-fun.de angezeigt, markiert.",
+    clientQuestion: "Welche E-Mail-Adresse gilt für Westerrönfeld und wohin sollen Anfragen gehen?",
+  },
+  {
+    id: "V06",
+    topic: "Öffnungszeiten Ferien & Feiertage",
+    location: "global",
+    priority: "P1",
+    finding: "Kieler Getränkekarte nennt „Ferien & Feiertage 12:00 – 19:00 Uhr“; die HTML-Seiten verweisen nur auf „siehe Hauptseite“; für Westerrönfeld keine Angabe.",
+    values: [
+      { value: "12:00 – 19:00 Uhr (Kiel)", sourceUrl: SOURCES.menuImgKielDrinks },
+      { value: "siehe Hauptseite", sourceUrl: SOURCES.menuKiel },
+    ],
+    handlingInDemo: "Kiel: Zeit angezeigt und markiert; Westerrönfeld: Hinweis auf Nachfrage.",
+    clientQuestion: "Welche Zeiten gelten in Ferien und an Feiertagen je Standort, und wer pflegt sie?",
+  },
+  {
+    id: "V07",
+    topic: "Superlative und Kennzahlen",
+    location: "global",
+    priority: "P1",
+    finding: "„Einmalig in ganz Schleswig-Holstein“, Rollrutsche „über 45 Meter“, „über 2.000 m²“ (Kiel, Gruppenseite) und „2000 m²“ (Westerrönfeld).",
+    values: [
+      { value: "Rollrutsche > 45 m, einmalig in SH", sourceUrl: SOURCES.kiel },
+      { value: "über 2.000 m² (Kiel)", sourceUrl: SOURCES.groups },
+      { value: "2000 m² (Westerrönfeld)", sourceUrl: SOURCES.rd },
+    ],
+    handlingInDemo: "Nicht übernommen.",
+    clientQuestion: "Welche Kennzahlen dürfen wir belegt verwenden?",
+  },
+  {
+    id: "V08",
+    topic: "Gruppenangebot Westerrönfeld",
+    location: "westerroenfeld",
+    priority: "P1",
+    finding: "Gruppenseite beschreibt nur Kiel; Formular bietet trotzdem Westerrönfeld an.",
+    values: [{ value: "nur Kiel beschrieben", sourceUrl: SOURCES.groups }],
+    handlingInDemo: "Westerrönfeld wählbar, Konditionen ausdrücklich als offen gekennzeichnet.",
+    clientQuestion: "Gelten Gruppenangebote/Sonderzeiten auch in Westerrönfeld?",
+  },
+  {
+    id: "V09",
+    topic: "QR-Speisekarten",
+    location: "global",
+    priority: "P1",
+    finding: "QR-Seiten zeigen ältere Kartenbilder (2023), die regulären Speisekartenseiten neue (10/2025).",
+    values: [
+      { value: "Bilder 08/2023", sourceUrl: SOURCES.qrKiel },
+      { value: "Bilder 09/2023", sourceUrl: SOURCES.qrRd },
+      { value: "Bilder 10/2025", sourceUrl: SOURCES.menuKiel },
+    ],
+    handlingInDemo: "QR-Routen rendern dieselben (neueren) Menüdaten wie die Speisekartenseiten.",
+    clientQuestion: "Sind die Karten von 10/2025 aktuell? Wo hängen gedruckte QR-Codes?",
+  },
+  {
+    id: "V10",
+    topic: "Indoor-Fußball",
+    location: "kiel",
+    priority: "P2",
+    finding: "Kiel-Seite beschreibt Profi-Indoor-Fußball (32 × 15 m) als Attraktion; gleichzeitig wird die Soccerhalle des SFC Mettenhof als eigenes Angebot beworben.",
+    values: [{ value: "Fußball 32 × 15 m", sourceUrl: SOURCES.kiel }],
+    handlingInDemo: "Als Attraktion Kiel geführt, Zuordnung markiert.",
+    clientQuestion: "Gehört das Fußballfeld zum Pepelino-Eintritt?",
+  },
+  {
+    id: "V11",
+    topic: "Bildrechte",
+    location: "global",
+    priority: "P0",
+    finding: "Alle Fotos der Vorschau stammen von pepelino-fun.de; Impressum nennt Envato Elements als Quelle, Einzelzuordnung offen.",
+    values: [{ value: "Envato Elements", sourceUrl: SOURCES.imprint }],
+    handlingInDemo: "Fotos als „public_website_unverified“ geführt (src/content/media.ts).",
+    clientQuestion: "Welche Fotos dürfen im Relaunch verwendet werden? Gibt es neue eigene Aufnahmen?",
+  },
+  {
+    id: "V12",
+    topic: "Rechtstexte",
+    location: "global",
+    priority: "P0",
+    finding: "Impressum verweist auf § 5 TMG und die eingestellte OS-Plattform; Datenschutzerklärung nennt Dienste, deren Nutzung unbestätigt ist.",
+    values: [
+      { value: "§ 5 TMG / OS-Plattform", sourceUrl: SOURCES.imprint },
+      { value: "Jetpack, Google Ads, AdSense, Web Fonts …", sourceUrl: SOURCES.privacy },
+    ],
+    handlingInDemo: "Staging-Seiten mit Prüfhinweis; Datenschutztext beschreibt nur die Vorschau.",
+    clientQuestion: "Wer erstellt/prüft Impressum und Datenschutzerklärung für den Relaunch?",
+  },
+];
