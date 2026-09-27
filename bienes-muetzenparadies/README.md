@@ -6,7 +6,7 @@ Eine eigenständige, mobil nutzbare Website für individuelle Häkelmützen auf 
 
 - **Startseite im Stil der Vorlage (Variante 1 „Natürlich & modern“):** Header mit Logo, handgeschriebene Überschriften mit kleinem Herz, Hero mit großem Bild rechts, das weich in den Cremeton ausblendet, vier Merkmale mit farbigen Symbolen, quadratische Musterkarten, Infokarten mit farbigen Symbolen, Abschnitt „Mit Liebe gehäkelt.“ und Kontaktbereich. Solange keine echten Fotos vorliegen, zeigt die Seite **als Demo gekennzeichnete Illustrationen**.
 - **Designsystem:** Farben als CSS-Variablen in `public/style.css`. Schriften lokal unter `public/fonts/`: Chewy für Überschriften (Apache 2.0) und Figtree für Text (SIL OFL), Lizenztexte liegen bei. Keine externen Schrift- oder Skriptquellen.
-- **Logo:** `brand/bee-mark.svg` (Biene mit Häkelmütze), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, Favicon `public/favicon.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
+- **Logo:** `brand/bee-mark.svg` (fliegende Biene mit Häkelmütze), `public/img/bee-flight.svg` (Biene mit gestrichelter Flugbahn für den Hero), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, Favicon `public/favicon.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
 - **Musterseite und „So funktioniert’s“** im selben Stil: Größen als Auswahlkacheln mit hinterlegten Zentimeterbereichen, Farbfelder, Bildergalerie mit Vorschaubildern, nummerierte Schritte mit Symbolen.
 - Startseite mit ruhigem Header, Hero, beliebten Mustern, drei Informationskarten, Handarbeitsabschnitt und Kontaktbereich.
 - Musterübersicht mit Kategorien und Filter, freigegebene Detailseiten mit Größen, Farben, Kopfumfang und Wünschen.
@@ -62,6 +62,8 @@ Die Verwaltung speichert Kontaktanfragen in der Rubrik „Anfragen“. Dort lass
 
 In `/admin` unter „Startseite“ lassen sich das große Hero-Foto und das Foto im Abschnitt „Mit Liebe gehäkelt.“ hochladen, ersetzen oder entfernen. Pflicht ist eine sachliche Bildbeschreibung (Alt-Text). Ohne Foto erscheint die jeweilige Demo-Illustration mit sichtbarem Hinweis. Biene bitte nicht mit Gesicht zeigen – Hände, Wolle, Häkelnadel oder Etikett passen gut.
 
+**KI-Demobilder:** `public/img/ki-*.webp` sind Ausschnitte der KI-generierten Designvorlage, erzeugt mit `python3 tools/make_demo_photos.py VORLAGE.png`. Sie zeigen keine echten Mützen, sind nur niedrig aufgelöst und tragen auf der Website den Hinweis „Demo-Bild · KI-generiert“. **Vor dem Livegang** durch echte Fotos ersetzen oder mindestens `DEMO_IMAGES=illustration` setzen.
+
 Die Demo-Illustrationen unter `public/img/` werden mit `python3 tools/make_illustrations.py` erzeugt. Sie gehören ausschließlich zu den mitgelieferten Demo-Mustern und dürfen nicht als echte Produktfotos verwendet werden.
 
 ## Konfiguration
@@ -77,6 +79,7 @@ Die Demo-Illustrationen unter `public/img/` werden mit `python3 tools/make_illus
 | `SMTP_FROM` | Verifizierte Absenderadresse. |
 | `CONTACT_TO` | Empfängeradresse für Anfragen. |
 | `MAX_UPLOAD_MB` | Maximale Dateigröße je Bild, standardmäßig 8 MB. |
+| `DEMO_IMAGES` | `ki` (Standard): KI-generierte Vorschaubilder aus der Designvorlage. `illustration`: gezeichnete Platzhalter. Beides wird sichtbar als Demo gekennzeichnet und gilt nur, solange kein echtes Foto hochgeladen ist. |
 
 Ohne SMTP-Konfiguration wird eine Anfrage gespeichert, aber keine E-Mail gesendet. Der Besucher sieht dann ausdrücklich diesen Zustand samt alternativen Kontaktmöglichkeiten. Nach dem Einrichten einen echten Testversand durchführen und SPF, DKIM sowie DMARC der Absenderdomain prüfen. Die E-Mail-Zustellung hängt vom tatsächlich verwendeten Anbieter und dessen Konfiguration ab.
 

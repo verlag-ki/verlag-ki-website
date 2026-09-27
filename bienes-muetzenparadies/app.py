@@ -32,8 +32,11 @@ WHATSAPP = '4915734487082'
 DB = DATA / 'site.sqlite3'
 PUBLIC = BASE / 'public'
 BRAND = BASE / 'brand'
-STATIC = {'.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml','.woff2':'font/woff2'}
+STATIC = {'.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml','.woff2':'font/woff2','.webp':'image/webp'}
 # Demo-Illustrationen für die mitgelieferten Beispielmuster, bis echte Fotos hochgeladen sind.
+# 'ki': KI-generierte Vorschaubilder aus der Designvorlage, 'illustration': gezeichnete Platzhalter.
+# Beides sind gekennzeichnete Demos und müssen vor dem Livegang durch echte Fotos ersetzt werden.
+DEMO_IMAGES = os.environ.get('DEMO_IMAGES','ki')
 DEMO_ART = {'froschmuetze':'frosch','schneemannmuetze':'schneemann','schweinchenmuetze':'schweinchen','monstermuetze':'monster','baer':'baer','einhornmuetze':'einhorn'}
 SITE_IMAGES = {'hero':'Startseite: großes Bild neben der Überschrift','haekeln':'Startseite: Bild im Abschnitt „Mit Liebe gehäkelt.“'}
 PAGES = {'/': ('Startseite', 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch'), '/muster': ('Muster & Ideen', 'Häkelmützen und Muster | Bienes Mützenparadies'), '/so-funktionierts': ("So funktioniert's", 'So funktioniert die Mützenanfrage | Bienes Mützenparadies'), '/groessenhilfe': ('Größenhilfe', 'Mützengröße bestimmen und Kopfumfang messen'), '/wunschfarben': ('Wunschfarben', 'Wunschfarben für Häkelmützen | Bienes Mützenparadies'), '/impressum': ('Impressum', 'Impressum | Bienes Mützenparadies'), '/datenschutz': ('Datenschutz', 'Datenschutzerklärung | Bienes Mützenparadies')}
@@ -147,10 +150,17 @@ def site_image(key):
 def footer():
     return f'''<footer class="footer"><div class="wrap footer-grid"><div>{logo()}<p>Außergewöhnliche Häkelmützen, mit Liebe von Hand gemacht. Individuell auf Anfrage.</p></div><div><h2>Entdecken</h2><a href="/muster">Muster & Ideen</a><a href="/so-funktionierts">So funktioniert’s</a></div><div><h2>Hilfe</h2><a href="/groessenhilfe">Größenhilfe</a><a href="/wunschfarben">Wunschfarben</a><button type="button" data-contact>Kontakt</button></div><div><h2>Rechtliches</h2><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></div><div class="wrap footer-bottom"><span>© {datetime.now().year} Bienes Mützenparadies</span><span>Jede Mütze wird einzeln auf Anfrage gehäkelt.</span></div></footer>'''
 
+def demo_image(name,alt,width,height,lazy=True):
+    """Gekennzeichnetes Demo-Bild: KI-Vorschau oder Illustration, je nach DEMO_IMAGES."""
+    loading=' loading="lazy"' if lazy else ' fetchpriority="high"'
+    if DEMO_IMAGES=='ki':
+        return f'<img src="/img/ki-{name}.webp" alt="KI-generiertes Demo-Bild: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">Demo-Bild · KI-generiert</span>'
+    return f'<img src="/img/demo-{name}.svg" alt="Illustration: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">Demo-Illustration</span>'
+
 def pattern_visual(p):
     if p['image']: return f'<img src="/uploads/{esc(p["image"])}" alt="{esc(p["image_alt"])}" loading="lazy" width="800" height="1000">'
     art=DEMO_ART.get(p['slug'])
-    if art: return f'<span class="demo-badge">Demo-Illustration</span><img src="/img/demo-{art}.svg" alt="Illustration: {esc(p["name"])}" loading="lazy" width="400" height="500">'
+    if art: return demo_image(art,p['name'],400,400)
     return f'<div class="image-placeholder">{icon("yarn")}<span>Produktfoto folgt</span></div>'
 
 def layout(title,description,content,canonical='/',robots='index,follow',schema=''):
@@ -181,14 +191,14 @@ def listing(demo_fallback=False):
 def home():
     items,demo=listing(True)
     cards=''.join(card(p,demo) for p in items[:4])
-    notice='<p class="demo-notice">Vorschau: Diese Beispielmotive sind Illustrationen. Sobald Biene die ersten Muster freigegeben hat, erscheinen hier echte Fotos, die du direkt anfragen kannst.</p>' if demo else ''
+    notice='<p class="demo-notice">Vorschau: Die Bilder dieser Beispielmotive sind '+('KI-generiert' if DEMO_IMAGES=='ki' else 'Illustrationen')+' und zeigen keine echten Mützen. Sobald Biene die ersten Muster freigegeben hat, erscheinen hier echte Fotos, die du direkt anfragen kannst.</p>' if demo else ''
     hero=site_image('hero')
-    hero_img=f'<img src="/uploads/{esc(hero["filename"])}" alt="{esc(hero["alt"])}" width="1200" height="800" fetchpriority="high">' if hero else '<img src="/img/demo-hero.svg" alt="Illustration: gehäkelte Froschmütze, Schweinchenmütze und Schneemannmütze auf einer Decke" width="1200" height="800" fetchpriority="high"><span class="demo-badge">Demo-Illustration · echte Fotos folgen</span>'
+    hero_img=f'<img src="/uploads/{esc(hero["filename"])}" alt="{esc(hero["alt"])}" width="1200" height="800" fetchpriority="high">' if hero else demo_image('hero','gehäkelte Froschmütze, Schweinchenmütze und Schneemannmütze',1200,800,lazy=False)
     story=site_image('haekeln')
-    story_img=f'<img src="/uploads/{esc(story["filename"])}" alt="{esc(story["alt"])}" loading="lazy" width="800" height="640">' if story else '<img src="/img/demo-haekeln.svg" alt="Illustration: Wollknäuel, Häkelnadel, eine angefangene Mütze und ein Stoffetikett mit Bienenlogo" loading="lazy" width="800" height="640"><span class="demo-badge">Demo-Illustration · Foto folgt</span>'
+    story_img=f'<img src="/uploads/{esc(story["filename"])}" alt="{esc(story["alt"])}" loading="lazy" width="800" height="640">' if story else demo_image('haekeln','gehäkelte Bärenmütze und Einhornmütze in einem Korb',800,640)
     features=''.join(f'<li>{color_icon(ic)}<span>{a}<br>{b}</span></li>' for ic,a,b in (('heart','Individuelle','Motive'),('yarn','Verschiedene','Größen'),('palette','Deine','Wunschfarben'),('gift','Mit Liebe','gehäkelt')))
     story_points=''.join(f'<li>{icon("check")}<span>{t}</span></li>' for t in ('Jede Mütze wird einzeln gehäkelt – keine Massenware.','Größe, Farbe und kleine Extras stimmst du persönlich mit Biene ab.','Preis und Anfertigungszeit besprechen wir mit dir, bevor es losgeht.'))
-    return f'''<section class="hero" aria-labelledby="hero-title"><figure class="hero-media">{hero_img}</figure><div class="wrap hero-inner"><div class="hero-copy"><span class="eyebrow">Handgemachte Lieblingsmützen</span><h1 id="hero-title">Hier gibt’s was auf die Mütze!{heart()}</h1><p class="lead">Einzigartige Häkelmützen nach deinen Wünschen. Mit viel Liebe von Biene gehäkelt.</p><a class="btn btn-coral" href="/muster">Muster entdecken {icon("arrow")}</a><ul class="features">{features}</ul></div></div></section>
+    return f'''<section class="hero" aria-labelledby="hero-title"><figure class="hero-media">{hero_img}</figure><div class="wrap hero-inner"><div class="hero-copy"><img class="bee-flight" src="/img/bee-flight.svg" alt="" width="170" height="96"><span class="eyebrow">Handgemachte Lieblingsmützen</span><h1 id="hero-title">Hier gibt’s was auf die Mütze!{heart()}</h1><p class="lead">Einzigartige Häkelmützen nach deinen Wünschen. Mit viel Liebe von Biene gehäkelt.</p><a class="btn btn-coral" href="/muster">Muster entdecken {icon("arrow")}</a><ul class="features">{features}</ul></div></div></section>
 <section class="section" id="beliebte-muster" aria-labelledby="muster-title"><div class="wrap"><div class="section-head"><div><h2 id="muster-title">Beliebte Muster{heart()}</h2><p>Entdecke unsere fantasievollen Häkelmützen und finde dein Lieblingsmotiv.</p></div><a href="/muster" class="text-link">Alle Muster ansehen {icon("arrow")}</a></div>{notice}<div class="cards">{cards or '<p>Noch keine Muster veröffentlicht. Schau bald wieder vorbei.</p>'}</div></div></section>
 <section class="section info-section" aria-label="Gut zu wissen"><div class="wrap info-grid">{info_cards()}</div></section>
 <section class="section story" aria-labelledby="story-title"><div class="wrap story-grid"><figure class="story-visual"><div class="story-frame">{story_img}</div></figure><div class="story-copy"><span class="eyebrow">Bienes Handarbeit</span><h2 id="story-title">Mit Liebe gehäkelt.{heart()}</h2><p>Ob Frosch, Schneemann, Schweinchen oder eine ganz eigene Idee: Hier entstehen Mützen mit Charakter. Keine Massenware, sondern handgemachte Einzelstücke, die mit viel Freude auf dem Sofa entstehen.</p><ul class="checklist">{story_points}</ul><a href="/so-funktionierts" class="text-link">So läuft deine Anfrage ab {icon("arrow")}</a></div></div></section>
@@ -433,7 +443,7 @@ def app(env,start):
             p=DATA/'uploads'/name
             if not p.is_file():return response(start,404,'Nicht gefunden')
             return response(start,200,p.read_bytes(),content_type='image/webp',cache='public, max-age=86400')
-        if method=='GET' and (path in ('/style.css','/site.js','/favicon.svg') or re.fullmatch(r'/(fonts|img|brand)/[a-z0-9-]+\.(woff2|svg)',path)):
+        if method=='GET' and (path in ('/style.css','/site.js','/favicon.svg') or re.fullmatch(r'/(fonts|img|brand)/[a-z0-9-]+\.(woff2|svg|webp)',path)):
             p=(BRAND/path.removeprefix('/brand/')) if path.startswith('/brand/') else PUBLIC/path[1:]
             if not p.is_file():return response(start,404,'Nicht gefunden')
             cache='public, max-age=31536000, immutable' if path.startswith('/fonts/') else 'public, max-age=3600'

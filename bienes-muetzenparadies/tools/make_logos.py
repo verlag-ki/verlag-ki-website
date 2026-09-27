@@ -56,7 +56,7 @@ def logo(uid, w_mark, name_size, sub_size, mono=False):
     width = max(x + top_w + name_size * .62, x + bottom_w) + 4
     mark = bee(uid)
     if mono:
-        mark = re.sub(r'fill="#(F3D68B|C65A66|FFFFFF)"', 'fill="none"', mark).replace('stroke="#FBF8F3"', 'stroke="#3A3027"').replace('#3A3027', 'currentColor')
+        mark = re.sub(r'fill="#(F3D68B|C65A66|FFFFFF|E4F1F6|F4FAFC|E98A93)"', 'fill="none"', mark).replace('stroke="#FBF8F3"', 'stroke="#3A3027"').replace('#3A3027', 'currentColor')
     scale = w_mark / 64
     mark_y = (height - w_mark) / 2
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" role="img" aria-label="Bienes Mützenparadies"{' color="#3A3027"' if mono else ''}>
@@ -68,8 +68,21 @@ def logo(uid, w_mark, name_size, sub_size, mono=False):
 '''
 
 
+TRAIL = 'M6 70c30 4 44-14 34-26-9-11-26 2-16 14 12 14 46 10 70-8'
+
+
+def flight(uid):
+    """Biene mit gestrichelter Flugbahn als Schmuckelement (Hero)."""
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 96" aria-hidden="true">
+<path d="{TRAIL}" fill="none" stroke="#3A3027" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 6" opacity=".55"/>
+<g transform="translate(92 6) scale(1.2) rotate(-8 32 32)">{bee(uid)}</g>
+</svg>
+'''
+
+
 def main():
     brand = ROOT / 'brand'
+    (ROOT / 'public' / 'img' / 'bee-flight.svg').write_text(flight('fl'))
     (brand / 'logo-full.svg').write_text(logo('lf', 96, 56, 36))
     (brand / 'logo-compact.svg').write_text(logo('lc', 56, 30, 20))
     (brand / 'logo-monochrome.svg').write_text(logo('lm', 96, 56, 36, mono=True))

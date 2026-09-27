@@ -63,9 +63,9 @@ home=request('/')['body']
 order=['Hier gibt’s was','Muster entdecken','Beliebte Muster','Alle Muster ansehen','<h3>So funktioniert’s','Die richtige Größe','Deine Wunschfarbe','Mit Liebe gehäkelt.','Schon eine Lieblingsmütze entdeckt?','Jetzt unverbindlich anfragen']
 positions=[home.index(t,home.index('<main')) for t in order]
 assert positions==sorted(positions), 'Abschnittsreihenfolge der Startseite'
-assert 'Demo-Illustration' in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
+assert 'Demo-Bild · KI-generiert' in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
 assert home.count('data-contact')>=4 and 'wa.me/4915734487082' in home and '"@type": "WebSite"' in home
-for asset in ['/style.css','/site.js','/favicon.svg','/brand/bee-mark.svg','/img/demo-hero.svg','/fonts/figtree-latin-wght-normal.woff2']:
+for asset in ['/style.css','/site.js','/favicon.svg','/brand/bee-mark.svg','/img/demo-hero.svg','/img/ki-hero.webp','/img/bee-flight.svg','/fonts/figtree-latin-wght-normal.woff2']:
     assert request(asset)['status'].startswith('200'),asset
 assert request('/fonts/../app.py')['status'].startswith('404')
 # Startseitenfoto über die Verwaltung austauschen
@@ -73,7 +73,7 @@ buf=io.BytesIO();Image.new('RGB',(800,870),'#e4d6c1').save(buf,'JPEG')
 parts=[f'--{boundary}\r\nContent-Disposition: form-data; name="csrf"\r\n\r\n{csrf}\r\n'.encode(),f'--{boundary}\r\nContent-Disposition: form-data; name="alt"\r\n\r\nDrei gehäkelte Mützen auf einem Regal\r\n'.encode(),f'--{boundary}\r\nContent-Disposition: form-data; name="image"; filename="hero.jpg"\r\nContent-Type: image/jpeg\r\n\r\n'.encode()+buf.getvalue()+b'\r\n',f'--{boundary}--\r\n'.encode()]
 assert request('/admin/startseite/hero','POST',b''.join(parts),cookie,f'multipart/form-data; boundary={boundary}')['status'].startswith('303')
 home=request('/')['body']
-assert 'Drei gehäkelte Mützen auf einem Regal' in home and 'demo-hero.svg' not in home
+assert 'Drei gehäkelte Mützen auf einem Regal' in home and 'ki-hero.webp' not in home
 # Veröffentlichtes Muster erscheint mit Link auf der Startseite
 assert '/muster/echte-froschmuetze' in home
 detail=request('/muster/echte-froschmuetze')['body']
