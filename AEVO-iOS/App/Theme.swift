@@ -1,5 +1,5 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 struct Theme {
     let world: ThemeWorld
@@ -7,7 +7,12 @@ struct Theme {
     private var palette: ThemePalette { world.palette }
     var background: Color { adaptive(light: palette.lightBackground, dark: palette.darkBackground) }
     var surface: Color { adaptive(light: palette.lightSurface, dark: palette.darkSurface) }
-    var accent: Color { adaptive(light: palette.lightAccent, dark: palette.darkAccent) }
+    var accent: Color {
+        if let config = try? LearningEnvironment.bundled().config, world == config.defaultTheme, let accent = config.brandAccent {
+            return adaptive(light: accent.light, dark: accent.dark)
+        }
+        return adaptive(light: palette.lightAccent, dark: palette.darkAccent)
+    }
     var hero: Color { Color(uiColor: Self.uiColor(palette.hero)) }
     var action: Color { Color(uiColor: Self.uiColor(palette.action)) }
     var onAction: Color { Color(uiColor: Self.uiColor(palette.onAction)) }
@@ -55,9 +60,10 @@ struct Surface<Content: View>: View {
 @MainActor
 struct FieldLabel: View {
     @Environment(\.learningTheme) private var theme
+    @EnvironmentObject private var store: AppStore
     let field: Int?
     var body: some View {
-        Text(field.map { "HANDLUNGSFELD \($0)" } ?? "PRÜFUNG & ORIENTIERUNG")
+        Text(store.environment.categoryLabel(field))
             .font(.caption.weight(.semibold)).tracking(1.1).foregroundStyle(theme.accent)
     }
 }

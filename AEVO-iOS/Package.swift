@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "AEVOLernen",
+    name: "LearningAppEngine",
     platforms: [.iOS(.v17), .macOS(.v14)],
-    products: [.library(name: "AEVOCore", targets: ["AEVOCore"])],
+    products: [.library(name: "LearningCore", targets: ["LearningCore"])],
     targets: [
-        .target(name: "AEVOCore", path: "Core", resources: [.process("Resources")]),
-        .testTarget(name: "AEVOCoreTests", dependencies: ["AEVOCore"], path: "Tests/CoreTests")
+        .target(name: "LearningCore", path: "Core", resources: [.copy("Resources/SelectedPack"), .copy("Resources/app-config.json"), .copy("Resources/legal.json")]),
+        .testTarget(name: "LearningCoreTests", dependencies: ["LearningCore"], path: "Tests/CoreTests")
     ]
 )

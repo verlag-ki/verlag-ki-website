@@ -1,5 +1,5 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct LibraryView: View {
@@ -32,29 +32,29 @@ struct LibraryView: View {
     var body: some View {
         List {
             Section {
-                Picker("Inhalte", selection: $section) { Text("Aufgaben").tag(0); Text("Lernkarten").tag(1) }.pickerStyle(.segmented)
-                Picker("Handlungsfeld", selection: $field) {
-                    Text("Alle Handlungsfelder").tag(0)
-                    ForEach(1...4, id: \.self) { Text("HF \($0) · \(FieldInfo.title($0))").tag($0) }
+                Picker("Inhalte", selection: $section) { Text("Aufgaben").tag(0); if store.enabled(.flashcards) { Text("Lernkarten").tag(1) } }.pickerStyle(.segmented)
+                Picker(store.config.examTerminology.categorySingular, selection: $field) {
+                    Text("Alle " + store.config.examTerminology.categoryPlural).tag(0)
+                    ForEach(store.categories, id: \.self) { Text(store.environment.categoryLabel($0)).tag($0) }
                 }
                 if section == 0 {
                     Picker("Auswahl", selection: $filter) { ForEach(QuestionFilter.allCases, id: \.self) { Text($0.rawValue).tag($0) } }
                     Button {
                         if store.startRound(field: field == 0 ? nil : field, filter: filter) { openLearning() }
                     } label: { Label(store.state.session == nil ? "Kurze Runde starten" : "Angefangene Runde fortsetzen", systemImage: "play.fill").frame(minHeight: 44) }
-                } else {
-                    NavigationLink { CardDeckView(field: field == 0 ? nil : field) } label: {
-                        Label("Karten swipen", systemImage: "hand.draw").frame(minHeight: 44)
-                    }
-                    Toggle("Nur eigene Fassungen & Notizen", isOn: $ownNotesOnly)
-                }
+                } else { Toggle("Nur eigene Fassungen & Notizen", isOn: $ownNotesOnly) }
             }
             if section == 0 {
                 Section("\(questions.count) Aufgaben") {
                     ForEach(questions) { question in
                         Button {
                             if store.state.session != nil { openLearning() }
-                            else if store.commit({ try LearningEngine.startRound(state: &$0, questions: [question]) }) { openLearning() }
+                            else {
+                                let visible = questions
+                                let start = visible.firstIndex(where: { $0.id == question.id }) ?? 0
+                                let sequence = Array(visible[start...]) + Array(visible[..<start])
+                                if store.commit({ try LearningEngine.startRound(state: &$0, questions: Array(sequence.prefix(20))) }) { openLearning() }
+                            }
                         } label: {
                             VStack(alignment: .leading, spacing: 8) {
                                 FieldLabel(field: question.field)
@@ -67,7 +67,7 @@ struct LibraryView: View {
             } else {
                 Section("\(cards.count) Lernkarten") {
                     ForEach(cards) { card in
-                        NavigationLink { CardDeckView(field: field == 0 ? nil : field, startCard: card.id) } label: {
+                        NavigationLink { CardView(card: card, cards: cards) } label: {
                             VStack(alignment: .leading, spacing: 8) {
                                 FieldLabel(field: card.field)
                                 Text(store.state.cardEdits[card.id]?.title ?? card.title)

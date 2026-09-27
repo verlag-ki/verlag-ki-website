@@ -1,0 +1,143 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write sources
+[2/4] Write swift-version--4AAC353FFE5FE9EA.txt
+[4/5] Emitting module AEVOCore
+[6/8] Emitting module AEVOCoreTests
+[7/8] Compiling AEVOCoreTests CoachingTests.swift
+[8/14] /workspace/scratch/72be31c4ef5d/AEVO-iOS/.build/x86_64-unknown-linux-gnu/debug/AEVOLernenPackageDiscoveredTests.derived/all-discovered-tests.swift
+[9/15] Write sources
+[11/18] Compiling AEVOLernenPackageDiscoveredTests AEVOCoreTests.swift
+[12/18] Compiling AEVOLernenPackageDiscoveredTests all-discovered-tests.swift
+[13/18] Emitting module AEVOLernenPackageDiscoveredTests
+[14/16] Write Objects.LinkFileList
+[15/16] Linking AEVOLernenPackageTests.xctest
+Build complete! (1.98s)
+Test Suite 'All tests' started at 2026-09-21 20:54:58.365
+Test Suite 'debug.xctest' started at 2026-09-21 20:54:58.365
+Test Suite 'AEVOCoreTests' started at 2026-09-21 20:54:58.365
+Test Case 'AEVOCoreTests.testBackupPreservesAllOptOutsAndReminderAndExamSettings' started at 2026-09-21 20:54:58.365
+Test Case 'AEVOCoreTests.testBackupPreservesAllOptOutsAndReminderAndExamSettings' passed (0.031 seconds)
+Test Case 'AEVOCoreTests.testBothExamDatesSuppressPromptsWithoutInventingCompletion' started at 2026-09-21 20:54:58.396
+Test Case 'AEVOCoreTests.testBothExamDatesSuppressPromptsWithoutInventingCompletion' passed (0.026 seconds)
+Test Case 'AEVOCoreTests.testChangingDailyGoalUpdatesTodayAndNeverRevokesAnAchievedGoal' started at 2026-09-21 20:54:58.422
+Test Case 'AEVOCoreTests.testChangingDailyGoalUpdatesTodayAndNeverRevokesAnAchievedGoal' passed (0.024 seconds)
+Test Case 'AEVOCoreTests.testCompleteCatalogIsPresentAndDraftStatusIsPreserved' started at 2026-09-21 20:54:58.446
+Test Case 'AEVOCoreTests.testCompleteCatalogIsPresentAndDraftStatusIsPreserved' passed (0.123 seconds)
+Test Case 'AEVOCoreTests.testEveryQuestionRejectsMissingAndAdditionalAnswers' started at 2026-09-21 20:54:58.569
+Test Case 'AEVOCoreTests.testEveryQuestionRejectsMissingAndAdditionalAnswers' passed (0.032 seconds)
+Test Case 'AEVOCoreTests.testExportRemovesDeviceUptimeAndMarksRunningExamAsNonComparable' started at 2026-09-21 20:54:58.601
+Test Case 'AEVOCoreTests.testExportRemovesDeviceUptimeAndMarksRunningExamAsNonComparable' passed (0.027 seconds)
+Test Case 'AEVOCoreTests.testIncompleteCardCannotReplaceSavedPersonalCard' started at 2026-09-21 20:54:58.628
+Test Case 'AEVOCoreTests.testIncompleteCardCannotReplaceSavedPersonalCard' passed (0.024 seconds)
+Test Case 'AEVOCoreTests.testInvalidBackupNeverOverwritesAnExistingBackupFile' started at 2026-09-21 20:54:58.653
+Test Case 'AEVOCoreTests.testInvalidBackupNeverOverwritesAnExistingBackupFile' passed (0.125 seconds)
+Test Case 'AEVOCoreTests.testNoFarmingThroughRepeatedCardTapsAndNoRevocationOfAchievedGoal' started at 2026-09-21 20:54:58.778
+Test Case 'AEVOCoreTests.testNoFarmingThroughRepeatedCardTapsAndNoRevocationOfAchievedGoal' passed (0.027 seconds)
+Test Case 'AEVOCoreTests.testPersonalCardsNotesAndDraftsSurviveBackupAndContentUpdate' started at 2026-09-21 20:54:58.805
+Test Case 'AEVOCoreTests.testPersonalCardsNotesAndDraftsSurviveBackupAndContentUpdate' passed (0.027 seconds)
+Test Case 'AEVOCoreTests.testPreviouslyViewedExamQuestionsAreNotCountedAsNewLearning' started at 2026-09-21 20:54:58.832
+Test Case 'AEVOCoreTests.testPreviouslyViewedExamQuestionsAreNotCountedAsNewLearning' passed (0.027 seconds)
+Test Case 'AEVOCoreTests.testPurchasesDoNotAwardLearningBadgesOrUnlockAnything' started at 2026-09-21 20:54:58.858
+Test Case 'AEVOCoreTests.testPurchasesDoNotAwardLearningBadgesOrUnlockAnything' passed (0.025 seconds)
+Test Case 'AEVOCoreTests.testReminderTimeStaysLocalAcrossDaylightSavingChange' started at 2026-09-21 20:54:58.883
+Test Case 'AEVOCoreTests.testReminderTimeStaysLocalAcrossDaylightSavingChange' passed (0.025 seconds)
+Test Case 'AEVOCoreTests.testRemindersHonorSelectedDaysDeadlineAndCompletion' started at 2026-09-21 20:54:58.908
+Test Case 'AEVOCoreTests.testRemindersHonorSelectedDaysDeadlineAndCompletion' passed (0.025 seconds)
+Test Case 'AEVOCoreTests.testReviewNeedsAllUsageThresholdsAndRespectsSuppressedOSDialog' started at 2026-09-21 20:54:58.933
+Test Case 'AEVOCoreTests.testReviewNeedsAllUsageThresholdsAndRespectsSuppressedOSDialog' passed (0.029 seconds)
+Test Case 'AEVOCoreTests.testRoundSurvivesSerializationAndCannotCountAnAnswerTwice' started at 2026-09-21 20:54:58.962
+Test Case 'AEVOCoreTests.testRoundSurvivesSerializationAndCannotCountAnAnswerTwice' passed (0.026 seconds)
+Test Case 'AEVOCoreTests.testRoundUsesDistinctFamiliesAndPrioritizesDueQuestions' started at 2026-09-21 20:54:58.988
+Test Case 'AEVOCoreTests.testRoundUsesDistinctFamiliesAndPrioritizesDueQuestions' passed (0.026 seconds)
+Test Case 'AEVOCoreTests.testSelectingAnUnknownOptionAndAdvancingWithoutAnswerAreRejected' started at 2026-09-21 20:54:59.014
+Test Case 'AEVOCoreTests.testSelectingAnUnknownOptionAndAdvancingWithoutAnswerAreRejected' passed (0.026 seconds)
+Test Case 'AEVOCoreTests.testSimulationClockContinuesAndClockChangePreservesAnswers' started at 2026-09-21 20:54:59.040
+Test Case 'AEVOCoreTests.testSimulationClockContinuesAndClockChangePreservesAnswers' passed (0.024 seconds)
+Test Case 'AEVOCoreTests.testSimulationHasEightyIndependentFamiliesAndCorrectFieldQuotas' started at 2026-09-21 20:54:59.064
+Test Case 'AEVOCoreTests.testSimulationHasEightyIndependentFamiliesAndCorrectFieldQuotas' passed (0.025 seconds)
+Test Case 'AEVOCoreTests.testStreakCrossesDayBoundariesButPauseDoesNotRemoveBadges' started at 2026-09-21 20:54:59.089
+Test Case 'AEVOCoreTests.testStreakCrossesDayBoundariesButPauseDoesNotRemoveBadges' passed (0.025 seconds)
+Test Case 'AEVOCoreTests.testTipPolicyRespectsCoolDownLimitsAndPurchase' started at 2026-09-21 20:54:59.114
+Test Case 'AEVOCoreTests.testTipPolicyRespectsCoolDownLimitsAndPurchase' passed (0.127 seconds)
+Test Suite 'AEVOCoreTests' passed at 2026-09-21 20:54:59.240
+	 Executed 22 tests, with 0 failures (0 unexpected) in 0.875 (0.875) seconds
+Test Suite 'CardStudyTests' started at 2026-09-21 20:54:59.241
+Test Case 'CardStudyTests.testBackupAndResumeKeepPositionNotesAndUncertainty' started at 2026-09-21 20:54:59.241
+Test Case 'CardStudyTests.testBackupAndResumeKeepPositionNotesAndUncertainty' passed (0.027 seconds)
+Test Case 'CardStudyTests.testBothRatingsAdvanceAndStaleTapCannotSkipOrRateTheFollowingCard' started at 2026-09-21 20:54:59.268
+Test Case 'CardStudyTests.testBothRatingsAdvanceAndStaleTapCannotSkipOrRateTheFollowingCard' passed (0.128 seconds)
+Test Case 'CardStudyTests.testDeckFinishesWithoutRepeatingAndCanRepeatOnlyUncertainCards' started at 2026-09-21 20:54:59.396
+Test Case 'CardStudyTests.testDeckFinishesWithoutRepeatingAndCanRepeatOnlyUncertainCards' passed (0.026 seconds)
+Test Case 'CardStudyTests.testLegacyBackupWithoutDeckStillLoads' started at 2026-09-21 20:54:59.421
+Test Case 'CardStudyTests.testLegacyBackupWithoutDeckStillLoads' passed (0.029 seconds)
+Test Case 'CardStudyTests.testMalformedDeckAndEmptySelectionAreRejected' started at 2026-09-21 20:54:59.450
+Test Case 'CardStudyTests.testMalformedDeckAndEmptySelectionAreRejected' passed (0.023 seconds)
+Test Case 'CardStudyTests.testOnlyDeliberateHorizontalSwipesRateCards' started at 2026-09-21 20:54:59.473
+Test Case 'CardStudyTests.testOnlyDeliberateHorizontalSwipesRateCards' passed (0.025 seconds)
+Test Case 'CardStudyTests.testScopeStartingCardAndDueOrder' started at 2026-09-21 20:54:59.498
+Test Case 'CardStudyTests.testScopeStartingCardAndDueOrder' passed (0.026 seconds)
+Test Suite 'CardStudyTests' passed at 2026-09-21 20:54:59.524
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.283 (0.283) seconds
+Test Suite 'CoachingTests' started at 2026-09-21 20:54:59.524
+Test Case 'CoachingTests.testChangedCaseDoesNotSilentlyOverwriteAnOldRun' started at 2026-09-21 20:54:59.524
+Test Case 'CoachingTests.testChangedCaseDoesNotSilentlyOverwriteAnOldRun' passed (0.029 seconds)
+Test Case 'CoachingTests.testCompetenceRequiresDelayedEvidenceAndNewUnseenFamilies' started at 2026-09-21 20:54:59.553
+Test Case 'CoachingTests.testCompetenceRequiresDelayedEvidenceAndNewUnseenFamilies' passed (0.033 seconds)
+Test Case 'CoachingTests.testDelayedTransferIsNotScheduledEarlyOrRecountedAfterExposure' started at 2026-09-21 20:54:59.586
+Test Case 'CoachingTests.testDelayedTransferIsNotScheduledEarlyOrRecountedAfterExposure' passed (0.047 seconds)
+Test Case 'CoachingTests.testEveryStoryHasFourCompleteDistinctPathsAndSafeResume' started at 2026-09-21 20:54:59.633
+Test Case 'CoachingTests.testEveryStoryHasFourCompleteDistinctPathsAndSafeResume' passed (0.05 seconds)
+Test Case 'CoachingTests.testFeedbackIdentifiesWrongChoiceAndOmittedCorrectOption' started at 2026-09-21 20:54:59.683
+Test Case 'CoachingTests.testFeedbackIdentifiesWrongChoiceAndOmittedCorrectOption' passed (0.026 seconds)
+Test Case 'CoachingTests.testInvalidNewDataIsRejectedBeforeReplacingState' started at 2026-09-21 20:54:59.709
+Test Case 'CoachingTests.testInvalidNewDataIsRejectedBeforeReplacingState' passed (0.029 seconds)
+Test Case 'CoachingTests.testKnownOrLegacyQuestionsCannotPretendToBeNewTransfer' started at 2026-09-21 20:54:59.738
+Test Case 'CoachingTests.testKnownOrLegacyQuestionsCannotPretendToBeNewTransfer' passed (0.029 seconds)
+Test Case 'CoachingTests.testLegacyBackupWithoutNewFieldsRetainsNotesAttemptsAndSession' started at 2026-09-21 20:54:59.767
+Test Case 'CoachingTests.testLegacyBackupWithoutNewFieldsRetainsNotesAttemptsAndSession' passed (0.027 seconds)
+Test Case 'CoachingTests.testLongerPlanMixesDueAndNewFamiliesAndHonorsBothDates' started at 2026-09-21 20:54:59.794
+Test Case 'CoachingTests.testLongerPlanMixesDueAndNewFamiliesAndHonorsBothDates' passed (0.043 seconds)
+Test Case 'CoachingTests.testNewBackupRetainsEveryCoachingFeature' started at 2026-09-21 20:54:59.837
+Test Case 'CoachingTests.testNewBackupRetainsEveryCoachingFeature' passed (0.129 seconds)
+Test Case 'CoachingTests.testPracticeCheckOnlyChecksCompletenessAndExportPreservesText' started at 2026-09-21 20:54:59.966
+Test Case 'CoachingTests.testPracticeCheckOnlyChecksCompletenessAndExportPreservesText' passed (0.027 seconds)
+Test Case 'CoachingTests.testThreeMinutePlanDoesNotGrowAfterMissedDays' started at 2026-09-21 20:54:59.993
+Test Case 'CoachingTests.testThreeMinutePlanDoesNotGrowAfterMissedDays' passed (0.033 seconds)
+Test Suite 'CoachingTests' passed at 2026-09-21 20:55:00.026
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.502 (0.502) seconds
+Test Suite 'LegalContentTests' started at 2026-09-21 20:55:00.026
+Test Case 'LegalContentTests.testBundledPrivacyLoadsOfflineAndUsesConfiguredContact' started at 2026-09-21 20:55:00.026
+Test Case 'LegalContentTests.testBundledPrivacyLoadsOfflineAndUsesConfiguredContact' passed (0.008 seconds)
+Test Case 'LegalContentTests.testSupportMailOpensOnlyAUserControlledDraftWithoutPrivateData' started at 2026-09-21 20:55:00.034
+Test Case 'LegalContentTests.testSupportMailOpensOnlyAUserControlledDraftWithoutPrivateData' passed (0.002 seconds)
+Test Suite 'LegalContentTests' passed at 2026-09-21 20:55:00.036
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.009 (0.009) seconds
+Test Suite 'PersonalizationTests' started at 2026-09-21 20:55:00.036
+Test Case 'PersonalizationTests.testAllEightThemesHaveReadableCustomTextInBothAppearances' started at 2026-09-21 20:55:00.036
+Test Case 'PersonalizationTests.testAllEightThemesHaveReadableCustomTextInBothAppearances' passed (0.0 seconds)
+Test Case 'PersonalizationTests.testCountdownUsesCivilDaysAcrossDSTAndHandlesTodayTomorrowPastAndCompletion' started at 2026-09-21 20:55:00.036
+Test Case 'PersonalizationTests.testCountdownUsesCivilDaysAcrossDSTAndHandlesTodayTomorrowPastAndCompletion' passed (0.0 seconds)
+Test Case 'PersonalizationTests.testDailyImpulseChangesByLocalDateButNotOnRelaunch' started at 2026-09-21 20:55:00.036
+Test Case 'PersonalizationTests.testDailyImpulseChangesByLocalDateButNotOnRelaunch' passed (0.001 seconds)
+Test Case 'PersonalizationTests.testGreetingAndQuoteFollowLocalZoneAfterTravel' started at 2026-09-21 20:55:00.037
+Test Case 'PersonalizationTests.testGreetingAndQuoteFollowLocalZoneAfterTravel' passed (0.001 seconds)
+Test Case 'PersonalizationTests.testGreetingRespectsLocalTimeAndOptionalName' started at 2026-09-21 20:55:00.038
+Test Case 'PersonalizationTests.testGreetingRespectsLocalTimeAndOptionalName' passed (0.001 seconds)
+Test Case 'PersonalizationTests.testLegacyBackupAndSkippingDoNotEraseExamOrNotes' started at 2026-09-21 20:55:00.039
+Test Case 'PersonalizationTests.testLegacyBackupAndSkippingDoNotEraseExamOrNotes' passed (0.002 seconds)
+Test Case 'PersonalizationTests.testNameCleaningPreservesUnicodeAndLimitsLength' started at 2026-09-21 20:55:00.041
+Test Case 'PersonalizationTests.testNameCleaningPreservesUnicodeAndLimitsLength' passed (0.0 seconds)
+Test Case 'PersonalizationTests.testProfileAndThemeSurviveBackupWithoutResettingOtherSettings' started at 2026-09-21 20:55:00.042
+Test Case 'PersonalizationTests.testProfileAndThemeSurviveBackupWithoutResettingOtherSettings' passed (0.001 seconds)
+Test Case 'PersonalizationTests.testProfileEditWithNoDateDoesNotReopenCompletedExams' started at 2026-09-21 20:55:00.042
+Test Case 'PersonalizationTests.testProfileEditWithNoDateDoesNotReopenCompletedExams' passed (0.0 seconds)
+Test Suite 'PersonalizationTests' passed at 2026-09-21 20:55:00.042
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+Test Suite 'debug.xctest' passed at 2026-09-21 20:55:00.042
+	 Executed 52 tests, with 0 failures (0 unexpected) in 1.676 (1.676) seconds
+Test Suite 'All tests' passed at 2026-09-21 20:55:00.043
+	 Executed 52 tests, with 0 failures (0 unexpected) in 1.676 (1.676) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

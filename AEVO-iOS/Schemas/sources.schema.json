@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning-app.invalid/schema/sources.schema.json",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "url": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^https://[^\\s]+$"
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "url"
+    ],
+    "additionalProperties": false
+  },
+  "minItems": 1
+}

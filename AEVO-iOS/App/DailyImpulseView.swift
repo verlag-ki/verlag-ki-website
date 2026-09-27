@@ -1,5 +1,5 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct DailyImpulseView: View {

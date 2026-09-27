@@ -1,0 +1,396 @@
+[
+  {
+    "id": "ORBIT-Q001",
+    "version": 1,
+    "field": 1,
+    "type": "singleChoice",
+    "competency": "orbit-1",
+    "family": "orbit-family-1",
+    "topic": "Farbsignale",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Ein grünes Signal erlaubt im Orbit-Demo den Eintritt. Welches Signal erlaubt ihn?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Grün",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Rot",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q002",
+    "version": 1,
+    "field": 1,
+    "type": "singleChoice",
+    "competency": "orbit-1",
+    "family": "orbit-family-2",
+    "topic": "Farbsignale",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Ein rotes Signal bedeutet im Orbit-Demo warten. Was tust du bei Rot?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Warten",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Eintreten",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q003",
+    "version": 1,
+    "field": 1,
+    "type": "multipleChoice",
+    "competency": "orbit-1",
+    "family": "orbit-family-3",
+    "topic": "Farbsignale",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Im Orbit-Demo sind Blau und Weiß Hinweise. Welche Farben sind Hinweise?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Blau",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Weiß",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "c",
+        "text": "Rot",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a",
+      "b"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q004",
+    "version": 1,
+    "field": 1,
+    "type": "multipleChoice",
+    "competency": "orbit-1",
+    "family": "orbit-family-4",
+    "topic": "Farbsignale",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Das Orbit-Regelbuch nennt Grün als Freigabe und Rot als Halt. Welche Zuordnungen stimmen?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Grün: Freigabe",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Rot: Halt",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "c",
+        "text": "Rot: Freigabe",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a",
+      "b"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q005",
+    "version": 1,
+    "field": 2,
+    "type": "singleChoice",
+    "competency": "orbit-2",
+    "family": "orbit-family-5",
+    "topic": "Transport",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Eine Kiste darf im Orbit-Demo höchstens zwei Sterne tragen. Welche Kiste ist zulässig?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Zwei Sterne",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Drei Sterne",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q006",
+    "version": 1,
+    "field": 2,
+    "type": "singleChoice",
+    "competency": "orbit-2",
+    "family": "orbit-family-6",
+    "topic": "Transport",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Transport erfolgt im Demo nur mit geschlossener Kiste. Was muss vor dem Start geschehen?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Kiste schließen",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Kiste öffnen",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q007",
+    "version": 1,
+    "field": 2,
+    "type": "multipleChoice",
+    "competency": "orbit-2",
+    "family": "orbit-family-7",
+    "topic": "Transport",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Im Demo müssen Kisten geschlossen und beschriftet sein. Was ist erforderlich?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Geschlossen",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Beschriftet",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "c",
+        "text": "Unbeschriftet",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a",
+      "b"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q008",
+    "version": 1,
+    "field": 3,
+    "type": "singleChoice",
+    "competency": "orbit-3",
+    "family": "orbit-family-8",
+    "topic": "Stationsregeln",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Im Demo beginnt jede Schicht mit der Checkliste. Was kommt zuerst?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Checkliste",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Pause",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q009",
+    "version": 1,
+    "field": 3,
+    "type": "singleChoice",
+    "competency": "orbit-3",
+    "family": "orbit-family-9",
+    "topic": "Stationsregeln",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Am Schichtende wird im Demo der Arbeitsplatz geräumt. Was passt?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Arbeitsplatz räumen",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Alles liegen lassen",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-Q010",
+    "version": 1,
+    "field": 3,
+    "type": "multipleChoice",
+    "competency": "orbit-3",
+    "family": "orbit-family-10",
+    "topic": "Stationsregeln",
+    "objective": "Die angegebenen fiktiven Regeln anwenden.",
+    "context": "",
+    "prompt": "Vor einer Pause werden im Demo Gerät und Licht ausgeschaltet. Was gehört dazu?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Gerät ausschalten",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "b",
+        "text": "Licht ausschalten",
+        "explanation": "Diese Option entspricht der ausdrücklich genannten Demo-Regel."
+      },
+      {
+        "id": "c",
+        "text": "Gerät starten",
+        "explanation": "Diese Option widerspricht der in der Aufgabe genannten Demo-Regel."
+      }
+    ],
+    "correctIDs": [
+      "a",
+      "b"
+    ],
+    "explanation": "Maßgeblich ist ausschließlich die in dieser Aufgabe genannte fiktive Regel.",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  }
+]

@@ -1,6 +1,6 @@
 import Foundation
 import SwiftData
-import AEVOCore
+import LearningCore
 
 @Model
 final class StoredSnapshot {
@@ -24,8 +24,8 @@ final class LocalStore {
         request.fetchLimit = 1; row = try context.fetch(request).first
     }
 
-    func load() throws -> AppState {
-        guard let row else { return AppState() }
+    func load() throws -> AppState? {
+        guard let row else { return nil }
         // A decode failure is surfaced. Existing data is never replaced by an empty state.
         return try StateCodec.decode(row.payload)
     }

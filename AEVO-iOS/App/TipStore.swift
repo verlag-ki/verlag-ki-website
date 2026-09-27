@@ -4,7 +4,7 @@ import StoreKit
 
 @MainActor
 final class TipStore: ObservableObject {
-    static let productIDs = ["de.juliankuerten.aevo.tip.small", "de.juliankuerten.aevo.tip.medium", "de.juliankuerten.aevo.tip.large"]
+    var productIDs: [String] { store?.config.tipProductIds ?? [] }
     @Published var products: [Product] = []
     @Published var loading = false
     @Published var purchasing = false
@@ -13,7 +13,7 @@ final class TipStore: ObservableObject {
     private weak var store: AppStore?
 
     func connect(_ store: AppStore) {
-        guard self.store == nil else { return }
+        guard self.store == nil, store.enabled(.tips) else { return }
         self.store = store
         updatesTask = Task { [weak self] in
             for await result in Transaction.updates { await self?.process(result) }
@@ -25,7 +25,7 @@ final class TipStore: ObservableObject {
     func load() async {
         loading = true; message = nil; defer { loading = false }
         do {
-            products = try await Product.products(for: Self.productIDs).sorted { $0.price < $1.price }
+            products = try await Product.products(for: productIDs).sorted { $0.price < $1.price }
             if products.isEmpty { message = "Trinkgeld ist derzeit nicht verfügbar. Alle Lernfunktionen bleiben kostenlos nutzbar." }
         } catch { message = "Der App Store ist gerade nicht erreichbar. Du kannst ganz normal weiterlernen." }
     }
@@ -47,7 +47,7 @@ final class TipStore: ObservableObject {
             return
         }
         guard
-              Self.productIDs.contains(transaction.productID), transaction.revocationDate == nil,
+              productIDs.contains(transaction.productID), transaction.revocationDate == nil,
               let store else { return }
         let id = String(transaction.id)
         if !store.state.tipTransactionIDs.contains(id) {

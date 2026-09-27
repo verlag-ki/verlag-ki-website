@@ -1,7 +1,7 @@
 import Foundation
 
 public struct BackupEnvelope: Codable, Sendable {
-    public var format = "de.aevo.learning.backup"
+    public var format = "learning-app.backup"
     public var version = 1
     public var exportedAt: Date
     public var state: AppState
@@ -34,6 +34,7 @@ public enum StateCodec {
         // Across devices, absolute deadlines are retained but timing is no longer comparable.
         if portable.exam != nil {
             portable.exam?.lastObservedUptime = nil
+            portable.exam?.clockRunning = false
             if portable.exam?.submittedAt == nil { portable.exam?.timingUncertain = true }
         }
         portable.examHistory = portable.examHistory.map { exam in
@@ -46,7 +47,7 @@ public enum StateCodec {
     public static func importBackup(_ data: Data) throws -> AppState {
         guard data.count <= maximumBackupBytes else { throw LearningError.invalid("Die Sicherung ist größer als 25 MB.") }
         let backup = try decoder().decode(BackupEnvelope.self, from: data)
-        guard backup.format == "de.aevo.learning.backup", backup.version == 1 else {
+        guard (["learning-app.backup"] + ((try? LearningEnvironment.bundled().pack.manifest.legacyBackupFormats) ?? [])).contains(backup.format), backup.version == 1 else {
             throw LearningError.invalid("Diese Sicherung hat ein unbekanntes Format. Deine Daten bleiben unverändert.")
         }
         try validate(backup.state); return backup.state
@@ -59,10 +60,10 @@ public enum StateCodec {
         }
         let c = state.coaching
         guard [3,5,10,15,20,30].contains(c.weekdayMinutes), [3,5,10,15,20,30].contains(c.weekendMinutes),
-              (0..<24).contains(c.oralIndex),
+              (0..<10_000).contains(c.oralIndex),
               (Array(c.notes.values) + Array(c.practiceDetails.values) + Array(c.oralAnswers.values)).allSatisfy({ $0.count <= 30_000 }),
-              c.oralChecks.values.allSatisfy({ $0.isSubset(of: Set(0..<3)) }),
-              c.caseRuns.values.allSatisfy({ $0.version > 0 && $0.choices.count <= 20 && $0.reflection.count <= 30_000 }),
+              c.oralChecks.values.allSatisfy({ $0.allSatisfy { (0..<100).contains($0) } }),
+              c.caseRuns.values.allSatisfy({ $0.version > 0 && $0.choices.count <= 20 && $0.reflection.count <= 30_000 && ($0.feedbackPending != true || !$0.choices.isEmpty) }),
               Set(c.feedback.map(\.id)).count == c.feedback.count,
               c.feedback.allSatisfy({ !$0.contentID.isEmpty && $0.version > 0 && $0.message.count <= 10_000 }),
               c.acknowledgedVersions.values.allSatisfy({ $0 > 0 }),
@@ -103,6 +104,15 @@ public enum StateCodec {
                 throw LearningError.invalid("Ein Bearbeitungsentwurf überschreitet die erlaubte Textlänge.")
             }
         }
+        if let study = state.cardStudy {
+            guard !study.cardIDs.isEmpty, study.cardIDs.count <= 10_000,
+                  Set(study.cardIDs).count == study.cardIDs.count,
+                  study.cardIDs.allSatisfy({ !$0.isEmpty }),
+                  (0...study.cardIDs.count).contains(study.index),
+                  study.uncertainIDs.isSubset(of: Set(study.cardIDs.prefix(study.index))) else {
+                throw LearningError.invalid("Die gespeicherte Lernkartenfolge ist ungültig.")
+            }
+        }
         if let session = state.session {
             try validateQuestions(session.questions, index: session.index, selections: session.selections)
             let ids = Set(session.questions.map(\.id))
@@ -111,6 +121,14 @@ public enum StateCodec {
             }
         }
         for exam in state.examHistory + [state.exam].compactMap({ $0 }) {
+            if let rules = exam.rules {
+                guard rules.version == 1, rules.durationSeconds > 0, rules.questionCount > 0,
+                      rules.passPercentage.isFinite, (0...100).contains(rules.passPercentage),
+                      (exam.remainingActiveSeconds ?? 0).isFinite, (exam.remainingActiveSeconds ?? 0) >= 0,
+                      (exam.lockedQuestionIDs ?? []).isSubset(of: Set(exam.questions.map(\.id))) else {
+                    throw LearningError.invalid("Gespeicherte Prüfungsregeln sind ungültig.")
+                }
+            }
             try validateQuestions(exam.questions, index: exam.index, selections: exam.selections)
             guard exam.deadline > exam.startedAt, exam.marked.isSubset(of: Set(exam.questions.map(\.id))),
                   exam.viewed.isSubset(of: Set(exam.questions.map(\.id))) else {
@@ -119,13 +137,14 @@ public enum StateCodec {
         }
     }
     private static func validateQuestions(_ questions: [Question], index: Int, selections: [String: Set<String>]) throws {
-        guard !questions.isEmpty, questions.count <= 100, questions.indices.contains(index),
+        guard !questions.isEmpty, questions.count <= 10_000, questions.indices.contains(index),
               Set(questions.map(\.id)).count == questions.count,
               Set(selections.keys).isSubset(of: Set(questions.map(\.id))) else {
             throw LearningError.invalid("Die gespeicherte Aufgabenfolge ist ungültig.")
         }
         for q in questions {
-            guard !q.correctIDs.isEmpty, q.correctIDs.isSubset(of: Set(q.options.map(\.id))),
+            guard q.type != .singleChoice || (selections[q.id] ?? []).count <= 1,
+                  !q.correctIDs.isEmpty, q.correctIDs.isSubset(of: Set(q.options.map(\.id))),
                   (selections[q.id] ?? []).isSubset(of: Set(q.options.map(\.id))) else {
                 throw LearningError.invalid("Der gespeicherte Antwortstand ist ungültig.")
             }

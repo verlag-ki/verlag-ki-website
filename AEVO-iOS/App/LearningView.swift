@@ -1,6 +1,6 @@
 import SwiftUI
 import StoreKit
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct LearningView: View {
@@ -14,17 +14,11 @@ struct LearningView: View {
     @State private var completed = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    /// Anchor of the currently evaluated question, so the result scrolls into view by itself.
-    private var resultAnchor: String? {
-        guard let session = store.state.session, let question = session.current,
-              session.submitted.contains(question.id) else { return nil }
-        return "result-" + question.id
-    }
-
     var body: some View {
-        ScrollViewReader { scroll in
+        ScrollViewReader { proxy in
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
+                Color.clear.frame(height: 0).id("question-top")
                 if completed {
                     Image(systemName: "checkmark.circle.fill").font(.system(size: 48)).foregroundStyle(theme.accent)
                     Text("Ein Stück\nweitergekommen.").font(.largeTitle.bold())
@@ -36,21 +30,13 @@ struct LearningView: View {
                     ProgressView(value: Double(session.index), total: Double(session.questions.count)).tint(theme.accent)
                     if !question.context.isEmpty { Text(question.context).foregroundStyle(.secondary) }
                     Text(question.prompt).font(.title2.weight(.semibold))
+                    Text(question.multipleChoice ? "Wähle \(question.correctIDs.count) Antworten." : "Wähle eine Antwort.").font(.subheadline).foregroundStyle(.secondary)
                     let submitted = session.submitted.contains(question.id)
                     let selected = session.selections[question.id] ?? []
-                    if !submitted {
-                        Text(question.multipleChoice
-                             ? "Wähle \(question.correctIDs.count) Antworten und prüfe sie."
-                             : "Tippe deine Antwort an. Sie wird sofort ausgewertet.")
-                            .font(.subheadline).foregroundStyle(.secondary)
-                    }
                     ForEach(question.options) { option in
                         AnswerRow(option: option, selected: selected.contains(option.id),
-                                  evaluated: submitted, correct: question.correctIDs.contains(option.id)) {
-                            // One tap answers a single-choice question: choose, see, move on.
-                            if question.multipleChoice { store.select(option.id) } else { store.answer(option.id) }
-                        }
-                        .disabled(submitted)
+                                  evaluated: submitted, correct: question.correctIDs.contains(option.id)) { store.select(option.id) }
+                            .disabled(submitted)
                     }
                     if submitted {
                         Surface {
@@ -67,27 +53,45 @@ struct LearningView: View {
                                     }
                                 }.padding(.top, 10)
                             }.id("answers-" + question.id)
-                            if let card = store.catalog.card(for: question) { NavigationLink("Passende Lernkarte ansehen") { CardDeckView(startCard: card.id) }.frame(minHeight: 44) }
-                        }.id("result-" + question.id)
-                        PrimaryButton(title: session.index + 1 == session.questions.count ? "Runde abschließen" : "Nächste Aufgabe") {
-                            if store.advance() { completed = true }
-                        }
-                        if question.isCorrect(selected) && !session.unsure.contains(question.id) {
-                            Button { store.markUnsure() } label: {
-                                Label("War eher geraten – nochmal zeigen", systemImage: "questionmark.circle").font(.subheadline)
-                            }.frame(minHeight: 44)
-                        } else if session.unsure.contains(question.id) {
-                            Label("Für eine frühere Wiederholung vorgemerkt.", systemImage: "arrow.counterclockwise")
-                                .font(.footnote).foregroundStyle(.secondary)
-                        }
+                            if store.enabled(.flashcards), let card = store.catalog.card(for: question) { NavigationLink("Passende Lernkarte ansehen") { CardView(card: card) }.frame(minHeight: 44) }
+                        }.id("answer-feedback")
+                    } else {
+                        Toggle("Ich bin noch unsicher", isOn: Binding(get: { session.unsure.contains(question.id) }, set: { value in
+                            store.activity(); store.commit { if value { $0.session?.unsure.insert(question.id) } else { $0.session?.unsure.remove(question.id) } }
+                        }))
+                    }
+                    if submitted {
                         DisclosureGroup("Eigene Notiz") { QuestionNotebook(question: question) }.id(question.id)
-                        SourceLinks(sources: question.sources).id("sources-" + question.id)
-                    } else if question.multipleChoice {
-                        PrimaryButton(title: "Antwort prüfen", icon: "checkmark", action: store.submit).disabled(selected.isEmpty).opacity(selected.isEmpty ? 0.5 : 1)
+                        ContentQualityView(contentID: question.id, version: question.version, sources: question.sources, approved: question.approved, reviewedOn: question.reviewedOn, reviewedBy: question.reviewedBy).id("quality-" + question.id)
                     }
                     Button { store.toggleBookmark(question.id) } label: { Label(store.state.bookmarks.contains(question.id) ? "Aus Merkliste entfernen" : "Für später merken", systemImage: store.state.bookmarks.contains(question.id) ? "bookmark.fill" : "bookmark") }.frame(minHeight: 44)
                 }
             }.padding(22)
+        }
+        .safeAreaInset(edge: .bottom) {
+            if !completed, let session = store.state.session, let question = session.current {
+                let submitted = session.submitted.contains(question.id)
+                PrimaryButton(title: submitted ? (session.index + 1 == session.questions.count ? "Runde abschließen" : "Nächste Aufgabe") : "Antwort einloggen", icon: submitted ? "arrow.right" : "checkmark") {
+                    if submitted {
+                        if store.advance() { completed = true }
+                    } else { store.submit() }
+                }
+                .disabled(!submitted && (session.selections[question.id] ?? []).isEmpty)
+                .opacity(!submitted && (session.selections[question.id] ?? []).isEmpty ? 0.5 : 1)
+                .padding(.horizontal, 22).padding(.vertical, 12).background(theme.background)
+            }
+        }
+        .onChange(of: store.state.session?.current?.id) { _, _ in proxy.scrollTo("question-top", anchor: .top) }
+        .onChange(of: completed) { _, _ in proxy.scrollTo("question-top", anchor: .top) }
+        .onChange(of: store.state.session?.submitted.count) { _, _ in
+            if let session = store.state.session, let question = session.current, session.submitted.contains(question.id) {
+                DispatchQueue.main.async {
+                    withAnimation(reduceMotion || store.state.coaching.quietMode ? nil : .easeInOut(duration: 0.2)) {
+                        proxy.scrollTo("answer-feedback", anchor: .top)
+                    }
+                }
+            }
+        }
         }.animation(reduceMotion || store.state.coaching.quietMode ? nil : .easeInOut(duration: 0.2), value: completed).learningBackground().navigationTitle("Deine Lernrunde").navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Schließen") { dismiss() } } }
             .onAppear { visible = true; store.activity() }
@@ -98,21 +102,15 @@ struct LearningView: View {
                 do { try await Task.sleep(for: .seconds(3)) } catch { return }
                 guard !Task.isCancelled, completed, visible, scenePhase == .active,
                       store.state.session == nil, store.errorMessage == nil,
-                      let kind = PromptPolicy.eligible(state: store.state, now: Date(), atSessionEnd: true) else { return }
-                if kind == .review {
+                      let kind = PromptPolicy.eligible(state: store.schedulingState, now: Date(), atSessionEnd: true, reviewsEnabled: store.enabled(.ratings), tipsEnabled: store.enabled(.tips)) else { return }
+                if kind == .review && store.enabled(.ratings) {
                     if store.commit({ $0.reviewRequests.append(Date()) }) { requestReview() }
-                } else if store.commit({ $0.tipRequests.append(Date()) }) { showTip = true }
+                } else if kind == .tip && store.enabled(.tips) && store.commit({ $0.tipRequests.append(Date()) }) { showTip = true }
             }
             .sheet(isPresented: $showTip) {
                 NavigationStack { SupportView(isAutomatic: true) }.environmentObject(store)
             }
-            .onChange(of: resultAnchor) { _, anchor in
-                guard let anchor else { return }
-                withAnimation(reduceMotion || store.state.coaching.quietMode ? nil : .easeInOut(duration: 0.25)) {
-                    scroll.scrollTo(anchor, anchor: .top)
-                }
-            }
-        }
+
     }
 }
 
@@ -144,6 +142,9 @@ struct AnswerRow: View {
 @MainActor
 struct SourceLinks: View {
     let sources: [ContentSource]
+    var approved = false
+    var reviewedOn: String?
+    var reviewedBy: String?
     var body: some View {
         DisclosureGroup("Quellen") {
             VStack(alignment: .leading, spacing: 12) {

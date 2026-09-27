@@ -24,7 +24,14 @@ def render(value, depth=0):
         return "(\n" + "\n".join("\t" * (depth + 1) + render(v, depth + 1) + "," for v in value) + "\n" + pad + ")"
     return json.dumps(str(value), ensure_ascii=False)
 
-def main():
+def main(root=ROOT, project_name="LearningApp"):
+    global ROOT
+    ROOT = Path(root)
+    objects.clear()
+    config = json.loads((ROOT / "Core/Resources/app-config.json").read_text())
+    product_name = config["productName"]
+    project_dir = ROOT / (project_name + ".xcodeproj")
+    (project_dir / "xcshareddata/xcschemes").mkdir(parents=True, exist_ok=True)
     swift_files = sorted((ROOT / "App").glob("*.swift"))
     refs = []
     builds = []
@@ -38,40 +45,41 @@ def main():
         refs.append(ref); resources.append(add("build:" + path, "PBXBuildFile", fileRef=ref))
     info_ref = add("info", "PBXFileReference", lastKnownFileType="text.plist.xml", path="Configuration/Info.plist", sourceTree="<group>")
     storekit_ref = add("storekit", "PBXFileReference", lastKnownFileType="text", path="Configuration/Tips.storekit", sourceTree="<group>")
-    product = add("product", "PBXFileReference", explicitFileType="wrapper.application", includeInIndex=0, path="AEVOLernen.app", sourceTree="BUILT_PRODUCTS_DIR")
+    product = add("product", "PBXFileReference", explicitFileType="wrapper.application", includeInIndex=0, path=product_name + ".app", sourceTree="BUILT_PRODUCTS_DIR")
     product_group = add("products", "PBXGroup", children=[product], name="Products", sourceTree="<group>")
     root_group = add("main", "PBXGroup", children=refs + [info_ref, storekit_ref, product_group], sourceTree="<group>")
     package = add("core-package", "XCLocalSwiftPackageReference", relativePath=".")
-    dependency = add("core-product", "XCSwiftPackageProductDependency", package=package, productName="AEVOCore")
+    dependency = add("core-product", "XCSwiftPackageProductDependency", package=package, productName="LearningCore")
     linked_core = add("core-link", "PBXBuildFile", productRef=dependency)
     source_phase = add("sources", "PBXSourcesBuildPhase", buildActionMask=2147483647, files=builds, runOnlyForDeploymentPostprocessing=0)
     resource_phase = add("resources", "PBXResourcesBuildPhase", buildActionMask=2147483647, files=resources, runOnlyForDeploymentPostprocessing=0)
     framework_phase = add("frameworks", "PBXFrameworksBuildPhase", buildActionMask=2147483647, files=[linked_core], runOnlyForDeploymentPostprocessing=0)
-    gate = add("content-gate", "PBXShellScriptBuildPhase", buildActionMask=2147483647, files=[], inputPaths=["$(SRCROOT)/Core/Resources/catalog.json", "$(SRCROOT)/Core/Resources/practice.json", "$(SRCROOT)/Core/Resources/legal.json", "$(SRCROOT)/Scripts/validate_release.py"], outputPaths=[],
-               name="Inhalte und Anbieterangaben bei Release prüfen", runOnlyForDeploymentPostprocessing=0, shellPath="/bin/sh",
-               shellScript='if [ "$CONFIGURATION" = "Release" ]; then\n  /usr/bin/python3 "$SRCROOT/Scripts/validate_release.py" "$SRCROOT/Core/Resources/catalog.json"\nfi\n')
+    gate_inputs = ["$(SRCROOT)/Core/Resources/SelectedPack", "$(SRCROOT)/Core/Resources/app-config.json", "$(SRCROOT)/Core/Resources/legal.json", "$(SRCROOT)/Scripts", "$(SRCROOT)/Schemas"]
+    gate = add("content-gate", "PBXShellScriptBuildPhase", buildActionMask=2147483647, files=[], inputPaths=gate_inputs, outputPaths=[],
+               name="Paket und Veröffentlichung prüfen", runOnlyForDeploymentPostprocessing=0, shellPath="/bin/sh",
+               shellScript='export PYTHONDONTWRITEBYTECODE=1\nif [ "$CONFIGURATION" = "Release" ]; then\n  /usr/bin/python3 "$SRCROOT/Scripts/validate_release.py" "$SRCROOT/Core/Resources/SelectedPack"\nfi\n')
     project_settings = dict(CLANG_ENABLE_MODULES="YES", CLANG_ENABLE_OBJC_ARC="YES", SDKROOT="iphoneos", IPHONEOS_DEPLOYMENT_TARGET="17.0", SWIFT_VERSION="5.0", ENABLE_USER_SCRIPT_SANDBOXING="YES")
-    target_settings = dict(PRODUCT_BUNDLE_IDENTIFIER="de.juliankuerten.aevo", PRODUCT_NAME="AEVOLernen", TARGETED_DEVICE_FAMILY="1", CODE_SIGN_STYLE="Automatic",
-        GENERATE_INFOPLIST_FILE="NO", INFOPLIST_FILE="Configuration/Info.plist", ASSETCATALOG_COMPILER_APPICON_NAME="AppIcon", CURRENT_PROJECT_VERSION="9",
-        MARKETING_VERSION="0.3.4", SWIFT_EMIT_LOC_STRINGS="YES", SUPPORTED_PLATFORMS="iphoneos iphonesimulator", SUPPORTS_MACCATALYST="NO",
+    target_settings = dict(PRODUCT_BUNDLE_IDENTIFIER=config["bundleIdentifier"], PRODUCT_NAME=product_name, TARGETED_DEVICE_FAMILY="1", CODE_SIGN_STYLE="Automatic",
+        GENERATE_INFOPLIST_FILE="NO", INFOPLIST_FILE="Configuration/Info.plist", ASSETCATALOG_COMPILER_APPICON_NAME="AppIcon", CURRENT_PROJECT_VERSION="10",
+        MARKETING_VERSION="0.5.0", SWIFT_EMIT_LOC_STRINGS="YES", SUPPORTED_PLATFORMS="iphoneos iphonesimulator", SUPPORTS_MACCATALYST="NO",
         LD_RUNPATH_SEARCH_PATHS=["$(inherited)", "@executable_path/Frameworks"], SWIFT_STRICT_CONCURRENCY="targeted")
     project_configs = []; target_configs = []
-    for config in ["Debug", "Release"]:
+    for build_config in ["Debug", "Release"]:
         p = dict(project_settings)
-        p.update(SWIFT_OPTIMIZATION_LEVEL="-Onone" if config == "Debug" else "-O", DEBUG_INFORMATION_FORMAT="dwarf" if config == "Debug" else "dwarf-with-dsym")
-        if config == "Debug": p.update(SWIFT_ACTIVE_COMPILATION_CONDITIONS="DEBUG", ENABLE_TESTABILITY="YES", ONLY_ACTIVE_ARCH="YES")
-        project_configs.append(add("project:" + config, "XCBuildConfiguration", name=config, buildSettings=p))
-        target_configs.append(add("target:" + config, "XCBuildConfiguration", name=config, buildSettings=target_settings))
+        p.update(SWIFT_OPTIMIZATION_LEVEL="-Onone" if build_config == "Debug" else "-O", DEBUG_INFORMATION_FORMAT="dwarf" if build_config == "Debug" else "dwarf-with-dsym")
+        if build_config == "Debug": p.update(SWIFT_ACTIVE_COMPILATION_CONDITIONS="DEBUG", ENABLE_TESTABILITY="YES", ONLY_ACTIVE_ARCH="YES")
+        project_configs.append(add("project:" + build_config, "XCBuildConfiguration", name=build_config, buildSettings=p))
+        target_configs.append(add("target:" + build_config, "XCBuildConfiguration", name=build_config, buildSettings=target_settings))
     project_config_list = add("project-configs", "XCConfigurationList", buildConfigurations=project_configs, defaultConfigurationIsVisible=0, defaultConfigurationName="Debug")
     target_config_list = add("target-configs", "XCConfigurationList", buildConfigurations=target_configs, defaultConfigurationIsVisible=0, defaultConfigurationName="Debug")
     target = add("target", "PBXNativeTarget", buildConfigurationList=target_config_list, buildPhases=[gate, source_phase, framework_phase, resource_phase], buildRules=[], dependencies=[],
-        name="AEVOLernen", packageProductDependencies=[dependency], productName="AEVOLernen", productReference=product, productType="com.apple.product-type.application")
+        name=product_name, packageProductDependencies=[dependency], productName=product_name, productReference=product, productType="com.apple.product-type.application")
     project = add("project", "PBXProject", attributes={"BuildIndependentTargetsInParallel": "YES", "LastUpgradeCheck": "1600"}, buildConfigurationList=project_config_list,
         compatibilityVersion="Xcode 14.0", developmentRegion="de", hasScannedForEncodings=0, knownRegions=["de", "en", "Base"], mainGroup=root_group,
         packageReferences=[package], productRefGroup=product_group, projectDirPath="", projectRoot="", targets=[target])
     document = dict(archiveVersion=1, classes={}, objectVersion=56, objects=objects, rootObject=project)
-    (ROOT / "AEVO.xcodeproj/project.pbxproj").write_text("// !$*UTF8*$!\n" + render(document) + "\n")
-    reference = f'<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{target}" BuildableName="AEVOLernen.app" BlueprintName="AEVOLernen" ReferencedContainer="container:AEVO.xcodeproj"/>'
+    (project_dir / "project.pbxproj").write_text("// !$*UTF8*$!\n" + render(document) + "\n")
+    reference = f'<BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="{target}" BuildableName="{product_name}.app" BlueprintName="{product_name}" ReferencedContainer="container:{project_name}.xcodeproj"/>'
     scheme = f'''<?xml version="1.0" encoding="UTF-8"?>
 <Scheme LastUpgradeVersion="1600" version="1.7">
  <BuildAction parallelizeBuildables="YES" buildImplicitDependencies="YES"><BuildActionEntries><BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">{reference}</BuildActionEntry></BuildActionEntries></BuildAction>
@@ -82,21 +90,21 @@ def main():
  <ArchiveAction buildConfiguration="Release" revealArchiveInOrganizer="YES"/>
 </Scheme>
 '''
-    (ROOT / "AEVO.xcodeproj/xcshareddata/xcschemes/AEVOLernen.xcscheme").write_text(scheme)
-    info = dict(CFBundleDevelopmentRegion="de", CFBundleDisplayName="aevo.", CFBundleExecutable="$(EXECUTABLE_NAME)", CFBundleIdentifier="$(PRODUCT_BUNDLE_IDENTIFIER)",
+    (project_dir / "xcshareddata/xcschemes" / (product_name + ".xcscheme")).write_text(scheme)
+    info = dict(CFBundleDevelopmentRegion="de", CFBundleDisplayName=config["appName"], CFBundleExecutable="$(EXECUTABLE_NAME)", CFBundleIdentifier="$(PRODUCT_BUNDLE_IDENTIFIER)",
         CFBundleInfoDictionaryVersion="6.0", CFBundleName="$(PRODUCT_NAME)", CFBundlePackageType="APPL", CFBundleShortVersionString="$(MARKETING_VERSION)", CFBundleVersion="$(CURRENT_PROJECT_VERSION)",
         NSMicrophoneUsageDescription="Wenn du möchtest, kannst du deine Antwort im Fachgespräch aufnehmen und selbst anhören. Die Aufnahme bleibt auf deinem iPhone.", LSRequiresIPhoneOS=True, UILaunchScreen={}, UIApplicationSceneManifest={"UIApplicationSupportsMultipleScenes": False},
         UISupportedInterfaceOrientations=["UIInterfaceOrientationPortrait", "UIInterfaceOrientationLandscapeLeft", "UIInterfaceOrientationLandscapeRight"], ITSAppUsesNonExemptEncryption=False)
+    if not config["featureFlags"]["oralExam"]: info.pop("NSMicrophoneUsageDescription", None)
     (ROOT / "Configuration/Info.plist").write_bytes(plistlib.dumps(info))
     privacy = dict(NSPrivacyTracking=False, NSPrivacyTrackingDomains=[], NSPrivacyCollectedDataTypes=[],
         NSPrivacyAccessedAPITypes=[dict(NSPrivacyAccessedAPIType="NSPrivacyAccessedAPICategorySystemBootTime", NSPrivacyAccessedAPITypeReasons=["35F9.1"])])
     (ROOT / "Configuration/PrivacyInfo.xcprivacy").write_bytes(plistlib.dumps(privacy))
     products = []
-    for i, (kind, name, price) in enumerate([("small", "Kleines Trinkgeld", "2.99"), ("medium", "Mittleres Trinkgeld", "5.99"), ("large", "Großes Trinkgeld", "9.99")]):
-        treat = {"small": "Filterkaffee", "medium": "Cappuccino", "large": "Döner"}[kind]
-        products.append(dict(displayPrice=price, familyShareable=False, internalID=str(100001+i),
-            localizations=[dict(description=f"Ein {treat} als freiwilliges Dankeschön.", displayName=f"Trinkgeld: {treat}", locale="de_DE")],
-            productID="de.juliankuerten.aevo.tip."+kind, referenceName=name, type="Consumable"))
+    for i, (product_id, label) in enumerate(zip(config["tipProductIds"], config["tipLabels"])):
+        products.append(dict(displayPrice=label["testPrice"], familyShareable=False, internalID=str(100001+i),
+            localizations=[dict(description=label["detail"], displayName=label["title"], locale="de_DE")],
+            productID=product_id, referenceName=label["title"], type="Consumable"))
     storekit = dict(identifier="AEC4258B", nonRenewingSubscriptions=[], products=products,
         settings={"_applicationInternalID": "0", "_developerTeamID": "", "_failTransactionsEnabled": False, "_locale": "de_DE", "_storefront": "DEU", "_storeKitErrors": []},
         subscriptionGroups=[], version=dict(major=3, minor=0))

@@ -56,7 +56,7 @@ public struct LegalContent: Codable, Sendable {
     }
 
     public static func webURL(_ text: String) -> URL? {
-        guard let url = URL(string: text), url.scheme == "https", let host = url.host, !host.isEmpty else { return nil }
+        guard let url = URL(string: text), url.scheme == "https", let host = url.host, !host.isEmpty, url.user == nil, url.password == nil else { return nil }
         return url
     }
 }

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "packId": "neue-pruefung",
+  "version": 1,
+  "title": "TODO Prüfungstitel",
+  "description": "TODO Umfang und Zielgruppe",
+  "locale": "de-DE",
+  "generatedOn": "2026-09-20",
+  "categories": [],
+  "modules": [],
+  "rightsNotice": "Fiktives technisches Demo. Keine reale Prüfung.",
+  "legacyBackupFormats": []
+}

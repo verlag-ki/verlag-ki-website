@@ -28,10 +28,12 @@ public struct CaseRun: Codable, Equatable, Sendable {
     public var version: Int
     public var choices: [String] = []
     public var reflection = ""
+    public var feedbackPending: Bool?
     public init(version: Int) { self.version = version }
 }
 public struct OralPrompt: Codable, Identifiable, Sendable {
     public let id: String
+    public var version: Int?
     public let question: String
     public let followUp: String
     public let criteria: [String]
@@ -42,15 +44,15 @@ public struct PracticeContent: Codable, Sendable {
     public let version: Int
     public let cases: [TrainingCase]
     public let oral: [OralPrompt]
+    public var preparation: PracticePreparation?
     public static func bundled() throws -> PracticeContent {
-        guard let url = Bundle.module.url(forResource: "practice", withExtension: "json") else { throw LearningError.invalid("Praxisinhalte fehlen.") }
-        let content = try JSONDecoder().decode(Self.self, from: Data(contentsOf: url)); try content.validate(); return content
+        try LearningEnvironment.bundled().pack.practice
     }
     public func validate() throws {
         guard version == 1, Set(cases.map(\.id)).count == cases.count, Set(oral.map(\.id)).count == oral.count else { throw LearningError.invalid("Doppelte Praxiskennungen.") }
         for c in cases {
             let ids = Set(c.nodes.map(\.id))
-            guard (1...4).contains(c.field), !c.sources.isEmpty, c.nodes.first?.id == "start", ids.count == c.nodes.count else { throw LearningError.invalid("Ungültiger Fall.") }
+            guard c.field > 0, !c.sources.isEmpty, c.nodes.first?.id == "start", ids.count == c.nodes.count else { throw LearningError.invalid("Ungültiger Fall.") }
             for n in c.nodes {
                 guard n.choices.count >= 2, Set(n.choices.map(\.id)).count == n.choices.count,
                       n.choices.allSatisfy({ !$0.reasoning.isEmpty && !$0.consequence.isEmpty && ($0.next == nil || ids.contains($0.next!)) }) else { throw LearningError.invalid("Ungültiger Entscheidungszweig.") }
@@ -79,8 +81,12 @@ public struct PracticeContent: Codable, Sendable {
     }
     public static func choose(_ id: String, in c: TrainingCase, state: inout AppState, now: Date = Date()) throws {
         var run = state.coaching.caseRuns[c.id] ?? CaseRun(version: c.version)
+        guard run.feedbackPending != true else { throw LearningError.invalid("Lies erst die Erklärung und gehe dann zum nächsten Schritt.") }
         guard let node = try currentNode(for: c, run: run), node.choices.contains(where: { $0.id == id }) else { throw LearningError.invalid("Diese Auswahl gehört nicht zum aktuellen Schritt.") }
-        run.choices.append(id); state.coaching.caseRuns[c.id] = run
+        run.choices.append(id); run.feedbackPending = true; state.coaching.caseRuns[c.id] = run
         if try currentNode(for: c, run: run) == nil { LearningEngine.recordStep(state: &state, id: c.id, now: now) }
+    }
+    public static func acknowledgeFeedback(in c: TrainingCase, state: inout AppState) {
+        state.coaching.caseRuns[c.id]?.feedbackPending = false
     }
 }

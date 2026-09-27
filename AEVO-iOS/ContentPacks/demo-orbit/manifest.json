@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "packId": "demo-orbit",
+  "version": 1,
+  "title": "Orbit-Akademie",
+  "description": "Fiktive Regeln einer Raumstation. Ausschließlich technisches Demo, keine reale Prüfung.",
+  "locale": "de-DE",
+  "generatedOn": "2026-09-20",
+  "categories": [
+    {
+      "id": 1,
+      "title": "Farbsignale"
+    },
+    {
+      "id": 2,
+      "title": "Transport"
+    },
+    {
+      "id": 3,
+      "title": "Stationsregeln"
+    }
+  ],
+  "modules": [
+    "writtenExam",
+    "flashcards"
+  ],
+  "rightsNotice": "Fiktives technisches Demo. Keine reale Prüfung.",
+  "legacyBackupFormats": []
+}

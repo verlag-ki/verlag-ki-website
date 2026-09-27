@@ -38,28 +38,6 @@ public enum LearningEngine {
         return Array(pool.filter { families.insert($0.family).inserted }.prefix(max(0, count)))
     }
 
-    /// Ordered queue for the swipe deck: cards that are due first, then never seen ones,
-    /// then the rest by due date. The order is stable so a restart continues sensibly.
-    public static func nextCards(catalog: Catalog, state: AppState, field: Int? = nil,
-                                 startingWith first: String? = nil, count: Int = 20,
-                                 now: Date = Date()) -> [LearningCard] {
-        let pool = catalog.cards.filter { field == nil || $0.field == field }.sorted { left, right in
-            func priority(_ card: LearningCard) -> (Int, Date) {
-                guard let recall = state.cardRecall[card.id] else { return (1, .distantPast) }
-                return recall.due <= now ? (0, recall.due) : (2, recall.due)
-            }
-            let a = priority(left), b = priority(right)
-            return a == b ? left.id < right.id : a < b
-        }
-        var queue = Array(pool.prefix(max(0, count)))
-        if let first, let card = catalog.cards.first(where: { $0.id == first }) {
-            queue.removeAll { $0.id == card.id }
-            queue.insert(card, at: 0)
-            queue = Array(queue.prefix(max(1, count)))
-        }
-        return queue
-    }
-
     public static func startRound(state: inout AppState, questions: [Question], now: Date = Date()) throws {
         guard state.session == nil else { throw LearningError.invalid("Bitte setze deine angefangene Runde fort.") }
         guard !questions.isEmpty else { throw LearningError.invalid("Für diese Auswahl gibt es gerade keine passenden Aufgaben.") }
@@ -95,23 +73,6 @@ public enum LearningEngine {
         updateRecall(&state.questionRecall, id: q.id, understood: q.isCorrect(chosen) && !unsure, now: now, calendar: calendar)
         session.submitted.insert(q.id); state.session = session
         recordStep(state: &state, id: q.id, now: now, calendar: calendar)
-    }
-
-    /// A learner may realise only after seeing the solution that the answer was a guess.
-    /// Marking it then moves the question back into the repetition pool. It is one way:
-    /// a recorded uncertainty is never silently withdrawn.
-    public static func markUnsure(state: inout AppState, questionID: String,
-                                  now: Date = Date(), calendar: Calendar = .current) throws {
-        guard var session = state.session, let q = session.current, q.id == questionID,
-              session.submitted.contains(q.id) else {
-            throw LearningError.invalid("Diese Einschätzung lässt sich gerade nicht mehr ändern.")
-        }
-        guard !session.unsure.contains(q.id) else { return }
-        session.unsure.insert(q.id); state.session = session
-        if let index = state.attempts.lastIndex(where: { $0.questionID == q.id }) {
-            state.attempts[index].unsure = true
-        }
-        updateRecall(&state.questionRecall, id: q.id, understood: false, now: now, calendar: calendar)
     }
 
     @discardableResult public static func advance(state: inout AppState, now: Date = Date()) throws -> Bool {
@@ -207,27 +168,19 @@ public enum LearningEngine {
         return count
     }
 
-    public static func refreshBadges(state: inout AppState, catalog: Catalog, now: Date = Date()) {
+    public static func refreshBadges(state: inout AppState, catalog: Catalog, now: Date = Date(), categories: Set<Int>? = nil, practiceComplete: Bool? = nil) {
         var fields = Set(state.attempts.map(\.field))
         for card in catalog.cards where state.cardRecall[card.id] != nil { if let field = card.field { fields.insert(field) } }
-        if fields.isSuperset(of: [1, 2, 3, 4]) { award("all-fields", state: &state, now: now) }
-        if state.practice.hasPlan { award("practice-plan", state: &state, now: now) }
+        if fields.isSuperset(of: categories ?? Set(catalog.questions.map(\.field) + catalog.cards.compactMap(\.field))) { award("all-fields", state: &state, now: now) }
+        if practiceComplete ?? state.practice.hasPlan { award("practice-plan", state: &state, now: now) }
     }
 
     private static func award(_ id: String, state: inout AppState, now: Date) {
         if state.badges[id] == nil { state.badges[id] = now }
     }
 
-    public static func examQuestions(catalog: Catalog) throws -> [Question] {
-        // Own transparent training distribution, not a promise about a chamber's paper.
-        let quotas = [1: 12, 2: 18, 3: 38, 4: 12]
-        var result: [Question] = []
-        for field in 1...4 {
-            var used: Set<String> = []
-            let pool = catalog.questions.filter { $0.field == field }.shuffled().filter { used.insert($0.family).inserted }
-            guard pool.count >= quotas[field]! else { throw LearningError.invalid("Für dieses Prüfungsprofil fehlen unabhängige Aufgabenfamilien.") }
-            result += pool.prefix(quotas[field]!)
-        }
-        return result.shuffled()
+    public static func examQuestions(catalog: Catalog, config: ExamConfig? = nil) throws -> [Question] {
+        guard let config = try config ?? LearningEnvironment.bundled().pack.exam else { throw LearningError.invalid("Kein Prüfungsprofil vorhanden.") }
+        return try config.select(from: catalog)
     }
 }

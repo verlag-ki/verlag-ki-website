@@ -1,9 +1,9 @@
 import XCTest
-@testable import AEVOCore
+@testable import LearningCore
 
 final class LegalContentTests: XCTestCase {
     func testSupportMailOpensOnlyAUserControlledDraftWithoutPrivateData() throws {
-        let url = try XCTUnwrap(SupportContact.mailURL(email: "support@example.org", version: "0.3.2 & Test"))
+        let url = try XCTUnwrap(SupportContact.mailURL(email: "support@example.org", version: "0.3.2 & Test", appName: "aevo."))
         let components = try XCTUnwrap(URLComponents(url: url, resolvingAgainstBaseURL: false))
         XCTAssertEqual(components.scheme, "mailto")
         XCTAssertEqual(components.path, "support@example.org")
@@ -15,6 +15,7 @@ final class LegalContentTests: XCTestCase {
         XCTAssertNil(SupportContact.mailURL(email: "help@example.org\r\nBcc:other@example.org", version: "0.3.2"))
     }
     func testBundledPrivacyLoadsOfflineAndUsesConfiguredContact() throws {
+        try PackRequirement.aevoPack("Die hinterlegten Anbieterangaben der AEVO-App")
         let content = try LegalContent.bundled()
         XCTAssertFalse(content.approved)
         XCTAssertEqual(content.privacy.count, 8)

@@ -1,6 +1,6 @@
 import SwiftUI
 import AVFoundation
-import AEVOCore
+import LearningCore
 
 @MainActor
 final class OralAudio: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
@@ -114,9 +114,10 @@ struct OralTrainerView: View {
                                 store.activity(); store.commit { state in var checked = state.coaching.oralChecks[prompt.id] ?? []; if value { checked.insert(offset) } else { checked.remove(offset) }; state.coaching.oralChecks[prompt.id] = checked }
                             }))
                         }
+                        Text("Deine Selbsteinschätzung zu dieser Antwort.").font(.caption).foregroundStyle(.secondary)
                         Text("Eine mögliche Rückfrage").font(.headline)
                         Text(prompt.followUp)
-                        SourceLinks(sources: prompt.sources)
+                        ContentQualityView(contentID: prompt.id, version: 1, sources: prompt.sources)
                     }
                 } else { PrimaryButton(title: "Orientierungspunkte ansehen", icon: "lightbulb") { store.activity(); store.commit { _ = $0.coaching.oralRevealed.insert(prompt.id) } } }
                 HStack {

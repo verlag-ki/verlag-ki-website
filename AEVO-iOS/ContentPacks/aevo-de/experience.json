@@ -1,0 +1,297 @@
+{
+  "impulses": [
+    {
+      "id": "kant-own-understanding",
+      "text": "Habe Mut, dich deines eigenen Verstandes zu bedienen!",
+      "source": {
+        "author": "Immanuel Kant",
+        "work": "Beantwortung der Frage: Was ist Aufklärung? (1784)",
+        "location": "Berlinische Monatsschrift, Dezember 1784, S. 481, erster Absatz.",
+        "url": "https://de.wikisource.org/wiki/Beantwortung_der_Frage:_Was_ist_Aufkl%C3%A4rung%3F",
+        "originalText": "Habe Muth dich deines eigenen Verstandes zu bedienen!",
+        "editorialNote": "Die Schreibweise von Muth wurde zu Mut modernisiert und ein Komma ergänzt. Kant ermutigt hier zum selbstständigen Denken.",
+        "checkedOn": "20.09.2026"
+      }
+    },
+    {
+      "id": "original-1",
+      "text": "Ein kleiner Lernschritt darf für heute genug sein.",
+      "source": null
+    },
+    {
+      "id": "original-2",
+      "text": "Verstehen beginnt oft mit einer guten Frage.",
+      "source": null
+    },
+    {
+      "id": "original-3",
+      "text": "Du musst nicht alles auf einmal können.",
+      "source": null
+    },
+    {
+      "id": "original-4",
+      "text": "Erkläre einen Gedanken so, wie du ihn einem Menschen im Betrieb erklären würdest.",
+      "source": null
+    },
+    {
+      "id": "original-5",
+      "text": "Ein Fehler kann dir zeigen, was du als Nächstes üben möchtest.",
+      "source": null
+    },
+    {
+      "id": "original-6",
+      "text": "Dein eigenes Beispiel macht aus einem Begriff etwas Greifbares.",
+      "source": null
+    },
+    {
+      "id": "ebner-curiosity",
+      "text": "Wenn die Neugier sich auf ernsthafte Dinge richtet, dann nennt man sie Wissensdrang.",
+      "source": {
+        "author": "Marie von Ebner-Eschenbach",
+        "work": "Aphorismen. Parabeln, Märchen und Gedichte. (1893)",
+        "location": "Gesammelte Schriften, Band 1. Aphorismen, Erstes Hundert, Nr. 73.",
+        "url": "https://www.gutzitiert.de/aphorismen_parabeln_maerchen_und_gedichte-marie_von_ebner_eschenbach-kapitel_2.html",
+        "originalText": "Wenn die Neugier sich auf ernsthafte Dinge richtet, dann nennt man sie Wissensdrang.",
+        "editorialNote": "Der vollständige Aphorismus ist im Wortlaut der verlinkten Transkription wiedergegeben.",
+        "checkedOn": "20.09.2026"
+      }
+    },
+    {
+      "id": "original-7",
+      "text": "Lass dir Zeit für die Begründung hinter einer Antwort.",
+      "source": null
+    },
+    {
+      "id": "original-8",
+      "text": "Auch eine kurze Wiederholung kann ein guter Anfang sein.",
+      "source": null
+    },
+    {
+      "id": "original-9",
+      "text": "Heute darfst du genau dort weitermachen, wo du aufgehört hast.",
+      "source": null
+    },
+    {
+      "id": "original-10",
+      "text": "Eine Pause nimmt dir nicht, was du schon gelernt hast.",
+      "source": null
+    },
+    {
+      "id": "original-11",
+      "text": "Frag dich heute einmal: Warum passt diese Lösung zur Situation?",
+      "source": null
+    },
+    {
+      "id": "original-12",
+      "text": "Du darfst eine Erklärung mehr als einmal lesen.",
+      "source": null
+    },
+    {
+      "id": "rilke-live-questions",
+      "text": "Leben Sie jetzt die Fragen.",
+      "source": {
+        "author": "Rainer Maria Rilke",
+        "work": "Brief an Franz Xaver Kappus vom 16. Juli 1903",
+        "location": "Worpswede. Absatz mit dem Beginn: Sie sind so jung, so vor allem Anfang.",
+        "url": "https://www.rilke.de/briefe/160703.htm",
+        "originalText": "Leben Sie jetzt die Fragen.",
+        "editorialNote": "Ein vollständiger Satz aus dem Brief. Im Zusammenhang geht es um Geduld mit offenen Lebensfragen. Hier dient er als Denkanstoß, eigene Fragen zuzulassen.",
+        "checkedOn": "20.09.2026"
+      }
+    },
+    {
+      "id": "original-13",
+      "text": "Ein klarer Gedanke ist ein guter Abschluss für eine Lernrunde.",
+      "source": null
+    },
+    {
+      "id": "original-14",
+      "text": "Nicht jede Unsicherheit muss heute verschwinden.",
+      "source": null
+    },
+    {
+      "id": "original-15",
+      "text": "Dein Lerntempo darf zu deinem Alltag passen.",
+      "source": null
+    },
+    {
+      "id": "original-16",
+      "text": "Sprich eine Begründung laut aus und höre dir selbst zu.",
+      "source": null
+    },
+    {
+      "id": "original-17",
+      "text": "Eine neue Situation lädt dich ein, Bekanntes anders anzuwenden.",
+      "source": null
+    },
+    {
+      "id": "original-18",
+      "text": "Beim Lernen darf aus einem Vielleicht ein begründetes Ja werden.",
+      "source": null
+    },
+    {
+      "id": "goethe-focus",
+      "text": "In der Beschränkung zeigt sich erst der Meister",
+      "source": {
+        "author": "Johann Wolfgang von Goethe",
+        "work": "Natur und Kunst (1800)",
+        "location": "Sonett, Vers 13. Transkription bei Deutsche Lyrik.",
+        "url": "https://www.deutschelyrik.de/natur-und-kunst.html",
+        "originalText": "In der Beschränkung zeigt sich erst der Meister,",
+        "editorialNote": "Ein Versauszug. Das Komma am Versende wurde weggelassen. Das Gedicht handelt vom Verhältnis von Natur, Kunst und Form; der Lernbezug ist unsere Auswahlentscheidung.",
+        "checkedOn": "20.09.2026"
+      }
+    },
+    {
+      "id": "original-19",
+      "text": "Was würdest du einem Auszubildenden dazu erklären?",
+      "source": null
+    },
+    {
+      "id": "original-20",
+      "text": "Eigene Worte dürfen einfacher sein als der Text im Lehrbuch.",
+      "source": null
+    },
+    {
+      "id": "original-21",
+      "text": "Beginne mit der Frage, die dich heute interessiert.",
+      "source": null
+    },
+    {
+      "id": "original-22",
+      "text": "Du darfst Hilfe nutzen und trotzdem selbstständig denken.",
+      "source": null
+    },
+    {
+      "id": "original-23",
+      "text": "Schau auf den nächsten überschaubaren Schritt.",
+      "source": null
+    },
+    {
+      "id": "original-24",
+      "text": "Eine gute Lernfrage verbindet Wissen mit deinem Alltag.",
+      "source": null
+    },
+    {
+      "id": "ebner-own-strength",
+      "text": "Wenn es einen Glauben gibt, der Berge versetzen kann, so ist es der Glaube an die eigene Kraft.",
+      "source": {
+        "author": "Marie von Ebner-Eschenbach",
+        "work": "Aphorismen. Parabeln, Märchen und Gedichte. (1893)",
+        "location": "Gesammelte Schriften, Band 1. Aphorismen, Erstes Hundert, Nr. 29.",
+        "url": "https://www.gutzitiert.de/aphorismen_parabeln_maerchen_und_gedichte-marie_von_ebner_eschenbach-kapitel_2.html",
+        "originalText": "Wenn es einen Glauben giebt, der Berge versetzen kann, so ist es der Glaube an die eigene Kraft.",
+        "editorialNote": "Die historische Schreibweise giebt wurde zu gibt modernisiert. Ein ermutigender Gedanke über Selbstvertrauen, kein Versprechen eines bestimmten Ergebnisses.",
+        "checkedOn": "20.09.2026"
+      }
+    },
+    {
+      "id": "original-25",
+      "text": "Heute kannst du einen bekannten Gedanken noch einmal prüfen.",
+      "source": null
+    },
+    {
+      "id": "original-26",
+      "text": "Es ist in Ordnung, eine Antwort bewusst offen zu lassen und nachzulesen.",
+      "source": null
+    },
+    {
+      "id": "original-27",
+      "text": "Welche kleine Änderung würde deine Erklärung verständlicher machen?",
+      "source": null
+    },
+    {
+      "id": "original-28",
+      "text": "Du kannst aus einer falschen Antwort eine hilfreiche Notiz machen.",
+      "source": null
+    },
+    {
+      "id": "original-29",
+      "text": "Verknüpfe heute einen Begriff mit einer Situation aus deinem Beruf.",
+      "source": null
+    },
+    {
+      "id": "original-30",
+      "text": "Ein ruhiger Anfang ist auch ein Anfang.",
+      "source": null
+    },
+    {
+      "id": "original-31",
+      "text": "Du entscheidest, wann deine Lernrunde für heute vollständig ist.",
+      "source": null
+    }
+  ],
+  "guides": [
+    {
+      "id": "start",
+      "title": "Eine Lernrunde starten",
+      "text": "Öffne Heute und starte deine nächste Lernrunde. Unter Runde anpassen kannst du deine Vorbereitung auf die verfügbare Zeit abstimmen. Wähle die Antworten und tippe unten auf Antwort einloggen. Du siehst sofort die Lösung und Erklärung. Mit Nächste Aufgabe lernst du direkt weiter. Dein Tagesziel begrenzt keine Inhalte.",
+      "module": null
+    },
+    {
+      "id": "cards",
+      "title": "Lernkarten bearbeiten und speichern",
+      "text": "Lies die Karte und wische nach rechts für Verstanden oder nach links für Noch unsicher. Die nächste Karte erscheint automatisch. Alternativ nutze die beiden Knöpfe. Zum Bearbeiten wähle Karte bearbeiten & Notizen ergänzen. Du kannst deine persönliche Fassung und Notizen ergänzen und speichern. Die redaktionelle Originalfassung bleibt erhalten. Eigene Texte werden bei Inhaltsupdates nicht automatisch überschrieben. Sichere sie vor einem Gerätewechsel über die Einstellungen.",
+      "module": "flashcards"
+    },
+    {
+      "id": "repeat",
+      "title": "Unsichere Antworten wiederholen",
+      "text": "Die Lernplanung berücksichtigt falsche und unsichere Antworten sowie später fällige Wiederholungen. Du kannst auch selbst ein Thema auswählen oder Inhalte merken. Dein Fortschritt zeigt, welche Themen du bearbeitet und später sicher wiederholt hast.",
+      "module": null
+    },
+    {
+      "id": "exam",
+      "title": "Eine Prüfung üben",
+      "text": "Im Bereich Prüfung startest du eine zeitlich begrenzte Übungssimulation mit eigenen Lernaufgaben. Du kannst Aufgaben markieren und Antworten vor der endgültigen Abgabe ändern. Die Prüfungszeit läuft bei Unterbrechungen weiter; lies die Hinweise vor dem Start. Verbindlich für deine echte Prüfung sind die Vorgaben deiner zuständigen Kammer.",
+      "module": "writtenExam"
+    },
+    {
+      "id": "practice",
+      "title": "Praxis und Fachgespräch vorbereiten",
+      "text": "Im Bereich Praxis kannst du deine Ausbildungssituation, Lernziele, Methoden und den Ablauf planen. Übe deine Begründungen in eigenen Worten. Eine freiwillige Sprachaufnahme bleibt auf deinem iPhone und kann bei der Aufgabe wieder gelöscht werden. Sie wird weder automatisch bewertet noch in deine JSON-Sicherung aufgenommen.",
+      "module": "practicePreparation"
+    },
+    {
+      "id": "personal",
+      "title": "Profil, Termine und Erinnerungen ändern",
+      "text": "Unter Einstellungen kannst du Namen, Farbwelt und Lernimpuls ändern. Prüfungstermine & Countdown verwaltet schriftliche und praktische Termine getrennt. Lernerinnerungen lassen sich nach Tagen und Uhrzeit einstellen oder ausschalten. Der ruhige Modus blendet zusätzliche Fortschrittsanzeigen auf Heute aus.",
+      "module": null
+    },
+    {
+      "id": "backup",
+      "title": "Fortschritt sichern und wiederherstellen",
+      "text": "Öffne Einstellungen → Deine Daten → Sicherung in Dateien speichern. Lege die Datei an einem selbst gewählten sicheren Ort ab. Auf dem neuen Gerät wählst du Sicherung wiederherstellen. Ein Import ersetzt den dort vorhandenen Stand nach deiner Bestätigung. Es gibt keine automatische Synchronisierung; Sprachaufnahmen sind nicht enthalten.",
+      "module": null
+    },
+    {
+      "id": "free",
+      "title": "Trinkgeld und Bewertungsanfragen",
+      "text": "Alle veröffentlichten Inhalte und Lernfunktionen bleiben kostenlos. Unter App unterstützen findest du drei freiwillige einmalige Trinkgelder. Gelegentliche Hinweise erscheinen nach abgeschlossenen Lernrunden. Du kannst sie schließen und ohne Zahlung oder Bewertung weiterlernen.",
+      "module": "tips"
+    }
+  ],
+  "introduction": [
+    {
+      "id": "pace",
+      "title": "In deinem Tempo lernen",
+      "text": "Starte eine kurze Runde und wiederhole, was noch unsicher ist.",
+      "symbol": "clock",
+      "module": null
+    },
+    {
+      "id": "notes",
+      "title": "Deine Gedanken festhalten",
+      "text": "Bearbeite Lernkarten und speichere deine eigenen Beispiele.",
+      "symbol": "square.and.pencil",
+      "module": "flashcards"
+    },
+    {
+      "id": "practice",
+      "title": "Theorie und Praxis verbinden",
+      "text": "Übe Prüfungssituationen und bereite dein Fachgespräch vor.",
+      "symbol": "bubble.left.and.bubble.right",
+      "module": "oralExam"
+    }
+  ]
+}

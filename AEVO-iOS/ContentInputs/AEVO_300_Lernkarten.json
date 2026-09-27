@@ -13,8 +13,8 @@
     "HF4": 35,
     "PRAXIS": 10
   },
-  "status": "Fachlich geprüft und freigegeben",
-  "release_ready": true,
+  "status": "ausgearbeiteter_redaktioneller_entwurf",
+  "release_ready": false,
   "note": "Eigenständig formulierte Wissenskarten. Unabhängige fachliche Freigabe und Erprobung mit Lernenden stehen aus. Kein amtlicher Fragenkatalog und keine vollständige Berufsausbildung.",
   "source_method": "Gesetzliche Aussagen mit amtlichen Rechtsquellen; Kammerangaben lokal gekennzeichnet. R bezeichnet nur den curricularen Bezug. Pädagogische Karten sind eigene didaktische Ausarbeitungen, soweit kein zusätzlicher Fachbeleg genannt wird.",
   "competency_labels": {
@@ -972,12 +972,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -1017,12 +1017,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -1062,12 +1062,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 51,
       "is_official_exam_material": false
@@ -1100,12 +1100,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -1145,12 +1145,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -1183,12 +1183,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -1221,12 +1221,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -1259,12 +1259,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -1297,12 +1297,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -1335,12 +1335,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 53,
       "is_official_exam_material": false
@@ -1373,12 +1373,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -1411,12 +1411,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -1449,12 +1449,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -1494,12 +1494,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -1546,12 +1546,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -1584,12 +1584,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -1629,12 +1629,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -1674,12 +1674,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -1719,12 +1719,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -1757,12 +1757,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -1795,12 +1795,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 36,
       "is_official_exam_material": false
@@ -1840,12 +1840,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -1878,12 +1878,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -1923,12 +1923,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -1961,12 +1961,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -1999,12 +1999,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -2044,12 +2044,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -2089,12 +2089,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -2141,12 +2141,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -2179,12 +2179,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -2217,12 +2217,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -2255,12 +2255,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -2307,12 +2307,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -2352,12 +2352,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -2397,12 +2397,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -2435,12 +2435,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -2480,12 +2480,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -2518,12 +2518,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -2563,12 +2563,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -2608,12 +2608,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -2646,12 +2646,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -2684,12 +2684,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -2722,12 +2722,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -2760,12 +2760,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -2798,12 +2798,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -2850,12 +2850,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -2902,12 +2902,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -2940,12 +2940,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 36,
       "is_official_exam_material": false
@@ -2985,12 +2985,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -3030,12 +3030,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -3068,12 +3068,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -3120,12 +3120,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -3158,12 +3158,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -3196,12 +3196,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -3234,12 +3234,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -3272,12 +3272,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -3310,12 +3310,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -3348,12 +3348,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -3386,12 +3386,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -3424,12 +3424,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -3462,12 +3462,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -3507,12 +3507,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -3552,12 +3552,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -3590,12 +3590,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -3628,12 +3628,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -3666,12 +3666,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -3704,12 +3704,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -3742,12 +3742,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 54,
       "is_official_exam_material": false
@@ -3780,12 +3780,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -3825,12 +3825,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -3870,12 +3870,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 35,
       "is_official_exam_material": false
@@ -3915,12 +3915,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -3953,12 +3953,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -3991,12 +3991,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -4029,12 +4029,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -4074,12 +4074,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -4119,12 +4119,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -4157,12 +4157,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 37,
       "is_official_exam_material": false
@@ -4202,12 +4202,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -4240,12 +4240,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -4278,12 +4278,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 51,
       "is_official_exam_material": false
@@ -4316,12 +4316,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 51,
       "is_official_exam_material": false
@@ -4354,12 +4354,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -4392,12 +4392,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -4430,12 +4430,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -4468,12 +4468,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -4506,12 +4506,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -4551,12 +4551,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -4589,12 +4589,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -4627,12 +4627,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -4665,12 +4665,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -4703,12 +4703,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -4748,12 +4748,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -4793,12 +4793,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -4838,12 +4838,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -4883,12 +4883,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -4935,12 +4935,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -4980,12 +4980,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 51,
       "is_official_exam_material": false
@@ -5018,12 +5018,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -5056,12 +5056,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -5094,12 +5094,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -5132,12 +5132,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -5170,12 +5170,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -5208,12 +5208,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -5246,12 +5246,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -5284,12 +5284,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -5322,12 +5322,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -5360,12 +5360,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 37,
       "is_official_exam_material": false
@@ -5398,12 +5398,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -5436,12 +5436,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -5474,12 +5474,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -5512,12 +5512,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -5550,12 +5550,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -5595,12 +5595,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -5633,12 +5633,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -5678,12 +5678,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -5716,12 +5716,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -5754,12 +5754,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -5799,12 +5799,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -5844,12 +5844,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -5882,12 +5882,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 37,
       "is_official_exam_material": false
@@ -5920,12 +5920,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -5958,12 +5958,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 51,
       "is_official_exam_material": false
@@ -5996,12 +5996,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -6034,12 +6034,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -6072,12 +6072,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -6117,12 +6117,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -6155,12 +6155,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -6193,12 +6193,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -6231,12 +6231,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 54,
       "is_official_exam_material": false
@@ -6269,12 +6269,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -6307,12 +6307,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -6345,12 +6345,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -6383,12 +6383,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -6421,12 +6421,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -6459,12 +6459,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -6497,12 +6497,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -6535,12 +6535,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -6580,12 +6580,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -6618,12 +6618,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 55,
       "is_official_exam_material": false
@@ -6656,12 +6656,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -6701,12 +6701,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -6746,12 +6746,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -6791,12 +6791,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -6829,12 +6829,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -6867,12 +6867,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -6905,12 +6905,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -6943,12 +6943,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -6981,12 +6981,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -7019,12 +7019,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -7057,12 +7057,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -7095,12 +7095,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 37,
       "is_official_exam_material": false
@@ -7133,12 +7133,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -7171,12 +7171,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -7209,12 +7209,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -7247,12 +7247,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -7285,12 +7285,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -7323,12 +7323,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -7361,12 +7361,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -7399,12 +7399,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -7437,12 +7437,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -7475,12 +7475,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -7513,12 +7513,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -7551,12 +7551,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -7589,12 +7589,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -7627,12 +7627,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -7665,12 +7665,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -7703,12 +7703,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -7741,12 +7741,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -7779,12 +7779,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -7817,12 +7817,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -7855,12 +7855,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -7893,12 +7893,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -7931,12 +7931,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -7969,12 +7969,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 54,
       "is_official_exam_material": false
@@ -8007,12 +8007,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -8045,12 +8045,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -8083,12 +8083,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -8121,12 +8121,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -8159,12 +8159,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -8197,12 +8197,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 37,
       "is_official_exam_material": false
@@ -8235,12 +8235,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -8273,12 +8273,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -8311,12 +8311,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -8349,12 +8349,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -8387,12 +8387,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -8432,12 +8432,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -8470,12 +8470,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -8508,12 +8508,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -8546,12 +8546,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -8584,12 +8584,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -8622,12 +8622,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -8674,12 +8674,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -8712,12 +8712,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -8750,12 +8750,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -8795,12 +8795,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -8833,12 +8833,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -8871,12 +8871,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -8909,12 +8909,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -8947,12 +8947,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -8985,12 +8985,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -9023,12 +9023,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -9061,12 +9061,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -9099,12 +9099,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -9137,12 +9137,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -9175,12 +9175,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 53,
       "is_official_exam_material": false
@@ -9213,12 +9213,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -9251,12 +9251,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -9289,12 +9289,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -9334,12 +9334,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -9372,12 +9372,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -9410,12 +9410,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -9455,12 +9455,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -9493,12 +9493,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -9531,12 +9531,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -9569,12 +9569,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -9607,12 +9607,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -9652,12 +9652,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -9697,12 +9697,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -9735,12 +9735,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -9773,12 +9773,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -9818,12 +9818,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -9856,12 +9856,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 49,
       "is_official_exam_material": false
@@ -9908,12 +9908,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -9946,12 +9946,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -9984,12 +9984,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -10022,12 +10022,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -10060,12 +10060,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -10098,12 +10098,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -10136,12 +10136,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -10174,12 +10174,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -10212,12 +10212,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -10250,12 +10250,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -10288,12 +10288,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -10326,12 +10326,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 53,
       "is_official_exam_material": false
@@ -10364,12 +10364,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -10402,12 +10402,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -10440,12 +10440,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -10478,12 +10478,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -10516,12 +10516,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -10568,12 +10568,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -10606,12 +10606,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -10644,12 +10644,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -10682,12 +10682,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -10720,12 +10720,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -10758,12 +10758,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -10796,12 +10796,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -10841,12 +10841,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -10886,12 +10886,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -10938,12 +10938,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -10976,12 +10976,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -11014,12 +11014,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -11052,12 +11052,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -11097,12 +11097,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -11135,12 +11135,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -11180,12 +11180,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -11218,12 +11218,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -11256,12 +11256,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -11294,12 +11294,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -11332,12 +11332,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -11377,12 +11377,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -11422,12 +11422,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -11474,12 +11474,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -11512,12 +11512,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 38,
       "is_official_exam_material": false
@@ -11550,12 +11550,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -11595,12 +11595,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -11640,12 +11640,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -11678,12 +11678,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -11716,12 +11716,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -11754,12 +11754,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 46,
       "is_official_exam_material": false
@@ -11792,12 +11792,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -11830,12 +11830,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -11875,12 +11875,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 40,
       "is_official_exam_material": false
@@ -11927,12 +11927,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -11972,12 +11972,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -12010,12 +12010,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -12048,12 +12048,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 37,
       "is_official_exam_material": false
@@ -12086,12 +12086,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -12124,12 +12124,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -12162,12 +12162,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 42,
       "is_official_exam_material": false
@@ -12200,12 +12200,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -12245,12 +12245,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -12290,12 +12290,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -12328,12 +12328,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -12380,12 +12380,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 39,
       "is_official_exam_material": false
@@ -12425,12 +12425,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 44,
       "is_official_exam_material": false
@@ -12463,12 +12463,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -12501,12 +12501,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -12539,12 +12539,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -12584,12 +12584,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -12622,12 +12622,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 45,
       "is_official_exam_material": false
@@ -12660,12 +12660,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 43,
       "is_official_exam_material": false
@@ -12698,12 +12698,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 50,
       "is_official_exam_material": false
@@ -12736,12 +12736,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 52,
       "is_official_exam_material": false
@@ -12781,12 +12781,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -12826,12 +12826,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 52,
       "is_official_exam_material": false
@@ -12871,12 +12871,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 41,
       "is_official_exam_material": false
@@ -12909,12 +12909,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 47,
       "is_official_exam_material": false
@@ -12947,12 +12947,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 48,
       "is_official_exam_material": false
@@ -12985,12 +12985,12 @@
         }
       ],
       "review": {
-        "status": "fachlich_freigegeben",
-        "independent_expert_review": "abgeschlossen",
-        "reviewed_by": "Julian Kürten",
-        "reviewed_on": "2026-09-21",
+        "status": "redaktioneller_entwurf",
+        "independent_expert_review": "ausstehend",
+        "reviewed_by": null,
+        "reviewed_on": null,
         "source_check_date": "2026-09-20",
-        "publication_approved": true
+        "publication_approved": false
       },
       "word_count": 51,
       "is_official_exam_material": false

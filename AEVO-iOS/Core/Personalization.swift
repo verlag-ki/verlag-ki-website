@@ -54,6 +54,12 @@ public struct UpcomingExam: Sendable {
     public let part: ExamPart
     public let day: CivilDay
     public let daysRemaining: Int
+    public func text(terminology: ExamTerminology) -> String {
+        let label = terminology.title(part)
+        if daysRemaining == 0 { return "Heute: " + label }
+        if daysRemaining == 1 { return "Morgen: " + label }
+        return "Noch \(daysRemaining) Tage · \(label)"
+    }
     public var text: String {
         let description = part == .written ? "schriftliche Prüfung" : "praktische Prüfung"
         if daysRemaining == 0 { return "Heute ist deine \(description)." }
@@ -103,40 +109,7 @@ public enum Personalization {
             }
         }
     }
-    /// Original editorial texts, no quotation attribution. DailyImpulses adds sourced quotations.
-    public static let impulses = [
-        "Ein kleiner Lernschritt darf für heute genug sein.",
-        "Verstehen beginnt oft mit einer guten Frage.",
-        "Du musst nicht alles auf einmal können.",
-        "Erkläre einen Gedanken so, wie du ihn einem Menschen im Betrieb erklären würdest.",
-        "Ein Fehler kann dir zeigen, was du als Nächstes üben möchtest.",
-        "Dein eigenes Beispiel macht aus einem Begriff etwas Greifbares.",
-        "Lass dir Zeit für die Begründung hinter einer Antwort.",
-        "Auch eine kurze Wiederholung kann ein guter Anfang sein.",
-        "Heute darfst du genau dort weitermachen, wo du aufgehört hast.",
-        "Eine Pause nimmt dir nicht, was du schon gelernt hast.",
-        "Frag dich heute einmal: Warum passt diese Lösung zur Situation?",
-        "Du darfst eine Erklärung mehr als einmal lesen.",
-        "Ein klarer Gedanke ist ein guter Abschluss für eine Lernrunde.",
-        "Nicht jede Unsicherheit muss heute verschwinden.",
-        "Dein Lerntempo darf zu deinem Alltag passen.",
-        "Sprich eine Begründung laut aus und höre dir selbst zu.",
-        "Eine neue Situation lädt dich ein, Bekanntes anders anzuwenden.",
-        "Beim Lernen darf aus einem Vielleicht ein begründetes Ja werden.",
-        "Was würdest du einem Auszubildenden dazu erklären?",
-        "Eigene Worte dürfen einfacher sein als der Text im Lehrbuch.",
-        "Beginne mit der Frage, die dich heute interessiert.",
-        "Du darfst Hilfe nutzen und trotzdem selbstständig denken.",
-        "Schau auf den nächsten überschaubaren Schritt.",
-        "Eine gute Lernfrage verbindet Wissen mit deinem Alltag.",
-        "Heute kannst du einen bekannten Gedanken noch einmal prüfen.",
-        "Es ist in Ordnung, eine Antwort bewusst offen zu lassen und nachzulesen.",
-        "Welche kleine Änderung würde deine Erklärung verständlicher machen?",
-        "Du kannst aus einer falschen Antwort eine hilfreiche Notiz machen.",
-        "Verknüpfe heute einen Begriff mit einer Situation aus deinem Beruf.",
-        "Ein ruhiger Anfang ist auch ein Anfang.",
-        "Du entscheidest, wann deine Lernrunde für heute vollständig ist."
-    ]
+    public static var impulses: [String] { DailyImpulses.rotation.filter { $0.source == nil }.map(\.text) }
     public static func impulse(now: Date = Date(), calendar: Calendar = .current) -> String {
         DailyImpulses.current(now: now, calendar: calendar).text
     }

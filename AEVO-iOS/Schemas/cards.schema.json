@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning-app.invalid/schema/cards.schema.json",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "version": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "field": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "competency": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "explanation": {
+        "type": "string",
+        "minLength": 1
+      },
+      "remember": {
+        "type": "string",
+        "minLength": 0
+      },
+      "example": {
+        "type": "string",
+        "minLength": 0
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^https://[^\\s]+$"
+            }
+          },
+          "required": [
+            "title",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 1
+      },
+      "approved": {
+        "type": "boolean"
+      },
+      "reviewedOn": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 0
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "reviewedBy": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 0
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "approvalBasis": {
+        "type": "string",
+        "minLength": 0
+      },
+      "approvalConfirmedOn": {
+        "type": "string",
+        "minLength": 0
+      },
+      "approvalConfirmedBy": {
+        "type": "string",
+        "minLength": 0
+      }
+    },
+    "required": [
+      "id",
+      "version",
+      "field",
+      "competency",
+      "title",
+      "explanation",
+      "remember",
+      "example",
+      "sources",
+      "approved"
+    ],
+    "additionalProperties": false
+  },
+  "minItems": 0,
+  "maxItems": 10000
+}

@@ -1,16 +1,8 @@
 {
   "status": "passed",
+  "pack": "aevo-de",
   "questions": 800,
   "cards": 300,
-  "branching_cases": 16,
-  "oral_prompts": 24,
-  "fields": {
-    "1": 120,
-    "2": 176,
-    "3": 384,
-    "4": 120
-  },
-  "independently_approved": 0,
-  "app_swift_files": 22,
+  "categories": 4,
   "native_build_verified": false
 }

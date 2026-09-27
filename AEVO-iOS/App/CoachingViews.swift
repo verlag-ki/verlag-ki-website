@@ -1,12 +1,12 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct DayPlanView: View {
     @EnvironmentObject private var store: AppStore
     @State private var minutes = 0
     @State private var learning = false
-    private var plan: DayRecommendation { CoachingEngine.recommendation(catalog: store.catalog, state: store.state, overrideMinutes: minutes == 0 ? nil : minutes) }
+    private var plan: DayRecommendation { CoachingEngine.recommendation(catalog: store.catalog, state: store.state, overrideMinutes: minutes == 0 ? nil : minutes, practiceEnabled: store.enabled(.practicePreparation)) }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -16,13 +16,13 @@ struct DayPlanView: View {
                 }.pickerStyle(.segmented)
                 Surface {
                     Label("Etwa \(plan.minutes) Minuten", systemImage: "clock").font(.headline)
-                    Text("\(plan.questions.count) Aufgaben und eine Lernkarte" + (plan.practicalMinutes > 0 ? " · etwa \(plan.practicalMinutes) Minuten Praxis" : ""))
+                    Text("\(plan.questions.count) Aufgaben" + (plan.practicalMinutes > 0 ? " · etwa \(plan.practicalMinutes) Minuten Praxis" : ""))
                     DisclosureGroup("Wie wird die Runde ausgewählt?") { Text(plan.explanation).font(.subheadline).foregroundStyle(.secondary) }
                     PrimaryButton(title: store.state.session == nil ? "Aufgaben starten" : "Gespeicherte Runde fortsetzen") {
                         if store.state.session != nil || store.commit({ try LearningEngine.startRound(state: &$0, questions: plan.questions) }) { learning = true }
                     }
                 }
-                if let card = plan.card { NavigationLink { CardView(card: card) } label: { Label("Lernkarte: \(card.title)", systemImage: "rectangle.stack").frame(minHeight: 44) } }
+                if store.enabled(.flashcards), let card = plan.card { NavigationLink { CardView(card: card) } label: { Label("Lernkarte: \(card.title)", systemImage: "rectangle.stack").frame(minHeight: 44) } }
                 if plan.practicalMinutes > 0 { NavigationLink { PracticePlanEditorView() } label: { Label("Praxisplan weiterentwickeln", systemImage: "person.text.rectangle").frame(minHeight: 44) } }
                 NavigationLink("Zeitbudget anpassen") { LearningPreferencesView() }.frame(minHeight: 44)
                 Text("Deine angefangene Runde bleibt gespeichert.").font(.footnote).foregroundStyle(.secondary)
@@ -63,20 +63,20 @@ struct CompetenceView: View {
         List {
             Section {
                 Text("Was du schon abrufen kannst.").font(.title2.bold())
-                Text("Hier siehst du bearbeitete Themen und gefestigte Antworten. Das ist keine Bestehensprognose.").font(.subheadline)
+                Text("Hier siehst du bearbeitete Themen und gefestigte Antworten.").font(.subheadline)
                 DisclosureGroup("So entsteht die Einordnung") {
-                    Text("Im Aufbau: mindestens eine Familie bearbeitet. Wiederholt abrufbar: mindestens zwei Familien sicher richtig, jeweils mit mindestens 24 Stunden Abstand zur ersten sicheren Lösung. Angewendet: zusätzlich zwei zuvor ungesehene Aufgaben aus anderen Familien desselben Lernziels nach mindestens 24 Stunden sicher richtig. Das sind vorsichtige Produktregeln, keine wissenschaftlich validierten Schwellen oder vollständige Kompetenznachweise.").font(.footnote)
+                    Text("Im Aufbau: mindestens eine Familie bearbeitet. Wiederholt abrufbar: mindestens zwei Familien sicher richtig, jeweils mit mindestens 24 Stunden Abstand zur ersten sicheren Lösung. Angewendet: zusätzlich zwei zuvor ungesehene Aufgaben aus anderen Familien desselben Lernziels nach mindestens 24 Stunden sicher richtig. Die Einordnung bezieht sich auf deine bearbeiteten Aufgaben.").font(.footnote)
                 }
             }
-            ForEach(1...4, id: \.self) { field in
-                DisclosureGroup("HF \(field) · \(FieldInfo.title(field))") {
+            ForEach(store.categories, id: \.self) { field in
+                DisclosureGroup(store.environment.categoryLabel(field)) {
                     ForEach(CoachingEngine.evidence(catalog: store.catalog, state: store.state).filter { $0.field == field }) { item in
                         VStack(alignment: .leading, spacing: 10) {
                             Text(item.title).font(.headline)
                             Text(item.stage).foregroundStyle(theme.accent).fontWeight(.semibold)
                             Text("\(item.coveredFamilies) von \(item.totalFamilies) Familien bearbeitet · \(item.delayedFamilies) verzögert abgerufen · \(item.transferFamilies) neu angewendet").font(.caption).foregroundStyle(.secondary)
                             Button("Dieses Lernziel üben") {
-                                let qs = LearningEngine.nextQuestions(catalog: store.catalog, state: store.state, count: 800).filter { $0.competency == item.id }
+                                let qs = LearningEngine.nextQuestions(catalog: store.catalog, state: store.state, count: store.catalog.questions.count).filter { $0.competency == item.id }
                                 if store.state.session != nil || store.commit({ try LearningEngine.startRound(state: &$0, questions: Array(qs.prefix(3))) }) { learning = true }
                             }.frame(minHeight: 44)
                         }.padding(.vertical, 6)
@@ -93,7 +93,7 @@ struct QuestionNotebook: View {
     @EnvironmentObject private var store: AppStore
     let question: Question
     var body: some View {
-        LabeledEditor(title: "Dein Merksatz oder Beispiel aus dem Betrieb", text: Binding(get: { store.state.coaching.notes[question.id] ?? "" }, set: { value in
+        LabeledEditor(title: "Dein Merksatz oder eigenes Beispiel", text: Binding(get: { store.state.coaching.notes[question.id] ?? "" }, set: { value in
             store.activity(); store.commit { $0.coaching.notes[question.id] = String(value.prefix(30_000)) }
         }))
         Text("Deine Notiz wird auf diesem Gerät gespeichert und gehört zur Datensicherung. Sie verändert die fachliche Lösung nicht.").font(.caption).foregroundStyle(.secondary)
@@ -121,7 +121,7 @@ struct PersonalNotebookView: View {
             let e = store.state.cardDrafts[c.id] ?? store.state.cardEdits[c.id]!
             return "\(c.id) · \(e.title)\n\(e.explanation)\n\(e.remember)\n\(e.example)\n\(e.notes)"
         }
-        return "MEINE AEVO-LERNSAMMLUNG\nDeine persönlichen Texte, aktuelle Suchauswahl.\n\n" + (qs + cards).joined(separator: "\n\n")
+        return "MEINE LERNSAMMLUNG\nDeine persönlichen Texte aus der aktuellen Suchauswahl.\n\n" + (qs + cards).joined(separator: "\n\n")
     }
     var body: some View {
         List {
@@ -135,15 +135,26 @@ struct PersonalNotebookView: View {
             Section("Eigene Beispiele zu Aufgaben") {
                 if questions.isEmpty { Text("Ergänze bei einer Lernaufgabe deinen ersten Merksatz.").foregroundStyle(.secondary) }
                 ForEach(questions) { q in
-                    NavigationLink { Form { Text(q.prompt).font(.headline); QuestionNotebook(question: q); SourceLinks(sources: q.sources) }.navigationTitle("Dein Beispiel") } label: {
+                    NavigationLink { Form { Text(q.prompt).font(.headline); QuestionNotebook(question: q); ContentQualityView(contentID: q.id, version: q.version, sources: q.sources, approved: q.approved, reviewedOn: q.reviewedOn, reviewedBy: q.reviewedBy) }.navigationTitle("Dein Beispiel") } label: {
                         VStack(alignment: .leading, spacing: 8) { Text(q.topic).font(.headline); Text(store.state.coaching.notes[q.id] ?? "").lineLimit(3).foregroundStyle(.secondary) }
                     }
                 }
             }
-            Section("Persönliche Lernkarten") { ForEach(ownCards) { card in NavigationLink(store.state.cardEdits[card.id]?.title ?? card.title) { CardView(card: card) } } }
+            if store.enabled(.flashcards) { Section("Persönliche Lernkarten") { ForEach(ownCards) { card in NavigationLink(store.state.cardEdits[card.id]?.title ?? card.title) { CardView(card: card) } } } }
         }.navigationTitle("Deine Lernsammlung").searchable(text: $query, prompt: "Eigene Texte suchen").learningBackground()
             .sheet(isPresented: $learning) { NavigationStack { LearningView() }.environmentObject(store) }
     }
+}
+
+@MainActor
+struct ContentQualityView: View {
+    let contentID: String
+    let version: Int
+    let sources: [ContentSource]
+    var approved = false
+    var reviewedOn: String?
+    var reviewedBy: String?
+    var body: some View { SourceLinks(sources: sources) }
 }
 
 @MainActor
@@ -164,13 +175,16 @@ struct ContentChangesView: View {
                     }
                 }
                 ForEach(questions) { q in VStack(alignment: .leading, spacing: 10) {
-                    Text(q.prompt).font(.headline); Text("Neue Inhaltsversion \(q.version). Lies die aktuelle Erklärung einmal durch.").font(.caption)
+                    Text(q.prompt).font(.headline); Text("Neue Inhaltsversion \(q.version). Prüfe die aktuelle Erklärung; ältere Antworten zählen für diese Version nicht für den aktuellen Lernstand.").font(.caption)
                     if let revision = store.catalog.revisions?.last(where: { $0.contentID == q.id && $0.version == q.version }) { Text("\(revision.date): \(revision.summary)").font(.subheadline) }
                     Text(q.explanation)
                     Button("Änderung gelesen") { store.commit { $0.coaching.acknowledgedVersions[q.id] = q.version } }.frame(minHeight: 44)
                 } }
-                Text("Persönliche Fassungen werden niemals automatisch überschrieben. Eine redaktionelle Änderungsbeschreibung erscheint hier mit Datum.").font(.footnote).foregroundStyle(.secondary)
+                Text("Persönliche Fassungen werden niemals automatisch überschrieben. Wenn eine redaktionelle Änderungsbeschreibung mitgeliefert wurde, erscheint sie hier mit Datum.").font(.footnote).foregroundStyle(.secondary)
             }
+            Section("Deine gespeicherten Fehlermeldungen") { ForEach(store.state.coaching.feedback.reversed()) { report in
+                VStack(alignment: .leading, spacing: 8) { Text(report.contentID).font(.headline); Text(report.message); ShareLink("Meldung teilen", item: report.exportText); Text("Lokal gespeichert, nicht automatisch gesendet.").font(.caption) }
+            } }
         }.navigationTitle("Inhaltsänderungen").learningBackground()
     }
 }

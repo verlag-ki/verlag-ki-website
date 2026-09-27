@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "appId": "aevo",
+  "appName": "aevo.",
+  "shortName": "aevo.",
+  "subtitle": "Dein nächster Schritt\nzum Ausbilderschein.",
+  "bundleIdentifier": "de.juliankuerten.aevo",
+  "productName": "AEVOLernen",
+  "contentPackId": "aevo-de",
+  "defaultTheme": "forest",
+  "supportEmail": "kontakt@verlag-ki.de",
+  "privacyURL": "",
+  "imprintURL": "",
+  "supportURL": "",
+  "tipProductIds": [
+    "de.juliankuerten.aevo.tip.small",
+    "de.juliankuerten.aevo.tip.medium",
+    "de.juliankuerten.aevo.tip.large"
+  ],
+  "tipLabels": [
+    {
+      "title": "Kleines Trinkgeld",
+      "detail": "Ein Filterkaffee",
+      "symbol": "☕",
+      "testPrice": "2.99"
+    },
+    {
+      "title": "Mittleres Trinkgeld",
+      "detail": "Ein Cappuccino",
+      "symbol": "☕",
+      "testPrice": "5.99"
+    },
+    {
+      "title": "Großes Trinkgeld",
+      "detail": "Ein Döner",
+      "symbol": "🥙",
+      "testPrice": "9.99"
+    }
+  ],
+  "tipMessage": "Hat dir die App beim Lernen geholfen? Dann freuen wir uns, wenn du uns auf einen Kaffee oder einen Döner einlädst. Ganz freiwillig, versteht sich.",
+  "examTerminology": {
+    "categorySingular": "Handlungsfeld",
+    "categoryPlural": "Handlungsfelder",
+    "categoryShort": "HF",
+    "written": "Schriftliche Prüfung",
+    "practical": "Praktische Prüfung",
+    "practiceTab": "Praxis",
+    "oral": "Fachgespräch",
+    "scenarios": "Ausbildungsalltag"
+  },
+  "featureFlags": {
+    "writtenExam": true,
+    "flashcards": true,
+    "practicePreparation": true,
+    "oralExam": true,
+    "scenarioTraining": true,
+    "tips": true,
+    "ratings": true
+  },
+  "legalFile": "AppConfigs/aevo/legal.json",
+  "iconAssetPath": "AppConfigs/aevo/AppIcon.appiconset",
+  "storeMetadataPath": "AppConfigs/aevo/store.json",
+  "legacyMigration": true,
+  "notificationNamespace": "aevo.learning.",
+  "brandAccent": null
+}

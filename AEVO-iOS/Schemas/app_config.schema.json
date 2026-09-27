@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning-app.invalid/schema/app_config.schema.json",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "appId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "appName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shortName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bundleIdentifier": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9-]+(?:\\.[A-Za-z0-9-]+)+$"
+    },
+    "productName": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+    },
+    "contentPackId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "defaultTheme": {
+      "type": "string",
+      "enum": [
+        "forest",
+        "ocean",
+        "lavender",
+        "rose",
+        "coral",
+        "sunshine",
+        "turquoise",
+        "graphite"
+      ]
+    },
+    "supportEmail": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+    },
+    "privacyURL": {
+      "type": "string",
+      "minLength": 0
+    },
+    "imprintURL": {
+      "type": "string",
+      "minLength": 0
+    },
+    "supportURL": {
+      "type": "string",
+      "minLength": 0
+    },
+    "tipProductIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "tipLabels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1
+          },
+          "symbol": {
+            "type": "string",
+            "minLength": 1
+          },
+          "testPrice": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\d+\\.\\d{2}$"
+          }
+        },
+        "required": [
+          "title",
+          "detail",
+          "symbol",
+          "testPrice"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "tipMessage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "examTerminology": {
+      "type": "object",
+      "properties": {
+        "categorySingular": {
+          "type": "string",
+          "minLength": 1
+        },
+        "categoryPlural": {
+          "type": "string",
+          "minLength": 1
+        },
+        "categoryShort": {
+          "type": "string",
+          "minLength": 1
+        },
+        "written": {
+          "type": "string",
+          "minLength": 1
+        },
+        "practical": {
+          "type": "string",
+          "minLength": 1
+        },
+        "practiceTab": {
+          "type": "string",
+          "minLength": 1
+        },
+        "oral": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scenarios": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "categorySingular",
+        "categoryPlural",
+        "categoryShort",
+        "written",
+        "practical",
+        "practiceTab",
+        "oral",
+        "scenarios"
+      ],
+      "additionalProperties": false
+    },
+    "featureFlags": {
+      "type": "object",
+      "properties": {
+        "writtenExam": {
+          "type": "boolean"
+        },
+        "flashcards": {
+          "type": "boolean"
+        },
+        "practicePreparation": {
+          "type": "boolean"
+        },
+        "oralExam": {
+          "type": "boolean"
+        },
+        "scenarioTraining": {
+          "type": "boolean"
+        },
+        "tips": {
+          "type": "boolean"
+        },
+        "ratings": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "writtenExam",
+        "flashcards",
+        "practicePreparation",
+        "oralExam",
+        "scenarioTraining",
+        "tips",
+        "ratings"
+      ],
+      "additionalProperties": false
+    },
+    "legalFile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "iconAssetPath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "storeMetadataPath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legacyMigration": {
+      "type": "boolean"
+    },
+    "notificationNamespace": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brandAccent": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "light": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16777215
+            },
+            "dark": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16777215
+            }
+          },
+          "required": [
+            "light",
+            "dark"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "appId",
+    "appName",
+    "shortName",
+    "subtitle",
+    "bundleIdentifier",
+    "productName",
+    "contentPackId",
+    "defaultTheme",
+    "supportEmail",
+    "privacyURL",
+    "imprintURL",
+    "supportURL",
+    "tipProductIds",
+    "tipLabels",
+    "tipMessage",
+    "examTerminology",
+    "featureFlags",
+    "legalFile",
+    "iconAssetPath",
+    "storeMetadataPath",
+    "legacyMigration",
+    "notificationNamespace",
+    "brandAccent"
+  ],
+  "additionalProperties": false
+}

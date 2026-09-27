@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning-app.invalid/schema/experience.schema.json",
+  "type": "object",
+  "properties": {
+    "impulses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "work": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "location": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "originalText": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "editorialNote": {
+                    "type": "string",
+                    "minLength": 0
+                  },
+                  "checkedOn": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "author",
+                  "work",
+                  "location",
+                  "url",
+                  "originalText",
+                  "editorialNote",
+                  "checkedOn"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "source"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "guides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "symbol": {
+            "type": "string",
+            "minLength": 1
+          },
+          "module": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "writtenExam",
+                  "flashcards",
+                  "practicePreparation",
+                  "oralExam",
+                  "scenarioTraining",
+                  "tips",
+                  "ratings"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "text",
+          "module"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "introduction": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "symbol": {
+            "type": "string",
+            "minLength": 1
+          },
+          "module": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "writtenExam",
+                  "flashcards",
+                  "practicePreparation",
+                  "oralExam",
+                  "scenarioTraining",
+                  "tips",
+                  "ratings"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "text",
+          "module"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "impulses",
+    "guides",
+    "introduction"
+  ],
+  "additionalProperties": false
+}

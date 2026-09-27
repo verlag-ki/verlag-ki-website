@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "appId": "orbit-demo",
+  "appName": "Orbit lernen",
+  "shortName": "Orbit",
+  "subtitle": "Deine nächste Runde\nauf der Raumstation.",
+  "bundleIdentifier": "org.example.orbitdemo",
+  "productName": "OrbitLernen",
+  "contentPackId": "demo-orbit",
+  "defaultTheme": "ocean",
+  "supportEmail": "support@example.org",
+  "privacyURL": "",
+  "imprintURL": "",
+  "supportURL": "",
+  "tipProductIds": [],
+  "tipLabels": [],
+  "tipMessage": "Freiwillige Unterstützung.",
+  "examTerminology": {
+    "categorySingular": "Thema",
+    "categoryPlural": "Themen",
+    "categoryShort": "Thema",
+    "written": "Orbit-Prüfung",
+    "practical": "Praxisrunde",
+    "practiceTab": "Praxis",
+    "oral": "Gespräch",
+    "scenarios": "Situationen"
+  },
+  "featureFlags": {
+    "writtenExam": true,
+    "flashcards": true,
+    "practicePreparation": false,
+    "oralExam": false,
+    "scenarioTraining": false,
+    "tips": false,
+    "ratings": false
+  },
+  "legalFile": "AppConfigs/orbit-demo/legal.json",
+  "iconAssetPath": "AppConfigs/orbit-demo/AppIcon.appiconset",
+  "storeMetadataPath": "AppConfigs/orbit-demo/store.json",
+  "legacyMigration": false,
+  "notificationNamespace": "orbit.learning.",
+  "brandAccent": {
+    "light": 1594496,
+    "dark": 11007994
+  }
+}

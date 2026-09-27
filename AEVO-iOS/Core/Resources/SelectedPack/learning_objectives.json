@@ -1,0 +1,132 @@
+[
+  {
+    "id": "1.1",
+    "categoryID": 1,
+    "title": "Ökologische, ökonomische und soziale Ziele sowie Zielkonflikte erkennen."
+  },
+  {
+    "id": "1.2",
+    "categoryID": 1,
+    "title": "Ausbildungsgesetz, Jugendarbeitsschutz, Arbeitszeitrecht und Tarifregelungen zuordnen."
+  },
+  {
+    "id": "1.3",
+    "categoryID": 1,
+    "title": "Aufgaben von Betrieb, Berufsschule, zuständiger Stelle und Arbeitsagentur zuordnen."
+  },
+  {
+    "id": "1.4",
+    "categoryID": 1,
+    "title": "Berufsbild, Gliederung, Prüfungsanforderungen und Zusatzqualifikationen unterscheiden."
+  },
+  {
+    "id": "1.5",
+    "categoryID": 1,
+    "title": "Voraussetzungen digitaler mobiler Vermittlung und erforderliche Betreuung erkennen."
+  },
+  {
+    "id": "1.7",
+    "categoryID": 1,
+    "title": "Aufgabenverteilung, Abstimmung, Ressourcen und Qualitätsrückmeldung planen."
+  },
+  {
+    "id": "1.6",
+    "categoryID": 1,
+    "title": "Einstiegsqualifizierung, Berufsvorbereitung, assistierte Ausbildung und Orientierung abgrenzen."
+  },
+  {
+    "id": "2.1",
+    "categoryID": 2,
+    "title": "Teilzeit, Verkürzung, Verlängerung und vorzeitige Zulassung abgrenzen."
+  },
+  {
+    "id": "2.2",
+    "categoryID": 2,
+    "title": "Betriebsrat, JAV, Gewerkschaft und zuständige Stelle nach ihrer Funktion unterscheiden."
+  },
+  {
+    "id": "2.3",
+    "categoryID": 2,
+    "title": "Passende Partner für unterschiedliche Ausbildungslücken auswählen."
+  },
+  {
+    "id": "2.4",
+    "categoryID": 2,
+    "title": "Zweckbindung, Datenminimierung, Zugriffsschutz und Löschkonzept anwenden."
+  },
+  {
+    "id": "2.5",
+    "categoryID": 2,
+    "title": "Probezeitkündigung, wichtigen Grund, Berufswechsel und Schriftform abgrenzen."
+  },
+  {
+    "id": "2.6",
+    "categoryID": 2,
+    "title": "Zielbezug, zeitlichen Rahmen, Abstimmung und Ergebnissicherung berücksichtigen."
+  },
+  {
+    "id": "3.2",
+    "categoryID": 3,
+    "title": "Beobachtungsbasis, Entwicklungsgespräch, Förderchance und rechtzeitige Entscheidung sichern."
+  },
+  {
+    "id": "3.1",
+    "categoryID": 3,
+    "title": "Eigene Annahmen, Lernendenfeedback, Beobachtungsdaten und Anpassung verbinden."
+  },
+  {
+    "id": "3.3",
+    "categoryID": 3,
+    "title": "Wiederverwendung, sichere Übungsumgebung, Betreuungsaufwand und Zielerhalt abwägen."
+  },
+  {
+    "id": "3.4",
+    "categoryID": 3,
+    "title": "Gemeinsames Ziel, individuelle Beteiligung, Rollenwechsel und Reflexion organisieren."
+  },
+  {
+    "id": "3.5",
+    "categoryID": 3,
+    "title": "Betriebliche Förderung, Ausbildungsberatung, assistierte Ausbildung und Fachhilfe zuordnen."
+  },
+  {
+    "id": "3.8",
+    "categoryID": 3,
+    "title": "Vollständigkeit, wahrheitsgemäße Einträge, Rückmeldung und Lückenschluss unterscheiden."
+  },
+  {
+    "id": "3.6",
+    "categoryID": 3,
+    "title": "Vertiefung, Zusatzqualifikation, Verkürzung und frühere Prüfung unterscheiden."
+  },
+  {
+    "id": "3.7",
+    "categoryID": 3,
+    "title": "Pauschale Zuschreibung, Schutzmaßnahmen, Beschwerdeweg und faire Lernchancen unterscheiden."
+  },
+  {
+    "id": "3.9",
+    "categoryID": 3,
+    "title": "Individuelle Perspektive, Verständigung, Reflexion und gemeinsame Regeln stärken."
+  },
+  {
+    "id": "4.1",
+    "categoryID": 4,
+    "title": "Schriftlichen und praktischen Teil sowie Bestehen und Wiederholung unterscheiden."
+  },
+  {
+    "id": "4.2",
+    "categoryID": 4,
+    "title": "Errichtung, Besetzung, Abnahme und Bewertung im beruflichen Prüfungswesen unterscheiden."
+  },
+  {
+    "id": "4.3",
+    "categoryID": 4,
+    "title": "Betriebliches Zeugnis, Prüfungszeugnis, Schulzeugnis und Teilnahmebescheinigung unterscheiden."
+  },
+  {
+    "id": "4.4",
+    "categoryID": 4,
+    "title": "Zielklärung, Zugangsprüfung, Angebotsvergleich und Umsetzungsplanung unterscheiden."
+  }
+]

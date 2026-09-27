@@ -1,0 +1,8 @@
+{
+  "appId": "orbit-demo",
+  "contentPackId": "demo-orbit",
+  "engineVersion": "0.5.0",
+  "runtimeTests": "passed",
+  "nativeBuildVerified": false,
+  "configSHA256": "cf96f3677e511f94107899e046d89cb8c42dbedbe4fd776697b7c0cb53f58060"
+}

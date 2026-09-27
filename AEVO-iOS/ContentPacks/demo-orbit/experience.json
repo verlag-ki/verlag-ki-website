@@ -1,0 +1,31 @@
+{
+  "impulses": [
+    {
+      "id": "orbit-step",
+      "text": "Eine Regel nach der anderen.",
+      "source": null
+    },
+    {
+      "id": "orbit-practice",
+      "text": "Ein neuer Versuch beginnt mit einer Frage.",
+      "source": null
+    }
+  ],
+  "guides": [
+    {
+      "id": "demo-help",
+      "title": "Das Orbit-Demo",
+      "text": "Lerne die fiktiven Regeln, swipe Karten und probiere die kurze Simulation aus. Die Simulation läuft vorwärts und pausiert beim Schließen.",
+      "module": null
+    }
+  ],
+  "introduction": [
+    {
+      "id": "welcome",
+      "title": "Willkommen auf Orbit",
+      "text": "Dieses fiktive Lernthema zeigt die austauschbaren Inhalte der gemeinsamen Engine.",
+      "module": null,
+      "symbol": "sparkles"
+    }
+  ]
+}

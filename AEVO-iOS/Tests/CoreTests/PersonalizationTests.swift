@@ -1,5 +1,5 @@
 import XCTest
-@testable import AEVOCore
+@testable import LearningCore
 
 final class PersonalizationTests: XCTestCase {
     var calendar: Calendar!
@@ -32,9 +32,12 @@ final class PersonalizationTests: XCTestCase {
         plan.preparationCompleted = true
         XCTAssertNil(Personalization.nextExam(plan:plan,now:date(2026,10,26),calendar:calendar))
     }
-    func testDailyImpulseChangesByLocalDateButNotOnRelaunch() {
-        XCTAssertEqual(Personalization.impulses.count,31)
-        XCTAssertEqual(Set(Personalization.impulses).count,31)
+    func testDailyImpulseChangesByLocalDateButNotOnRelaunch() throws {
+        // Every pack brings its own impulses. The rotation must work for any number of them.
+        let available = Personalization.impulses
+        XCTAssertFalse(available.isEmpty)
+        XCTAssertEqual(Set(available).count, available.count, "Impulse dürfen sich nicht doppeln.")
+        if PackRequirement.packId == "aevo-de" { XCTAssertEqual(available.count, 31) }
         let first = Personalization.impulse(now:date(2026,10,24,0),calendar:calendar)
         XCTAssertEqual(first, Personalization.impulse(now:date(2026,10,24,23,59),calendar:calendar))
         XCTAssertNotEqual(first, Personalization.impulse(now:date(2026,10,25,0),calendar:calendar))
@@ -54,7 +57,7 @@ final class PersonalizationTests: XCTestCase {
         XCTAssertNotEqual(Personalization.impulse(now:instant,calendar:berlin),Personalization.impulse(now:instant,calendar:la))
     }
     func testProfileAndThemeSurviveBackupWithoutResettingOtherSettings() throws {
-        var state = AppState(now:date())
+        var state = AppState(now:date()); state.settings.hideTipPrompts = true; state.settings.hideReviewPrompts = true
         state.settings.exams.practical = CivilDay(date(2026,12,12),calendar:calendar)
         state.coaching.notes["test"] = "Meine Notiz"
         var profile = PersonalProfile(); profile.name = " Julian "; profile.world = .rose; profile.showDailyImpulse = false
@@ -63,6 +66,7 @@ final class PersonalizationTests: XCTestCase {
         XCTAssertEqual(copy.profile.name,"Julian"); XCTAssertEqual(copy.profile.world,.rose)
         XCTAssertTrue(copy.profile.onboardingCompleted); XCTAssertFalse(copy.profile.showDailyImpulse)
         XCTAssertEqual(copy.coaching.notes["test"],"Meine Notiz")
+        XCTAssertTrue(copy.settings.hideTipPrompts); XCTAssertTrue(copy.settings.hideReviewPrompts)
         XCTAssertEqual(copy.settings.exams.practical,state.settings.exams.practical)
         XCTAssertEqual(copy.settings.exams.written,state.settings.exams.written)
     }

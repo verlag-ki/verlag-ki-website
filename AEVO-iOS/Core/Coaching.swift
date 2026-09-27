@@ -80,14 +80,15 @@ public enum CoachingEngine {
                 delayedFamilies: delayed.count, transferFamilies: transfers.count)
         }
     }
-    public static func recommendation(catalog: Catalog, state: AppState, overrideMinutes: Int? = nil,
+    public static func recommendation(catalog: Catalog, state: AppState, overrideMinutes: Int? = nil, practiceEnabled: Bool? = nil,
                                       now: Date = Date(), calendar: Calendar = .current) -> DayRecommendation {
         let configured = calendar.isDateInWeekend(now) ? state.coaching.weekendMinutes : state.coaching.weekdayMinutes
         let minutes = max(3, min(30, overrideMinutes ?? configured))
         let exams = state.settings.exams
         let practiceOnly = exams.writtenCompleted && !exams.practicalCompleted && !exams.preparationCompleted
         let nearPractice = !exams.practicalCompleted && exams.practical?.date(calendar: calendar).map { $0.timeIntervalSince(now) >= 0 && $0.timeIntervalSince(now) < 14 * 86_400 } == true
-        let practiceMinutes = exams.preparationCompleted || exams.practicalCompleted || minutes < 5 ? 0 : practiceOnly ? max(2, minutes - 3) : (nearPractice ? min(5, minutes / 2) : 2)
+        let practiceAvailable = practiceEnabled ?? ((try? LearningEnvironment.bundled().enabled(.practicePreparation)) ?? false)
+        let practiceMinutes = !practiceAvailable || exams.preparationCompleted || exams.practicalCompleted || minutes < 5 ? 0 : practiceOnly ? max(2, minutes - 3) : (nearPractice ? min(5, minutes / 2) : 2)
         let questionCount = max(1, min(12, (minutes - practiceMinutes - 1) / 2))
         let seen = LearningEngine.seenQuestions(state: state)
         let allEvidence = evidence(catalog: catalog, state: state)
@@ -114,7 +115,7 @@ public enum CoachingEngine {
         // Reserve some space for new coverage even with a large repetition backlog.
         append(novel, limit: questionCount)
         append(due, limit: questionCount)
-        append(LearningEngine.nextQuestions(catalog: catalog, state: state, count: 800, now: now), limit: questionCount)
+        append(LearningEngine.nextQuestions(catalog: catalog, state: state, count: catalog.questions.count, now: now), limit: questionCount)
         let chosenCompetency = selected.first?.competency
         let cards = catalog.cards.sorted { a, b in
             let da = state.cardRecall[a.id]?.due ?? .distantFuture, db = state.cardRecall[b.id]?.due ?? .distantFuture
@@ -143,26 +144,21 @@ public enum CoachingEngine {
         let seen = LearningEngine.seenQuestions(state: state)
         return catalog.questions.first { $0.competency == question.competency && $0.family != question.family && !seen.contains($0.id) }
     }
-    public static let practiceFields: [(String, String, String)] = [
-        ("prerequisites", "Voraussetzungen", "Welche Vorkenntnisse und individuellen Bedürfnisse liegen vor?"),
-        ("observable", "Beobachtbare Handlung", "Was tut die Person anschließend selbstständig?"),
-        ("conditions", "Bedingungen", "Mit welchen Hilfsmitteln und unter welchen Bedingungen?"),
-        ("criterion", "Erfolgskriterium", "Woran erkennst du die Zielerreichung konkret?"),
-        ("alternative", "Methodenalternative", "Welche Alternative wäre möglich und warum passt deine Wahl besser?"),
-        ("assessment", "Lernkontrolle", "Welche neue Aufgabe zeigt selbstständige Anwendung?"),
-        ("fallback", "Wenn es anders läuft", "Wie reagierst du auf Überforderung, Zeitmangel oder einen Fehler?"),
-        ("transfer", "Transfer", "Wann und wo wird das Gelernte erneut eingesetzt?")
-    ]
+    public static var preparation: PracticePreparation? { (try? LearningEnvironment.bundled().pack.practice.preparation) ?? nil }
+    public static var practiceFields: [(String, String, String)] {
+        (preparation?.fields ?? []).filter { $0.storage == "detail" }.map { ($0.id, $0.title, $0.prompt) }
+    }
+    public static func fieldValue(_ field: PracticeField, state: AppState) -> String {
+        field.storage == "legacy" ? state.practice.value(for: field.id) : state.coaching.practiceDetails[field.id] ?? ""
+    }
     public static func missingPracticeItems(state: AppState) -> [String] {
-        var missing = [("Beruf", state.practice.occupation), ("Situation", state.practice.situation), ("Thema", state.practice.topic),
-                       ("Lernziel", state.practice.objective), ("Methodenbegründung", state.practice.method), ("Ablauf", state.practice.steps)]
-            .filter { $0.1.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.map(\.0)
-        missing += practiceFields.filter { (state.coaching.practiceDetails[$0.0] ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.map(\.1)
-        return missing
+        (preparation?.fields ?? []).filter { $0.id != "conversationNotes" && fieldValue($0, state: state).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.map(\.title)
     }
     public static func practiceExport(state: AppState) -> String {
-        let p = state.practice
-        let pairs = [("Beruf", p.occupation), ("Situation", p.situation), ("Thema", p.topic), ("Lernziel", p.objective), ("Methode und Begründung", p.method), ("Ablauf", p.steps)] + practiceFields.map { ($0.1, state.coaching.practiceDetails[$0.0] ?? "") } + [("Fachgespräch", p.conversationNotes)]
-        return "MEIN AEVO-PRAXISPLAN\nDein eigener Plan. Die Vorgaben deiner zuständigen Kammer gehen vor.\n\n" + pairs.map { "\($0.0)\n\($0.1.isEmpty ? "Noch offen" : $0.1)" }.joined(separator: "\n\n")
+        guard let form = preparation else { return "" }
+        return form.exportTitle + "\nDeine persönliche Planung.\n\n" + form.fields.map {
+            let value = fieldValue($0, state: state)
+            return "\($0.title)\n\(value.isEmpty ? "Noch offen" : value)"
+        }.joined(separator: "\n\n")
     }
 }

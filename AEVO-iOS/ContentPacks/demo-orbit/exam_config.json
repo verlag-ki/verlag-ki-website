@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "orbit-demo-v1",
+  "title": "Orbit-Proberunde",
+  "questionCount": 6,
+  "durationSeconds": 300,
+  "passPercentage": 70,
+  "selection": "weightedRandom",
+  "categoryWeights": [
+    {
+      "categoryID": 1,
+      "weight": 1
+    },
+    {
+      "categoryID": 2,
+      "weight": 1
+    },
+    {
+      "categoryID": 3,
+      "weight": 1
+    }
+  ],
+  "uniqueFamilies": true,
+  "navigation": "forwardOnly",
+  "allowsAnswerChanges": false,
+  "timing": "activeOnly",
+  "scoring": "partialCredit",
+  "results": "summary"
+}

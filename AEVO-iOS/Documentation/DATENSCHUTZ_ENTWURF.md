@@ -16,7 +16,7 @@ Du brauchst kein Nutzerkonto. Die App enthält keine Werbung, keine Analyse-SDKs
 
 Auf deinem iPhone speichert die App deinen freiwilligen Namen, Prüfungstermine, Farbwelt, Einstellungen, Antworten, Lernzeiten, Wiederholungen, Simulationen, Tagesfortschritt und Abzeichen. Hinzu kommen persönliche Fassungen von Lernkarten, Notizen, Praxispläne, Selbsteinschätzungen und von dir angelegte Inhaltsmeldungen. Diese Daten ermöglichen das Fortsetzen und die Auswahl passender Lernschritte.
 
-Die App sendet diese Lerndaten nicht an uns. Aktive Lernzeit und bisherige Anfragen werden nur lokal ausgewertet, damit Bewertungs- und Trinkgeldhinweise selten bleiben. Du kannst beide Hinweise in den Einstellungen dauerhaft abschalten. Lernempfehlungen stellen keine Entscheidung mit rechtlicher oder vergleichbar erheblicher Wirkung dar.
+Die App sendet diese Lerndaten nicht an uns. Aktive Lernzeit und bisherige Anfragen werden nur lokal ausgewertet, damit Bewertungs- und Trinkgeldhinweise selten bleiben. Gelegentliche Hinweise lassen sich ohne Bewertung oder Zahlung schließen. Lernempfehlungen stellen keine Entscheidung mit rechtlicher oder vergleichbar erheblicher Wirkung dar.
 
 Soweit wir für diese Verarbeitung verantwortlich sind, dient die erforderliche lokale Speicherung der von dir angeforderten Lernfunktion auf Grundlage von Art. 6 Abs. 1 Buchst. b DSGVO. Optionale Angaben sind für das Lernen nicht erforderlich und lassen sich ändern oder entfernen.
 

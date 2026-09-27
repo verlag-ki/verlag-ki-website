@@ -1,5 +1,5 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct HomeView: View {
@@ -13,32 +13,32 @@ struct HomeView: View {
     private var today: DailyActivity? { store.state.days[CivilDay(now).id] }
     private var goal: Int { today?.goal ?? store.state.settings.dailyGoal }
     private var steps: Int { today?.itemIDs.count ?? 0 }
-    private var dueCard: LearningCard? { LearningEngine.nextCards(catalog: store.catalog, state: store.state, count: 1, now: now).first }
-    private var dueCount: Int {
-        let due = store.catalog.cards.filter { (store.state.cardRecall[$0.id]?.due ?? .distantPast) <= now }.count
-        return max(due, 1)
+
+    private var suggestedCard: LearningCard? {
+        if let id = store.state.cardStudy?.currentID, let saved = store.catalog.cards.first(where: { $0.id == id }) { return saved }
+        return CardStudy.ordered(cards: store.catalog.cards, state: store.state).first
     }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
                 HStack {
-                    Label("aevo.", systemImage: "book.closed.fill").font(.title3.bold())
+                    Label(store.config.shortName, systemImage: "book.closed.fill").font(.title3.bold())
                     Spacer()
                     NavigationLink { BadgesView() } label: { Image(systemName: "medal").frame(width: 44, height: 44) }.accessibilityLabel("Deine Abzeichen")
                     Button(action: openSettings) { Image(systemName: "slider.horizontal.3").frame(width: 44, height: 44) }.accessibilityLabel("Einstellungen")
                 }
                 VStack(alignment: .leading, spacing: 22) {
                     Text(Personalization.greeting(name: store.state.profile.name, now: now)).font(.largeTitle.bold()).fixedSize(horizontal: false, vertical: true)
-                    if !store.state.coaching.quietMode, let next = Personalization.nextExam(plan: store.state.settings.exams, now: now) {
+                    if !store.state.coaching.quietMode, let next = Personalization.nextExam(plan: store.schedulingState.settings.exams, now: now) {
                         NavigationLink { ExamPlanView() } label: {
-                            Text(next.text).font(.subheadline).foregroundStyle(.white.opacity(0.88)).frame(minHeight: 44, alignment: .leading)
+                            Text(next.text(terminology: store.config.examTerminology)).font(.subheadline).foregroundStyle(.white.opacity(0.88)).frame(minHeight: 44, alignment: .leading)
                         }
                     }
                     if store.state.profile.showDailyImpulse {
                         DailyImpulseView(impulse: DailyImpulses.current(now: now), onHero: true)
                     }
-                    Text(store.state.session == nil ? "\(CoachingEngine.recommendation(catalog: store.catalog, state: store.state).questions.count) Aufgaben. Du lernst in deinem Tempo." : "Deine angefangene Runde ist gespeichert. Steig genau dort wieder ein.")
+                    Text(store.state.session == nil ? "\(CoachingEngine.recommendation(catalog: store.catalog, state: store.state, practiceEnabled: store.enabled(.practicePreparation)).questions.count) Aufgaben. Du lernst in deinem Tempo." : "Deine angefangene Runde ist gespeichert. Steig genau dort wieder ein.")
                         .font(.body).foregroundStyle(.white.opacity(0.85))
                     PrimaryButton(title: store.state.session == nil ? "Meine Lernrunde starten" : "Weiterlernen", action: openLearning)
                     if !store.state.coaching.quietMode { VStack(alignment: .leading, spacing: 9) {
@@ -58,13 +58,12 @@ struct HomeView: View {
                         .font(.subheadline.weight(.medium)).foregroundStyle(theme.accent)
                 }
                 NavigationLink { DayPlanView() } label: { Label("Runde anpassen", systemImage: "list.bullet.clipboard").frame(minHeight: 44) }
-                if let card = dueCard {
-                    NavigationLink { CardDeckView(startCard: card.id) } label: {
+                if store.enabled(.flashcards), let card = suggestedCard {
+                    NavigationLink { CardView(card: card, resume: true) } label: {
                         Surface {
-                            HStack { Text("DEINE LERNKARTEN").font(.caption.weight(.semibold)).tracking(1); Spacer(); Image(systemName: "hand.draw") }
+                            HStack { Text("DEINE LERNKARTEN").font(.caption.weight(.semibold)).tracking(1); Spacer(); Image(systemName: "arrow.up.right") }
                             Text(store.state.cardEdits[card.id]?.title ?? card.title).font(.title3.bold())
-                            Text("\(dueCount) Karten warten. Wischen nach rechts für verstanden, nach links für unsicher. Die nächste Karte kommt von allein.")
-                                .font(.subheadline).foregroundStyle(.secondary)
+                            Text("Karten swipen und direkt weiterlernen.").font(.subheadline).foregroundStyle(.secondary)
                         }
                     }.buttonStyle(.plain)
                 }
@@ -81,19 +80,19 @@ struct HomeView: View {
 struct BadgesView: View {
     @Environment(\.learningTheme) private var theme
     @EnvironmentObject private var store: AppStore
-    private let badges: [(String, String, String, String)] = [
+    private var badges: [(String, String, String, String)] { [
         ("first-round", "Erste Runde", "Drei unterschiedliche Aufgaben in einer Runde abschließen.", "flag.checkered"),
         ("own-words", "In eigenen Worten", "Eine persönliche Lernkarte oder Notiz speichern.", "square.and.pencil"),
         ("day-goal", "Heute geschafft", "Dein selbst gewähltes Tagesziel erreichen.", "sun.max"),
         ("three-days", "Drei Lerntage", "An drei aufeinanderfolgenden Tagen dein Tagesziel erreichen.", "sparkles"),
-        ("all-fields", "Rundumblick", "In allen vier Handlungsfeldern eine Aufgabe oder Lernkarte bearbeiten.", "square.grid.2x2"),
+        ("all-fields", "Rundumblick", "In allen Themenbereichen eine Aufgabe oder Lernkarte bearbeiten.", "square.grid.2x2"),
         ("practice-plan", "Plan festgehalten", "Thema, Lernziel, Methode und Ablauf im Praxisplan festhalten.", "person.text.rectangle")
-    ]
+    ].filter { $0.0 != "practice-plan" || store.enabled(.practicePreparation) } }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Deine kleinen\nMeilensteine.").font(.largeTitle.bold())
-                Text("Sie zeigen deine Lernschritte. Eine Prüfungsnote ersetzen sie nicht.").foregroundStyle(.secondary)
+                Text("Hier werden deine Lernschritte und Erfolge sichtbar.").foregroundStyle(.secondary)
                 ForEach(badges, id: \.0) { badge in
                     Surface {
                         HStack(alignment: .top, spacing: 16) {

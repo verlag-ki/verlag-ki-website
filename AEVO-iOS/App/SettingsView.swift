@@ -1,6 +1,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
-import AEVOCore
+import LearningCore
 
 struct BackupDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
@@ -56,9 +56,10 @@ struct SettingsView: View {
                 else { Text("Noch keine externe Sicherung erstellt.").font(.footnote) }
                 Text("Dein Lernstand liegt auf diesem Gerät. Sichere ihn beispielsweise in iCloud Drive, bevor du das Gerät wechselst. Eine automatische Synchronisierung ist noch nicht enthalten. Fachgesprächsaufnahmen sind nicht in dieser Sicherung enthalten.").font(.footnote).foregroundStyle(.secondary)
             }
-            Section("App unterstützen") {
+            if store.enabled(.tips) { Section("App unterstützen") {
                 Button { support = true } label: { Label("Freiwilliges Trinkgeld", systemImage: "heart").frame(minHeight: 44) }
-                Text("Alle Inhalte bleiben frei. Keine Werbung, kein Konto und keine Abos. Seltene Hinweise auf Trinkgeld und Bewertung erscheinen nur nach einer abgeschlossenen Lernrunde.").font(.footnote).foregroundStyle(.secondary)
+                Text("Alle Inhalte bleiben frei. Keine Werbung, kein Konto und keine Abos. Gelegentliche Anfragen erscheinen nur nach einer abgeschlossenen Lernrunde und können ohne Zahlung oder Bewertung geschlossen werden.").font(.footnote).foregroundStyle(.secondary)
+            }
             }
             Section("Hilfe & Kontakt") {
                 NavigationLink { HelpGuidesView() } label: { Label("Hilfe & Anleitungen", systemImage: "questionmark.circle") }
@@ -68,15 +69,15 @@ struct SettingsView: View {
                 NavigationLink { LegalDocumentView(document: .imprint) } label: { Label("Impressum", systemImage: "building.2") }
                 NavigationLink { LegalDocumentView(document: .privacy) } label: { Label("Datenschutzerklärung", systemImage: "hand.raised") }
             }
-            Section("Über die App") {
+            Section("Über " + store.config.appName) {
                 Text("\(store.catalog.questions.count) eigene Aufgaben · \(store.catalog.cards.count) Lernkarten")
-                Text("Eigene Lernaufgaben, keine Originalprüfungsfragen. Keine Verbindung zur IHK.").font(.footnote).foregroundStyle(.secondary)
+                Text(store.environment.pack.manifest.rightsNotice).font(.footnote).foregroundStyle(.secondary)
                 Text("Lernstände, Notizen und Termine werden lokal gespeichert. Quellenlinks öffnen externe Seiten; freiwillige Käufe laufen über Apple. Die App enthält keine Analyse- oder Werbedienste.").font(.footnote).foregroundStyle(.secondary)
             }
         }.navigationTitle("Einstellungen").learningBackground()
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Fertig") { dismiss() } } }
             .sheet(isPresented: $support) { NavigationStack { SupportView() }.environmentObject(store) }
-            .fileExporter(isPresented: $exporting, document: backup, contentType: .json, defaultFilename: "AEVO-Sicherung") { result in
+            .fileExporter(isPresented: $exporting, document: backup, contentType: .json, defaultFilename: store.config.appId + "-Sicherung") { result in
                 switch result {
                 case .success: store.commit { $0.lastExportAt = Date() }
                 case .failure(let error): store.errorMessage = "Die Sicherung wurde nicht exportiert: \(error.localizedDescription)"
@@ -88,7 +89,7 @@ struct SettingsView: View {
                     defer { if access { url.stopAccessingSecurityScopedResource() } }
                     let size = try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
                     guard size <= StateCodec.maximumBackupBytes else { throw LearningError.invalid("Diese Datei ist größer als 25 MB.") }
-                    let data = try Data(contentsOf: url); _ = try StateCodec.importBackup(data)
+                    let data = try Data(contentsOf: url); _ = try StateMigration.migrate(StateCodec.importBackup(data), environment: store.environment)
                     pendingImport = data; confirmImport = true
                 } catch { store.errorMessage = "Die Datei konnte nicht als Sicherung gelesen werden. Deine Daten bleiben erhalten. \(error.localizedDescription)" }
             }
@@ -112,10 +113,10 @@ struct ExamPlanView: View {
         Form {
             Section {
                 Text("Dein Tempo.\nDeine Termine.").font(.title2.bold())
-                Text("Beide Termine sind freiwillig. Du kannst sie jederzeit ändern oder ohne Datum lernen.").foregroundStyle(.secondary)
+                Text("Deine Termine sind freiwillig. Du kannst sie jederzeit ändern oder ohne Datum lernen.").foregroundStyle(.secondary)
             }
-            examSection(title: "Schriftliche Prüfung", dateKey: \.written, completedKey: \.writtenCompleted)
-            examSection(title: "Praktische Prüfung", dateKey: \.practical, completedKey: \.practicalCompleted)
+            examSection(title: store.config.examTerminology.written, dateKey: \.written, completedKey: \.writtenCompleted)
+            if store.hasPractice { examSection(title: store.config.examTerminology.practical, dateKey: \.practical, completedKey: \.practicalCompleted) }
             Section {
                 Toggle("Meine Vorbereitung ist abgeschlossen", isOn: Binding(get: { plan.preparationCompleted }, set: { value in
                     update { $0.preparationCompleted = value }

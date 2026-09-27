@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedOn": "2026-09-21",
+  "updatedOn": "2026-09-20",
   "approved": false,
   "reviewedBy": "",
   "reviewedOn": "",
@@ -30,8 +30,8 @@
       "title": "Dein Lernen bleibt auf deinem Gerät",
       "paragraphs": [
         "Du brauchst kein Nutzerkonto. Die App enthält keine Werbung, keine Analyse-SDKs und keinen eigenen Server für Lernstände. Aufgaben, Karten und diese Erklärung sind mitgeliefert und offline lesbar. Es gibt derzeit keinen automatischen Download neuer Inhalte; neue Inhalte kommen mit App-Updates.",
-        "Auf deinem iPhone speichert die App deinen freiwilligen Namen, Prüfungstermine, Farbwelt, Einstellungen, Antworten, Lernzeiten, Wiederholungen, Simulationen, Tagesfortschritt und Abzeichen. Hinzu kommen persönliche Fassungen von Lernkarten, Notizen, Praxispläne und Selbsteinschätzungen. Diese Daten ermöglichen das Fortsetzen und die Auswahl passender Lernschritte.",
-        "Die App sendet diese Lerndaten nicht an uns. Aktive Lernzeit und bisherige Anfragen werden nur lokal ausgewertet, damit Bewertungs- und Trinkgeldhinweise selten bleiben. Sie erscheinen höchstens nach einer abgeschlossenen Lernrunde und nicht in der Woche vor einem eingetragenen Prüfungstermin. Lernempfehlungen stellen keine Entscheidung mit rechtlicher oder vergleichbar erheblicher Wirkung dar.",
+        "Auf deinem iPhone speichert die App deinen freiwilligen Namen, Prüfungstermine, Farbwelt, Einstellungen, Antworten, Lernzeiten, Wiederholungen, Simulationen, Tagesfortschritt und Abzeichen. Hinzu kommen persönliche Fassungen von Lernkarten, Notizen, Praxispläne, Selbsteinschätzungen und von dir angelegte Inhaltsmeldungen. Diese Daten ermöglichen das Fortsetzen und die Auswahl passender Lernschritte.",
+        "Die App sendet diese Lerndaten nicht an uns. Aktive Lernzeit und bisherige Anfragen werden nur lokal ausgewertet, damit Bewertungs- und Trinkgeldhinweise selten bleiben. Gelegentliche Hinweise lassen sich ohne Bewertung oder Zahlung schließen. Lernempfehlungen stellen keine Entscheidung mit rechtlicher oder vergleichbar erheblicher Wirkung dar.",
         "Soweit wir für diese Verarbeitung verantwortlich sind, dient die erforderliche lokale Speicherung der von dir angeforderten Lernfunktion auf Grundlage von Art. 6 Abs. 1 Buchst. b DSGVO. Optionale Angaben sind für das Lernen nicht erforderlich und lassen sich ändern oder entfernen."
       ],
       "links": []
@@ -53,7 +53,7 @@
       "paragraphs": [
         "Die App synchronisiert deinen Lernstand nicht automatisch zwischen Geräten. Mit einem freiwilligen Export kannst du eine JSON-Sicherung erstellen und über den iOS-Teilen-Dialog an einem selbst gewählten Ort speichern. Sie enthält deinen Lernstand, persönliche Texte, Einstellungen und lokale Kaufvermerke, aber keine Sprachaufnahmen. Die Datei ist nicht durch ein eigenes App-Passwort verschlüsselt. Teile sie nur mit Personen oder Diensten, denen du diese Informationen geben möchtest.",
         "Je nach deinen iPhone-Einstellungen können gewöhnliche App-Daten Bestandteil einer iCloud- oder Computersicherung sein. Das ist eine Betriebssystemfunktion und keine Synchronisierung dieser App. Wir können solche Sicherungen weder sehen noch löschen. Für Apple-Dienste und von dir gewählte Datei- oder Versanddienste gelten zusätzlich deren Datenschutzinformationen.",
-        "Deine Texte verlassen das Gerät nur, wenn du sie selbst teilst oder exportierst. Erst dann erhält das von dir gewählte Ziel die ausgewählten Angaben. Es gibt keinen automatischen Versand an uns."
+        "Inhaltsmeldungen werden zunächst nur auf deinem Gerät gespeichert. Erst wenn du einen Bericht selbst teilst oder versendest, erhält das von dir gewählte Ziel die ausgewählten Angaben. Es gibt keinen automatischen Versand an uns."
       ],
       "links": []
     },

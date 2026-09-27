@@ -1,0 +1,97 @@
+[
+  {
+    "id": "ORBIT-K001",
+    "version": 1,
+    "field": 1,
+    "competency": "orbit-1",
+    "title": "Grün gibt frei",
+    "explanation": "Bei Grün ist Eintritt erlaubt.",
+    "remember": "Bei Grün ist Eintritt erlaubt.",
+    "example": "",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-K002",
+    "version": 1,
+    "field": 1,
+    "competency": "orbit-1",
+    "title": "Rot heißt warten",
+    "explanation": "Bei Rot wird gewartet.",
+    "remember": "Bei Rot wird gewartet.",
+    "example": "",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-K003",
+    "version": 1,
+    "field": 2,
+    "competency": "orbit-2",
+    "title": "Sichere Kiste",
+    "explanation": "Eine Kiste ist geschlossen und beschriftet.",
+    "remember": "Eine Kiste ist geschlossen und beschriftet.",
+    "example": "",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-K004",
+    "version": 1,
+    "field": 3,
+    "competency": "orbit-3",
+    "title": "Schichtbeginn",
+    "explanation": "Am Anfang steht eine Checkliste.",
+    "remember": "Am Anfang steht eine Checkliste.",
+    "example": "",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  },
+  {
+    "id": "ORBIT-K005",
+    "version": 1,
+    "field": 3,
+    "competency": "orbit-3",
+    "title": "Vor der Pause",
+    "explanation": "Gerät und Licht werden ausgeschaltet.",
+    "remember": "Gerät und Licht werden ausgeschaltet.",
+    "example": "",
+    "sources": [
+      {
+        "title": "Fiktives Orbit-Regelbuch, im Demo vollständig beschrieben",
+        "url": "https://example.org/orbit-demo"
+      }
+    ],
+    "approved": false,
+    "reviewedOn": null,
+    "reviewedBy": null
+  }
+]

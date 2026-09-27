@@ -1,8 +1,10 @@
 # AEVO für iPhone: Produkt- und Gestaltungskonzept
 
-Stand: 20. September 2026, einschließlich des bestätigten Ablaufs für Prüfungstermine, Countdown, Lernerinnerungen, Storebewertungen und freiwillige Unterstützung. Verbindliche Ausrichtung: ausschließlich iOS, zunächst iPhone. „aevo.“ ist ein Arbeitsname; Verfügbarkeit und Markenrechte sind noch nicht geprüft.
+Technischer Nachtrag 0.5.0 vom 21. September 2026: Das bestehende Projekt ist jetzt als gemeinsame Learning Engine mit austauschbarer AppConfig und Content-Pack refaktoriert. Die AEVO-Inhalte und die Nutzerabläufe bleiben erhalten. Maßgeblich für Implementierung, Migration und Prüfstand sind `REFACTORING_0_5_0.md`, `PRUEFBERICHT.md` sowie `../NEW_APP_GUIDE.md`. 64 Swift- und 16 Python-Tests bestanden; der native Build und die Geräteabnahme stehen aus. Die folgenden Produktentscheidungen bleiben gültig, frühere technische Versionsangaben sind historisch.
 
-Dieses Konzept konkretisiert die vorhandene Wettbewerbsanalyse. Die frühere Empfehlung einer gemeinsamen technischen Basis für iOS und Android ist durch die Entscheidung des Auftraggebers aufgehoben. Nach ausdrücklichem Auftrag zum Beginn der Programmierung liegt jetzt der native Quellcodestand 0.3.3 vor. Der Mac soll erst möglichst spät eingesetzt werden. Der Foundation-Programmkern wurde auf Linux kompiliert und mit 45 Tests geprüft; der iOS-Build und die Geräteabnahme stehen aus. Der bisherige interaktive Bedienungsentwurf bleibt eine getrennte Vorschau mit Beispieldaten.
+Stand: 21. September 2026, einschließlich des bestätigten Ablaufs für Prüfungstermine, Countdown, Lernerinnerungen, Storebewertungen und freiwillige Unterstützung. Verbindliche Ausrichtung: ausschließlich iOS, zunächst iPhone. „aevo.“ ist ein Arbeitsname; Verfügbarkeit und Markenrechte sind noch nicht geprüft.
+
+Dieses Konzept konkretisiert die vorhandene Wettbewerbsanalyse. Die frühere Empfehlung einer gemeinsamen technischen Basis für iOS und Android ist durch die Entscheidung des Auftraggebers aufgehoben. Nach ausdrücklichem Auftrag zum Beginn der Programmierung liegt jetzt der native Quellcodestand 0.4.0 vor. Der Mac soll erst möglichst spät eingesetzt werden. Der Foundation-Programmkern wurde auf Linux kompiliert und mit 52 Tests geprüft; zusätzlich bestanden fünf Python-Prüfungen und die Swift-Syntaxprüfung. Der iOS-Build und die Geräteabnahme der neuen Version stehen aus. Der bisherige interaktive Bedienungsentwurf bleibt eine getrennte Vorschau mit Beispieldaten.
 
 ## 1. Die Produktentscheidung
 
@@ -306,3 +308,16 @@ Am 20. September 2026 hat Julian Kürten Notion für die öffentlichen Informati
 Der Datenschutzentwurf in Notion und die offline verfügbare Fassung im iOS-Projekt nennen jetzt IONOS als Anbieter des Supportpostfachs. Die Anbieteranschrift wurde im [IONOS-Impressum](https://www.ionos.de/impressum) abgeglichen. Die App sendet weiterhin keine Nachricht oder Lerndaten automatisch. Die Informationsseiten bei Notion sind vom lokalen Lernbetrieb getrennt und werden nur über einen bewusst gewählten externen Link geöffnet.
 
 Die Bestätigung des Anbieters belegt noch kein bestimmtes Mailprodukt, keine ausschließlich deutsche Datenhaltung, keinen abgeschlossenen AV-Vertrag und keine konkrete Löschfrist. Diese Punkte bleiben als redaktionelle Prüfung vor Veröffentlichung vermerkt. Auch die tatsächliche Notion-Konfiguration und abschließende rechtliche Prüfung bleiben offen. Der Freigabestatus der Texte und der fachlichen Inhalte wurde nicht geändert. Diese Ergänzung aktualisiert die zuvor offenen Entscheidungen zum Mail- und Webanbieter, ohne einen abgeschlossenen App-Store-Release zu behaupten.
+
+
+## 21. Direkter Lernablauf und bestätigte Fachprüfung in 0.4.0
+
+Lernkarten sind ein fortlaufender Stapel. Rechts wischen oder „Verstanden“ speichert die Einschätzung und öffnet die nächste Karte. Links wischen oder „Noch unsicher“ tut dasselbe mit einer früheren Wiederholung. Senkrechtes Scrollen bewertet keine Karte. Der Stapel samt Position wird gespeichert; die Startseite setzt ihn fort. Themenauswahl, persönliche Kartentexte und Notizen bleiben erhalten. Am Ende ist eine Runde nur mit unsicheren Karten möglich.
+
+Bei Aufgaben lautet der feste Ablauf: auswählen, „Antwort einloggen“, Erklärung lesen, „Nächste Aufgabe“. Bei verzweigten Situationen gilt derselbe Ablauf mit „Nächste Entscheidung“. Prüfungssimulationen zeigen Lösungen weiterhin erst nach Abgabe.
+
+Julian Kürten hat die abgeschlossene fachliche Prüfung für den vorhandenen Inhalt bestätigt. Die Lernoberfläche enthält deshalb keine Entwurfs- oder Fachprüfhinweise mehr. Intern bleibt die Auftraggeberbestätigung mit Bezug auf die konkreten Inhaltsfassungen dokumentiert. Die Darstellung erfindet weder eine unabhängige Prüferidentität noch eine Bestehenswahrscheinlichkeit. Quellen bleiben auf Wunsch sichtbar; Kontakt / Support ersetzt den Meldebereich im Lernfluss.
+
+Impressum und Datenschutz bleiben in den Einstellungen und entfallen in der Einführung. Die dauerhaften Abschalter für Bewertung und Trinkgeld sind auf ausdrücklichen Wunsch entfernt. Alte Sicherungsfelder bleiben lesbar, ihre Abschaltwirkung entfällt. Alle Nachfragen lassen sich freiwillig schließen; Abstände und Schutz laufender Lernphasen bleiben bestehen. Hilfe und Datenschutzentwurf wurden entsprechend angepasst.
+
+Diese Festlegungen ersetzen widersprechende ältere Beschreibungen, insbesondere zu dauerhaften Nachfrage-Abschaltern, einzelnen Karten ohne Weiterlauf und offenen fachlichen Prüfvermerken. Die rechtliche Freigabe sowie öffentliche Notion-URLs bleiben eigene offene Veröffentlichungsschritte. Der erfolgreiche Start der vorherigen App wurde vom Auftraggeber bestätigt; die neue Version benötigt eine native Abnahme auf dem Mac und iPhone.

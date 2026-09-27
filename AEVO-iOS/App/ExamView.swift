@@ -1,5 +1,5 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct ExamView: View {
@@ -10,10 +10,18 @@ struct ExamView: View {
             VStack(alignment: .leading, spacing: 22) {
                 Text("In Ruhe\nGeneralprobe machen.").font(.largeTitle.bold())
                 Surface {
-                    Label("80 Aufgaben · 180 Minuten", systemImage: "timer").font(.headline)
-                    Text("Die Uhr läuft auch weiter, wenn du die App schließt. Antworten und Markierungen bleiben gespeichert. Lösungen siehst du nach der Abgabe.")
-                    Text("Eigenes Übungsprofil: 12 Aufgaben aus HF 1, 18 aus HF 2, 38 aus HF 3 und 12 aus HF 4. Eine Aufgabenfamilie kommt höchstens einmal vor.").font(.footnote).foregroundStyle(.secondary)
-                    Text("Jede vollständig richtige Auswahl zählt gleich viel. Ab 50 von 100 Übungspunkten liegt dein Ergebnis im ausreichenden Bereich. Das ist keine Bestehensprognose und keine Originalprüfung.").font(.footnote).foregroundStyle(.secondary)
+                    if let rules = store.environment.pack.exam {
+                        Label("\(rules.questionCount) Aufgaben · \(rules.durationSeconds / 60) Minuten", systemImage: "timer").font(.headline)
+                        Text(rules.timing == .continuous ? "Die Uhr läuft bei Unterbrechungen weiter." : "Die Uhr läuft während der geöffneten Simulation. Bei Unterbrechungen pausiert sie.")
+                        Text(rules.navigation == .free ? "Du kannst frei zwischen den Aufgaben wechseln." : "Du bearbeitest die Aufgaben der Reihe nach. Zurückspringen ist nicht möglich.").font(.footnote)
+                        Text(rules.allowsAnswerChanges ? "Antworten bleiben bis zur Abgabe änderbar." : "Nach dem Verlassen einer Aufgabe ist ihre Antwort gesperrt.").font(.footnote)
+                        if rules.selection == .weightedRandom {
+                            Text(rules.quotas().sorted { $0.key < $1.key }.map { "\(store.environment.categoryTitle($0.key)): \($0.value)" }.joined(separator: " · ")).font(.footnote)
+                        }
+                        Text("Bestehensgrenze im Übungsprofil: \(rules.passPercentage, specifier: "%.1f") von 100 Punkten.").font(.footnote)
+                        Text(rules.scoring == .allOrNothing ? "Nur vollständig richtige Auswahlen zählen." : "Teilpunkte: richtige ausgewählte Optionen abzüglich falscher Auswahlen, geteilt durch die Anzahl richtiger Optionen. Mindestens null Punkte je Aufgabe.").font(.footnote)
+                        Text(rules.results == .detailed ? "Lösungen und Erklärungen siehst du nach der Abgabe." : "Nach der Abgabe erhältst du eine Ergebnisübersicht.").font(.footnote)
+                    }
                     PrimaryButton(title: store.state.exam == nil ? "Generalprobe starten" : store.state.exam?.submittedAt == nil ? "Generalprobe fortsetzen" : "Auswertung ansehen", icon: "play.fill") {
                         if store.startExam() { running = true }
                     }
@@ -54,14 +62,14 @@ struct ExamSessionView: View {
                             Text("\(exam.correctCount) von \(exam.questions.count) Aufgaben vollständig richtig.")
                             Text("\(exam.questions.count - exam.answeredCount) offen · \(exam.newQuestionCount) zuvor nicht geübt").foregroundStyle(.secondary)
                             if exam.timingUncertain { Label("Zeitlich nicht vergleichbar: Die Zeitbasis hat sich verändert.", systemImage: "clock.badge.exclamationmark").font(.footnote) }
-                            Text("Dein Übungsergebnis. Es zeigt, welche Themen jetzt dran sind.").font(.footnote).foregroundStyle(.secondary)
+                            Text(exam.passed ? "Übungsprofil bestanden." : "Bestehensgrenze in diesem Übungsprofil noch nicht erreicht.").font(.footnote).foregroundStyle(.secondary)
                         }
-                        ForEach(1...4, id: \.self) { field in
+                        ForEach(store.categories, id: \.self) { field in
                             let questions = exam.questions.filter { $0.field == field }
                             let correct = questions.filter { $0.isCorrect(exam.selections[$0.id] ?? []) }.count
                             Surface { FieldLabel(field: field); Text("\(correct) von \(questions.count) richtig").font(.headline) }
                         }
-                        ForEach(exam.questions) { q in
+                        if exam.canShowDetails { ForEach(exam.questions) { q in
                             DisclosureGroup {
                                 VStack(alignment: .leading, spacing: 12) {
                                     ForEach(q.options) { option in
@@ -72,6 +80,7 @@ struct ExamSessionView: View {
                                 }.padding(.top, 8)
                             } label: { Label(q.prompt, systemImage: q.isCorrect(exam.selections[q.id] ?? []) ? "checkmark.circle" : "lightbulb") }
                         }
+                        }
                         PrimaryButton(title: "Versuch ablegen", icon: "checkmark") {
                             if store.commit({ state in if let current = state.exam { state.examHistory.append(current); state.exam = nil } }) { dismiss() }
                         }
@@ -79,7 +88,7 @@ struct ExamSessionView: View {
                         let q = exam.questions[exam.index]
                         TimelineView(.periodic(from: .now, by: 1)) { context in
                             HStack {
-                                Label(exam.timingUncertain ? "Zeit nicht vergleichbar" : remaining(until: exam.deadline, now: context.date), systemImage: "timer").monospacedDigit()
+                                Label(exam.timingUncertain ? "Zeit nicht vergleichbar" : remaining(seconds: exam.remaining(now: context.date)), systemImage: "timer").monospacedDigit()
                                 Spacer(); Text("\(exam.index + 1) / \(exam.questions.count)")
                             }.font(.subheadline)
                         }
@@ -88,24 +97,25 @@ struct ExamSessionView: View {
                         Text(q.prompt).font(.title2.weight(.semibold))
                         Text("Wähle \(q.correctIDs.count) \(q.correctIDs.count == 1 ? "Antwort" : "Antworten").").font(.subheadline).foregroundStyle(.secondary)
                         ForEach(q.options) { option in
-                            AnswerRow(option: option, selected: (exam.selections[q.id] ?? []).contains(option.id)) { store.setExamOption(option.id) }
+                            AnswerRow(option: option, selected: (exam.selections[q.id] ?? []).contains(option.id)) { store.setExamOption(option.id) }.disabled(exam.lockedQuestionIDs?.contains(q.id) == true)
                         }
                         Toggle("Für später markieren", isOn: Binding(get: { exam.marked.contains(q.id) }, set: { on in
                             store.commit { if on { $0.exam?.marked.insert(q.id) } else { $0.exam?.marked.remove(q.id) } }
                         }))
                         HStack {
-                            Button("Zurück") { store.goToExamQuestion(max(0, exam.index - 1)) }.disabled(exam.index == 0)
+                            Button("Zurück") { store.goToExamQuestion(max(0, exam.index - 1)) }.disabled(exam.index == 0 || exam.rules?.navigation == .forwardOnly)
                             Spacer()
                             Button("Weiter") { store.goToExamQuestion(min(exam.questions.count - 1, exam.index + 1)) }.disabled(exam.index == exam.questions.count - 1)
                         }.frame(minHeight: 44)
-                        Button("Aufgabenübersicht") { showOverview = true }.frame(minHeight: 44)
+                        if exam.rules?.navigation != .forwardOnly { Button("Aufgabenübersicht") { showOverview = true }.frame(minHeight: 44) }
                         PrimaryButton(title: "Generalprobe abgeben", icon: "checkmark.seal") { confirmSubmission = true }
                     }
                 }
             }.padding(22)
         }.learningBackground().navigationTitle("Generalprobe").navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Schließen") { dismiss() } } }
-            .onAppear { store.commit { $0.exam?.observe(now: Date(), uptime: DeviceClock.now()) } }
+            .onAppear { store.setExamVisible(true); store.commit { $0.exam?.observe(now: Date(), uptime: DeviceClock.now()) } }
+            .onDisappear { store.setExamVisible(false) }
             .confirmationDialog("Jetzt abgeben? Noch \((store.state.exam?.questions.count ?? 0) - (store.state.exam?.answeredCount ?? 0)) Aufgaben sind offen.", isPresented: $confirmSubmission, titleVisibility: .visible) {
                 Button("Verbindlich abgeben") { store.commit { $0.exam?.submittedAt = Date() } }
                 Button("Weiter bearbeiten", role: .cancel) {}
@@ -131,8 +141,8 @@ struct ExamSessionView: View {
                 }
             }
     }
-    private func remaining(until deadline: Date, now: Date) -> String {
-        let seconds = max(0, Int(deadline.timeIntervalSince(now)))
+    private func remaining(seconds remaining: TimeInterval) -> String {
+        let seconds = max(0, Int(remaining))
         return String(format: "%02d:%02d", seconds / 60, seconds % 60)
     }
 }

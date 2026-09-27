@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "aevo-training-v1",
+  "title": "Generalprobe",
+  "questionCount": 80,
+  "durationSeconds": 10800,
+  "passPercentage": 50,
+  "selection": "weightedRandom",
+  "categoryWeights": [
+    {
+      "categoryID": 1,
+      "weight": 12
+    },
+    {
+      "categoryID": 2,
+      "weight": 18
+    },
+    {
+      "categoryID": 3,
+      "weight": 38
+    },
+    {
+      "categoryID": 4,
+      "weight": 12
+    }
+  ],
+  "uniqueFamilies": true,
+  "navigation": "free",
+  "allowsAnswerChanges": true,
+  "timing": "continuous",
+  "scoring": "allOrNothing",
+  "results": "detailed"
+}

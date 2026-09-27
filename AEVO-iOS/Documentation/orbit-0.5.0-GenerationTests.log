@@ -1,0 +1,61 @@
+Building for debugging...
+[0/16] Write sources
+[1/16] Copying app-config.json
+[1/16] Write sources
+[1/16] Copying legal.json
+[1/16] Copying SelectedPack
+[5/16] Write swift-version--4AAC353FFE5FE9EA.txt
+[7/32] Emitting module LearningCore
+[8/33] Compiling LearningCore Coaching.swift
+[9/33] Compiling LearningCore Content.swift
+[10/33] Compiling LearningCore LegalContent.swift
+[11/33] Compiling LearningCore Personalization.swift
+[12/33] Compiling LearningCore State.swift
+[13/33] Compiling LearningCore StateMigration.swift
+[14/33] Compiling LearningCore SupportContact.swift
+[15/33] Compiling LearningCore ExamConfig.swift
+[16/33] Compiling LearningCore LearningEngine.swift
+[17/33] Compiling LearningCore PracticeContent.swift
+[18/33] Compiling LearningCore PromptPolicy.swift
+[19/33] Compiling LearningCore resource_bundle_accessor.swift
+[20/33] Compiling LearningCore Backup.swift
+[21/33] Compiling LearningCore CardStudy.swift
+[22/33] Compiling LearningCore ContentPack.swift
+[23/33] Compiling LearningCore DailyImpulse.swift
+[24/34] Wrapping AST for LearningCore for debugging
+[26/42] Compiling LearningCoreTests RuntimePackTests.swift
+[27/42] Compiling LearningCoreTests PersonalizationTests.swift
+[28/42] Compiling LearningCoreTests LegalContentTests.swift
+[29/42] Compiling LearningCoreTests ContentPackTests.swift
+[30/42] Compiling LearningCoreTests CoachingTests.swift
+[31/42] Compiling LearningCoreTests CardStudyTests.swift
+[32/42] Emitting module LearningCoreTests
+[33/42] Compiling LearningCoreTests AEVOCoreTests.swift
+[34/43] /workspace/scratch/72be31c4ef5d/AEVO-iOS/Generated/.learning-build-zycb4rft/project/.build/x86_64-unknown-linux-gnu/debug/LearningAppEnginePackageDiscoveredTests.derived/all-discovered-tests.swift
+[35/43] Write sources
+[36/43] Wrapping AST for LearningCoreTests for debugging
+[38/46] Compiling LearningAppEnginePackageDiscoveredTests all-discovered-tests.swift
+[39/46] Emitting module LearningAppEnginePackageDiscoveredTests
+[40/46] Compiling LearningAppEnginePackageDiscoveredTests LearningCoreTests.swift
+[41/47] /workspace/scratch/72be31c4ef5d/AEVO-iOS/Generated/.learning-build-zycb4rft/project/.build/x86_64-unknown-linux-gnu/debug/LearningAppEnginePackageTests.derived/runner.swift
+[42/47] Write sources
+[43/47] Wrapping AST for LearningAppEnginePackageDiscoveredTests for debugging
+[45/49] Compiling LearningAppEnginePackageTests runner.swift
+[46/49] Emitting module LearningAppEnginePackageTests
+[47/50] Wrapping AST for LearningAppEnginePackageTests for debugging
+[48/50] Write Objects.LinkFileList
+[49/50] Linking LearningAppEnginePackageTests.xctest
+Build complete! (10.18s)
+Test Suite 'Selected tests' started at 2026-09-21 21:40:59.972
+Test Suite 'RuntimePackTests' started at 2026-09-21 21:40:59.973
+Test Case 'RuntimePackTests.testSelectedModulesAndSimulation' started at 2026-09-21 21:40:59.973
+Test Case 'RuntimePackTests.testSelectedModulesAndSimulation' passed (0.007 seconds)
+Test Case 'RuntimePackTests.testSelectedPackAndConfigLoadAndCanStartLearning' started at 2026-09-21 21:40:59.980
+Test Case 'RuntimePackTests.testSelectedPackAndConfigLoadAndCanStartLearning' passed (0.003 seconds)
+Test Suite 'RuntimePackTests' passed at 2026-09-21 21:40:59.983
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.01 (0.01) seconds
+Test Suite 'Selected tests' passed at 2026-09-21 21:40:59.983
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.01 (0.01) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

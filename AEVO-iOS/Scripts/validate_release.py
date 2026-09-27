@@ -5,6 +5,8 @@ import re
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
+from content_approval import load_confirmation, confirmed
+from validate_content_pack import validate
 
 
 def present(value):
@@ -38,15 +40,25 @@ def legal_issues(document):
     return issues
 
 
-def release_issues(catalog_path):
-    catalog = json.loads(catalog_path.read_text())
-    practice = json.loads(catalog_path.with_name("practice.json").read_text())
-    legal = json.loads(catalog_path.with_name("legal.json").read_text())
-    items = catalog["questions"] + catalog["cards"] + practice["cases"] + practice["oral"]
-    drafts = [x["id"] for x in items if x.get("approved") is not True]
+def release_issues(pack_path):
+    pack_path = Path(pack_path)
+    # Keep the old fixture/import entry point readable for release-gate regression tests.
+    if pack_path.is_file():
+        catalog = json.loads(pack_path.read_text())
+        practice = json.loads(pack_path.with_name("practice.json").read_text())
+        legal = json.loads(pack_path.with_name("legal.json").read_text())
+        items = catalog["questions"] + catalog["cards"] + practice["cases"] + practice["oral"]
+        confirmation = load_confirmation()
+    else:
+        data = validate(pack_path, pack_path.parent / "app-config.json")
+        legal = json.loads((pack_path.parent / "legal.json").read_text())
+        items = data["questions"] + data["cards"] + data["practice"]["cases"] + data["practice"]["oral"]
+        confirmation = load_confirmation(pack_path)
+    drafts = [x["id"] for x in items if x.get("approved") is not True
+              or (x.get("approvalBasis") == "owner_confirmation" and not confirmed(x, confirmation))]
     issues = []
     if drafts:
-        issues.append(f"{len(drafts)} Inhalte haben noch keine unabhängige Fachfreigabe. Für interne Tests Debug verwenden. Freigaben redaktionell dokumentieren und Inhalte erneut importieren.")
+        issues.append(f"{len(drafts)} Inhalte haben keine dokumentierte Freigabe für die aktuelle Fassung.")
     issues.extend(legal_issues(legal))
     return issues
 

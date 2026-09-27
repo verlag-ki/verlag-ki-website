@@ -1,15 +1,15 @@
 import SwiftUI
 import UIKit
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct ContactSupportView: View {
     @Environment(\.openURL) private var openURL
     @State private var content: LegalContent?
     @State private var message: String?
-    private var email: String { content?.operatorInfo.email ?? "" }
+    private var email: String { (try? LearningEnvironment.bundled().config.supportEmail) ?? "" }
     private var mailURL: URL? {
-        SupportContact.mailURL(email: email, version: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unbekannt")
+        SupportContact.mailURL(email: email, version: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Entwicklungsstand", appName: (try? LearningEnvironment.bundled().config.appName) ?? "Lern-App")
     }
     var body: some View {
         Form {
@@ -49,16 +49,8 @@ struct ContactSupportView: View {
 @MainActor
 struct HelpGuidesView: View {
     @State private var introduction = false
-    private let guides: [(String, String, String)] = [
-        ("start", "Eine Lernrunde starten", "Öffne Heute und starte deine nächste Lernrunde. Unter Runde anpassen kannst du deine Vorbereitung auf die verfügbare Zeit abstimmen. Bei einer Aufgabe wählst du die geforderten Antworten und prüfst sie. Lies auch die Begründungen für die anderen Möglichkeiten. Dein Tagesziel begrenzt keine Inhalte."),
-        ("cards", "Lernkarten bearbeiten und speichern", "Öffne eine Lernkarte und wähle Karte bearbeiten & Notizen ergänzen. Du kannst deine persönliche Fassung und Notizen ergänzen und speichern. Die redaktionelle Originalfassung bleibt erhalten. Eigene Texte werden bei Inhaltsupdates nicht automatisch überschrieben. Sichere sie vor einem Gerätewechsel über die Einstellungen."),
-        ("repeat", "Unsichere Antworten wiederholen", "Die Lernplanung berücksichtigt falsche und unsichere Antworten sowie später fällige Wiederholungen. Du kannst auch selbst ein Thema auswählen oder Inhalte merken. Lernkarten gehen am schnellsten im Swipe-Stapel: nach rechts wischen für verstanden, nach links für unsicher, die nächste Karte kommt von allein."),
-        ("exam", "Eine Prüfung üben", "Im Bereich Prüfung startest du eine zeitlich begrenzte Übungssimulation mit eigenen Lernaufgaben. Du kannst Aufgaben markieren und Antworten vor der endgültigen Abgabe ändern. Die Prüfungszeit läuft bei Unterbrechungen weiter; lies die Hinweise vor dem Start. Verbindlich für deine echte Prüfung sind die Vorgaben deiner zuständigen Kammer."),
-        ("practice", "Praxis und Fachgespräch vorbereiten", "Im Bereich Praxis kannst du deine Ausbildungssituation, Lernziele, Methoden und den Ablauf planen. Übe deine Begründungen in eigenen Worten. Eine freiwillige Sprachaufnahme bleibt auf deinem iPhone und kann bei der Aufgabe wieder gelöscht werden. Sie wird weder automatisch bewertet noch in deine JSON-Sicherung aufgenommen."),
-        ("personal", "Profil, Termine und Erinnerungen ändern", "Unter Einstellungen kannst du Namen, Farbwelt und Lernimpuls ändern. Prüfungstermine & Countdown verwaltet schriftliche und praktische Termine getrennt. Lernerinnerungen lassen sich nach Tagen und Uhrzeit einstellen oder ausschalten. Der ruhige Modus blendet zusätzliche Fortschrittsanzeigen auf Heute aus."),
-        ("backup", "Fortschritt sichern und wiederherstellen", "Öffne Einstellungen → Deine Daten → Sicherung in Dateien speichern. Lege die Datei an einem selbst gewählten sicheren Ort ab. Auf dem neuen Gerät wählst du Sicherung wiederherstellen. Ein Import ersetzt den dort vorhandenen Stand nach deiner Bestätigung. Es gibt keine automatische Synchronisierung; Sprachaufnahmen sind nicht enthalten."),
-        ("free", "Trinkgeld und Bewertungsanfragen", "Alle veröffentlichten Inhalte und Lernfunktionen bleiben kostenlos. Unter App unterstützen findest du drei freiwillige einmalige Trinkgelder. Seltene Hinweise auf Unterstützung und Bewertung erscheinen höchstens nach einer abgeschlossenen Lernrunde, nie mitten in einer Aufgabe und nie in der Woche vor deinem Prüfungstermin. Ein Trinkgeld schaltet nichts frei.")
-    ]
+    @EnvironmentObject private var store: AppStore
+    private var guides: [ExperienceEntry] { store.environment.pack.experience.guides.filter { $0.module.map(store.enabled) ?? true } }
     var body: some View {
         List {
             Section {
@@ -66,8 +58,8 @@ struct HelpGuidesView: View {
                 Text("Kurz nachlesen und in deinem Tempo weiterlernen.").font(.footnote).foregroundStyle(.secondary)
             }
             Section("Schritt für Schritt") {
-                ForEach(guides, id: \.0) { guide in
-                    DisclosureGroup(guide.1) { Text(guide.2).padding(.vertical, 8).textSelection(.enabled) }
+                ForEach(guides) { guide in
+                    DisclosureGroup(guide.title) { Text(guide.text).padding(.vertical, 8).textSelection(.enabled) }
                         .padding(.vertical, 4)
                 }
             }
@@ -104,6 +96,7 @@ struct FirstLaunchView: View {
 
 @MainActor
 struct IntroductionView: View {
+    @EnvironmentObject private var store: AppStore
     let firstLaunch: Bool
     let continueAction: () -> Void
     let skipAction: () -> Void
@@ -112,12 +105,12 @@ struct IntroductionView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 Image(systemName: "book.closed").font(.system(size: 42)).foregroundStyle(theme.accent).accessibilityHidden(true)
-                Text("Dein nächster Schritt\nzum Ausbilderschein.").font(.largeTitle.bold())
+                Text(store.config.subtitle).font(.largeTitle.bold())
                 Text("Kleine Lerneinheiten. Verständliche Erklärungen. Alles kostenlos.").foregroundStyle(.secondary)
-                introductionRow("In deinem Tempo lernen", "Starte eine kurze Runde und wiederhole, was noch unsicher ist.", "clock")
-                introductionRow("Deine Gedanken festhalten", "Bearbeite Lernkarten und speichere deine eigenen Beispiele.", "square.and.pencil")
-                introductionRow("Theorie und Praxis verbinden", "Übe Prüfungssituationen und bereite dein Fachgespräch vor.", "bubble.left.and.bubble.right")
-                Text("Kein Konto. Keine Werbung. Deinen Lernstand speicherst du auf diesem iPhone. Hilfe, Impressum und Datenschutz findest du jederzeit in den Einstellungen.").font(.footnote).foregroundStyle(.secondary)
+                ForEach(store.environment.pack.experience.introduction.filter { $0.module.map(store.enabled) ?? true }) { row in
+                    introductionRow(row.title, row.text, row.symbol ?? "book")
+                }
+                Text("Kein Konto. Keine Werbung. Deinen Lernstand speicherst du auf diesem iPhone. Hilfe findest du später in den Einstellungen.").font(.footnote).foregroundStyle(.secondary)
             }.padding(24)
         }
         .safeAreaInset(edge: .bottom) {
@@ -126,7 +119,7 @@ struct IntroductionView: View {
                 if firstLaunch { Button("Direkt loslernen", action: skipAction).frame(maxWidth: .infinity, minHeight: 44) }
             }.padding(.horizontal, 24).padding(.vertical, 12).background(theme.background)
         }
-        .navigationTitle(firstLaunch ? "Willkommen bei aevo." : "Einführung")
+        .navigationTitle(firstLaunch ? "Willkommen bei " + store.config.appName : "Einführung")
         .navigationBarTitleDisplayMode(.inline).learningBackground()
     }
     private func introductionRow(_ title: String, _ detail: String, _ symbol: String) -> some View {

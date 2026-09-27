@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "Dateipruefsummen.json"
-SKIPPED_DIRECTORIES = {".build", ".git", "DerivedData", "__pycache__", ".swiftpm"}
+SKIPPED_DIRECTORIES = {".build", ".git", "DerivedData", "__pycache__", ".swiftpm", "Generated"}
 
 
 def tracked_files():

@@ -48,8 +48,7 @@ public struct Attempt: Codable, Identifiable, Sendable {
     public let field: Int
     public let selected: Set<String>
     public let correct: Bool
-    /// Stays editable: the self-assessment may follow the evaluation instead of preceding it.
-    public var unsure: Bool
+    public let unsure: Bool
     public let date: Date
     public init(question: Question, selected: Set<String>, unsure: Bool, date: Date) {
         questionID = question.id; version = question.version; field = question.field
@@ -99,17 +98,38 @@ public struct ExamSession: Codable, Identifiable, Sendable {
     public var lastObservedUptime: TimeInterval?
     public var timingUncertain = false
     public var submittedAt: Date?
-    public init(questions: [Question], seen: Set<String>, now: Date, uptime: TimeInterval, duration: TimeInterval = 10_800) {
+    public var rules: ExamConfig?
+    public var lockedQuestionIDs: Set<String>?
+    public var remainingActiveSeconds: TimeInterval?
+    public var clockRunning: Bool?
+    public init(questions: [Question], seen: Set<String>, now: Date, uptime: TimeInterval, duration: TimeInterval? = nil, rules: ExamConfig? = nil) {
+        self.rules = rules
+        let duration = duration ?? Double(rules?.durationSeconds ?? 3600)
+        remainingActiveSeconds = duration; clockRunning = true
         self.questions = questions; previouslySeen = seen; startedAt = now
         if let first = questions.first { viewed.insert(first.id) }
         deadline = now.addingTimeInterval(duration); lastObservedAt = now; lastObservedUptime = uptime
     }
     public var answeredCount: Int { questions.filter { !(selections[$0.id] ?? []).isEmpty }.count }
     public var correctCount: Int { questions.filter { $0.isCorrect(selections[$0.id] ?? []) }.count }
-    public var points: Double { questions.isEmpty ? 0 : 100 * Double(correctCount) / Double(questions.count) }
+    public var points: Double {
+        guard !questions.isEmpty else { return 0 }
+        let score = questions.reduce(0.0) { $0 + (rules?.score(question: $1, selected: selections[$1.id] ?? []) ?? ($1.isCorrect(selections[$1.id] ?? []) ? 1 : 0)) }
+        return 100 * score / Double(questions.count)
+    }
     public var newQuestionCount: Int { questions.filter { !previouslySeen.contains($0.id) }.count }
     public mutating func observe(now: Date, uptime: TimeInterval) {
         guard submittedAt == nil else { return }
+        if rules?.timing == .activeOnly {
+            if clockRunning == true, let previous = lastObservedUptime {
+                let elapsed = uptime - previous
+                if elapsed < 0 { timingUncertain = true }
+                else { remainingActiveSeconds = max(0, (remainingActiveSeconds ?? Double(rules!.durationSeconds)) - elapsed) }
+            }
+            lastObservedAt = now; lastObservedUptime = uptime
+            if !timingUncertain && (remainingActiveSeconds ?? 1) <= 0 { submittedAt = now }
+            return
+        }
         let clockDelta = now.timeIntervalSince(lastObservedAt)
         if let previousUptime = lastObservedUptime {
             let uptimeDelta = uptime - previousUptime
@@ -160,6 +180,9 @@ public struct Settings: Codable, Sendable {
     public var showStreak = true
     public var reminder = ReminderSettings()
     public var exams = ExamPlan()
+    /// Legacy backup fields; no longer used by the prompt policy from 0.4.0.
+    public var hideTipPrompts = false
+    public var hideReviewPrompts = false
     public init() {}
 }
 
@@ -177,6 +200,8 @@ public struct PracticePlan: Codable, Equatable, Sendable {
 
 public struct AppState: Codable, Sendable {
     public var schemaVersion = 1
+    public var contentPackID: String?
+    public var appID: String?
     public var profileData: PersonalProfile?
     public var profile: PersonalProfile {
         get { profileData ?? PersonalProfile() }
@@ -194,6 +219,7 @@ public struct AppState: Codable, Sendable {
     public var cardEdits: [String: CardEdit] = [:]
     public var cardDrafts: [String: CardEdit] = [:]
     public var cardRecall: [String: Recall] = [:]
+    public var cardStudy: CardStudySession?
     public var questionRecall: [String: Recall] = [:]
     public var bookmarks: Set<String> = []
     public var days: [String: DailyActivity] = [:]
@@ -210,5 +236,6 @@ public struct AppState: Codable, Sendable {
     public var tipTransactionIDs: Set<String> = []
     public var lastTipAt: Date?
     public var lastExportAt: Date?
+    public var draftNoticeAcknowledged = false
     public init(now: Date = Date()) { installedAt = now }
 }

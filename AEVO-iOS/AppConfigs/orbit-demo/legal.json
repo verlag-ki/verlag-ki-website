@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "updatedOn": "2026-09-20",
+  "approved": false,
+  "reviewedBy": "",
+  "reviewedOn": "",
+  "operatorInfo": {
+    "name": "",
+    "address": "",
+    "email": "support@example.org",
+    "phone": "",
+    "additionalImprint": ""
+  },
+  "privacyURL": "",
+  "supportURL": "",
+  "supportProcessing": "Technisches Demo: nicht zur Veröffentlichung bestimmt.",
+  "websiteProcessing": "Technisches Demo: nicht zur Veröffentlichung bestimmt.",
+  "privacy": [
+    {
+      "id": "controller",
+      "title": "Wer verantwortlich ist",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "local",
+      "title": "Dein Lernen bleibt auf deinem Gerät",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "permissions",
+      "title": "Erinnerungen und Sprachaufnahmen",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "backup",
+      "title": "Sichern, teilen und Gerätewechsel",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "apple",
+      "title": "Trinkgeld, Bewertungen und Apple",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "external",
+      "title": "Quellenlinks und Kontakt",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "deletion",
+      "title": "Speicherdauer und Löschen",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    },
+    {
+      "id": "rights",
+      "title": "Deine Datenschutzrechte",
+      "paragraphs": [
+        "Technisches Demo. Vor Veröffentlichung durch zutreffende Angaben ersetzen."
+      ],
+      "links": []
+    }
+  ]
+}

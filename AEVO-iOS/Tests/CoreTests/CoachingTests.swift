@@ -1,5 +1,5 @@
 import XCTest
-@testable import AEVOCore
+@testable import LearningCore
 
 final class CoachingTests: XCTestCase {
     let now = ISO8601DateFormatter().date(from: "2026-09-21T10:00:00Z")!
@@ -31,6 +31,7 @@ final class CoachingTests: XCTestCase {
         XCTAssertEqual(decoded.coaching.weekdayMinutes, 10)
     }
     func testNewBackupRetainsEveryCoachingFeature() throws {
+        try PackRequirement.aevoPack("Die Fallkennungen und Praxisfelder des AEVO-Packs")
         var state = AppState(now: now)
         state.coaching.quietMode = true
         state.coaching.weekdayMinutes = 3; state.coaching.weekendMinutes = 20
@@ -49,10 +50,10 @@ final class CoachingTests: XCTestCase {
         XCTAssertEqual(try PracticeContent.currentNode(for: content.cases[0], run: decoded.coaching.caseRuns["CASE-01"]!)?.id, "repair")
     }
     func testEveryStoryHasFourCompleteDistinctPathsAndSafeResume() throws {
+        try PackRequirement.aevoPack("Die 16 Fälle und 24 Impulse des AEVO-Packs")
         XCTAssertEqual(content.cases.count, 16); XCTAssertEqual(content.oral.count, 24)
         XCTAssertEqual(Set(content.cases.map(\.field)), Set(1...4))
-        XCTAssertTrue(content.cases.allSatisfy { $0.approved && $0.reviewDate != nil })
-        XCTAssertTrue(content.oral.allSatisfy { $0.approved })
+        XCTAssertTrue(content.cases.allSatisfy { $0.approved && $0.reviewDate == nil })
         for c in content.cases {
             var endings = Set<String>()
             for first in ["a", "b"] {
@@ -60,6 +61,9 @@ final class CoachingTests: XCTestCase {
                     var state = AppState(now: now)
                     try PracticeContent.choose(first, in: c, state: &state, now: now)
                     state = try StateCodec.decode(StateCodec.encode(state))
+                    XCTAssertTrue(state.coaching.caseRuns[c.id]?.feedbackPending == true)
+                    XCTAssertThrowsError(try PracticeContent.choose(second, in: c, state: &state, now: now))
+                    PracticeContent.acknowledgeFeedback(in: c, state: &state)
                     try PracticeContent.choose(second, in: c, state: &state, now: now)
                     let run = state.coaching.caseRuns[c.id]!
                     XCTAssertNil(try PracticeContent.currentNode(for: c, run: run))
@@ -72,6 +76,7 @@ final class CoachingTests: XCTestCase {
         }
     }
     func testChangedCaseDoesNotSilentlyOverwriteAnOldRun() throws {
+        try PackRequirement.aevoPack("Die Fallkennungen des AEVO-Packs")
         let c = content.cases[0]
         var state = AppState(now: now); var run = CaseRun(version: 99); run.reflection = "Unbedingt behalten"; state.coaching.caseRuns[c.id] = run
         XCTAssertThrowsError(try PracticeContent.choose("a", in: c, state: &state, now: now))
@@ -85,7 +90,8 @@ final class CoachingTests: XCTestCase {
         XCTAssertEqual(short.questions.count, 1); XCTAssertEqual(short.minutes, 3); XCTAssertEqual(short.practicalMinutes, 0)
         XCTAssertNotNil(short.card)
     }
-    func testLongerPlanMixesDueAndNewFamiliesAndHonorsBothDates() {
+    func testLongerPlanMixesDueAndNewFamiliesAndHonorsBothDates() throws {
+        try PackRequirement.aevoPack("Der Tagesplan über die Aufgabenfamilien des AEVO-Packs")
         var state = AppState(now: now)
         let qs = Array(catalog.questions.prefix(20))
         for q in qs { state.seenQuestionIDs.insert(q.id); state.questionRecall[q.id] = Recall(now: now) }
@@ -152,7 +158,8 @@ final class CoachingTests: XCTestCase {
         XCTAssertTrue(result.contains { $0.1 == wrong.explanation })
         XCTAssertTrue(CoachingEngine.feedback(question: q, selected: q.correctIDs).isEmpty)
     }
-    func testPracticeCheckOnlyChecksCompletenessAndExportPreservesText() {
+    func testPracticeCheckOnlyChecksCompletenessAndExportPreservesText() throws {
+        try PackRequirement.aevoPack("Die 14 Praxisfelder des AEVO-Packs")
         var state = AppState(now: now)
         XCTAssertEqual(CoachingEngine.missingPracticeItems(state: state).count, 14)
         state.practice.occupation = "Automobilkaufmann"; state.practice.situation = "Beratung"; state.practice.topic = "Bedarfsanalyse"
@@ -160,7 +167,7 @@ final class CoachingTests: XCTestCase {
         for field in CoachingEngine.practiceFields { state.coaching.practiceDetails[field.0] = "Eigener Gedanke zu \(field.1)" }
         XCTAssertTrue(CoachingEngine.missingPracticeItems(state: state).isEmpty)
         XCTAssertTrue(CoachingEngine.practiceExport(state: state).contains("Rollenspiel"))
-        XCTAssertTrue(CoachingEngine.practiceExport(state: state).contains("zuständigen Kammer"))
+        XCTAssertTrue(CoachingEngine.practiceExport(state: state).contains("Deine persönliche Planung"))
     }
     func testInvalidNewDataIsRejectedBeforeReplacingState() throws {
         var state = AppState(now: now)

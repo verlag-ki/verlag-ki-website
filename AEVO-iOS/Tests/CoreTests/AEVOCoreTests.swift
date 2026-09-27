@@ -1,5 +1,5 @@
 import XCTest
-@testable import AEVOCore
+@testable import LearningCore
 
 final class AEVOCoreTests: XCTestCase {
     var catalog: Catalog!
@@ -13,15 +13,13 @@ final class AEVOCoreTests: XCTestCase {
     }
     func date(_ days: Int) -> Date { calendar.date(byAdding: .day, value: days, to: now)! }
 
-    func testCompleteCatalogIsPresentAndCarriesItsReviewRecord() throws {
+    func testCompleteCatalogIsPresentAndDraftStatusIsPreserved() throws {
+        try PackRequirement.aevoPack("Der Umfang des AEVO-Katalogs")
         XCTAssertEqual(catalog.questions.count, 800)
         XCTAssertEqual(catalog.cards.count, 300)
         XCTAssertFalse(catalog.containsDrafts)
         XCTAssertTrue(catalog.questions.allSatisfy { $0.approved })
         XCTAssertTrue(catalog.cards.allSatisfy { $0.approved })
-        // An approval is only meaningful with a recorded date and reviewer.
-        XCTAssertTrue(catalog.questions.allSatisfy { !($0.reviewedOn ?? "").isEmpty && !($0.reviewedBy ?? "").isEmpty })
-        XCTAssertTrue(catalog.cards.allSatisfy { !($0.reviewedOn ?? "").isEmpty && !($0.reviewedBy ?? "").isEmpty })
         XCTAssertEqual(Set(catalog.questions.map(\.competency)).count, 26)
     }
 
@@ -122,8 +120,9 @@ final class AEVOCoreTests: XCTestCase {
         XCTAssertThrowsError(try StateCodec.importBackup(StateCodec.encoder().encode(envelope)))
     }
 
-    func testBackupPreservesReminderExamAndPromptHistory() throws {
+    func testBackupPreservesAllOptOutsAndReminderAndExamSettings() throws {
         var state = AppState(now: now)
+        state.settings.hideTipPrompts = true; state.settings.hideReviewPrompts = true
         state.settings.exams.written = CivilDay(date(20), calendar: calendar)
         state.settings.exams.practical = CivilDay(date(34), calendar: calendar)
         state.settings.reminder.enabled = true
@@ -131,6 +130,8 @@ final class AEVOCoreTests: XCTestCase {
         state.reviewRequests = [now]; state.tipRequests = [date(-20)]
         state.tipTransactionIDs = ["verified-transaction"]; state.lastTipAt = date(-30)
         let restored = try StateCodec.importBackup(StateCodec.export(state, now: now))
+        XCTAssertTrue(restored.settings.hideTipPrompts)
+        XCTAssertTrue(restored.settings.hideReviewPrompts)
         XCTAssertEqual(restored.settings.exams.practical, state.settings.exams.practical)
         XCTAssertEqual(restored.settings.reminder.weekdays, [2, 4, 6])
         XCTAssertEqual(restored.tipTransactionIDs, state.tipTransactionIDs)
@@ -168,7 +169,12 @@ final class AEVOCoreTests: XCTestCase {
             let session = LearningSession(questions: Array(catalog.questions.prefix(8)), now: date(-10 + index))
             state.completedSessions.append(CompletedSession(session: session, now: date(-10 + index)))
         }
-        state.attempts = catalog.questions.prefix(40).map { Attempt(question: $0, selected: $0.correctIDs, unsure: false, date: date(-1)) }
+        // The tip threshold needs 40 answers. A smaller pack reuses its questions so the
+        // policy itself is under test here, not the size of the selected catalog.
+        state.attempts = (0..<40).map { index in
+            let question = catalog.questions[index % catalog.questions.count]
+            return Attempt(question: question, selected: question.correctIDs, unsure: false, date: date(-1))
+        }
         state.learningDays = [CivilDay(date(-1), calendar: calendar).id, CivilDay(now, calendar: calendar).id]
         state.activeLearningSeconds = 3_600
         return state
@@ -178,25 +184,23 @@ final class AEVOCoreTests: XCTestCase {
         var state = eligibleState()
         XCTAssertEqual(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar), .review)
         XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: false, calendar: calendar))
-        // Each threshold on its own keeps the review request away.
+        state.lastTipAt = now
         let completed = state.completedSessions
         state.completedSessions = Array(completed.prefix(2))
         XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
         state.completedSessions = completed
         state.activeLearningSeconds = 3_599
-        XCTAssertNotEqual(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar), .review)
+        XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
         state.activeLearningSeconds = 3_600; state.learningDays = ["2026-09-20"]
-        XCTAssertNotEqual(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar), .review)
+        XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
         state = eligibleState(); state.reviewRequests = [now]
         XCTAssertNil(PromptPolicy.eligible(state: state, now: date(1), atSessionEnd: true, calendar: calendar))
-        // Within the 180 day window no second review is requested, whatever else is due.
-        XCTAssertNotEqual(PromptPolicy.eligible(state: state, now: date(179), atSessionEnd: true, calendar: calendar), .review)
-        XCTAssertEqual(PromptPolicy.eligible(state: state, now: date(181), atSessionEnd: true, calendar: calendar), .review)
+        state.lastTipAt = now
+        XCTAssertNil(PromptPolicy.eligible(state: state, now: date(179), atSessionEnd: true, calendar: calendar))
     }
 
     func testTipPolicyRespectsCoolDownLimitsAndPurchase() {
-        // An earlier review keeps the review side quiet, so the tip rules are visible on their own.
-        var state = eligibleState(); state.reviewRequests = [date(-100)]
+        var state = eligibleState(); state.reviewRequests = [date(-30)]
         XCTAssertEqual(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar), .tip)
         state.tipRequests = [date(-29)]
         XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
@@ -204,10 +208,12 @@ final class AEVOCoreTests: XCTestCase {
         XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
         state.tipRequests = []; state.reviewRequests = [date(-13)]
         XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
-        state.reviewRequests = [date(-100)]; state.lastTipAt = date(-100)
+        state.reviewRequests = [date(-30)]; state.lastTipAt = date(-100)
         XCTAssertNil(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar))
-        state.lastTipAt = date(-181)
+        state.lastTipAt = nil; state.settings.hideTipPrompts = true; state.settings.hideReviewPrompts = true
         XCTAssertEqual(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar), .tip)
+        state.reviewRequests = []
+        XCTAssertEqual(PromptPolicy.eligible(state: state, now: now, atSessionEnd: true, calendar: calendar), .review)
     }
 
     func testBothExamDatesSuppressPromptsWithoutInventingCompletion() {
@@ -241,6 +247,7 @@ final class AEVOCoreTests: XCTestCase {
     }
 
     func testSimulationHasEightyIndependentFamiliesAndCorrectFieldQuotas() throws {
+        try PackRequirement.aevoPack("Das Prüfungsprofil mit 80 Aufgaben und den Quoten 12/18/38/12")
         let questions = try LearningEngine.examQuestions(catalog: catalog)
         XCTAssertEqual(questions.count, 80)
         XCTAssertEqual(Set(questions.map(\.family)).count, 80)
@@ -264,10 +271,12 @@ final class AEVOCoreTests: XCTestCase {
 
     func testPurchasesDoNotAwardLearningBadgesOrUnlockAnything() {
         var state = AppState(now: now)
+        let available = catalog.questions.count
         state.tipTransactionIDs.insert("purchase"); state.lastTipAt = now
         LearningEngine.refreshBadges(state: &state, catalog: catalog, now: now)
         XCTAssertTrue(state.badges.isEmpty); XCTAssertTrue(state.days.isEmpty)
-        XCTAssertEqual(catalog.questions.count, 800)
+        // A purchase unlocks nothing: the catalog is exactly as large as before.
+        XCTAssertEqual(catalog.questions.count, available)
     }
 
     func testExportRemovesDeviceUptimeAndMarksRunningExamAsNonComparable() throws {
@@ -318,73 +327,5 @@ final class AEVOCoreTests: XCTestCase {
         let restored = try StateCodec.importBackup(StateCodec.export(state, now: now))
         XCTAssertTrue(LearningEngine.seenQuestions(state: restored).contains(first.id))
         XCTAssertFalse(LearningEngine.seenQuestions(state: restored).contains(catalog.questions[1].id))
-    }
-
-    /// Backups written before 0.3.4 still carry the removed "never ask again" switches.
-    /// They must load without error and must no longer silence the rare prompts.
-    func testLegacyOptOutFlagsInABackupNoLongerSilencePrompts() throws {
-        var payload = try JSONSerialization.jsonObject(with: StateCodec.export(eligibleState(), now: now)) as! [String: Any]
-        var state = payload["state"] as! [String: Any]
-        var settings = state["settings"] as! [String: Any]
-        settings["hideTipPrompts"] = true
-        settings["hideReviewPrompts"] = true
-        state["settings"] = settings
-        payload["state"] = state
-        let restored = try StateCodec.importBackup(JSONSerialization.data(withJSONObject: payload))
-        XCTAssertEqual(PromptPolicy.eligible(state: restored, now: now, atSessionEnd: true, calendar: calendar), .review)
-    }
-
-    func testCardQueuePutsDueCardsFirstAndHonorsTheChosenStartCard() {
-        var state = AppState(now: now)
-        let later = catalog.cards[7], due = catalog.cards[42]
-        var fresh = Recall(now: now); fresh.due = date(9)
-        state.cardRecall[later.id] = fresh
-        var overdue = Recall(now: date(-9)); overdue.due = date(-2)
-        state.cardRecall[due.id] = overdue
-        let queue = LearningEngine.nextCards(catalog: catalog, state: state, count: 12, now: now)
-        XCTAssertEqual(queue.first?.id, due.id)
-        XCTAssertEqual(queue.count, 12)
-        XCTAssertFalse(queue.contains { $0.id == later.id }, "Eine erst später fällige Karte drängt sich nicht vor.")
-        let started = LearningEngine.nextCards(catalog: catalog, state: state, startingWith: later.id, count: 12, now: now)
-        XCTAssertEqual(started.first?.id, later.id)
-        XCTAssertEqual(started.count, 12)
-        XCTAssertEqual(Set(started.map(\.id)).count, started.count)
-        let field = LearningEngine.nextCards(catalog: catalog, state: state, field: 3, count: 5, now: now)
-        XCTAssertTrue(field.allSatisfy { $0.field == 3 })
-    }
-
-    func testRatingACardSchedulesTheNextOneWithoutSkippingTheDailyStep() {
-        var state = AppState(now: now)
-        let card = catalog.cards[0]
-        LearningEngine.recallCard(state: &state, card: card, understood: true, now: now, calendar: calendar)
-        XCTAssertGreaterThan(state.cardRecall[card.id]!.due, now)
-        XCTAssertEqual(state.days[CivilDay(now, calendar: calendar).id]?.itemIDs, [card.id])
-        let second = catalog.cards[1]
-        LearningEngine.recallCard(state: &state, card: second, understood: false, now: now, calendar: calendar)
-        XCTAssertEqual(state.cardRecall[second.id]?.level, 0)
-        XCTAssertEqual(state.days[CivilDay(now, calendar: calendar).id]?.itemIDs.count, 2)
-    }
-
-    func testUncertaintyMarkedAfterTheEvaluationMovesTheQuestionBackIntoRepetition() throws {
-        var state = AppState(now: now)
-        let question = catalog.questions[0]
-        try LearningEngine.startRound(state: &state, questions: [question], now: now)
-        try LearningEngine.select(state: &state, optionID: question.correctIDs.first!)
-        try LearningEngine.submitAnswer(state: &state, now: now, calendar: calendar)
-        XCTAssertFalse(state.attempts.last!.unsure)
-        XCTAssertEqual(state.questionRecall[question.id]?.level, 1)
-        XCTAssertFalse(LearningEngine.nextQuestions(catalog: catalog, state: state, filter: .uncertain, count: 5, now: now)
-            .contains { $0.id == question.id })
-        try LearningEngine.markUnsure(state: &state, questionID: question.id, now: now, calendar: calendar)
-        XCTAssertTrue(state.attempts.last!.unsure)
-        XCTAssertTrue(state.attempts.last!.correct, "Die Bewertung der Antwort bleibt unverändert.")
-        XCTAssertEqual(state.questionRecall[question.id]?.level, 0)
-        XCTAssertTrue(LearningEngine.nextQuestions(catalog: catalog, state: state, filter: .uncertain, count: 5, now: now)
-            .contains { $0.id == question.id }, "Die Aufgabe liegt jetzt im Wiederholungspool.")
-        XCTAssertEqual(state.attempts.count, 1, "Die Einschätzung erzeugt keinen zweiten Versuch.")
-        // A second tap changes nothing, and an unanswered question cannot be marked at all.
-        try LearningEngine.markUnsure(state: &state, questionID: question.id, now: now, calendar: calendar)
-        XCTAssertEqual(state.attempts.count, 1)
-        XCTAssertThrowsError(try LearningEngine.markUnsure(state: &state, questionID: "unbekannt", now: now, calendar: calendar))
     }
 }

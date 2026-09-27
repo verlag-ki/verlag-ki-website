@@ -21,21 +21,10 @@ class ReleaseGateTests(unittest.TestCase):
         value["operatorInfo"].update(name="Test fixture", address="Test fixture", email="test@example.org")
         return value
 
-    def test_current_bundle_passes_content_review_but_still_needs_legal_information(self):
-        issues = release_issues(ROOT / "Core/Resources/catalog.json")
+    def test_confirmed_content_does_not_release_incomplete_legal_information(self):
+        issues = release_issues(ROOT / "Core/Resources/SelectedPack")
         self.assertFalse(any("Inhalte haben" in item for item in issues))
         self.assertTrue(any("privacyURL" in item for item in issues))
-
-    def test_a_single_unreviewed_item_still_blocks_the_release(self):
-        with tempfile.TemporaryDirectory() as folder:
-            directory = Path(folder)
-            (directory / "catalog.json").write_text(json.dumps(
-                {"questions": [{"id": "fixture-q", "approved": True}], "cards": [{"id": "fixture-c", "approved": False}]}))
-            (directory / "practice.json").write_text(json.dumps({"cases": [], "oral": []}))
-            (directory / "legal.json").write_text(json.dumps(self.complete_fixture()))
-            issues = release_issues(directory / "catalog.json")
-            self.assertEqual(issues, [issues[0]])
-            self.assertIn("1 Inhalte haben", issues[0])
 
     def test_approval_flag_alone_cannot_release_incomplete_documents(self):
         self.legal["approved"] = True

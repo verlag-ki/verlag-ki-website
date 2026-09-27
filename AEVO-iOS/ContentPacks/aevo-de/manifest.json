@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "packId": "aevo-de",
+  "version": 1,
+  "title": "Ausbildereignungsprüfung",
+  "description": "Eigene Aufgaben zur Vorbereitung auf die Ausbildereignungsprüfung.",
+  "locale": "de-DE",
+  "generatedOn": "2026-09-20",
+  "categories": [
+    {
+      "id": 1,
+      "title": "Ausbildung planen"
+    },
+    {
+      "id": 2,
+      "title": "Ausbildung vorbereiten"
+    },
+    {
+      "id": 3,
+      "title": "Ausbildung durchführen"
+    },
+    {
+      "id": 4,
+      "title": "Ausbildung abschließen"
+    }
+  ],
+  "modules": [
+    "writtenExam",
+    "flashcards",
+    "practicePreparation",
+    "oralExam",
+    "scenarioTraining"
+  ],
+  "rightsNotice": "Eigenes Lernangebot zur Vorbereitung auf die Ausbildereignungsprüfung. Keine Verbindung zur IHK oder DIHK. Keine Originalprüfungsfragen.",
+  "legacyBackupFormats": [
+    "de.aevo.learning.backup"
+  ]
+}

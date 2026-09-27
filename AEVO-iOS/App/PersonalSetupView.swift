@@ -1,5 +1,5 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct PersonalSetupView: View {
@@ -18,7 +18,7 @@ struct PersonalSetupView: View {
         let next = Personalization.nextExam(plan: initial.settings.exams)
         _dateEnabled = State(initialValue: next != nil)
         _examDate = State(initialValue: next?.day.date() ?? Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date())
-        _examPart = State(initialValue: next?.part ?? .written)
+        _examPart = State(initialValue: ((try? LearningEnvironment.bundled().hasPractice) ?? false) ? (next?.part ?? .written) : .written)
     }
     var body: some View {
         ScrollView {
@@ -36,7 +36,7 @@ struct PersonalSetupView: View {
                     Surface {
                         Toggle("Prüfungstermin eintragen", isOn: $dateEnabled)
                         if dateEnabled {
-                            Picker("Prüfungsteil", selection: $examPart) { ForEach(ExamPart.allCases, id: \.self) { Text($0.title).tag($0) } }.pickerStyle(.segmented)
+                            Picker("Prüfungsteil", selection: $examPart) { ForEach(store.hasPractice ? ExamPart.allCases : [.written], id: \.self) { Text(store.config.examTerminology.title($0)).tag($0) } }.pickerStyle(.segmented)
                             DatePicker("Tag der Prüfung", selection: $examDate, in: Calendar.current.startOfDay(for: Date())..., displayedComponents: .date)
                         } else { Text("Noch kein Termin? Du kannst trotzdem sofort lernen.").font(.footnote).foregroundStyle(.secondary) }
                     }

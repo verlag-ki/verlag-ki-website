@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning-app.invalid/schema/exam_config.schema.json",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "questionCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "durationSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 604800
+        },
+        "passPercentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "selection": {
+          "type": "string",
+          "enum": [
+            "weightedRandom",
+            "random"
+          ]
+        },
+        "categoryWeights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "categoryID": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "weight": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "categoryID",
+              "weight"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "uniqueFamilies": {
+          "type": "boolean"
+        },
+        "navigation": {
+          "type": "string",
+          "enum": [
+            "free",
+            "forwardOnly"
+          ]
+        },
+        "allowsAnswerChanges": {
+          "type": "boolean"
+        },
+        "timing": {
+          "type": "string",
+          "enum": [
+            "continuous",
+            "activeOnly"
+          ]
+        },
+        "scoring": {
+          "type": "string",
+          "enum": [
+            "allOrNothing",
+            "partialCredit"
+          ]
+        },
+        "results": {
+          "type": "string",
+          "enum": [
+            "detailed",
+            "summary"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "id",
+        "title",
+        "questionCount",
+        "durationSeconds",
+        "passPercentage",
+        "selection",
+        "categoryWeights",
+        "uniqueFamilies",
+        "navigation",
+        "allowsAnswerChanges",
+        "timing",
+        "scoring",
+        "results"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

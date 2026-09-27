@@ -15,6 +15,7 @@ public struct Question: Codable, Identifiable, Hashable, Sendable {
     public let id: String
     public let version: Int
     public let field: Int
+    public var type: QuestionType?
     public let competency: String
     public let family: String
     public let topic: String
@@ -29,7 +30,7 @@ public struct Question: Codable, Identifiable, Hashable, Sendable {
     public let reviewedOn: String?
     public let reviewedBy: String?
 
-    public var multipleChoice: Bool { correctIDs.count > 1 }
+    public var multipleChoice: Bool { type.map { $0 == .multipleChoice } ?? (correctIDs.count > 1) }
     public func isCorrect(_ selected: Set<String>) -> Bool {
         !selected.isEmpty && selected == correctIDs
     }
@@ -66,30 +67,26 @@ public struct Catalog: Codable, Sendable {
     public var containsDrafts: Bool { questions.contains { !$0.approved } || cards.contains { !$0.approved } }
 
     public static func bundled() throws -> Catalog {
-        guard let url = Bundle.module.url(forResource: "catalog", withExtension: "json") else {
-            throw LearningError.invalid("Der mitgelieferte Inhaltskatalog fehlt.")
-        }
-        let catalog = try JSONDecoder().decode(Catalog.self, from: Data(contentsOf: url))
-        try catalog.validate()
-        return catalog
+        try LearningEnvironment.bundled().pack.catalog
     }
 
     public func validate() throws {
-        guard version == 1, !questions.isEmpty, !cards.isEmpty,
+        guard version == 1, !questions.isEmpty,
               Set(questions.map(\.id)).count == questions.count,
               Set(cards.map(\.id)).count == cards.count else {
             throw LearningError.invalid("Der Inhaltskatalog ist unvollständig oder enthält doppelte Kennungen.")
         }
+        func nonempty(_ value: String) -> Bool { !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
         for q in questions {
-            guard (1...4).contains(q.field), !q.prompt.isEmpty, q.options.count >= 2,
+            guard q.field > 0, q.version > 0, nonempty(q.id), nonempty(q.prompt), nonempty(q.topic), q.options.count >= 2,
                   Set(q.options.map(\.id)).count == q.options.count,
                   !q.correctIDs.isEmpty, q.correctIDs.isSubset(of: Set(q.options.map(\.id))),
-                  !q.explanation.isEmpty, q.options.allSatisfy({ !$0.explanation.isEmpty }),
+                  nonempty(q.explanation), q.options.allSatisfy({ nonempty($0.id) && nonempty($0.text) && nonempty($0.explanation) }),
                   !q.sources.isEmpty else { throw LearningError.invalid("Ungültige Aufgabe: \(q.id)") }
         }
         for card in cards {
-            guard !card.title.isEmpty, !card.explanation.isEmpty, !card.sources.isEmpty,
-                  card.field == nil || (1...4).contains(card.field!) else {
+            guard card.version > 0, nonempty(card.id), nonempty(card.title), nonempty(card.explanation), !card.sources.isEmpty,
+                  card.field == nil || card.field! > 0 else {
                 throw LearningError.invalid("Ungültige Lernkarte: \(card.id)")
             }
         }
@@ -109,12 +106,6 @@ public enum LearningError: LocalizedError, Equatable {
 
 public enum FieldInfo {
     public static func title(_ field: Int) -> String {
-        switch field {
-        case 1: return "Ausbildung planen"
-        case 2: return "Ausbildung vorbereiten"
-        case 3: return "Ausbildung durchführen"
-        case 4: return "Ausbildung abschließen"
-        default: return "Prüfung & Orientierung"
-        }
+        (try? LearningEnvironment.bundled().categoryTitle(field)) ?? "Thema \(field)"
     }
 }

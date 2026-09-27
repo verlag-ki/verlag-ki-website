@@ -1,6 +1,6 @@
 import Foundation
 import UserNotifications
-import AEVOCore
+import LearningCore
 
 actor NotificationService {
     private let center = UNUserNotificationCenter.current()
@@ -26,10 +26,10 @@ actor NotificationService {
     private func apply(_ state: AppState) async throws {
         let permitted = await authorized()
         let pending = await center.pendingNotificationRequests()
-        center.removePendingNotificationRequests(withIdentifiers: pending.map(\.identifier).filter { $0.hasPrefix("aevo.learning.") })
+        center.removePendingNotificationRequests(withIdentifiers: pending.map(\.identifier).filter { $0.hasPrefix((try? LearningEnvironment.bundled().config.notificationNamespace) ?? "learning.") })
         guard permitted else { return }
         let calendar = Calendar.current
-        for reminder in ReminderPlanner.make(state: state, now: Date(), calendar: calendar) {
+        for reminder in ReminderPlanner.make(state: state, now: Date(), calendar: calendar, namespace: (try? LearningEnvironment.bundled().config.notificationNamespace) ?? "learning.") {
             let content = UNMutableNotificationContent()
             content.title = reminder.title; content.body = reminder.body; content.sound = .default
             let date = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: reminder.date)

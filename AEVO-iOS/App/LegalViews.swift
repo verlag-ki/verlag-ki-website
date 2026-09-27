@@ -1,8 +1,9 @@
 import SwiftUI
-import AEVOCore
+import LearningCore
 
 @MainActor
 struct LegalDocumentView: View {
+    @EnvironmentObject private var store: AppStore
     enum Document { case imprint, privacy }
     let document: Document
     @State private var content: LegalContent?
@@ -11,6 +12,8 @@ struct LegalDocumentView: View {
     var body: some View {
         List {
             if let content {
+                // No draft banner in the interface. The release gate in
+                // Scripts/validate_release.py keeps checking the legal approval instead.
                 if document == .imprint { imprint(content) }
                 else { privacy(content) }
                 Section {
@@ -46,8 +49,9 @@ struct LegalDocumentView: View {
         if !content.operatorInfo.additionalImprint.isEmpty {
             Section("Weitere Anbieterangaben") { Text(content.operatorInfo.additionalImprint).textSelection(.enabled) }
         }
+        if let url = LegalContent.webURL(store.config.imprintURL) { Section { Link("Impressum im Browser", destination: url) } }
         Section("Über das Angebot") {
-            Text("aevo. ist ein eigenständiges Lernangebot zur Vorbereitung auf die Ausbildereignungsprüfung. Es besteht keine Verbindung zur IHK oder DIHK. Die Aufgaben sind eigene Lernaufgaben und keine Originalprüfungsfragen.")
+            Text(store.environment.pack.manifest.rightsNotice)
             Text("Alle veröffentlichten Lerninhalte und Funktionen bleiben kostenlos. Freiwilliges Trinkgeld schaltet keine Vorteile frei.")
         }
         Section { NavigationLink("Datenschutzerklärung") { LegalDocumentView(document: .privacy) } }

@@ -8,8 +8,8 @@
       "internalID": "100001",
       "localizations": [
         {
-          "description": "Ein Filterkaffee als freiwilliges Dankeschön.",
-          "displayName": "Trinkgeld: Filterkaffee",
+          "description": "Ein Filterkaffee",
+          "displayName": "Kleines Trinkgeld",
           "locale": "de_DE"
         }
       ],
@@ -23,8 +23,8 @@
       "internalID": "100002",
       "localizations": [
         {
-          "description": "Ein Cappuccino als freiwilliges Dankeschön.",
-          "displayName": "Trinkgeld: Cappuccino",
+          "description": "Ein Cappuccino",
+          "displayName": "Mittleres Trinkgeld",
           "locale": "de_DE"
         }
       ],
@@ -38,8 +38,8 @@
       "internalID": "100003",
       "localizations": [
         {
-          "description": "Ein Döner als freiwilliges Dankeschön.",
-          "displayName": "Trinkgeld: Döner",
+          "description": "Ein Döner",
+          "displayName": "Großes Trinkgeld",
           "locale": "de_DE"
         }
       ],

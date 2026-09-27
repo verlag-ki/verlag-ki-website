@@ -6,7 +6,7 @@ Diese Liste ist vorbereitet. Sie ist noch nicht als ausgeführt markiert. Die Li
 
 - [ ] `Scripts/check_on_mac.sh` läuft mit einem geeigneten Xcode erfolgreich durch.
 - [ ] Frischer Debug-Start im Simulator und auf dem iPhone öffnet die Startseite ohne Konto, Kauf oder Mitteilungsabfrage.
-- [ ] 800 Aufgaben und 300 Karten werden geladen. Kein Entwurfs- oder Vorbehaltshinweis erscheint mehr in der Oberfläche.
+- [ ] 800 Aufgaben und 300 Karten werden geladen und als noch fachlich zu prüfender Entwicklungsstand kenntlich gemacht.
 - [ ] App-Icon zeigt das vorläufige Buchsymbol. Darstellung im hellen und dunklen Modus kontrollieren.
 
 ## Speichern und Unterbrechen
@@ -60,7 +60,7 @@ Diese Liste ist vorbereitet. Sie ist noch nicht als ausgeführt markiert. Die Li
 - [ ] Bewertungsanfrage erst nach 60 aktiven Lernminuten, drei abgeschlossenen Einheiten und Lernen an zwei Kalendertagen; keine vorgeschaltete Sterneauswahl.
 - [ ] 180 Tage Abstand zwischen Bewertungsaufrufen, 14 Tage zwischen Bewertungs- und Trinkgeldanfragen sowie Sperrzeit vor beiden Prüfungsterminen einhalten.
 - [ ] iOS darf den Dialog unterdrücken. Die App startet deshalb keine unmittelbare zweite Anfrage.
-- [ ] Trinkgeldgrenzen und Sicherungswiederherstellung prüfen. Seit 0.3.4 gibt es kein dauerhaftes Ausblenden mehr; eine alte Sicherung mit den früheren Schaltern darf die Hinweise nicht unterdrücken.
+- [ ] Dauerhaftes Ausblenden, Trinkgeldgrenzen und Sicherungswiederherstellung prüfen.
 
 ## Bedienbarkeit
 
@@ -114,21 +114,3 @@ Alle genannten nativen Prüfungen sind weiterhin offen.
 - [ ] Alle acht Farbwelten in Hell/Dunkel sowie große Dynamic-Type-Stufen und VoiceOver prüfen. Autorennamen und Zitat werden nicht abgeschnitten; in der Quellenansicht bleibt Text lesbar.
 - [ ] App mehrfach starten: Impuls bleibt am selben lokalen Tag gleich. Über Mitternacht aktualisiert die Startseite; eine bereits offene Quelle behält das angetippte Zitat.
 - [ ] Impuls ausblenden, speichern und neu starten: Startseite und Profilvorschau respektieren die Auswahl; vorhandene Termine, Notizen und Nachfrage-Opt-outs bleiben erhalten.
-
-
-## Swipe-Kartenstapel und Ein-Tipp-Antworten ab 0.3.4
-
-- [ ] Karte antippen deckt die Rückseite auf; erneutes Antippen klappt sie wieder zu.
-- [ ] Wisch nach rechts wertet als „Verstanden“, nach links als „Noch unsicher“. Die nächste Karte steht danach ohne weiteren Tipp bereit.
-- [ ] Ein abgebrochener Wisch unter der Auslöseschwelle federt zurück und verändert keinen Wiederholungsstand.
-- [ ] Dieselbe Karte mehrfach an einem Tag bewerten: der Tagesfortschritt zählt weiterhin nur einen Schritt.
-- [ ] Zähler für Position, verstandene und vorgemerkte Karten stimmt mit den tatsächlichen Wischen überein.
-- [ ] Am Stapelende erscheint die Abschlussansicht; „Nächster Stapel“ lädt weitere Karten, „Fertig“ schließt.
-- [ ] VoiceOver: Karte ist ein zusammenhängendes Element mit den Aktionen „Verstanden“ und „Noch unsicher“; Wischen ist nicht erforderlich.
-- [ ] Reduzierte Bewegung und ruhiger Modus: Karten wechseln ohne Flug- und Federanimation, die Bewertung greift unverändert.
-- [ ] Große Dynamic-Type-Stufen: Kartentext scrollt innerhalb der Karte, die Bewertungsschaltflächen bleiben mit mindestens 44 × 44 pt sichtbar.
-- [ ] Aus dem Stapel „Bearbeiten“ öffnen, speichern und zurückkehren: der Stapel steht weiterhin bei derselben Karte.
-- [ ] Aufgabe mit einer richtigen Antwort: ein Tipp auf die Antwort wertet sofort aus, die Auswertung wird sichtbar, darunter steht „Nächste Aufgabe“.
-- [ ] Aufgabe mit mehreren richtigen Antworten: die Auswahl bleibt änderbar, erst „Antwort prüfen“ wertet aus.
-- [ ] Nach einer richtigen Antwort „War eher geraten – nochmal zeigen“ antippen: die Aufgabe erscheint im Filter „Fehler & Unsicherheit“, die Antwort bleibt als richtig gezählt, es entsteht kein zweiter Versuch.
-- [ ] App während einer bewerteten Aufgabe beenden und erneut öffnen: Antwort, Auswertung und ein gesetzter Unsicherheitsvermerk sind erhalten.

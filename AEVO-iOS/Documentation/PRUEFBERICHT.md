@@ -1,14 +1,36 @@
-# Aktueller Prüfstand 0.3.4
+# Prüfstand 0.5.0 · wiederverwendbare Learning Engine
 
-49 XCTest-Prüfungen des Foundation-Kerns bestanden, ausgeführt auf Linux mit Swift 6.0.3. Vier davon sind neu: der Freigabestand des gebündelten Katalogs einschließlich Datum und prüfender Person, Reihenfolge und Startkarte des Swipe-Stapels, die nach der Auswertung vermerkte Unsicherheit und eine ältere Sicherung, deren entfernte Abschalter die seltenen Hinweise nicht mehr unterdrücken. Angepasst wurden die Prüfungen, die bisher den Entwurfsstatus und die dauerhaften Abschalter erwartet haben.
+21. September 2026. 64 Swift-Kerntests mit Swift 6.0.3 und 16 Python-Tests bestanden. Alle bestehenden Tests sind erhalten; hinzugekommen sind Paketvalidierung, explizite Aufgabentypen, drei bis zwölf Kategorien, konfigurierbare Prüfungsregeln, Datenzuordnung und Generatorprüfungen. Die 800 AEVO-Aufgaben und 300 Karten wurden einschließlich stabiler IDs mit dem ursprünglichen Katalog verglichen. Fachliche Texte und Lösungen bleiben unverändert.
 
-Syntaxprüfung aller 23 App-Dateien ohne Fehler. `Scripts/validate_project.py` bestanden: 800 Aufgaben, 300 Karten, 16 Fälle, 24 Impulse, 1.100 freigegebene Katalogeinträge sowie Projekt-, Schema- und Ressourcenverweise. `Scripts/test_release_gate.py` mit fünf Prüfungen bestanden; neu ist, dass ein einzelner ungeprüfter Eintrag die Veröffentlichung weiterhin sperrt.
+Eine mit dem tatsächlichen Code von 0.4.0 erzeugte synthetische Sicherung wurde übernommen. Die Prüfung umfasst persönliche Kartenfassungen, offene Notizen, Name, Termine, Einstellungen, Fortschritt, Kartenstapel, laufende Lernrunden und Simulationen. Fremde App-/Pack-Sicherungen werden abgelehnt. Dies ist ein Nachweis des Datenformats, noch kein SwiftData-Update auf einem iPhone.
 
-Die Release-Prüfung meldet keine ungeprüften Inhalte mehr. Sie stoppt jetzt an der ausstehenden rechtlichen Freigabe der Rechtstexte und den fehlenden öffentlichen Datenschutz- und Supportadressen. Beides gehört nicht zur fachlichen Prüfung und wurde nicht verändert.
+Der Generator wurde vollständig für AEVO und das fiktive Orbit-Demo ausgeführt. Beide erzeugten Projekte bestanden jeweils die zwei Laufzeittests gegen ihre eigenen ausgewählten Ressourcen. Die App- und Core-Swift-Dateien beider Ausgaben sind bytegleich mit der gemeinsamen Quellcodebasis. Orbit verwendet drei Kategorien, zehn Fragen, fünf Karten und abweichende Regeln für Dauer, Navigation, Bewertung und Bestehensgrenze. Praxis, Trinkgelder und Bewertungsanfragen sind dort deaktiviert.
 
-Nicht geprüft: Apple-SDK-Typecheck, nativer Build, iPhone-Test, SwiftUI-Wischgesten auf dem Gerät, SwiftData, Mitteilungen, StoreKit, VoiceOver und Dynamic Type. Der Swipe-Stapel und die Ein-Tipp-Antwort sind bisher nur Quellcode und wurden auf keinem Gerät bedient. Die getrennte Browser-Vorschau wurde in diesem Schritt nicht aktualisiert und zeigt die neuen Abläufe nicht.
+Alle zehn JSON-Schemas sowie zwanzig Inhalts-/Konfigurationsdateien wurden zusätzlich unabhängig mit jsonschema 4.23.0 nach Draft 2020-12 geprüft. Dieses Paket ist ausschließlich ein Prüfwerkzeug; der ausgelieferte Validator benötigt keine zusätzlichen Python-Abhängigkeiten. Die Syntax aller 22 SwiftUI-Dateien und die Xcode-Projektstruktur sind geprüft.
 
-# Vorheriger Prüfstand 0.3.3
+Protokolle: `Kerntests_0_5_0.log`, `Pythontests_0_5_0.log`, `Schema_Pruefung_0_5_0.txt`, `Integritaet.json` sowie die beiden `*-0.5.0-GenerationReport.json` und zugehörigen Testlogs. Die generierten Arbeitskopien werden nicht als zusätzliche Quellcodebasis ausgeliefert; der mitgelieferte Generator stellt sie reproduzierbar her.
+
+Der Release-Prüflauf meldet weiterhin die drei bereits offenen rechtlichen Angaben: Freigabe der Rechtstexte, öffentliche Datenschutz-URL und öffentliche Support-URL. Die übernommene AEVO-Inhaltsbestätigung gilt für die unveränderten fachlichen Inhalte. Das technische Demo bleibt ausdrücklich ohne fachliche Freigabe.
+
+Kein Apple-SDK-Typecheck, Simulator-Build, signiertes Archiv oder Gerätetest dieser Refaktorierung. Native Gesten, SwiftData, Mitteilungen, VoiceOver und StoreKit müssen mit `NATIVE_ACCEPTANCE_0_5_0.md` abgenommen werden. Deshalb ist die vollständige native Definition of Done noch nicht nachgewiesen; siehe `DEFINITION_OF_DONE_0_5_0.md`.
+
+## Historische Prüfstände
+
+# Prüfstand 0.4.0
+
+21. September 2026. 52 Foundation-Kerntests mit Swift 6.0.3 auf Linux bestanden, einschließlich sieben neuer Kartenstapelprüfungen. Geprüft wurden unter anderem automatischer Wechsel, veraltete Doppeltipps, unsichere Wiederholung, Filterumfang, Backup/Fortsetzung, alte Sicherungen und Wischrichtung. Alle 64 vollständigen Fallwege sind Teil der vorhandenen Fallprüfung.
+
+Fünf Python-Prüfungen für dokumentierte Freigaben und die Veröffentlichungssperre bestanden. Die Projektintegrität bestätigt 800 Aufgaben, 300 Karten, 16 Fälle und 24 Fachgesprächsimpulse sowie den Bezug der bestätigten Freigabe auf genau diese Fassungen. Die Syntax aller 22 SwiftUI-Dateien wurde mit dem Swift-Parser geprüft.
+
+Der tatsächliche Release-Prüflauf bleibt mit drei offenen Punkten gesperrt: rechtliche Freigabe, öffentliche Datenschutz-URL und öffentliche Support-URL. Die bestätigten fachlichen Inhalte lösen keine Sperre mehr aus.
+
+Es fand kein Apple-SDK-Typecheck, Xcode-Build oder iPhone-Test der neuen Version statt. Syntax und Foundation-Tests prüfen keine nativen Gesten, VoiceOver-Ausgabe, SwiftData-Integration oder StoreKit-Dialoge. Dafür enthält AENDERUNGEN_0_4_0.md die gezielte Geräteabnahme. Die Aussage des Auftraggebers zum erfolgreichen App-Start betrifft die vorherige Version.
+
+Beim ersten Testlauf erwartete ein bestehender Exporttest noch den ausdrücklich entfernten Fachfreigabe-Hinweis. Die Erwartung wurde an den neuen persönlichen Planungstext angepasst; der anschließende vollständige Lauf bestand ohne Fehler. Protokoll: Kerntests_0_4_0.log.
+
+## Historischer Prüfstand
+
+# Aktueller Prüfstand 0.3.3
 
 Zwei gezielte XCTest-Prüfungen der gebündelten Datenschutzdaten und sicheren Mail-Entwürfe sowie vier Release-Prüfungen bestanden. Geänderte App-Dateien syntaktisch und Projektintegrität geprüft. Die Vorschau zeigt Filterkaffee/Cappuccino/Döner mit korrekter Betragsauswahl, ohne Vorauswahl und mit gut lesbarem Text im schmalen Dunkelmodus. Anbieter- und Maildaten wurden im gerenderten Entwurf geprüft, ohne eine Nachricht zu öffnen oder zu versenden. Kein Apple-SDK-Build, nativer iPhone-Test oder tatsächlicher Kauf. Kauf- und Lernlogik wurden nicht geändert.
 

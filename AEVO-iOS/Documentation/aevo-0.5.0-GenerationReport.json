@@ -1,0 +1,8 @@
+{
+  "appId": "aevo",
+  "contentPackId": "aevo-de",
+  "engineVersion": "0.5.0",
+  "runtimeTests": "passed",
+  "nativeBuildVerified": false,
+  "configSHA256": "1b0da642302a407f021a2186e9684058b31df18b6a25379b5aa9beb8c40684a8"
+}
