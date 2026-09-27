@@ -31,7 +31,8 @@ SECRET = os.environ.get('SECRET_KEY', '')
 WHATSAPP = '4915734487082'
 DB = DATA / 'site.sqlite3'
 PUBLIC = BASE / 'public'
-ASSET_VERSION = hashlib.sha256(b''.join((BASE/'public'/n).read_bytes() for n in ('style.css','site.js'))).hexdigest()[:10]
+# Versionsnummer aus allen ausgelieferten Dateien: ändert sich eine, laden Browser sie sofort neu
+ASSET_VERSION = hashlib.sha256(b''.join(f.read_bytes() for d in ('public','brand') for f in sorted((BASE/d).rglob('*')) if f.is_file())).hexdigest()[:10]
 BRAND = BASE / 'brand'
 STATIC = {'.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml','.woff2':'font/woff2','.webp':'image/webp'}
 # Demo-Illustrationen für die mitgelieferten Beispielmuster, bis echte Fotos hochgeladen sind.
@@ -160,7 +161,7 @@ def with_heart(text):
     head,_,last=text.rpartition(' ')
     return f'{head} <span class="nowrap">{last}{heart()}</span>' if head else f'<span class="nowrap">{last}{heart()}</span>'
 
-def logo(): return '<a class="brand" href="/"><img src="/brand/logo-compact.svg" alt="Bines Mützenparadies – zur Startseite" width="247" height="54"></a>'
+def logo(): return f'<a class="brand" href="/"><img src="/brand/logo-compact.svg?v={ASSET_VERSION}" alt="Bines Mützenparadies – zur Startseite" width="247" height="54"></a>'
 
 def site_image(key):
     with db() as c: return c.execute('SELECT * FROM site_images WHERE key=?',(key,)).fetchone()
@@ -172,8 +173,8 @@ def demo_image(name,alt,width,height,lazy=True,label='Demo-Illustration'):
     """Gekennzeichnetes Demo-Bild: KI-Vorschau oder Illustration, je nach DEMO_IMAGES."""
     loading=' loading="lazy"' if lazy else ' fetchpriority="high"'
     if DEMO_IMAGES=='ki':
-        return f'<img src="/img/ki-{name}.webp" alt="KI-generiertes Demo-Bild: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">Demo-Bild · KI-generiert</span>'
-    return f'<img src="/img/demo-{name}.svg" alt="Illustration: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">{label}</span>'
+        return f'<img src="/img/ki-{name}.webp?v={ASSET_VERSION}" alt="KI-generiertes Demo-Bild: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">Demo-Bild · KI-generiert</span>'
+    return f'<img src="/img/demo-{name}.svg?v={ASSET_VERSION}" alt="Illustration: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">{label}</span>'
 
 def pattern_visual(p):
     if p['image']: return f'<img src="/uploads/{esc(p["image"])}" alt="{esc(p["image_alt"])}" loading="lazy" width="800" height="1000">'
@@ -187,7 +188,7 @@ def layout(title,description,content,canonical='/',robots='index,follow',schema=
     cur=' aria-current="page"'
     nav=''.join(f'<a href="{u}"{cur if u==section else ""}>{t}</a>' for u,t in links)
     og=f'<meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:site_name" content="Bines Mützenparadies"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{esc(ORIGIN+canonical)}">'
-    return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>{esc(title)}</title><meta name="description" content="{esc(description)}"><meta name="robots" content="{robots}"><link rel="canonical" href="{esc(ORIGIN+canonical)}">{og}<meta name="theme-color" content="#FBF8F3"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preload" href="/fonts/chewy-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css?v={ASSET_VERSION}">{schema}</head><body><a class="skip" href="#main">Zum Inhalt springen</a><header class="site-header"><div class="wrap header-inner">{logo()}<nav class="desktop-nav" aria-label="Hauptnavigation">{nav}</nav><button class="btn btn-coral btn-small header-cta" type="button" data-contact>Jetzt anfragen</button><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button></div><nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" hidden>{nav}<button type="button" class="btn btn-coral" data-contact>Jetzt anfragen</button></nav></header><main id="main">{content}</main>{footer()}{dialog()}<script src="/site.js?v={ASSET_VERSION}" defer></script></body></html>'''
+    return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>{esc(title)}</title><meta name="description" content="{esc(description)}"><meta name="robots" content="{robots}"><link rel="canonical" href="{esc(ORIGIN+canonical)}">{og}<meta name="theme-color" content="#FBF8F3"><link rel="icon" href="/favicon.svg?v={ASSET_VERSION}" type="image/svg+xml"><link rel="preload" href="/fonts/chewy-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css?v={ASSET_VERSION}">{schema}</head><body><a class="skip" href="#main">Zum Inhalt springen</a><header class="site-header"><div class="wrap header-inner">{logo()}<nav class="desktop-nav" aria-label="Hauptnavigation">{nav}</nav><button class="btn btn-coral btn-small header-cta" type="button" data-contact>Jetzt anfragen</button><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button></div><nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" hidden>{nav}<button type="button" class="btn btn-coral" data-contact>Jetzt anfragen</button></nav></header><main id="main">{content}</main>{footer()}{dialog()}<script src="/site.js?v={ASSET_VERSION}" defer></script></body></html>'''
 
 def message_form(form_id,in_dialog=False):
     """Kontaktformular: im Kontaktfenster und eingebettet auf der Startseite. Speichert nur, verschickt keine E-Mail."""
@@ -221,11 +222,11 @@ def home():
     story_img=f'<img src="/uploads/{esc(story["filename"])}" alt="{esc(story["alt"])}" loading="lazy" width="800" height="640">' if story else demo_image('haekeln','gehäkelte Bärenmütze und Einhornmütze in einem Korb',800,640)
     features=''.join(f'<li>{color_icon(ic)}<span>{a}<br>{b}</span></li>' for ic,a,b in (('heart','Individuelle','Motive'),('tape','Genau nach','Kopfumfang'),('idea','Deine','Wunschmotive'),('gift','Mit Liebe','gehäkelt')))
     story_points=''.join(f'<li>{icon("check")}<span>{t}</span></li>' for t in ('Jede Mütze wird einzeln gehäkelt – keine Massenware.','Kopfumfang, Motiv und kleine Extras stimmst du persönlich mit Bine ab.','Preis und Anfertigungszeit besprechen wir mit dir, bevor es losgeht.'))
-    return f'''<section class="hero" aria-labelledby="hero-title"><figure class="hero-media">{hero_img}</figure><div class="wrap hero-inner"><div class="hero-copy"><img class="bee-flight" src="/img/bee-flight.svg" alt="" width="170" height="96"><span class="eyebrow">Handgemachte Lieblingsmützen</span><h1 id="hero-title">Hier gibt’s was auf die {with_heart('Mütze!')}</h1><p class="lead">Einzigartige Häkelmützen nach deinen Wünschen. Mit viel Liebe von Bine gehäkelt.</p><a class="btn btn-coral" href="/muster">Muster entdecken {icon("arrow")}</a><ul class="features">{features}</ul></div></div></section>
+    return f'''<section class="hero" aria-labelledby="hero-title"><figure class="hero-media">{hero_img}</figure><div class="wrap hero-inner"><div class="hero-copy"><img class="bee-flight" src="/img/bee-flight.svg?v={ASSET_VERSION}" alt="" width="170" height="96"><span class="eyebrow">Handgemachte Lieblingsmützen</span><h1 id="hero-title">Hier gibt’s was auf die {with_heart('Mütze!')}</h1><p class="lead">Einzigartige Häkelmützen nach deinen Wünschen. Mit viel Liebe von Bine gehäkelt.</p><a class="btn btn-coral" href="/muster">Muster entdecken {icon("arrow")}</a><ul class="features">{features}</ul></div></div></section>
 <section class="section" id="beliebte-muster" aria-labelledby="muster-title"><div class="wrap"><div class="section-head"><div><h2 id="muster-title">{with_heart('Beliebte Muster')}</h2><p>Entdecke unsere fantasievollen Häkelmützen und finde dein Lieblingsmotiv.</p></div><a href="/muster" class="text-link">Alle Muster ansehen {icon("arrow")}</a></div>{notice}<div class="cards">{cards or '<p>Noch keine Muster veröffentlicht. Schau bald wieder vorbei.</p>'}</div></div></section>
 <section class="section info-section" aria-label="Gut zu wissen"><div class="wrap info-grid">{info_cards()}</div></section>
 <section class="section story" aria-labelledby="story-title"><div class="wrap story-grid"><figure class="story-visual"><div class="story-frame">{story_img}</div></figure><div class="story-copy"><span class="eyebrow">Bines Handarbeit</span><h2 id="story-title">{with_heart('Mit Liebe gehäkelt.')}</h2><p>Ob Frosch, Schneemann, Schweinchen oder eine ganz eigene Idee: Hier entstehen Mützen mit Charakter. Keine Massenware, sondern handgemachte Einzelstücke, die mit viel Freude auf dem Sofa entstehen.</p><ul class="checklist">{story_points}</ul><a href="/so-funktionierts" class="text-link">So läuft deine Anfrage ab {icon("arrow")}</a></div></div></section>
-<section class="final-cta" id="kontakt" aria-labelledby="cta-title"><div class="wrap"><div class="cta-panel with-form"><div class="cta-intro"><img src="/brand/bee-mark.svg" alt="" width="72" height="72"><h2 id="cta-title">Schon eine Lieblingsmütze entdeckt?</h2><p>Dann schreib uns einfach, welches Muster du dir wünschst – direkt hier im Formular oder per WhatsApp.</p><button class="btn btn-whatsapp" type="button" data-contact>{icon("whatsapp")} Jetzt unverbindlich anfragen</button><small>Eine Anfrage ist noch keine Bestellung. Preis und Anfertigungszeit stimmen wir persönlich mit dir ab.</small></div><div class="cta-form"><h3>Schreib Bine direkt</h3>{message_form("home-contact-form")}</div></div></div></section>'''
+<section class="final-cta" id="kontakt" aria-labelledby="cta-title"><div class="wrap"><div class="cta-panel with-form"><div class="cta-intro"><img src="/brand/bee-mark.svg?v={ASSET_VERSION}" alt="" width="72" height="72"><h2 id="cta-title">Schon eine Lieblingsmütze entdeckt?</h2><p>Dann schreib uns einfach, welches Muster du dir wünschst – direkt hier im Formular oder per WhatsApp.</p><button class="btn btn-whatsapp" type="button" data-contact>{icon("whatsapp")} Jetzt unverbindlich anfragen</button><small>Eine Anfrage ist noch keine Bestellung. Preis und Anfertigungszeit stimmen wir persönlich mit dir ab.</small></div><div class="cta-form"><h3>Schreib Bine direkt</h3>{message_form("home-contact-form")}</div></div></div></section>'''
 
 def catalogue(query):
     items,demo=listing(True)
@@ -467,7 +468,7 @@ def app(env,start):
         if method=='GET' and (path in ('/style.css','/site.js','/favicon.svg') or re.fullmatch(r'/(fonts|img|brand)/[a-z0-9-]+\.(woff2|svg|webp)',path)):
             p=(BRAND/path.removeprefix('/brand/')) if path.startswith('/brand/') else PUBLIC/path[1:]
             if not p.is_file():return response(start,404,'Nicht gefunden')
-            versioned=path.startswith('/fonts/') or (path in ('/style.css','/site.js') and parse_qs(env.get('QUERY_STRING','')).get('v',[''])[0]==ASSET_VERSION)
+            versioned=path.startswith('/fonts/') or parse_qs(env.get('QUERY_STRING','')).get('v',[''])[0]==ASSET_VERSION
             cache='public, max-age=31536000, immutable' if versioned else 'no-cache'
             return response(start,200,p.read_bytes(),content_type=STATIC[p.suffix],cache=cache)
         if path=='/api/nachricht' and env.get('REQUEST_METHOD')=='POST':return contact_message(env,start)
