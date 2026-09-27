@@ -43,7 +43,12 @@ assert request('/api/nachricht','POST',{'name':'Bot','contact':'x@y.de','message
 assert app.db().execute('SELECT COUNT(*) FROM messages').fetchone()[0]==1, 'Honeypot darf nichts speichern'
 # Rechtstexte: Standardtexte mit markierten offenen Stellen
 imp=request('/impressum')['body']
-assert 'Spreeallee 207' in imp and '<mark class="todo">' in imp and 'href="mailto:info@mieten-macht-sinn.de"' in imp
+assert 'Spreeallee 207' in imp and '§ 5 DDG' in imp and '§ 19 Abs. 1 UStG' in imp and 'href="mailto:info@mieten-macht-sinn.de"' in imp
+assert '<mark class="todo">' not in imp and 'TMG' not in imp and 'ec.europa.eu/consumers/odr' not in imp, 'Impressum vollständig und aktuell'
+# Unveränderte alte Vorlage wird beim Update ersetzt
+import legal_defaults
+with app.db() as c:c.execute("UPDATE legal SET content=? WHERE key='impressum'",(legal_defaults.PREVIOUS['impressum'][0],))
+assert '§ 5 DDG' in request('/impressum')['body']
 # Ohne Größen: nur Kopfumfang in cm
 assert 'name="head_cm"' in request('/groessenhilfe')['body'] and 'Größenempfehlung' not in request('/groessenhilfe')['body']
 assert 'data-wishes-label="Mein Wunschmotiv"' in request('/wunschmotive')['body']

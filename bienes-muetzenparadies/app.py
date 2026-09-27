@@ -63,6 +63,10 @@ def init():
             c.executemany("INSERT INTO patterns(slug,name,description,category,created_at,status) VALUES(?,?,?,?,?,'draft')", [(a,b,d,cat,now()) for a,b,d,cat in examples])
         for key,(_,text) in LEGAL.items():
             c.execute('INSERT OR IGNORE INTO legal VALUES(?,?,?)',(key,text,now()))
+            # Nie bearbeitete alte Vorlage durch die neue ersetzen; eigene Änderungen bleiben unangetastet
+            row=c.execute('SELECT content FROM legal WHERE key=?',(key,)).fetchone()
+            if row['content'].strip() in [t.strip() for t in legal_defaults.PREVIOUS.get(key,[])]:
+                c.execute('UPDATE legal SET content=?,updated_at=? WHERE key=?',(text,now(),key))
         # Nachrichten aus dem Kontaktformular werden nach 6 Monaten gelöscht (siehe Datenschutz)
         c.execute("DELETE FROM messages WHERE created_at<datetime('now','-183 days')")
 
