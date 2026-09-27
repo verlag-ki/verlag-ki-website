@@ -9,6 +9,8 @@ const indexable = process.env.SITE_INDEXABLE === "true";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  // Schrägstrich-Weiterleitung übernimmt src/proxy.ts (Ausnahme: Pflegebereich /keystatic).
+  skipTrailingSlashRedirect: true,
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],

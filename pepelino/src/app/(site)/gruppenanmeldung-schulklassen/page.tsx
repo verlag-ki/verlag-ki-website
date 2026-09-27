@@ -7,9 +7,9 @@ import { groupOffer } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Klassenausflug & Gruppen – Indoorspielplatz Kiel",
+  title: "Klassenausflug & Gruppen – Kiel und Westerrönfeld",
   description:
-    "Schulklassen, Kitas und Horte bei Pepelino: wetterunabhängiger Ausflug in Kiel, nach Absprache auch außerhalb der Öffnungszeiten. Gruppenanfrage für Kiel und Westerrönfeld.",
+    "Schulklassen, Kitas und Horte bei Pepelino: wetterunabhängiger Ausflug in Kiel oder Westerrönfeld bei Rendsburg. Gruppenanfrage für beide Hallen.",
   path: "/gruppenanmeldung-schulklassen/",
   image: "/images/media/kiel-bungee-trampolin.webp",
 });
@@ -25,9 +25,11 @@ export default function Page() {
         eyebrow="Gruppen & Schulen"
         eyebrowTone="text-blue-strong"
         title="Klassenausflug und Gruppenbesuch bei Pepelino"
-        intro={groupOffer.kiel.text.map((t) => (
-          <p key={t}>{t}</p>
-        ))}
+        intro={
+          <p>
+            Ein wetterunabhängiger Ausflug für Schulklassen, Kindergartengruppen und Horte – in Kiel und in Westerrönfeld bei Rendsburg. Rutschen, klettern, springen und gemeinsam Pause machen.
+          </p>
+        }
         image="kielTrampolin"
       >
         <a href="#anfrage" className="btn btn-blue">
@@ -43,9 +45,11 @@ export default function Page() {
             </div>
             <div className="p-6">
               <h3 className="h-card text-blue-strong">Kiel</h3>
-              <p className="mt-2 text-ink-soft">
-                Rutschen, Klettergerüste, Trampoline und viele weitere Attraktionen. Gruppenbesuche nach Absprache auch vormittags – für Projekttage, Wandertage oder den Schuljahresabschluss.
-              </p>
+              {groupOffer.kiel.text.map((t) => (
+                <p key={t} className="mt-2 text-ink-soft">
+                  {t}
+                </p>
+              ))}
             </div>
           </div>
           <div className="card overflow-hidden">

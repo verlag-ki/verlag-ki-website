@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Location } from "@/content/schema";
 import { Icon } from "@/components/ui/Icon";
 import { Photo } from "@/components/ui/Photo";
+import { BrandWord } from "@/components/ui/BrandWord";
 
 const TEASER: Record<Location["id"], string> = {
   kiel: "Klettervulkan, Bungee-Trampoline und Kartbahn am Göteborgring.",
@@ -15,14 +16,18 @@ export function LocationCard({ location: loc, headingLevel = "h3" }: { location:
   return (
     <article className={`relative grid overflow-hidden text-white shadow-[var(--shadow-lift)] sm:grid-cols-[1fr_1.05fr] ${bg} rounded-[2rem_3.5rem_2.25rem_3rem]`}>
       <div className="order-2 flex flex-col justify-center gap-3 p-7 sm:order-1 sm:p-9">
-        <p className="eyebrow text-white/85">Pepelino</p>
-        <H className="-mt-1 text-[2.1rem] leading-none sm:text-[2.4rem]">{loc.shortName}</H>
+        <p className="self-start rounded-full bg-white px-3.5 pb-1.5 pt-1 font-display text-[1.45rem] font-bold leading-none shadow-sm">
+          <BrandWord />
+        </p>
+        <H className="text-[2.1rem] leading-none sm:text-[2.4rem]">{loc.shortName}</H>
         <p className="max-w-[28ch] text-white/95">{TEASER[loc.id]}</p>
         <p className="text-[0.95rem] text-white/85">
           {loc.address.street}, {loc.address.postalCode} {loc.address.city}
         </p>
         <Link href={loc.pages.location} className="btn btn-white mt-2 self-start">
-          Standort <span className="sr-only">{loc.shortName}</span> entdecken
+          <span>
+            Standort<span className="sr-only"> {loc.shortName}</span> entdecken
+          </span>
           <Icon name="arrow" className="size-4" />
         </Link>
       </div>

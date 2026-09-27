@@ -9,9 +9,9 @@ Alle Angaben unten stammen aus tatsächlich ausgeführten Läufen.
 |---|---|---|
 | TypeScript | `npm run typecheck` | ✅ keine Fehler |
 | ESLint (next/core-web-vitals + TS) | `npm run lint` | ✅ 0 Fehler, 0 Warnungen |
-| Unit-Tests (Vitest) | `npm test` | ✅ 28 / 28 |
+| Unit-Tests (Vitest) | `npm test` | ✅ 35 / 35 (Stand 27.09.2026) |
 | Build | `npm run build` | ✅ 18 Seiten + robots/sitemap/icons statisch vorgerendert |
-| E2E + Barrierefreiheit (Playwright + axe) | `npm run test:e2e` | ✅ 75 bestanden, 1 übersprungen (Mobilmenü-Test läuft nur im Mobil-Profil) |
+| E2E + Barrierefreiheit (Playwright + axe) | `npm run test:e2e` | ✅ 83 bestanden, 1 übersprungen (Mobilmenü-Test läuft nur im Mobil-Profil) (Stand 27.09.2026) |
 
 ### Unit-Tests (28)
 - Alle Inhaltsdateien erfüllen ihre Zod-Schemas (10 Datensätze).
@@ -29,6 +29,13 @@ Alle Angaben unten stammen aus tatsächlich ausgeführten Läufen.
 - Westerrönfeld-Formular ohne Kabine/Nische; Paketkarte wählt Paket im Formular vor.
 - Google Maps: vor Klick keine Anfrage an google.*; nach Klick iframe.
 - Mobilmenü per Tastatur öffnen, Escape schließt.
+
+### Ergänzt am 27.09.2026
+- Pflegebereich: alle Datendateien gültig; Keystatic-typische Dateien (leere Felder weggelassen) werden akzeptiert; ungültige Sonderzeiten abgelehnt; abgelaufene Sonderzeiten ausgeblendet. `/keystatic` und `/api/keystatic` im Produktionsbetrieb ohne GitHub-Modus: 404.
+- Manuell im Browser (Dev-Server): Pflegebereich lädt alle Bereiche; Sonderzeit eingetragen und gespeichert → erschien auf Standortseite, Startseite und Kontaktseite (Test-Eintrag danach entfernt). Dabei gefundener Fehler (fehlende Felder in gespeicherten Dateien) behoben.
+- Geburtstags-Kalender: Regeln (Wochentag, Vorlauf, Vergangenheit, Höchstabstand) per Unit-Test; API liefert im Auslieferungszustand `disabled`; im Demo-Modus manuell geprüft (Dienstag abgelehnt, Samstag 3 Zeitfenster, Absenden mit Zeitfenster erfolgreich).
+- Schrägstrich-Weiterleitungen (308) inkl. Query-String; Startseite verlinkt Kiel und Westerrönfeld gleichwertig.
+- Lighthouse wurde nach diesen Änderungen **nicht** erneut gemessen.
 
 ## Lighthouse 13 (Labor, lokal)
 

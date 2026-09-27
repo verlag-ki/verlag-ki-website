@@ -1,0 +1,172 @@
+{
+  "packages": [
+    {
+      "id": "rd-small",
+      "name": "Pepe Small",
+      "tier": "small",
+      "price": 16.9,
+      "minChildren": 5,
+      "features": [
+        {
+          "text": "Eintritt inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Gedeckter Geburtstagstisch",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Persönliches Namensschild zum Mitnehmen",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Getränk (0,3 l)",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Eis oder Slush bis 1,50 €",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Reinigung & Entsorgung inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        }
+      ],
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "rd-medium",
+      "name": "Pepe Medium",
+      "tier": "medium",
+      "price": 19.9,
+      "minChildren": 5,
+      "features": [
+        {
+          "text": "Eintritt inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Gedeckter Geburtstagstisch",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Persönliches Namensschild zum Mitnehmen",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Getränk (0,3 l)",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Eis oder Slush bis 1,50 €",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Geburtstags-Essen: Nuggets (4 Stk.), Wiener oder Falafel – jeweils mit Pommes",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Reinigung & Entsorgung inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        }
+      ],
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "rd-large",
+      "name": "Pepe Large",
+      "tier": "large",
+      "price": 22.9,
+      "minChildren": 5,
+      "features": [
+        {
+          "text": "Eintritt inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Gedeckter Geburtstagstisch",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Persönliches Namensschild zum Mitnehmen",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Getränk (0,3 l)",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Eis oder Slush bis 1,50 €",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Geburtstags-Essen: Nuggets (4 Stk.), Wiener oder Falafel – jeweils mit Pommes",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Freier Eintritt für insgesamt 2 Begleitpersonen je Gruppe",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "2× Kaffee oder Tee für die Begleitpersonen",
+          "verificationStatus": "conflicting_public",
+          "note": "Standortseite: „2× Kaffee-/Teespezialität“; Speisekarte (10/2025): „2× Kaffee/Tee“."
+        },
+        {
+          "text": "Reinigung & Entsorgung inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        }
+      ],
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    }
+  ],
+  "addons": [],
+  "rules": [
+    {
+      "note": "",
+      "text": "Geburtstage sind ab 5 Kindern (inklusive Geburtstagskind) möglich.",
+      "verificationStatus": "verified_public"
+    },
+    {
+      "note": "Standortseite: Montag–Sonntag; Formular: nur Freitag–Sonntag sowie Ferien/Feiertage (E05).",
+      "text": "Mögliche Wochentage werden noch bestätigt – bitte im Anfrageformular euren Wunschtermin nennen.",
+      "verificationStatus": "conflicting_public"
+    }
+  ]
+}

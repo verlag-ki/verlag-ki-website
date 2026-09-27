@@ -10,6 +10,9 @@ import { locationList } from "@/content/locations";
 import { site } from "@/content/site";
 import { absoluteUrl, localBusinessJsonLd, pageMetadata } from "@/lib/seo";
 
+
+// Sonderzeiten laufen ab: Seite stündlich neu erzeugen.
+export const revalidate = 3600;
 export const metadata: Metadata = {
   ...pageMetadata({
     title: "Pepelino – Indoorspielplätze in Kiel und Westerrönfeld",

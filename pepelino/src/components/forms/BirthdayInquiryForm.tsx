@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import type { BirthdayAddon, BirthdayPackage, LocationId } from "@/content/schema";
 import { submitBirthdayInquiry } from "@/lib/forms/actions";
 import { initialFormState } from "@/lib/forms/state";
 import { formatPrice } from "@/lib/format";
+import { SlotPicker } from "./SlotPicker";
 import { DateField, FormStatus, Honeypot, PrivacyCheckbox, SelectField, SubmitButton, TextArea, TextField } from "./Fields";
 
 type Props = {
@@ -13,6 +14,8 @@ type Props = {
   packages: BirthdayPackage[];
   addons: BirthdayAddon[];
   dateHint: string;
+  /** Geburtstags-Kalender aktiv? Dann Zeitfenster statt freier Startzeit (siehe src/lib/booking). */
+  calendar?: boolean;
 };
 
 const START_TIMES = ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
@@ -21,10 +24,11 @@ const START_TIMES = ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:0
  * Anfrageformular Kindergeburtstag. Pakete/Optionen kommen aus denselben
  * Datensätzen wie die Paketübersicht (src/content/birthdays.ts).
  */
-export function BirthdayInquiryForm({ location, locationName, packages, addons, dateHint }: Props) {
+export function BirthdayInquiryForm({ location, locationName, packages, addons, dateHint, calendar = false }: Props) {
   const [state, action, pending] = useActionState(submitBirthdayInquiry, initialFormState);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
+  const [date, setDate] = useState("");
 
   // Paketkarten verlinken auf #paket-<id>: passendes Paket vorauswählen.
   useEffect(() => {
@@ -109,15 +113,21 @@ export function BirthdayInquiryForm({ location, locationName, packages, addons, 
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField name="childName" label="Vorname des Geburtstagskindes" state={state} required autoComplete="off" hint="Für das persönliche Namensschild." />
         <TextField name="childAge" label="Alter, das gefeiert wird" type="number" inputMode="numeric" min={1} max={17} state={state} required />
-        <DateField name="date" label="Wunschdatum" state={state} required hint={dateHint} />
-        <SelectField
-          name="startTime"
-          label="Gewünschte Startzeit"
-          state={state}
-          required
-          options={START_TIMES.map((t) => ({ value: t, label: `${t} Uhr` }))}
-          hint="Wir stimmen die genaue Zeit mit euch ab."
-        />
+        <DateField name="date" label="Wunschdatum" state={state} required hint={dateHint} onValueChange={calendar ? setDate : undefined} />
+        {calendar ? (
+          <div className="sm:col-span-2">
+            <SlotPicker location={location} date={date || state.values?.date || ""} error={state.fieldErrors?.startTime} defaultValue={state.values?.startTime} />
+          </div>
+        ) : (
+          <SelectField
+            name="startTime"
+            label="Gewünschte Startzeit"
+            state={state}
+            required
+            options={START_TIMES.map((t) => ({ value: t, label: `${t} Uhr` }))}
+            hint="Wir stimmen die genaue Zeit mit euch ab."
+          />
+        )}
         <TextField name="children" label="Anzahl Kinder (inkl. Geburtstagskind)" type="number" inputMode="numeric" min={5} max={40} state={state} required hint="Mindestens 5 Kinder." />
         <TextField name="adults" label="Anzahl Erwachsene" type="number" inputMode="numeric" min={0} max={40} state={state} required />
       </div>

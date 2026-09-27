@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { MenuPage } from "@/components/menu/MenuPage";
 import { pageMetadata } from "@/lib/seo";
 
+
+// Sonderzeiten laufen ab: Seite stündlich neu erzeugen.
+export const revalidate = 3600;
 export const metadata: Metadata = pageMetadata({
   title: "Speisekarte Kiel – Bistro im Pepelino",
   description: "Speisen und Getränke im Pepelino Kiel: Chicken Nuggets, Pizza, Burger, Pommes, Kaffeespezialitäten und mehr – mit Preisen.",

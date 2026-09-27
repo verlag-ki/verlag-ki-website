@@ -4,6 +4,7 @@ import { ReviewMarker } from "@/components/ui/ReviewMarker";
 import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { faqJsonLd } from "@/lib/seo";
+import { SpecialDates } from "./SpecialDates";
 
 export function OpeningHours({ location: loc, compact = false }: { location: Location; compact?: boolean }) {
   return (
@@ -25,6 +26,9 @@ export function OpeningHours({ location: loc, compact = false }: { location: Loc
           </div>
         ))}
       </dl>
+      <div className={compact ? "mt-3 empty:hidden" : "mt-5 empty:hidden"}>
+        <SpecialDates dates={loc.specialDates} limit={compact ? 3 : undefined} />
+      </div>
     </div>
   );
 }

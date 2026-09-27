@@ -1,12 +1,8 @@
 import type { Location, LocationId } from "./schema";
 import { SOURCES, src } from "./sources";
+import { openingFor } from "./editable";
 
-/** Reguläre Öffnungszeiten – an beiden Standorten öffentlich identisch angegeben. */
-const regularSlots = (): Location["opening"]["slots"] => [
-  { days: ["mo", "di", "mi", "do"], opens: null, closes: null },
-  { days: ["fr"], opens: "14:00", closes: "19:00" },
-  { days: ["sa", "so"], opens: "11:00", closes: "19:00" },
-];
+const hours = { kiel: openingFor("kiel"), westerroenfeld: openingFor("westerroenfeld") };
 
 export const locations: Record<LocationId, Location> = {
   kiel: {
@@ -42,18 +38,9 @@ export const locations: Record<LocationId, Location> = {
       ),
     },
     email: { address: "info@pepelino-fun.de", provenance: src(SOURCES.contact, "verified_public", "Zentrale E-Mail") },
-    opening: { slots: regularSlots(), provenance: src(SOURCES.menuKiel) },
-    openingExceptions: [
-      {
-        label: "Ferien & Feiertage",
-        text: "12:00 – 19:00 Uhr",
-        provenance: src(
-          SOURCES.menuImgKielDrinks,
-          "conflicting_public",
-          "Nur auf der Kieler Getränkekarte (Bild, Stand 10/2025) genannt; HTML-Seite verweist auf „siehe Hauptseite“.",
-        ),
-      },
-    ],
+    opening: hours.kiel.opening,
+    openingExceptions: hours.kiel.exceptions,
+    specialDates: hours.kiel.specialDates,
     intro: [
       "Rutschen, hüpfen, klettern – oder ganz entspannt durchs Bällebad krabbeln: In unserer Halle am Göteborgring in Kiel-Mettenhof findet jedes Kind seine Lieblingsecke, ganz egal, wie das Wetter draußen ist.",
       "Während die Kinder toben, können Eltern im Bistro bei Milchkaffee oder Tee zusehen.",
@@ -110,14 +97,9 @@ export const locations: Record<LocationId, Location> = {
         "Angezeigt wird rendsburg@pepelino-fun.de, verlinkt ist teilweise mailto:pepelino-rendsburg@gmx.de.",
       ),
     },
-    opening: { slots: regularSlots(), provenance: src(SOURCES.menuRd) },
-    openingExceptions: [
-      {
-        label: "Ferien & Feiertage",
-        text: "Gesonderte Zeiten – aktuelle Angaben bitte beim Standort erfragen.",
-        provenance: src(SOURCES.menuImgRdDrinks, "unknown", "Getränkekarte nennt nur „Siehe Webseite“."),
-      },
-    ],
+    opening: hours.westerroenfeld.opening,
+    openingExceptions: hours.westerroenfeld.exceptions,
+    specialDates: hours.westerroenfeld.specialDates,
     intro: [
       "Direkt am Busbahnhof in Westerrönfeld, gleich bei Rendsburg, wartet eine bunte Auswahl an Spielgeräten: Runden drehen mit Dreirad oder Go-Kart, die zweibahnige Riesenrutsche oder die mächtige Walrutsche ausprobieren.",
       "Im großzügigen Gastronomiebereich stärkt sich die ganze Familie, und für Geburtstage gibt es einen eigenen Bereich, in dem ihr ungestört feiern könnt.",

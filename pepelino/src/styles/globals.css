@@ -34,6 +34,13 @@
   --color-sun-wash: #fff6dc;
   --color-orange: #e8590c;
 
+  /* Logofarben (aus public/brand/pepelino-logo.png gemessen) – nur für den Schriftzug */
+  --color-logo-cyan: #00a8c8;
+  --color-logo-green: #50a838;
+  --color-logo-red: #e01820;
+  --color-logo-yellow: #f8e800;
+  --color-logo-outline: #1d1d1b;
+
   --radius-card: 1.25rem;
   --radius-pill: 999px;
 
@@ -245,6 +252,27 @@
     color: var(--color-blue-strong);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+
+  /* „Pepelino“ wie im Logo: bunte Buchstaben mit dunkler Kontur */
+  .brand-word {
+    display: inline-block;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 0.09em var(--color-logo-outline);
+    paint-order: stroke fill;
+  }
+  .brand-word > span:nth-child(4n + 1) {
+    color: var(--color-logo-cyan);
+  }
+  .brand-word > span:nth-child(4n + 2) {
+    color: var(--color-logo-green);
+  }
+  .brand-word > span:nth-child(4n + 3) {
+    color: var(--color-logo-red);
+  }
+  .brand-word > span:nth-child(4n + 4) {
+    color: var(--color-logo-yellow);
   }
 
   .review-marker {

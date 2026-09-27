@@ -149,3 +149,31 @@ test("Mobiles Menü per Tastatur bedienbar", async ({ page, isMobile }) => {
   await page.keyboard.press("Escape");
   await expect(page.getByRole("navigation", { name: "Mobile Navigation" })).toBeHidden();
 });
+
+test("Pflegebereich ist im Produktionsbetrieb ohne GitHub-Anbindung gesperrt", async ({ request }) => {
+  expect((await request.get("/keystatic", { maxRedirects: 0 })).status()).toBe(404);
+  expect((await request.get("/api/keystatic/tree")).status()).toBe(404);
+});
+
+test("URLs ohne Schrägstrich werden auf die Schrägstrich-Variante weitergeleitet", async ({ request }) => {
+  const res = await request.get("/indoorspielplatz-kiel?x=1", { maxRedirects: 0 });
+  expect(res.status()).toBe(308);
+  expect(res.headers()["location"]).toBe("/indoorspielplatz-kiel/?x=1");
+});
+
+test("Geburtstags-Kalender ist vorbereitet, aber ausgeschaltet", async ({ page, request }) => {
+  const api = await request.get("/api/geburtstag/verfuegbarkeit?standort=kiel&datum=2026-10-10");
+  expect(await api.json()).toEqual({ status: "disabled" });
+  expect((await request.get("/api/geburtstag/verfuegbarkeit?standort=hamburg&datum=x")).status()).toBe(400);
+  await page.goto("/kindergeburtstag-kiel/");
+  await expect(page.locator("#anfrage select[name=startTime]")).toHaveCount(1);
+});
+
+test("Startseite behandelt beide Standorte gleichwertig", async ({ page }) => {
+  await page.goto("/");
+  for (const id of ["#attraktionen", "#geburtstag"]) {
+    await expect(page.locator(`${id} a[href^="/indoorspielplatz-kiel/"], ${id} a[href="/kindergeburtstag-kiel/"]`)).toHaveCount(1);
+    await expect(page.locator(`${id} a[href^="/indoorspielplatz-rendsburg/"], ${id} a[href="/kindergeburtstag-rendsburg/"]`)).toHaveCount(1);
+  }
+  await expect(page.locator(".brand-word").first()).toBeVisible();
+});

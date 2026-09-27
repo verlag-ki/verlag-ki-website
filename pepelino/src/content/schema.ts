@@ -13,11 +13,15 @@ export const verificationStatus = z.enum([
 ]);
 export type VerificationStatus = z.infer<typeof verificationStatus>;
 
+/** Leere Texte aus dem Pflegebereich werden zu `undefined`. */
+const optionalText = z.preprocess((v) => (v === "" || v === null ? undefined : v), z.string().optional());
+
 export const provenance = z.object({
-  sourceUrl: z.string().url(),
+  // Bei Kundenfreigabe (client_approved) darf die Quelle leer bleiben.
+  sourceUrl: z.string().url().or(z.literal("")),
   checkedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   verificationStatus,
-  note: z.string().optional(),
+  note: optionalText,
 });
 export type Provenance = z.infer<typeof provenance>;
 
@@ -38,6 +42,21 @@ export const openingException = z.object({
   text: z.string(),
   provenance,
 });
+
+/** Sonderöffnungen, Ferienzeiten und Schließtage – im Pflegebereich eintragbar. */
+export const specialDate = z
+  .object({
+    from: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    to: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    label: z.string().min(1),
+    closed: z.boolean(),
+    opens: z.string().regex(/^\d{2}:\d{2}$/).nullable(),
+    closes: z.string().regex(/^\d{2}:\d{2}$/).nullable(),
+    note: optionalText,
+  })
+  .refine((d) => d.to >= d.from, { message: "Enddatum vor Startdatum" })
+  .refine((d) => d.closed || (d.opens && d.closes), { message: "Uhrzeiten fehlen" });
+export type SpecialDate = z.infer<typeof specialDate>;
 
 export const rightsStatus = z.enum([
   "client_provided", // vom Auftraggeber direkt geliefert
@@ -80,6 +99,7 @@ export const location = z.object({
   email: z.object({ address: z.string().email(), provenance }).nullable(),
   opening: z.object({ slots: z.array(openingSlot), provenance }),
   openingExceptions: z.array(openingException),
+  specialDates: z.array(specialDate),
   intro: z.array(z.string()),
   highlights: z.array(z.string()),
   heroImage: z.string(),
@@ -112,7 +132,7 @@ export const admissionPrice = z.object({
   id: z.string(),
   location: locationId,
   category: z.string(),
-  note: z.string().optional(),
+  note: optionalText,
   price: money,
   unit: z.string(),
   provenance,
@@ -122,7 +142,7 @@ export type AdmissionPrice = z.infer<typeof admissionPrice>;
 export const packageFeature = z.object({
   text: z.string(),
   verificationStatus,
-  note: z.string().optional(),
+  note: optionalText,
 });
 
 export const birthdayPackage = z.object({
@@ -150,9 +170,9 @@ export type BirthdayAddon = z.infer<typeof birthdayAddon>;
 
 export const menuItem = z.object({
   name: z.string(),
-  detail: z.string().optional(),
-  variants: z.array(z.object({ size: z.string().optional(), price: money.nullable() })).min(1),
-  note: z.string().optional(),
+  detail: optionalText,
+  variants: z.array(z.object({ size: optionalText, price: money.nullable() })).min(1),
+  note: optionalText,
 });
 export type MenuItem = z.infer<typeof menuItem>;
 

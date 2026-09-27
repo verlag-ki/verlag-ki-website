@@ -42,3 +42,17 @@ export function formatTimeRange(opens: string | null, closes: string | null): st
 export function todayInBerlin(now: Date = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
 }
+
+const dayFmt = new Intl.DateTimeFormat("de-DE", { weekday: "short", day: "2-digit", month: "2-digit", timeZone: "UTC" });
+
+/** "Mo., 12.10." bzw. "Mo., 12.10. – Fr., 23.10." (ISO-Datumsangaben YYYY-MM-DD) */
+export function formatDateRange(from: string, to: string): string {
+  const f = dayFmt.format(new Date(`${from}T00:00:00Z`));
+  if (to === from) return f;
+  return `${f} – ${dayFmt.format(new Date(`${to}T00:00:00Z`))}`;
+}
+
+/** Nur Einträge, die heute noch gelten oder in der Zukunft liegen. */
+export function upcoming<T extends { to: string }>(items: T[], today: string = todayInBerlin()): T[] {
+  return items.filter((i) => i.to >= today);
+}

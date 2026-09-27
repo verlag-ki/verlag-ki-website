@@ -3,6 +3,9 @@ import { LocationPage } from "@/components/locations/LocationPage";
 import { locations } from "@/content/locations";
 import { pageMetadata } from "@/lib/seo";
 
+
+// Sonderzeiten laufen ab: Seite stündlich neu erzeugen.
+export const revalidate = 3600;
 export const metadata: Metadata = pageMetadata({
   title: "Indoorspielplatz Kiel – Klettervulkan, Trampoline & Kartbahn",
   description:

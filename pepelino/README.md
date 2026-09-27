@@ -13,6 +13,7 @@ Lokal lauffähige Relaunch-Version von www.pepelino-fun.de auf Basis des freigeg
 | TypeScript | 5.9 |
 | Tailwind CSS | 4.3 (Tokens in `src/styles/globals.css`) |
 | Zod | 4.x (Inhalts- und Formularvalidierung) |
+| Keystatic | 0.6 (Pflegebereich, Git-basiert, ohne Datenbank) |
 | Schriften | Bricolage Grotesque + Nunito Sans, lokal via `@fontsource-variable` (SIL OFL 1.1) |
 | Tests | Vitest 5, Playwright 1.56.1, axe-core |
 
@@ -51,6 +52,8 @@ Ergebnisse des letzten Laufs: [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md).
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://www.pepelino-fun.de` | Basis für Canonicals, Sitemap, Open Graph |
 | `SITE_INDEXABLE` | *(nicht gesetzt)* | Erst `true` erlaubt Indexierung (robots.txt, Meta-Robots, `X-Robots-Tag`) und blendet den Vorschau-Balken aus. **Nur für den freigegebenen Livegang setzen.** |
+| `NEXT_PUBLIC_KEYSTATIC_STORAGE` | lokal | `github` für den Pflegebereich in Produktion (sonst ist `/keystatic` dort gesperrt). Details: `docs/PFLEGE.md` |
+| `BIRTHDAY_CALENDAR` | *(nicht gesetzt)* | `demo` erzwingt den Geburtstags-Kalender (zum Vorführen) |
 | `NEXT_PUBLIC_SHOW_REVIEW_MARKERS` | an | `false` blendet die gelben „in Prüfung“-Hinweise aus (z. B. für Präsentationen). Die Daten bleiben markiert. |
 
 ## Projektstruktur
@@ -71,13 +74,17 @@ docs/                   Projektdokumentation
 
 ## Inhalte ändern
 
+**Ohne Programmierung:** Pflegebereich unter `/keystatic` (lokal: http://localhost:3000/keystatic). Öffnungszeiten, Ferien-/Sonderzeiten, Eintrittspreise, Geburtstagspakete, Geburtstagstermine, Speisekarten und FAQ. Anleitung fürs Team: [`docs/PFLEGE.md`](docs/PFLEGE.md). Die Daten liegen als JSON in `src/content/data/` und werden beim Build geprüft.
+
 Alle Preise, Zeiten, Pakete, Speisen, FAQ und Kontaktdaten liegen in `src/content/`. Komponenten enthalten keine Geschäftsdaten.
 
-- **Öffnungszeiten / Adresse / Kontakt:** `src/content/locations.ts`
-- **Eintrittspreise:** `src/content/prices.ts`
-- **Geburtstagspakete & Kabine/Nische:** `src/content/birthdays.ts` – speist Paketübersicht *und* Formular.
-- **Speisekarten (inkl. QR-Seiten):** `src/content/menus.ts`
-- **FAQ:** `src/content/faq.ts`
+- **Öffnungszeiten & Sonderzeiten:** `src/content/data/oeffnungszeiten-*.json` (Pflegebereich)
+- **Eintrittspreise:** `src/content/data/preise-*.json` (Pflegebereich)
+- **Geburtstagspakete & Kabine/Nische:** `src/content/data/geburtstag-*.json` (Pflegebereich) – speist Paketübersicht *und* Formular.
+- **Geburtstags-Kalender:** `src/content/data/geburtstag-termine-*.json` (Pflegebereich, derzeit aus) – siehe [`docs/GEBURTSTAGSKALENDER.md`](docs/GEBURTSTAGSKALENDER.md)
+- **Speisekarten (inkl. QR-Seiten):** `src/content/data/speisekarte-*.json` (Pflegebereich)
+- **FAQ:** `src/content/data/faq.json` (Pflegebereich)
+- **Adresse / Kontakt / Attraktionen / Fotos:** `src/content/locations.ts`, `attractions.ts`, `media.ts` (Code)
 - **Offene Punkte:** `src/content/verification-queue.ts`
 
 Jeder Eintrag trägt `provenance` (`sourceUrl`, `checkedAt`, `verificationStatus`, `note`). Nach Kundenfreigabe den Status auf `client_approved` setzen – dann verschwindet der Prüfhinweis. `npm test` prüft alle Daten gegen die Schemas.
@@ -99,6 +106,8 @@ Siehe [`docs/OPEN_ITEMS_FOR_LAUNCH.md`](docs/OPEN_ITEMS_FOR_LAUNCH.md). Kurz: of
 
 ## Dokumentation
 
+- [`docs/PFLEGE.md`](docs/PFLEGE.md) – Anleitung Pflegebereich
+- [`docs/GEBURTSTAGSKALENDER.md`](docs/GEBURTSTAGSKALENDER.md)
 - [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md)
 - [`docs/SOURCES.md`](docs/SOURCES.md)
 - [`docs/CONTENT_VERIFICATION.md`](docs/CONTENT_VERIFICATION.md)

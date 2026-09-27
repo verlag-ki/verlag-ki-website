@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { attractions, homeAttractionIds } from "@/content/attractions";
-import { locations } from "@/content/locations";
-import { Doodle, Icon } from "@/components/ui/Icon";
+import { Doodle } from "@/components/ui/Icon";
+import { LocationChoice } from "@/components/locations/LocationChoice";
 import { AttractionCard } from "@/components/locations/AttractionCard";
 
 export function AttractionsTeaser() {
@@ -18,15 +17,8 @@ export function AttractionsTeaser() {
           <p className="mt-4 max-w-[38ch] text-ink-soft">
             Klettern, rutschen, springen oder auf der Kartbahn Runden drehen – jede Halle hat ihre eigenen Lieblingsorte.
           </p>
-          <div className="mt-6 flex flex-col items-start gap-1">
-            <Link href={`${locations.kiel.pages.location}#attraktionen`} className="btn btn-pink">
-              Attraktionen in Kiel
-              <Icon name="arrow" className="size-4" />
-            </Link>
-            <Link href={`${locations.westerroenfeld.pages.location}#attraktionen`} className="link-arrow text-ink">
-              …und in Westerrönfeld
-              <Icon name="arrow" className="size-4" />
-            </Link>
+          <div className="mt-6">
+            <LocationChoice target="location" anchor="#attraktionen" label={(n) => `Attraktionen ${n}`} />
           </div>
         </div>
         <ul className="grid gap-6 sm:grid-cols-3">

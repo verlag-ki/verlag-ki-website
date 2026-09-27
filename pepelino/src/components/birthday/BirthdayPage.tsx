@@ -9,6 +9,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Photo } from "@/components/ui/Photo";
 import { ReviewMarker } from "@/components/ui/ReviewMarker";
 import { BirthdayInquiryForm } from "@/components/forms/BirthdayInquiryForm";
+import { calendarEnabled } from "@/lib/booking";
 
 export function BirthdayPackageCard({ pkg, featured }: { pkg: BirthdayPackage; featured?: boolean }) {
   return (
@@ -132,6 +133,7 @@ export function BirthdayPage({ location: loc }: { location: Location }) {
               packages={packages}
               addons={addons}
               dateHint={dateHint}
+              calendar={calendarEnabled(loc.id)}
             />
           </div>
           <aside className="space-y-5 text-[0.97rem]">

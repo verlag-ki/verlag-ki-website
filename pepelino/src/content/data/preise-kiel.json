@@ -1,0 +1,82 @@
+{
+  "prices": [
+    {
+      "id": "kiel-u2",
+      "category": "Kinder unter 2 Jahren",
+      "note": "mit Nachweis",
+      "price": 4,
+      "unit": "pro Kind",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "kiel-kind",
+      "category": "Kinder ab 2 Jahren",
+      "price": 14,
+      "unit": "pro Kind",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "kiel-kind-beh",
+      "category": "Kind mit Behinderung",
+      "note": "mit Nachweis; Begleitperson zahlt regulär",
+      "price": 8.5,
+      "unit": "pro Kind",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "kiel-erw",
+      "category": "Erwachsene",
+      "price": 7,
+      "unit": "pro Person",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "kiel-ue65",
+      "category": "Seniorinnen und Senioren ab 65",
+      "note": "mit Nachweis",
+      "price": 4,
+      "unit": "pro Person",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "kiel-erw-beh",
+      "category": "Erwachsene mit Behinderung",
+      "note": "mit Nachweis",
+      "price": 4,
+      "unit": "pro Person",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    }
+  ]
+}

@@ -3,6 +3,8 @@ import { locations } from "@/content/locations";
 import { pricesFor } from "@/content/prices";
 import { formatDays, formatPrice, formatTimeRange } from "@/lib/format";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { locationList } from "@/content/locations";
+import { formatDateRange, upcoming } from "@/lib/format";
 
 function childPrice(id: "kiel" | "westerroenfeld") {
   const p = pricesFor(id).find((x) => x.category === "Kinder ab 2 Jahren");
@@ -15,7 +17,7 @@ export function PlanVisit() {
   const sameHours =
     JSON.stringify(kiel.opening.slots) === JSON.stringify(locations.westerroenfeld.opening.slots);
 
-  const cards: { icon: IconName; tone: string; title: string; body: React.ReactNode; href: string; cta: string }[] = [
+  const cards: { icon: IconName; tone: string; title: string; body: React.ReactNode; links: { href: string; label: string }[] }[] = [
     {
       icon: "clock",
       tone: "bg-sun-wash text-[#8a6a00]",
@@ -28,10 +30,17 @@ export function PlanVisit() {
             </span>
           ))}
           {sameHours && <span className="mt-1 block text-ink-soft">in Kiel und Westerrönfeld</span>}
+          {locationList.map((l) => {
+            const next = upcoming(l.specialDates)[0];
+            return next ? (
+              <span key={l.id} className="mt-2 block rounded-lg bg-sun-wash px-2 py-1 text-[0.9rem]">
+                <strong>{l.shortName}:</strong> {next.label} ({formatDateRange(next.from, next.to)})
+              </span>
+            ) : null;
+          })}
         </>
       ),
-      href: "/indoorspielplatz-kiel/#preise",
-      cta: "Zeiten & Ausnahmen",
+      links: [{ href: "/indoorspielplatz-in-der-naehe/#preise", label: "Zeiten & Ausnahmen" }],
     },
     {
       icon: "ticket",
@@ -42,24 +51,24 @@ export function PlanVisit() {
           Kinder ab 2 Jahren: {childPrice("kiel")} in Kiel, {childPrice("westerroenfeld")} in Westerrönfeld.
         </>
       ),
-      href: "/indoorspielplatz-rendsburg/#preise",
-      cta: "Alle Preise",
+      links: [{ href: "/indoorspielplatz-in-der-naehe/#preise", label: "Beide Preislisten" }],
     },
     {
       icon: "cutlery",
       tone: "bg-green-wash text-green-strong",
       title: "Speisen & Getränke",
       body: <>Snacks, Pizza, Burger und Kaffeespezialitäten im Bistro. Eigene Speisen bitte zu Hause lassen.</>,
-      href: "/kinderspieleparadies-kiel/",
-      cta: "Zur Speisekarte",
+      links: [
+        { href: locations.kiel.pages.menu, label: "Speisekarte Kiel" },
+        { href: locations.westerroenfeld.pages.menu, label: "Speisekarte Westerrönfeld" },
+      ],
     },
     {
       icon: "pin",
       tone: "bg-blue-wash text-blue-strong",
       title: "Anfahrt & Kontakt",
       body: <>Kostenlose Parkplätze an beiden Standorten. Adressen, Telefon und Routenplaner auf einen Blick.</>,
-      href: "/indoorspielplatz-in-der-naehe/",
-      cta: "Jetzt ansehen",
+      links: [{ href: "/indoorspielplatz-in-der-naehe/", label: "Jetzt ansehen" }],
     },
   ];
 
@@ -80,10 +89,16 @@ export function PlanVisit() {
                 <h3 className="h-card">{c.title}</h3>
               </div>
               <p className="mt-3 flex-1 text-[0.97rem] leading-relaxed">{c.body}</p>
-              <Link href={c.href} className="link-arrow mt-3 self-start text-blue-strong">
-                {c.cta}
-                <Icon name="arrow" className="size-4" />
-              </Link>
+              <ul className="mt-3">
+                {c.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="link-arrow text-blue-strong">
+                      {l.label}
+                      <Icon name="arrow" className="size-4" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>

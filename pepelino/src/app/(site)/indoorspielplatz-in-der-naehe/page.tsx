@@ -12,6 +12,9 @@ import { pricesFor } from "@/content/prices";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
+
+// Sonderzeiten laufen ab: Seite stündlich neu erzeugen.
+export const revalidate = 3600;
 export const metadata: Metadata = pageMetadata({
   title: "Indoorspielplatz in der Nähe – Kontakt, Preise & Anfahrt",
   description:

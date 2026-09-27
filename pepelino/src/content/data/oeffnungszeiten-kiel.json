@@ -1,0 +1,45 @@
+{
+  "slots": [
+    {
+      "days": [
+        "mo",
+        "di",
+        "mi",
+        "do"
+      ]
+    },
+    {
+      "days": [
+        "fr"
+      ],
+      "opens": "14:00",
+      "closes": "19:00"
+    },
+    {
+      "days": [
+        "sa",
+        "so"
+      ],
+      "opens": "11:00",
+      "closes": "19:00"
+    }
+  ],
+  "provenance": {
+    "verificationStatus": "verified_public",
+    "checkedAt": "2026-09-26",
+    "sourceUrl": "https://www.pepelino-fun.de/kinderspieleparadies-kiel/"
+  },
+  "specialDates": [],
+  "exceptions": [
+    {
+      "label": "Ferien & Feiertage",
+      "text": "12:00 – 19:00 Uhr",
+      "provenance": {
+        "verificationStatus": "conflicting_public",
+        "checkedAt": "2026-09-26",
+        "sourceUrl": "https://www.pepelino-fun.de/wp-content/uploads/2025/10/Kiel-Getraenke.jpg",
+        "note": "Nur auf der Kieler Getränkekarte (Bild, Stand 10/2025) genannt; HTML-Seite verweist auf „siehe Hauptseite“."
+      }
+    }
+  ]
+}

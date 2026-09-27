@@ -151,4 +151,5 @@ export function attractionsFor(location: LocationId): Attraction[] {
 }
 
 /** Drei Karten für die Startseite – Standortbezug wird in der Karte angezeigt. */
-export const homeAttractionIds = ["kiel-klettervulkan", "rd-fahrzeuge", "kiel-trampolin"] as const;
+/** Startseite: gemischt aus beiden Hallen (Hero zeigt bereits Kiel). */
+export const homeAttractionIds = ["rd-kletter", "kiel-trampolin", "rd-fahrzeuge"] as const;

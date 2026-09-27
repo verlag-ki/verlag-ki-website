@@ -30,6 +30,8 @@ Diese Liste blockiert die Demo nicht. Sie ist die minimale Kundenfreigabe vor ei
 
 ## C. Technik
 
+- [ ] Pflegebereich produktiv schalten: GitHub-Modus + Zugänge fürs Team (oder Keystatic Cloud), siehe `docs/PFLEGE.md`.
+- [ ] Geburtstags-Kalender: Wochentage, Zeitfenster, Kapazität festlegen, dann einschalten – siehe `docs/GEBURTSTAGSKALENDER.md`.
 - [ ] Hosting wählen (Node.js-fähig; Server Actions benötigen Laufzeit) und Domain/SSL einrichten.
 - [ ] Mail-Transport implementieren (`InquiryTransport`), Empfänger konfigurieren, Testversand, Spam-Schutz ergänzen.
 - [ ] Weiterleitungen laut `docs/SEO_MIGRATION.md` inkl. Search-Console-Abgleich.

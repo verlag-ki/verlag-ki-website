@@ -1,0 +1,82 @@
+{
+  "prices": [
+    {
+      "id": "rd-u2",
+      "category": "Kinder bis 2 Jahre",
+      "note": "mit Nachweis",
+      "price": 4,
+      "unit": "pro Kind",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "rd-kind",
+      "category": "Kinder ab 2 Jahren",
+      "price": 12,
+      "unit": "pro Kind",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "rd-kind-beh",
+      "category": "Kind mit Behinderung",
+      "note": "mit Nachweis; Begleitperson zahlt regulär",
+      "price": 8.5,
+      "unit": "pro Kind",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "rd-erw",
+      "category": "Erwachsene",
+      "price": 6,
+      "unit": "pro Person",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "rd-ue65",
+      "category": "Seniorinnen und Senioren ab 65",
+      "note": "mit Nachweis",
+      "price": 4,
+      "unit": "pro Person",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "rd-erw-beh",
+      "category": "Erwachsene mit Behinderung",
+      "note": "mit Nachweis",
+      "price": 4,
+      "unit": "pro Person",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    }
+  ]
+}

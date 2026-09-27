@@ -1,0 +1,207 @@
+{
+  "packages": [
+    {
+      "id": "kiel-small",
+      "name": "Pepe Small",
+      "tier": "small",
+      "price": 16.9,
+      "minChildren": 5,
+      "features": [
+        {
+          "text": "Eintritt inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Gedeckter Geburtstagstisch",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Persönliches Namensschild zum Mitnehmen",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Getränk (0,3 l)",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Eis oder Slush",
+          "verificationStatus": "conflicting_public",
+          "note": "Wertgrenze öffentlich widersprüchlich: Standortseite Kiel 1,50 €, Geburtstagsseite Kiel und Speisekarte (10/2025) 2,00 €."
+        },
+        {
+          "text": "Reinigung & Entsorgung inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        }
+      ],
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "kiel-medium",
+      "name": "Pepe Medium",
+      "tier": "medium",
+      "price": 21.9,
+      "minChildren": 5,
+      "features": [
+        {
+          "text": "Eintritt inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Gedeckter Geburtstagstisch",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Persönliches Namensschild zum Mitnehmen",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Getränk (0,3 l)",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Eis oder Slush",
+          "verificationStatus": "conflicting_public",
+          "note": "Wertgrenze öffentlich widersprüchlich: Standortseite Kiel 1,50 €, Geburtstagsseite Kiel und Speisekarte (10/2025) 2,00 €."
+        },
+        {
+          "text": "1× Geburtstags-Essen: Nuggets (4 Stk.), Wiener oder Falafel – jeweils mit Pommes",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Reinigung & Entsorgung inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        }
+      ],
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "kiel-large",
+      "name": "Pepe Large",
+      "tier": "large",
+      "price": 24.9,
+      "minChildren": 5,
+      "features": [
+        {
+          "text": "Eintritt inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Gedeckter Geburtstagstisch",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Persönliches Namensschild zum Mitnehmen",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Getränk (0,3 l)",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "1× Eis oder Slush",
+          "verificationStatus": "conflicting_public",
+          "note": "Wertgrenze öffentlich widersprüchlich: Standortseite Kiel 1,50 €, Geburtstagsseite Kiel und Speisekarte (10/2025) 2,00 €."
+        },
+        {
+          "text": "1× Geburtstags-Essen: Nuggets (4 Stk.), Wiener oder Falafel – jeweils mit Pommes",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Überraschung für das Geburtstagskind",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "Freier Eintritt für insgesamt 2 Begleitpersonen je Gruppe",
+          "verificationStatus": "verified_public",
+          "note": ""
+        },
+        {
+          "text": "2× Kaffee oder Tee für die Begleitpersonen",
+          "verificationStatus": "conflicting_public",
+          "note": "Standortseite: „2× Kaffee-/Teespezialität“; Geburtstagsseite: „2× Filterkaffee oder Tee“; Speisekarte: „2× Becher Kaffee oder Tee“."
+        },
+        {
+          "text": "Reinigung & Entsorgung inklusive",
+          "verificationStatus": "verified_public",
+          "note": ""
+        }
+      ],
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    }
+  ],
+  "addons": [
+    {
+      "id": "kiel-nische",
+      "name": "Geburtstagsnische",
+      "price": 20,
+      "description": "Eine eigene Nische für eure Gruppe.",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "kiel-kabine",
+      "name": "Geburtstagskabine",
+      "price": 35,
+      "description": "Eine eigene Kabine mit Thron – ganz unter euch.",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/kindergeburtstag-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    }
+  ],
+  "rules": [
+    {
+      "note": "",
+      "text": "Geburtstage sind ab 5 Kindern (inklusive Geburtstagskind) möglich.",
+      "verificationStatus": "verified_public"
+    },
+    {
+      "note": "",
+      "text": "Termine: Freitag bis Sonntag sowie an Feiertagen und in den Ferien.",
+      "verificationStatus": "verified_public"
+    },
+    {
+      "note": "Auf der Altseite widersprüchlich formuliert (E08); hier als eindeutige Ausnahme formuliert – Freigabe nötig.",
+      "text": "Torte, Kuchen oder Muffins sowie ein kleiner Obst- und Gemüseteller dürfen mitgebracht werden. Andere Speisen und Getränke bitte nicht.",
+      "verificationStatus": "verified_public"
+    }
+  ]
+}

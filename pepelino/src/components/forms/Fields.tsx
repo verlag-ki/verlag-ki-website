@@ -101,8 +101,8 @@ export function TextField({
 }
 
 /** Datumsfeld mit clientseitig gesetztem Minimum „heute“ (Europe/Berlin). */
-export function DateField(props: BaseProps) {
-  const { name, label, state, hint, required, className } = props;
+export function DateField(props: BaseProps & { onValueChange?: (value: string) => void }) {
+  const { name, label, state, hint, required, className, onValueChange } = props;
   const [min, setMin] = useState<string | undefined>(undefined);
   useEffect(() => {
     // Erst im Browser setzen, damit statisch gerenderte Seiten kein veraltetes Datum enthalten.
@@ -121,6 +121,7 @@ export function DateField(props: BaseProps) {
         type="date"
         required={required}
         min={min}
+        onChange={onValueChange ? (e) => onValueChange(e.currentTarget.value) : undefined}
         defaultValue={state.values?.[name]}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(name, hint, error)}

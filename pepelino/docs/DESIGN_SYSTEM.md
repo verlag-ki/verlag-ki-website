@@ -24,6 +24,7 @@ Grundlage ist der **freigegebene, dritte und ruhigere Entwurf** (`Pepelino_Desig
 | `green` / `green-strong` | `#16824A` / `#13733F` | Westerrönfeld, Speisen | 4,9 / 5,9 : 1 |
 | `sun` | `#FFD46C` | nur Deko-Akzente (Krone, Strich) – nie Textfarbe | – |
 | `orange` | `#E8590C` | nur große Schrift/Icons (3,6 : 1) | – |
+| `logo-cyan/green/red/yellow` | s. Typografie | ausschließlich Schriftzug „Pepelino“ | mit Kontur |
 | `blue-wash` | `#EAF6FD` | „Besuch planen“ | – |
 | `pink-wash` | `#FFF1F5` | Geburtstagssektionen | – |
 
@@ -35,7 +36,7 @@ Kleiner Akzenttext auf getönten Flächen nutzt immer die `-strong`-Variante (z.
 - **Nunito Sans** (variabel) für Text, Navigation, Preise und Formulare. Grundgröße 17 px, Zeilenhöhe 1,6.
 - Beide lokal über `@fontsource-variable` eingebunden (SIL Open Font License 1.1), keine Verbindung zu Google Fonts.
 - Skala: `.h-display` clamp(36 → 64 px), `.h-section` clamp(28 → 42 px), `.h-card` 21 px. `text-wrap: balance` gegen unkontrollierte Umbrüche.
-- „Pepelino“ in Überschriften erscheint in den Logofarben (`BrandWord`) – nur für große Schrift.
+- „Pepelino“ erscheint wie im Logo (`BrandWord`, Klasse `.brand-word`): Buchstaben im Wechsel **Cyan `#00A8C8` · Grün `#50A838` · Rot `#E01820` · Gelb `#F8E800`** (aus der Logodatei gemessen) mit dunkler Kontur `#1D1D1B`. Die Kontur macht auch Gelb/Cyan auf Weiß lesbar. Einsatz: Hero-Überschrift und – auf weißem Schild – die Standortkacheln. Nur große Schrift, nicht für Fließtext.
 
 ## Komponenten
 
@@ -52,7 +53,7 @@ Kleiner Akzenttext auf getönten Flächen nutzt immer die `-strong`-Variante (z.
 | `MenuView`, `MenuSection`, `QrMenuPage` | menu/ | eine Datenquelle für Speisekarte und QR |
 | `PageHeader`, `Section`, `Breadcrumbs`, `Photo`, `Icon`, `Doodle`, `ReviewMarker` | ui/ | |
 
-`LocationSelector` aus dem Briefing ist als zweifarbige Standortwahl im Hero, in den Standortkacheln und im Header-Menü umgesetzt; ein eigener Zustands-Umschalter wurde bewusst nicht gebaut, weil jede Standortinformation eine eigene, indexierbare URL hat.
+**Gleichwertige Standorte:** Wo es je Standort ein Ziel gibt, steht `LocationChoice` – zwei gleich große Buttons (Kiel blau, Westerrönfeld grün). Kein Standort ist „Haupt-CTA“. `LocationSelector` aus dem Briefing ist damit sowie im Hero, in den Standortkacheln und im Header-Menü umgesetzt; ein eigener Zustands-Umschalter wurde bewusst nicht gebaut, weil jede Standortinformation eine eigene, indexierbare URL hat.
 
 ## Logo
 

@@ -3,10 +3,10 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 
 const items: { href: string; icon: IconName; title: string; text: string; tone: string }[] = [
   { href: "#attraktionen", icon: "slide", title: "Attraktionen", text: "Klettern, rutschen, hüpfen", tone: "text-blue" },
-  { href: "/kindergeburtstag-kiel/", icon: "cake", title: "Kindergeburtstag", text: "Pakete & Anfrage", tone: "text-pink" },
+  { href: "#geburtstag", icon: "cake", title: "Kindergeburtstag", text: "Pakete & Anfrage", tone: "text-pink" },
   { href: "/gruppenanmeldung-schulklassen/", icon: "group", title: "Gruppen & Schulen", text: "Ausflüge planen", tone: "text-orange" },
-  { href: "/kinderspieleparadies-kiel/", icon: "cutlery", title: "Essen & Trinken", text: "Unsere Speisekarten", tone: "text-green" },
-  { href: "#besuch", icon: "clock", title: "Preise & Zeiten", text: "Alles zum Besuch", tone: "text-blue-strong" },
+  { href: "#besuch", icon: "cutlery", title: "Essen & Trinken", text: "Unsere Speisekarten", tone: "text-green" },
+  { href: "/indoorspielplatz-in-der-naehe/#preise", icon: "clock", title: "Preise & Zeiten", text: "Alles zum Besuch", tone: "text-blue-strong" },
 ];
 
 export function QuickLinks() {

@@ -32,9 +32,11 @@ describe("Inhaltsschemas", () => {
 });
 
 describe("Datenkonsistenz", () => {
-  it("jeder Standort hat genau drei Geburtstagspakete Small/Medium/Large", () => {
+  it("jeder Standort hat mindestens ein Geburtstagspaket, Stufen nicht doppelt", () => {
     for (const loc of locationList) {
-      expect(packagesFor(loc.id).map((p) => p.tier)).toEqual(["small", "medium", "large"]);
+      const tiers = packagesFor(loc.id).map((p) => p.tier);
+      expect(tiers.length).toBeGreaterThan(0);
+      expect(new Set(tiers).size).toBe(tiers.length);
     }
   });
 
