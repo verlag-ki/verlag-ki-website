@@ -4,10 +4,10 @@ Eine eigenständige, mobil nutzbare Website für individuelle Häkelmützen auf 
 
 ## Was enthalten ist
 
-- **Startseite (überarbeitet):** ruhiger Sticky-Header mit Bienenlogo, Hero mit Bogen-Bildrahmen und Stoffetikett, beliebte Muster, die drei Informationskarten (Salbei, Honig, Rosé), Abschnitt „Mit Liebe gehäkelt.“ und abschließender Kontaktbereich. Solange keine echten Fotos vorliegen, zeigt die Seite **als Demo gekennzeichnete Illustrationen**.
-- **Designsystem:** Farben als CSS-Variablen in `public/style.css`, Schriften Fraunces (Überschriften) und Figtree (Text) lokal unter `public/fonts/` (SIL Open Font License, Lizenztexte liegen bei). Keine externen Schrift- oder Skriptquellen.
-- **Logo:** `brand/bee-mark.svg` (Biene mit Häkelmütze), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, Favicon `public/favicon.svg`. Die Wortmarke in den SVG-Dateien nutzt Fraunces; für Druck (Etiketten, Karten) die Schrift in Pfade umwandeln.
-
+- **Startseite im Stil der Vorlage (Variante 1 „Natürlich & modern“):** Header mit Logo, handgeschriebene Überschriften mit kleinem Herz, Hero mit großem Bild rechts, das weich in den Cremeton ausblendet, vier Merkmale mit farbigen Symbolen, quadratische Musterkarten, Infokarten mit farbigen Symbolen, Abschnitt „Mit Liebe gehäkelt.“ und Kontaktbereich. Solange keine echten Fotos vorliegen, zeigt die Seite **als Demo gekennzeichnete Illustrationen**.
+- **Designsystem:** Farben als CSS-Variablen in `public/style.css`. Schriften lokal unter `public/fonts/`: Chewy für Überschriften (Apache 2.0) und Figtree für Text (SIL OFL), Lizenztexte liegen bei. Keine externen Schrift- oder Skriptquellen.
+- **Logo:** `brand/bee-mark.svg` (Biene mit Häkelmütze), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, Favicon `public/favicon.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
+- **Musterseite und „So funktioniert’s“** im selben Stil: Größen als Auswahlkacheln mit hinterlegten Zentimeterbereichen, Farbfelder, Bildergalerie mit Vorschaubildern, nummerierte Schritte mit Symbolen.
 - Startseite mit ruhigem Header, Hero, beliebten Mustern, drei Informationskarten, Handarbeitsabschnitt und Kontaktbereich.
 - Musterübersicht mit Kategorien und Filter, freigegebene Detailseiten mit Größen, Farben, Kopfumfang und Wünschen.
 - Zentrales Kontaktfenster mit WhatsApp-Direktlink zu `+49 157 34487082` und vorausgefüllter, bearbeitbarer Nachricht. Das Formular öffnet innerhalb desselben Fensters und übernimmt die Auswahl.

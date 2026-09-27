@@ -100,20 +100,25 @@ def yarn(cx, cy, r, color, dark, uid):
 
 
 def hero_svg():
-    # Drei Motive auf einem ruhigen Regalbrett, Hochformat 800 x 960
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 90 800 870" role="img" aria-label="Demo-Illustration: Froschmütze, Schneemannmütze und Schweinchenmütze">
-<rect width="800" height="960" fill="#EFE6D8"/>
-<rect y="640" width="800" height="320" fill="#E4D6C1"/>
-<path d="M0 640h800" stroke="#D3C1A6" stroke-width="3"/>
-<ellipse cx="190" cy="610" rx="150" ry="14" fill="{INK}" opacity=".09"/>
-<ellipse cx="610" cy="614" rx="150" ry="14" fill="{INK}" opacity=".09"/>
-<ellipse cx="400" cy="822" rx="185" ry="18" fill="{INK}" opacity=".1"/>
-<g transform="translate(-10 212) scale(1)">{motif('schneemann', 'h1')}</g>
-<g transform="translate(410 216) scale(1)">{motif('schweinchen', 'h2')}</g>
-<g transform="translate(160 330) scale(1.2)">{motif('frosch', 'h3')}</g>
-{yarn(700, 842, 46, '#F3D68B', '#C9A24B', 'hy')}
-<path d="M654 848c-40 10-60 40-110 44" fill="none" stroke="#C9A24B" stroke-width="3.5" stroke-linecap="round"/>
-<g transform="rotate(-28 110 860)"><rect x="30" y="852" width="170" height="11" rx="5.5" fill="#8BA17F" stroke="{INK}" stroke-width="4"/><path d="M200 857.5q14 0 14-10" fill="none" stroke="{INK}" stroke-width="4" stroke-linecap="round"/></g>
+    # Querformat 1200 x 800: Mützen auf einer Decke vor einer Stuhllehne.
+    # Die linke Hälfte bleibt ruhig, dort blendet die Website das Bild weich aus.
+    slats = ''.join(f'<rect x="{x}" y="40" width="70" height="560" rx="14" fill="#C49A70" stroke="#8E6A48" stroke-width="4"/>' for x in (690, 830, 970, 1110))
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Demo-Illustration: Froschmütze, Schweinchenmütze und Schneemannmütze auf einer Decke">
+<defs><linearGradient id="wall" x1="0" x2="1"><stop offset="0" stop-color="#F6EEE3"/><stop offset="1" stop-color="#EADBC7"/></linearGradient>
+<pattern id="knit" width="22" height="16" patternUnits="userSpaceOnUse"><rect width="22" height="16" fill="#F7F0E5"/><path d="M2 8q4.5-7 9 0q4.5-7 9 0" fill="none" stroke="#DCCDB8" stroke-width="2" stroke-linecap="round"/></pattern></defs>
+<rect width="1200" height="800" fill="url(#wall)"/>
+<rect x="640" y="18" width="560" height="56" rx="20" fill="#C49A70" stroke="#8E6A48" stroke-width="4"/>
+{slats}
+<path d="M0 560C220 520 420 600 640 560s420-60 560-20V800H0Z" fill="url(#knit)"/>
+<path d="M0 560C220 520 420 600 640 560s420-60 560-20" fill="none" stroke="#D9C8B0" stroke-width="4"/>
+<ellipse cx="850" cy="560" rx="200" ry="20" fill="{INK}" opacity=".08"/>
+<ellipse cx="1070" cy="700" rx="200" ry="22" fill="{INK}" opacity=".1"/>
+<ellipse cx="670" cy="748" rx="240" ry="24" fill="{INK}" opacity=".12"/>
+<g transform="translate(610 70) scale(1.25)">{motif('schweinchen', 'h2')}</g>
+<g transform="translate(790 205) scale(1.25)">{motif('schneemann', 'h1')}</g>
+<g transform="translate(390 200) scale(1.4)">{motif('frosch', 'h3')}</g>
+{yarn(430, 700, 42, '#F3D68B', '#C9A24B', 'hy')}
+<path d="M470 712c40 18 70 30 120 26" fill="none" stroke="#C9A24B" stroke-width="3.5" stroke-linecap="round"/>
 </svg>'''
 
 

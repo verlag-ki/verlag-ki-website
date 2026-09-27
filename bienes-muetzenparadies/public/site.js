@@ -127,6 +127,14 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !mobile.hidden) { closeMenu(); toggle.focus(); } });
   window.matchMedia('(min-width: 1081px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
 
+  // Bildergalerie der Musterseite
+  const mainImage = document.getElementById('main-image');
+  document.querySelectorAll('.thumbs button').forEach(btn => btn.addEventListener('click', () => {
+    mainImage.src = btn.dataset.src; mainImage.alt = btn.dataset.alt;
+    document.querySelectorAll('.thumbs button').forEach(b => b.removeAttribute('aria-current'));
+    btn.setAttribute('aria-current', 'true');
+  }));
+
   // Größenhilfe
   const sizeInput = document.getElementById('head-size');
   if (sizeInput) {
