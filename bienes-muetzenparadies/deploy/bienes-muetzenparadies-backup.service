@@ -1,0 +1,6 @@
+[Unit]
+Description=Sicherung Bienes Mützenparadies
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/bienes-muetzenparadies-backup

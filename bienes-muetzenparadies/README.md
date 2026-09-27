@@ -1,114 +1,89 @@
 # Bienes Mützenparadies
 
-Eine eigenständige, mobil nutzbare Website für individuelle Häkelmützen auf Anfrage. Die Anwendung ist **nicht veröffentlicht**. Produktfotos, Musterfreigaben und rechtliche Inhalte müssen vor dem Livegang ergänzt beziehungsweise geprüft werden.
+Website für individuelle Häkelmützen auf Anfrage. Besucher suchen sich ein Muster aus, wählen Größe und Farbe und schicken ihre Anfrage **per WhatsApp** an Biene. Es gibt kein Kontaktformular, keinen E-Mail-Versand, keinen Warenkorb und keine Onlinezahlung.
 
 ## Was enthalten ist
 
-- **Startseite im Stil der Vorlage (Variante 1 „Natürlich & modern“):** Header mit Logo, handgeschriebene Überschriften mit kleinem Herz, Hero mit großem Bild rechts, das weich in den Cremeton ausblendet, vier Merkmale mit farbigen Symbolen, quadratische Musterkarten, Infokarten mit farbigen Symbolen, Abschnitt „Mit Liebe gehäkelt.“ und Kontaktbereich. Solange keine echten Fotos vorliegen, zeigt die Seite **als Demo gekennzeichnete Illustrationen**.
-- **Designsystem:** Farben als CSS-Variablen in `public/style.css`. Schriften lokal unter `public/fonts/`: Chewy für Überschriften (Apache 2.0) und Figtree für Text (SIL OFL), Lizenztexte liegen bei. Keine externen Schrift- oder Skriptquellen.
-- **Logo:** `brand/bee-mark.svg` (fliegende Biene mit Häkelmütze), `public/img/bee-flight.svg` (Biene mit gestrichelter Flugbahn für den Hero), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, Favicon `public/favicon.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
-- **Musterseite und „So funktioniert’s“** im selben Stil: Größen als Auswahlkacheln mit hinterlegten Zentimeterbereichen, Farbfelder, Bildergalerie mit Vorschaubildern, nummerierte Schritte mit Symbolen.
-- Startseite mit ruhigem Header, Hero, beliebten Mustern, drei Informationskarten, Handarbeitsabschnitt und Kontaktbereich.
-- Musterübersicht mit Kategorien und Filter, freigegebene Detailseiten mit Größen, Farben, Kopfumfang und Wünschen.
-- Zentrales Kontaktfenster mit WhatsApp-Direktlink zu `+49 157 34487082` und vorausgefüllter, bearbeitbarer Nachricht. Das Formular öffnet innerhalb desselben Fensters und übernimmt die Auswahl.
-- Serverseitig geprüftes Anfrageformular, Speicherung in SQLite, SMTP-Benachrichtigung, einfache Begrenzung gegen massenhafte Anfragen.
-- Passwortgeschützte Verwaltung für Muster, Fotos, Größen, Farben und Anfragestatus. Neue Muster erfordern kein Deployment.
-- Individuelle Titel und Beschreibungen, sprechende URLs, Sitemap, Robots-Datei, kanonische URLs und ein einfaches Unternehmens-Schema.
-- Impressum und Datenschutzentwurf mit sichtbar gekennzeichneten offenen Angaben.
+- **Startseite im Stil der Designvorlage (Variante 1):** Header mit Logo, handgeschriebene Überschriften mit kleinem Herz, fliegende Biene mit Flugbahn, großes Bild rechts mit weicher Ausblendung, vier Merkmale mit Symbolen, beliebte Muster, drei Infokarten, Abschnitt „Mit Liebe gehäkelt.“ und Kontaktbereich.
+- **Muster & Ideen** mit Kategoriefilter, **Musterseiten** mit Galerie, Größenkacheln, Farbfeldern, Kopfumfang und Wünschen, **So funktioniert’s**, **Größenhilfe** mit Größenempfehlung, **Wunschfarben**, **Impressum** und **Datenschutz**.
+- **Kontaktfenster:** „Kontakt“, „Jetzt anfragen“ und alle Anfrage-Buttons öffnen dasselbe Fenster. Es zeigt die vorbereitete WhatsApp-Nachricht an `+49 157 34487082`, auf Musterseiten mit Muster, Größe, Kopfumfang, Farbe und Wünschen. WhatsApp öffnet sich erst nach dem Tippen, gesendet wird nichts automatisch.
+- **Verwaltung** unter `/admin` (ein Passwort): Muster anlegen und bearbeiten, Fotos hochladen und sortieren, Größen und Wollfarben pflegen, Bilder der Startseite austauschen. Neue Muster brauchen kein neues Deployment.
+- **SEO:** eigene Titel und Beschreibungen, sprechende URLs, Sitemap, `robots.txt`, kanonische URLs, strukturierte Daten für Organisation und Website.
+- **Designsystem:** Farben als CSS-Variablen in `public/style.css`. Schriften lokal unter `public/fonts/`: Chewy (Überschriften, Apache 2.0) und Figtree (Text, SIL OFL). Keine externen Schriften, Skripte, Analyse- oder Chatdienste.
+- **Logo:** `brand/bee-mark.svg` (fliegende Biene mit Häkelmütze), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, `public/favicon.svg`, `public/img/bee-flight.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
 
-Die fünf mitgelieferten Motive stehen zunächst auf **Entwurf**. Ohne echtes Produktfoto kann ein Muster technisch nicht veröffentlicht werden. Im lokalen Katalog erscheinen diese Beispiele deutlich als nicht anfragbare Demo. Veröffentlichte Muster erscheinen stattdessen mit eigener Detailseite.
+## Illustrationen, KI-Demobilder und echte Fotos
+
+Solange ein Muster kein Foto hat, zeigt die Website eine gezeichnete Illustration mit dem Hinweis „Illustration · Foto folgt“. Die sechs mitgelieferten Motive (Frosch, Schneemann, Schweinchen, Quatschmonster, Bär, Einhorn) können damit schon veröffentlicht werden. Neue Motive ohne Illustration brauchen ein Foto, bevor sie online gehen.
+
+Sobald echte Fotos in der Verwaltung hochgeladen sind, ersetzen sie die Illustrationen automatisch.
+
+- Illustrationen: `public/img/demo-*.svg`, erzeugt mit `python3 tools/make_illustrations.py`.
+- KI-Demobilder: `public/img/ki-*.webp` sind Ausschnitte der KI-generierten Designvorlage (`tools/make_demo_photos.py`). Sie sind nur für Vorschauen gedacht und erscheinen ausschließlich mit `DEMO_IMAGES=ki`, dann mit dem Hinweis „Demo-Bild · KI-generiert“. Auf der echten Website bleibt `DEMO_IMAGES=illustration` (Standard).
 
 ## Technik
 
-**Python 3.12** (die Vorlagen nutzen f-String-Syntax ab 3.12; das Modul `cgi` fehlt ab 3.13), Pillow zur sicheren Umwandlung hochgeladener Bilder, Gunicorn als WSGI-Server, SQLite und lokale WebP-Dateien. HTML, CSS und JavaScript werden ohne externe Schrift-, Analyse- oder Chatdienste ausgeliefert. Ein einzelner Hetzner-Server genügt bei geringem Anfragevolumen. SQLite-Datei und Uploads liegen im Verzeichnis `DATA_DIR` und dürfen nicht im öffentlich zugänglichen Webroot liegen.
-
-## Lokal starten
-
-```bash
-cd bienes-muetzenparadies
-python3.12 -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-python3 - <<'PY'
-import hashlib,secrets,getpass
-p=getpass.getpass('Verwaltungspasswort: ').encode()
-salt=secrets.token_bytes(16)
-print('ADMIN_PASSWORD_HASH=pbkdf2$'+salt.hex()+'$'+hashlib.pbkdf2_hmac('sha256',p,salt,310000).hex())
-print('SECRET_KEY='+secrets.token_hex(32))
-PY
-```
-
-Die ausgegebenen Werte in `.env` eintragen. Eine `.env`-Datei wird **nicht automatisch eingelesen**: Für lokale Versuche die Werte im Shell-Prozess exportieren oder `set -a; . ./.env; set +a` verwenden. Die Datei niemals ins Versionsarchiv aufnehmen. Danach:
-
-```bash
-python3 app.py
-python3 check.py
-```
-
-Website: `http://127.0.0.1:8000`. Verwaltung: `/admin`. `check.py` verwendet einen eigenen temporären Datenordner und verändert keine echten Muster.
-
-## Muster und Bilder pflegen
-
-1. In `/admin` anmelden und zunächst die tatsächlich angebotenen Größen mit bestätigten Zentimeterbereichen sowie die real verfügbaren Wollfarben eintragen.
-2. Unter „Muster“ ein Motiv anlegen oder einen Demo-Entwurf bearbeiten. Namen, URL-Kürzel, Beschreibung, Kategorie, Größen, Farben und gegebenenfalls einen ausdrücklich freigegebenen Preis eintragen.
-3. Echte, eigene Produktfotos als JPEG, PNG oder WebP hochladen. Der Server entfernt Bildmetadaten, verkleinert auf höchstens 1800 × 1800 Pixel und speichert WebP. Für jedes Foto eine sachliche Bildbeschreibung und die gewünschte Reihenfolge eintragen. Eine Freigabe der Bildrechte und des Motivs ist organisatorisch erforderlich.
-4. Erst nach Bienes inhaltlicher Freigabe den Status auf `published` setzen. Ohne Bild bleibt das Muster automatisch `draft`. `archived` nimmt es aus dem öffentlichen Katalog und der Sitemap.
-5. Einzelne Fotos können in derselben Bearbeitungsansicht entfernt, ersetzt oder sortiert werden.
-
-Die Verwaltung speichert Kontaktanfragen in der Rubrik „Anfragen“. Dort lassen sich die Status „Neue Anfrage“, „In Prüfung“, „Angebot versendet“, „Angenommen“, „Abgeschlossen“ und „Abgelehnt“ setzen. Das Löschfeld entfernt eine Anfrage endgültig. WhatsApp-Nachrichten erscheinen dort nicht automatisch.
-
-## Bilder der Startseite austauschen
-
-In `/admin` unter „Startseite“ lassen sich das große Hero-Foto und das Foto im Abschnitt „Mit Liebe gehäkelt.“ hochladen, ersetzen oder entfernen. Pflicht ist eine sachliche Bildbeschreibung (Alt-Text). Ohne Foto erscheint die jeweilige Demo-Illustration mit sichtbarem Hinweis. Biene bitte nicht mit Gesicht zeigen – Hände, Wolle, Häkelnadel oder Etikett passen gut.
-
-**KI-Demobilder:** `public/img/ki-*.webp` sind Ausschnitte der KI-generierten Designvorlage, erzeugt mit `python3 tools/make_demo_photos.py VORLAGE.png`. Sie zeigen keine echten Mützen, sind nur niedrig aufgelöst und tragen auf der Website den Hinweis „Demo-Bild · KI-generiert“. **Vor dem Livegang** durch echte Fotos ersetzen oder mindestens `DEMO_IMAGES=illustration` setzen.
-
-Die Demo-Illustrationen unter `public/img/` werden mit `python3 tools/make_illustrations.py` erzeugt. Sie gehören ausschließlich zu den mitgelieferten Demo-Mustern und dürfen nicht als echte Produktfotos verwendet werden.
-
-## Konfiguration
+Python 3.12, Pillow für hochgeladene Bilder, Gunicorn, SQLite, Nginx. Datenbank und Fotos liegen in `DATA_DIR`, getrennt vom Programmcode. Ein kleiner Hetzner-Server reicht.
 
 | Variable | Zweck |
 | --- | --- |
-| `SITE_ORIGIN` | Öffentliche HTTPS-Adresse ohne abschließenden Schrägstrich; für Canonicals, Sitemap, Cookie und Herkunftsprüfung. |
-| `ADMIN_PASSWORD_HASH` | PBKDF2-Hash des Passworts, wie oben erzeugt. |
-| `SECRET_KEY` | Zufälliger 32-Byte-Wert; ohne ihn ist die Anmeldung gesperrt. |
-| `DATA_DIR` | Schreibbares, gesichertes Verzeichnis für SQLite und Fotos. |
-| `SMTP_HOST`, `SMTP_PORT` | SMTP-Server und Port 587 (STARTTLS) oder 465 (SSL). |
-| `SMTP_USER`, `SMTP_PASSWORD` | Zugangsdaten, falls der SMTP-Server Anmeldung verlangt. |
-| `SMTP_FROM` | Verifizierte Absenderadresse. |
-| `CONTACT_TO` | Empfängeradresse für Anfragen. |
-| `MAX_UPLOAD_MB` | Maximale Dateigröße je Bild, standardmäßig 8 MB. |
-| `DEMO_IMAGES` | `ki` (Standard): KI-generierte Vorschaubilder aus der Designvorlage. `illustration`: gezeichnete Platzhalter. Beides wird sichtbar als Demo gekennzeichnet und gilt nur, solange kein echtes Foto hochgeladen ist. |
+| `SITE_ORIGIN` | Öffentliche Adresse mit `https://`, ohne Schrägstrich am Ende. |
+| `ADMIN_PASSWORD_HASH` | Hash des Verwaltungspassworts (legt `deploy/setup.sh` an). |
+| `SECRET_KEY` | Zufallswert; ohne ihn ist die Anmeldung gesperrt. |
+| `DATA_DIR` | Verzeichnis für Datenbank und Fotos. |
+| `TRUST_PROXY` | `1` hinter Nginx: Die Anmeldesperre zählt dann die echte Besucheradresse aus `X-Real-IP`. |
+| `DEMO_IMAGES` | `illustration` (Standard) oder `ki` nur für Vorschauen. |
+| `MAX_UPLOAD_MB` | Maximale Größe je Foto, Standard 8. |
 
-Ohne SMTP-Konfiguration wird eine Anfrage gespeichert, aber keine E-Mail gesendet. Der Besucher sieht dann ausdrücklich diesen Zustand samt alternativen Kontaktmöglichkeiten. Nach dem Einrichten einen echten Testversand durchführen und SPF, DKIM sowie DMARC der Absenderdomain prüfen. Die E-Mail-Zustellung hängt vom tatsächlich verwendeten Anbieter und dessen Konfiguration ab.
+## Lokal ausprobieren
 
-## Veröffentlichung auf Hetzner vorbereiten
+```bash
+cd bienes-muetzenparadies
+python3.12 -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
+python3 app.py          # http://127.0.0.1:8000
+python3 check.py        # automatische Prüfung, nutzt einen eigenen Testordner
+```
 
-1. Debian oder Ubuntu mit Sicherheitsupdates, einer eigenen nicht privilegierten Systemkennung und einem ausreichend geschützten Datenverzeichnis einrichten.
-2. Projekt nach `/opt/bienes-muetzenparadies` kopieren, virtuelle Python-Umgebung erstellen, Pakete installieren und die Variablen über eine nur für den Dienst lesbare Environment-Datei setzen. `DATA_DIR` außerhalb des Codeverzeichnisses wählen.
-3. Gunicorn ausschließlich lokal binden, beispielsweise `gunicorn --workers 2 --bind 127.0.0.1:8080 app:app`. Ein systemd-Dienst startet diesen Prozess mit dem Projekt als Arbeitsverzeichnis.
-4. Nginx als Reverse Proxy mit HTTPS und gültigem Zertifikat auf `127.0.0.1:8080` weiterleiten. `client_max_body_size 12m` setzen. `SITE_ORIGIN` auf die endgültige HTTPS-Adresse setzen und HTTP auf HTTPS umleiten.
-5. Dateien unter `DATA_DIR` regelmäßig verschlüsselt sichern: SQLite konsistent mit `sqlite3.Connection.backup()` sichern und den Upload-Ordner in dieselbe Sicherung aufnehmen. Eine Wiederherstellung probeweise durchführen.
-6. In Nginx Serverlogs nur so lange wie tatsächlich erforderlich vorhalten und diese Frist in der Datenschutzerklärung exakt benennen. Admin-Pfad durch Rate-Limit und gegebenenfalls zusätzliche Zugangsbeschränkung absichern.
-7. Erst nach der unten stehenden Freigabeliste DNS umstellen und öffentlich freischalten. **Dieses Projekt führt keinen automatischen Livegang aus.**
+Für die Verwaltung lokal `SECRET_KEY` und `ADMIN_PASSWORD_HASH` setzen (siehe `.env.example`).
 
-Ein konkreter Server, eine Domain, ein SMTP-Konto und Zugangsdaten liegen derzeit nicht vor. Deshalb enthält das Projekt keine ausführbare produktive systemd- oder Nginx-Datei mit geratenen Pfaden oder Hostnamen.
+## Veröffentlichen auf dem Hetzner-Server
 
-## Prüfstand und offene Punkte
+Voraussetzung: Ubuntu oder Debian mit Zugang als root bzw. per `sudo`. Andere Websites auf dem Server bleiben unberührt; die App läuft auf `127.0.0.1:8081` hinter Nginx. Ist der Port belegt, vor dem Aufruf `PORT=8090` voranstellen.
 
-Der Integrationstest `python3 check.py` deckt öffentliche Routen, versteckte Demo-Muster, Formularvalidierung und Speicherung, Anmeldung, Pflege von Größen und Farben, Bildpflicht bei Veröffentlichung, Musterseite und Sitemap ab. Zusätzlich vor Livegang im Browser auf Desktop, Tablet und kleinem iPhone prüfen: Fokusführung und Escape im Kontaktfenster, mobiles Menü, Farb- und Größenauswahl, WhatsApp-Text, Wechsel der Kontaktmethode und E-Mail-Fehlerfall. Die technische E-Mail-Zustellung und reale Bilddarstellung können erst mit den tatsächlichen Diensten und Fotos vollständig getestet werden.
+1. **DNS:** Beim Domain-Anbieter A-Einträge (und bei Bedarf AAAA-Einträge) für `bines-muetzenparadies.de` und `www.bines-muetzenparadies.de` auf die IP des Servers setzen.
+2. **Code auf den Server holen:**
+   ```bash
+   git clone --depth 1 -b claude/bienes-muetzenparadies-homepage-41alul https://github.com/verlag-ki/verlag-ki-website.git
+   cd verlag-ki-website/bienes-muetzenparadies
+   ```
+   Ist das Repository privat, klappt das nur mit Zugangsdaten. Alternativ den Ordner als ZIP herunterladen und mit `scp` hochladen.
+3. **Einrichten:**
+   ```bash
+   sudo ./deploy/setup.sh bines-muetzenparadies.de info@mieten-macht-sinn.de
+   ```
+   Das Skript installiert Nginx, Certbot und Python 3.12, legt den Systembenutzer `biene` an, fragt das Verwaltungspasswort ab, richtet Dienst, Nginx, Log-Löschung nach 14 Tagen und die tägliche Sicherung ein und holt das HTTPS-Zertifikat, sobald die Domain auf den Server zeigt. Es kann gefahrlos erneut ausgeführt werden.
+4. **In der Verwaltung** (`https://bines-muetzenparadies.de/admin`) Größen mit echten Zentimetern und Wollfarben eintragen und die von Biene freigegebenen Muster auf `published` stellen.
+5. **Datenschutzerklärung und Impressum** vervollständigen (Stellen in eckigen Klammern bzw. gelb markiert), dann auf Handy und Computer durchklicken.
 
-Vor dem Livegang offen:
+**Updates** einspielen: neuen Stand holen (`git pull`), dann `sudo ./deploy/update.sh`. Das Skript sichert vorher die Daten.
 
-- Echte Produktfotos, ausdrücklich freigegebene Muster, Bildrechte und Motivrechte.
-- Gemessene Größenbereiche und reale Wollfarben, gegebenenfalls Stoffzusammensetzung und Textilkennzeichnung.
-- Tatsächliche aktuelle Angaben des Betreibers mit dem ursprünglichen Impressum abgleichen; dieses war bei der Erstellung nicht erreichbar. Vorhandensein und Angabepflicht von USt-IdNr. oder W-IdNr. prüfen.
-- Datenschutzerklärung auf Hostingstandort, tatsächliche Logs und Fristen, Auftragsverarbeitung, SMTP-Anbieter, Datentransfers und festgelegte Löschfrist abstimmen; rechtlich prüfen lassen.
-- Rechtsprüfung zu Produktsicherheit, insbesondere Kindermützen und ablösbaren Teilen, sowie Versand, Verpackung, Fernabsatzinformationen und Widerruf für den tatsächlichen späteren Bestellabschluss.
-- Eigene Domain, HTTPS, E-Mail-Konto, Backup, Monitoring, konkrete Löschroutine und tatsächlichen Testversand einrichten.
-- Bei wachsendem Volumen oder mehreren Administratoren Authentifizierung, Datenbank und Betriebskonzept neu bewerten. Die aktuelle Verwaltung hat genau einen Passwortzugang.
+**Sicherungen** liegen täglich unter `/var/backups/bienes-muetzenparadies` (14 Tage). Da sie auf demselben Server liegen, zusätzlich die Backup-Funktion von Hetzner einschalten oder die Dateien regelmäßig woanders ablegen.
 
-## Abgleich mit dem Auftrag
+**Nützliche Befehle:** `systemctl status bienes-muetzenparadies`, `journalctl -u bienes-muetzenparadies -n 50`, Server-Protokolle unter `/var/log/bienes-muetzenparadies/`.
 
-Die Seiten, das zentrale Kontaktfenster und seine beiden Wege, die Verwaltung, Produktfilter, SEO-Grundlagen und responsive Gestaltung sind umgesetzt. Die fotografischen Bereiche zeigen bewusst gekennzeichnete neutrale Platzhalter, weil echte Aufnahmen fehlen. Rechtliche Texte sind Entwürfe. SMTP ist funktionsfähig, sobald echte Zugangsdaten hinterlegt sind; der Liveversand ist noch nicht nachgewiesen. Die Seite wurde weder veröffentlicht noch mit einer Hetzner-Instanz verbunden.
+## Muster pflegen
+
+1. Unter „Größen“ die angebotenen Größen mit den von Biene gemessenen Zentimeterbereichen anlegen, unter „Farben“ die vorrätigen Wollfarben.
+2. Unter „Muster“ ein Motiv anlegen oder eines der mitgelieferten bearbeiten: Name, URL-Kürzel, Beschreibung, Kategorie, Größen, Farben, optional ein freigegebener Preis.
+3. Fotos hochladen (JPEG, PNG, WebP). Der Server entfernt Metadaten, verkleinert und speichert WebP. Zu jedem Foto eine kurze, sachliche Bildbeschreibung eintragen.
+4. Status `published` erst nach Bienes Freigabe. `archived` nimmt ein Muster aus Katalog und Sitemap.
+5. Unter „Startseite“ lassen sich das große Bild oben und das Bild bei „Mit Liebe gehäkelt.“ austauschen. Biene bitte nicht mit Gesicht zeigen; Hände, Wolle oder Häkelnadel passen gut.
+
+## Vor dem Livegang offen
+
+- Impressum mit den aktuellen Betreiberangaben abgleichen; USt-IdNr. oder W-IdNr. prüfen.
+- Datenschutzerklärung: Rechenzentrum, Auftragsverarbeitungsvertrag mit Hetzner, Löschfrist für WhatsApp-Chats und Datum eintragen; rechtlich prüfen lassen.
+- Größen in Zentimetern und echte Wollfarben eintragen, Muster freigeben.
+- Rechtliche Prüfung zu Produktsicherheit bei Kindermützen, Textilkennzeichnung, Versand, Widerruf und Verbraucherinformationen für den tatsächlichen Bestellablauf.
+- Echte Fotos, sobald vorhanden.

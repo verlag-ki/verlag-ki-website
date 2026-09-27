@@ -1,4 +1,4 @@
-"""Small self-hosted inquiry catalogue. Python 3.11+, Pillow for image processing."""
+"""Bienes Mützenparadies: Musterkatalog mit Anfragen per WhatsApp. Python 3.12, Pillow für Bilder."""
 import base64
 import cgi
 import hashlib
@@ -9,11 +9,9 @@ import json
 import os
 import re
 import secrets
-import smtplib
 import sqlite3
 import time
 from datetime import datetime, timezone
-from email.message import EmailMessage
 from http import HTTPStatus
 from http.cookies import SimpleCookie
 from pathlib import Path
@@ -36,7 +34,7 @@ STATIC = {'.css':'text/css; charset=utf-8','.js':'application/javascript; charse
 # Demo-Illustrationen für die mitgelieferten Beispielmuster, bis echte Fotos hochgeladen sind.
 # 'ki': KI-generierte Vorschaubilder aus der Designvorlage, 'illustration': gezeichnete Platzhalter.
 # Beides sind gekennzeichnete Demos und müssen vor dem Livegang durch echte Fotos ersetzt werden.
-DEMO_IMAGES = os.environ.get('DEMO_IMAGES','ki')
+DEMO_IMAGES = os.environ.get('DEMO_IMAGES','illustration')
 DEMO_ART = {'froschmuetze':'frosch','schneemannmuetze':'schneemann','schweinchenmuetze':'schweinchen','monstermuetze':'monster','baer':'baer','einhornmuetze':'einhorn'}
 SITE_IMAGES = {'hero':'Startseite: großes Bild neben der Überschrift','haekeln':'Startseite: Bild im Abschnitt „Mit Liebe gehäkelt.“'}
 PAGES = {'/': ('Startseite', 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch'), '/muster': ('Muster & Ideen', 'Häkelmützen und Muster | Bienes Mützenparadies'), '/so-funktionierts': ("So funktioniert's", 'So funktioniert die Mützenanfrage | Bienes Mützenparadies'), '/groessenhilfe': ('Größenhilfe', 'Mützengröße bestimmen und Kopfumfang messen'), '/wunschfarben': ('Wunschfarben', 'Wunschfarben für Häkelmützen | Bienes Mützenparadies'), '/impressum': ('Impressum', 'Impressum | Bienes Mützenparadies'), '/datenschutz': ('Datenschutz', 'Datenschutzerklärung | Bienes Mützenparadies')}
@@ -53,7 +51,6 @@ def init():
         CREATE TABLE IF NOT EXISTS images (id INTEGER PRIMARY KEY, pattern_id INTEGER NOT NULL REFERENCES patterns(id) ON DELETE CASCADE, filename TEXT NOT NULL, alt TEXT NOT NULL, position INTEGER NOT NULL DEFAULT 0);
         CREATE TABLE IF NOT EXISTS sizes (id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL, min_cm REAL, max_cm REAL, position INTEGER NOT NULL DEFAULT 0);
         CREATE TABLE IF NOT EXISTS colors (id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL, hex TEXT NOT NULL, position INTEGER NOT NULL DEFAULT 0);
-        CREATE TABLE IF NOT EXISTS inquiries (id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, subject TEXT NOT NULL, message TEXT NOT NULL, pattern TEXT, size TEXT, head_cm TEXT, color TEXT, wishes TEXT, status TEXT NOT NULL DEFAULT 'Neue Anfrage', created_at TEXT NOT NULL, mail_sent INTEGER NOT NULL DEFAULT 0);
         CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, csrf TEXT NOT NULL, expires INTEGER NOT NULL);
         CREATE TABLE IF NOT EXISTS rate (key TEXT PRIMARY KEY, window INTEGER NOT NULL, count INTEGER NOT NULL);
         CREATE TABLE IF NOT EXISTS site_images (key TEXT PRIMARY KEY, filename TEXT NOT NULL, alt TEXT NOT NULL);''')
@@ -98,10 +95,16 @@ def admin_password(p):
         calc=hashlib.pbkdf2_hmac('sha256',p.encode(),bytes.fromhex(salt),310000).hex()
         return alg=='pbkdf2' and hmac.compare_digest(calc,digest)
     except (ValueError,TypeError): return False
+def client_ip(env):
+    if os.environ.get('TRUST_PROXY')=='1' and env.get('HTTP_X_REAL_IP'): return env['HTTP_X_REAL_IP']
+    return env.get('REMOTE_ADDR','')
+
 def rate_ok(key,limit=5,seconds=3600):
     with db() as c:
         row=c.execute('SELECT window,count FROM rate WHERE key=?',(key,)).fetchone()
         t=int(time.time())
+        c.execute('DELETE FROM rate WHERE window<?',(t-86400,))
+        c.execute('DELETE FROM sessions WHERE expires<?',(t,))
         if not row or t-row['window']>=seconds: c.execute('REPLACE INTO rate VALUES(?,?,1)',(key,t));return True
         if row['count']>=limit:return False
         c.execute('UPDATE rate SET count=count+1 WHERE key=?',(key,));return True
@@ -150,17 +153,17 @@ def site_image(key):
 def footer():
     return f'''<footer class="footer"><div class="wrap footer-grid"><div>{logo()}<p>Außergewöhnliche Häkelmützen, mit Liebe von Hand gemacht. Individuell auf Anfrage.</p></div><div><h2>Entdecken</h2><a href="/muster">Muster & Ideen</a><a href="/so-funktionierts">So funktioniert’s</a></div><div><h2>Hilfe</h2><a href="/groessenhilfe">Größenhilfe</a><a href="/wunschfarben">Wunschfarben</a><button type="button" data-contact>Kontakt</button></div><div><h2>Rechtliches</h2><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></div><div class="wrap footer-bottom"><span>© {datetime.now().year} Bienes Mützenparadies</span><span>Jede Mütze wird einzeln auf Anfrage gehäkelt.</span></div></footer>'''
 
-def demo_image(name,alt,width,height,lazy=True):
+def demo_image(name,alt,width,height,lazy=True,label='Demo-Illustration'):
     """Gekennzeichnetes Demo-Bild: KI-Vorschau oder Illustration, je nach DEMO_IMAGES."""
     loading=' loading="lazy"' if lazy else ' fetchpriority="high"'
     if DEMO_IMAGES=='ki':
         return f'<img src="/img/ki-{name}.webp" alt="KI-generiertes Demo-Bild: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">Demo-Bild · KI-generiert</span>'
-    return f'<img src="/img/demo-{name}.svg" alt="Illustration: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">Demo-Illustration</span>'
+    return f'<img src="/img/demo-{name}.svg" alt="Illustration: {esc(alt)}" width="{width}" height="{height}"{loading}><span class="demo-badge">{label}</span>'
 
 def pattern_visual(p):
     if p['image']: return f'<img src="/uploads/{esc(p["image"])}" alt="{esc(p["image_alt"])}" loading="lazy" width="800" height="1000">'
     art=DEMO_ART.get(p['slug'])
-    if art: return demo_image(art,p['name'],400,400)
+    if art: return demo_image(art,p['name'],400,400,label='Illustration · Foto folgt' if p['status']=='published' else 'Demo-Illustration')
     return f'<div class="image-placeholder">{icon("yarn")}<span>Produktfoto folgt</span></div>'
 
 def layout(title,description,content,canonical='/',robots='index,follow',schema=''):
@@ -172,7 +175,7 @@ def layout(title,description,content,canonical='/',robots='index,follow',schema=
     return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>{esc(title)}</title><meta name="description" content="{esc(description)}"><meta name="robots" content="{robots}"><link rel="canonical" href="{esc(ORIGIN+canonical)}">{og}<meta name="theme-color" content="#FBF8F3"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preload" href="/fonts/chewy-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css">{schema}</head><body><a class="skip" href="#main">Zum Inhalt springen</a><header class="site-header"><div class="wrap header-inner">{logo()}<nav class="desktop-nav" aria-label="Hauptnavigation">{nav}</nav><button class="btn btn-coral btn-small header-cta" type="button" data-contact>Jetzt anfragen</button><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button></div><nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" hidden>{nav}<button type="button" class="btn btn-coral" data-contact>Jetzt anfragen</button></nav></header><main id="main">{content}</main>{footer()}{dialog()}<script src="/site.js" defer></script></body></html>'''
 
 def dialog():
-    return f'''<dialog id="contact-dialog" aria-labelledby="contact-title" aria-describedby="contact-intro"><div class="dialog-head"><div><span class="eyebrow">Deine Anfrage</span><h2 id="contact-title">Schreib Biene!</h2></div><button class="icon-button" type="button" data-close aria-label="Kontaktfenster schließen">{icon("close")}</button></div><p id="contact-intro">Du hast eine Frage oder möchtest eine Mütze anfragen? Such dir einfach aus, wie du uns erreichen möchtest.</p><div id="contact-choices" class="contact-choices"><div class="contact-card"><span class="contact-icon whatsapp-icon">{icon("whatsapp")}</span><h3>Per WhatsApp</h3><p>Schreib uns ganz unkompliziert eine Nachricht.</p><a id="whatsapp-link" class="btn btn-whatsapp" href="https://wa.me/{WHATSAPP}" target="_blank" rel="noopener noreferrer">WhatsApp öffnen</a><small>WhatsApp ist ein externer Dienst. Eine Verbindung entsteht erst, wenn du auf den Button tippst. Die vorbereitete Nachricht kannst du vor dem Senden noch ändern.</small></div><div class="contact-card"><span class="contact-icon coral-icon">{icon("mail")}</span><h3>Über das Kontaktformular</h3><p>Schreib uns deine Wünsche direkt hier auf der Website.</p><button type="button" id="show-form" class="btn btn-coral">Kontaktformular öffnen</button><small>Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a>.</small></div></div><form id="contact-form" class="contact-form" novalidate hidden><button type="button" id="form-back" class="text-link">← Zurück zu den Kontaktwegen</button><div class="form-grid"><label>Name <input name="name" autocomplete="name" required maxlength="100"></label><label>E-Mail-Adresse <input name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254"></label></div><label>Betreff <input name="subject" required maxlength="140" value="Anfrage zu einer Häkelmütze"></label><div id="form-pattern-fields" class="pattern-summary" hidden><strong>Deine Auswahl</strong><label>Ausgewähltes Muster <input name="pattern" readonly></label><div class="form-grid"><label>Größe <input name="size" readonly></label><label>Kopfumfang <input name="head_cm" readonly></label></div><label>Wunschfarbe <input name="color" readonly></label><label>Besondere Wünsche <textarea name="wishes" rows="2" readonly></textarea></label></div><label>Nachricht <textarea name="message" rows="5" required maxlength="5000" placeholder="Was möchtest du wissen?"></textarea></label><p class="form-note">Wir verwenden deine Angaben nur, um deine Anfrage zu beantworten. Details findest du in der <a href="/datenschutz">Datenschutzerklärung</a>.</p><div class="honeypot" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div><button class="btn btn-coral" type="submit">Anfrage absenden</button><p id="form-feedback" class="form-feedback" role="status" aria-live="polite"></p></form><div id="form-success" class="form-success" tabindex="-1" hidden><h3>Vielen Dank!</h3><p id="form-success-text"></p></div></dialog>'''
+    return f'''<dialog id="contact-dialog" aria-labelledby="contact-title" aria-describedby="contact-intro"><div class="dialog-head"><div><span class="eyebrow">Deine Anfrage</span><h2 id="contact-title">Schreib Biene!</h2></div><button class="icon-button" type="button" data-close aria-label="Kontaktfenster schließen">{icon("close")}</button></div><p id="contact-intro">Du hast eine Frage oder möchtest eine Mütze anfragen? Schreib Biene einfach per WhatsApp – deine Nachricht ist schon vorbereitet.</p><div class="contact-card whatsapp-card"><span class="contact-icon whatsapp-icon">{icon("whatsapp")}</span><h3>Per WhatsApp</h3><p>Diese Nachricht wird vorbereitet. Du kannst sie in WhatsApp vor dem Senden noch ändern:</p><pre id="whatsapp-preview" class="message-preview"></pre><a id="whatsapp-link" class="btn btn-whatsapp" href="https://wa.me/{WHATSAPP}" target="_blank" rel="noopener noreferrer">WhatsApp öffnen</a><small>WhatsApp ist ein externer Dienst von Meta. Eine Verbindung entsteht erst, wenn du auf den Button tippst. Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a>. Kein WhatsApp? Die E-Mail-Adresse findest du im <a href="/impressum">Impressum</a>.</small></div></dialog>'''
 
 def patterns(status='published'):
     with db() as c:
@@ -229,7 +232,9 @@ def detail(p):
         thumbs=''.join(f'<button type="button" data-src="/uploads/{esc(i["filename"])}" data-alt="{esc(i["alt"])}" aria-label="Ansicht {n+1} zeigen"{" aria-current=\'true\'" if n==0 else ""}><img src="/uploads/{esc(i["filename"])}" alt="" loading="lazy"></button>' for n,i in enumerate(ims)) if len(ims)>1 else ''
         gallery=f'<div class="detail-gallery{"" if thumbs else " single"}">{"<div class=thumbs>"+thumbs+"</div>" if thumbs else ""}{main}</div>'
     else:
-        gallery=f'<div class="detail-gallery single"><div class="main-image"><div class="image-placeholder">{icon("yarn")}<span>Produktfoto folgt</span></div></div></div>'
+        art=DEMO_ART.get(p['slug'])
+        inner=demo_image(art,p['name'],800,1000,lazy=False,label='Illustration · Foto folgt') if art else f'<div class="image-placeholder">{icon("yarn")}<span>Produktfoto folgt</span></div>'
+        gallery=f'<div class="detail-gallery single"><div class="main-image">{inner}</div></div>'
     def size_box(name,rng=''):
         return f'<label class="size-option"><input type="radio" name="size" value="{esc(name)}" required><span>{esc(name)}{"<small>"+rng+"</small>" if rng else ""}</span></label>'
     size_opts=''.join(size_box(s['name'],f'{s["min_cm"]:g}–{s["max_cm"]:g} cm' if s['min_cm'] is not None and s['max_cm'] is not None else '') for s in sizes)+size_box('Individueller Kopfumfang')
@@ -238,7 +243,7 @@ def detail(p):
 
 def simple_page(path):
     if path=='/so-funktionierts':
-        steps=[('search','Lieblingsmütze aussuchen','Stöbere durch die Muster-Galerie und finde deine Lieblingsmütze.'),('tape','Größe und Wunschfarbe wählen','Wähle die passende Größe oder gib deinen Kopfumfang an – und sag uns deine Wunschfarbe.'),('mail','Anfrage schicken','Schreib uns ganz einfach per WhatsApp oder über das Kontaktformular.'),('heart','Mit Liebe gehäkelt','Nach der persönlichen Abstimmung häkelt Biene deine Mütze individuell für dich.')]
+        steps=[('search','Lieblingsmütze aussuchen','Stöbere durch die Muster-Galerie und finde deine Lieblingsmütze.'),('tape','Größe und Wunschfarbe wählen','Wähle die passende Größe oder gib deinen Kopfumfang an – und sag uns deine Wunschfarbe.'),('mail','Anfrage schicken','Schreib Biene per WhatsApp – deine Auswahl steht schon in der Nachricht.'),('heart','Mit Liebe gehäkelt','Nach der persönlichen Abstimmung häkelt Biene deine Mütze individuell für dich.')]
         steps_html=''.join(f'<article><div class="step-icon"><span class="step-no">{n+1}</span>{color_icon(ic)}</div><h2>{h}</h2><p>{t}</p></article>' for n,(ic,h,t) in enumerate(steps))
         return f'<div class="wrap page-heading center"><span class="eyebrow">Ganz einfach</span><h1>So funktioniert’s{heart()}</h1><p>Von der Idee bis zu deiner individuellen Mütze – in vier Schritten.</p></div><section class="wrap section narrow-top"><div class="steps">{steps_html}</div><p class="callout">Biene häkelt in ihrer Freizeit. Ob ein Wunsch möglich ist und wie lange die Anfertigung dauert, besprechen wir deshalb persönlich mit dir. Eine Anfrage ist unverbindlich.</p><p class="center"><button class="btn btn-coral" type="button" data-contact>Jetzt anfragen</button></p></section><section class="section info-section"><div class="wrap info-grid">{info_cards()}</div></section>'
     if path=='/groessenhilfe':
@@ -253,51 +258,26 @@ def simple_page(path):
     if path=='/impressum':
         return '''<div class="wrap legal"><h1>Impressum</h1><p class="pending">Vor Veröffentlichung prüfen: Die folgenden Betreiberangaben stammen aus dem Projektbrief. Ein Abgleich mit dem aktuellen Impressum von Mieten macht Sinn war nicht möglich.</p><h2>Angaben zum Anbieter</h2><p>Bienes Mützenparadies<br>Julian Kürten<br>Spreeallee 207<br>24111 Kiel<br>Deutschland</p><h2>Kontakt</h2><p>Telefon: <a href="tel:+4917647147503">0176 47147503</a><br>E-Mail: <a href="mailto:info@mieten-macht-sinn.de">info@mieten-macht-sinn.de</a><br>WhatsApp: <a href="https://wa.me/4915734487082">+49 157 34487082</a></p><p class="pending">Vor Veröffentlichung ergänzen oder prüfen: aktuelle Firmierung und Adresse, Umsatzsteuer-Identifikationsnummer oder Wirtschafts-Identifikationsnummer, soweit vorhanden beziehungsweise anzugeben, sowie weitere tatsächlich erforderliche Angaben.</p></div>'''
     if path=='/datenschutz':
-        return '''<div class="wrap legal"><h1>Datenschutzerklärung</h1><p class="pending">Entwurf für die vorliegende Anwendung. Vor Veröffentlichung sind Hosting, E-Mail-Dienst, Aufbewahrungsfristen und Betreiberangaben anhand der tatsächlichen Konfiguration zu ergänzen und fachlich zu prüfen.</p><h2>Verantwortlicher</h2><p>Julian Kürten, Bienes Mützenparadies<br>Spreeallee 207, 24111 Kiel, Deutschland<br><a href="mailto:info@mieten-macht-sinn.de">info@mieten-macht-sinn.de</a><br>0176 47147503</p><h2>Aufruf der Website und Hosting</h2><p>Beim Aufruf werden technisch erforderliche Angaben wie IP-Adresse, Zeitpunkt, aufgerufene Adresse, Browserdaten und Serverantwort verarbeitet, damit die Website ausgeliefert und geschützt werden kann. Vorgesehen ist Hosting bei Hetzner. Tatsächlicher Serverstandort, Log-Konfiguration und deren Aufbewahrungsfrist sind vor Veröffentlichung zu dokumentieren. Die Rechtsgrundlage für den sicheren Betrieb ist Art. 6 Abs. 1 lit. f DSGVO. Eine gegebenenfalls erforderliche Vereinbarung zur Auftragsverarbeitung ist zu prüfen.</p><h2>Kontaktformular und Anfragen</h2><p>Bei einer Anfrage verarbeiten wir Namen, E-Mail-Adresse, Betreff und Nachricht sowie freiwillige Angaben zu Muster, Größe, Kopfumfang, Farbe und besonderen Wünschen. Wir speichern die Anfrage in der geschützten Verwaltung und benachrichtigen uns, wenn der E-Mail-Versand eingerichtet ist. Die Verarbeitung dient der Beantwortung und gegebenenfalls der Anbahnung oder Durchführung eines Vertrags nach Art. 6 Abs. 1 lit. b DSGVO. Vor Veröffentlichung sind konkrete Löschfristen festzulegen. In der Verwaltung können Anfragen gelöscht werden; gesetzliche Aufbewahrungspflichten aus späteren Geschäftsvorgängen bleiben zu prüfen.</p><h2>WhatsApp</h2><p>WhatsApp wird erst nach einem aktiven Klick auf den Direktlink geöffnet. Der vorbereitete Text wird nicht automatisch versendet. Wenn du WhatsApp nutzt, können Telefonnummer und Nachrichteninhalt durch den Anbieter verarbeitet werden. Bitte beachte die <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Datenschutzinformationen von WhatsApp</a>. Du kannst uns alternativ per Kontaktformular oder E-Mail schreiben.</p><h2>E-Mail</h2><p>Die konkreten Angaben zum E-Mail-Dienst, dessen Standort und gegebenenfalls weiteren Empfängern oder Drittlandübermittlungen sind nach Einrichtung des tatsächlichen Dienstes zu ergänzen. Bei technischem Versandfehler wird die Anfrage in der Verwaltung gespeichert und der Fehler angezeigt.</p><h2>Cookies und externe Inhalte</h2><p>Die öffentliche Website setzt keine Analyse- oder Marketing-Cookies. Im Verwaltungsbereich dient ein technisch erforderliches Sitzungs-Cookie der Anmeldung. Schriftarten und Bilder werden lokal ausgeliefert. Es wird kein WhatsApp-Widget eingebunden.</p><h2>Deine Rechte</h2><p>Du hast nach Maßgabe der DSGVO Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung kannst du jederzeit für die Zukunft widerrufen. Außerdem kannst du dich bei einer Datenschutzaufsichtsbehörde beschweren.</p><h2>Aufsichtsbehörde</h2><p>Unabhängiges Landeszentrum für Datenschutz Schleswig-Holstein, Holstenstraße 98, 24103 Kiel, Telefon 0431 988-1200, E-Mail <a href="mailto:mail@datenschutzzentrum.de">mail@datenschutzzentrum.de</a>. Kontaktdaten vor Veröffentlichung nochmals prüfen.</p></div>'''
+        return '''<div class="wrap legal"><h1>Datenschutzerklärung</h1><p class="pending">Vor Veröffentlichung ergänzen und rechtlich prüfen: Rechenzentrum des Servers, Abschluss des Auftragsverarbeitungsvertrags mit Hetzner, Löschfrist für WhatsApp-Chats und Datum dieser Fassung. Diese Punkte sind unten in eckigen Klammern markiert.</p>
+<h2>1. Verantwortlicher</h2><p>Julian Kürten, Bienes Mützenparadies<br>Spreeallee 207, 24111 Kiel, Deutschland<br>E-Mail: <a href="mailto:info@mieten-macht-sinn.de">info@mieten-macht-sinn.de</a><br>Telefon: 0176 47147503</p>
+<h2>2. Das Wichtigste in Kürze</h2><p>Diese Website kommt ohne Kontaktformular, ohne Analyse- oder Werbedienste und ohne Cookies für Besucherinnen und Besucher aus. Schriften, Bilder und Skripte werden vom eigenen Server geladen, nicht von Drittanbietern. Anfragen laufen ausschließlich über WhatsApp, und zwar erst, wenn du selbst auf den WhatsApp-Button tippst.</p>
+<h2>3. Hosting</h2><p>Die Website läuft auf einem Server der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland. Standort des Servers: [Rechenzentrum eintragen, z. B. Nürnberg oder Falkenstein]. Mit Hetzner besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO [Abschluss prüfen].</p>
+<h2>4. Aufruf der Website und Server-Protokolle</h2><p>Beim Aufruf einer Seite verarbeitet der Server technisch notwendige Angaben: IP-Adresse, Datum und Uhrzeit, aufgerufene Adresse, Statuscode, übertragene Datenmenge, zuvor besuchte Seite und Browserkennung. Das ist nötig, um die Seite auszuliefern, sie vor Angriffen zu schützen und Fehler zu finden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p><p>In den Zugriffsprotokollen speichern wir die IP-Adresse nur gekürzt (bei IPv4 ohne die letzte Zahl, bei IPv6 nur die ersten beiden Blöcke). Fehlerprotokolle können die vollständige IP-Adresse enthalten. Beide Protokolle werden nach 14 Tagen automatisch gelöscht.</p>
+<h2>5. Kontakt per WhatsApp</h2><p>Für Anfragen bieten wir einen Direktlink zu WhatsApp an. Es ist kein WhatsApp-Widget eingebunden, und beim bloßen Besuch der Website entsteht keine Verbindung zu WhatsApp. Deine Angaben zu Muster, Größe, Kopfumfang, Wunschfarbe und Wünschen bleiben zunächst nur in deinem Browser. Erst wenn du auf „WhatsApp öffnen“ tippst, werden sie als vorbereiteter Text an WhatsApp übergeben. Gesendet wird nichts automatisch: Du kannst die Nachricht in WhatsApp ändern oder verwerfen.</p><p>Anbieter von WhatsApp ist die WhatsApp Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland. Dabei können Daten auch an die Meta Platforms, Inc. in den USA übermittelt werden. Details findest du in den <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener noreferrer">Datenschutzhinweisen von WhatsApp</a>.</p><p>Schreibst du uns, verarbeiten wir deine Telefonnummer, deinen WhatsApp-Namen und den Inhalt eurer Nachrichten, um deine Anfrage zu beantworten und gegebenenfalls deine Mütze anzufertigen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Wir löschen den Chat, wenn deine Anfrage erledigt ist [Frist festlegen], soweit keine gesetzlichen Aufbewahrungspflichten bestehen, etwa für Rechnungen.</p><p>Wenn du WhatsApp nicht nutzen möchtest, schreib uns eine E-Mail an die Adresse im <a href="/impressum">Impressum</a>. Deine E-Mail verarbeiten wir zu denselben Zwecken und löschen sie nach denselben Regeln.</p>
+<h2>6. Cookies</h2><p>Für Besucherinnen und Besucher setzt die Website keine Cookies. Nur im passwortgeschützten Verwaltungsbereich wird ein technisch notwendiges Sitzungs-Cookie für die Anmeldung gesetzt. Es läuft nach spätestens 8 Stunden ab (§ 25 Abs. 2 Nr. 2 TDDDG, Art. 6 Abs. 1 lit. f DSGVO). Zum Schutz vor Passwort-Ausprobieren speichern wir bei Anmeldeversuchen einen nicht rückrechenbaren Hashwert der IP-Adresse für höchstens 24 Stunden.</p>
+<h2>7. Deine Rechte</h2><p>Du hast nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18) und Datenübertragbarkeit (Art. 20). Du kannst einer Verarbeitung, die auf Art. 6 Abs. 1 lit. f DSGVO beruht, widersprechen (Art. 21). Eine erteilte Einwilligung kannst du jederzeit für die Zukunft widerrufen. Schreib uns dafür einfach an die oben genannte Adresse.</p>
+<h2>8. Beschwerde bei der Aufsichtsbehörde</h2><p>Du kannst dich bei einer Datenschutzaufsichtsbehörde beschweren. Für uns zuständig ist das Unabhängige Landeszentrum für Datenschutz Schleswig-Holstein, Holstenstraße 98, 24103 Kiel, Telefon 0431 988-1200, E-Mail <a href="mailto:mail@datenschutzzentrum.de">mail@datenschutzzentrum.de</a> [Kontaktdaten vor Veröffentlichung prüfen].</p>
+<p>Stand: [Datum eintragen]</p></div>'''
     return ''
-
-def mail_inquiry(f,number):
-    host=os.environ.get('SMTP_HOST','')
-    if not host or not os.environ.get('SMTP_FROM'): return False
-    msg=EmailMessage();msg['Subject']=f'Mützenanfrage #{number}: {f["subject"]}';msg['From']=os.environ['SMTP_FROM'];msg['To']=os.environ.get('CONTACT_TO','info@mieten-macht-sinn.de');msg['Reply-To']=f['email']
-    msg.set_content('\n'.join(f'{k}: {f.get(k,"")}' for k in ('name','email','subject','pattern','size','head_cm','color','wishes','message')))
-    port=int(os.environ.get('SMTP_PORT','587'))
-    factory=smtplib.SMTP_SSL if port==465 else smtplib.SMTP
-    with factory(host,port,timeout=8) as smtp:
-        if port!=465:smtp.starttls()
-        if os.environ.get('SMTP_USER'):smtp.login(os.environ['SMTP_USER'],os.environ.get('SMTP_PASSWORD',''))
-        smtp.send_message(msg)
-    return True
-
-def inquiry(env,start):
-    try: f=fields(env)
-    except (UnicodeDecodeError,ValueError): return response(start,400,json.dumps({'error':'Ungültige Eingabe.'}),content_type='application/json')
-    if f.get('website'): return response(start,200,json.dumps({'ok':True}),content_type='application/json')
-    ip=env.get('REMOTE_ADDR','')
-    if not rate_ok('form:'+hashlib.sha256(ip.encode()).hexdigest(),5,3600): return response(start,429,json.dumps({'error':'Zu viele Anfragen. Bitte versuche es später erneut.'}),content_type='application/json')
-    vals={k:f.get(k,'').strip() for k in ('name','email','subject','message','pattern','size','head_cm','color','wishes')}
-    if not vals['name'] or not re.fullmatch(r'[^\s@]+@[^\s@]+\.[^\s@]+',vals['email']) or not vals['subject'] or not vals['message'] or any(len(vals[k])>lim for k,lim in [('name',100),('email',254),('subject',140),('message',5000),('pattern',120),('size',80),('head_cm',20),('color',80),('wishes',1000)]):
-        return response(start,422,json.dumps({'error':'Bitte prüfe Name, E-Mail-Adresse und Nachricht.'}),content_type='application/json')
-    with db() as c:
-        cur=c.execute('INSERT INTO inquiries(name,email,subject,message,pattern,size,head_cm,color,wishes,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)',(*vals.values(),now()))
-        ident=cur.lastrowid
-    try: sent=mail_inquiry(vals,ident)
-    except Exception: sent=False
-    if sent:
-        with db() as c:c.execute('UPDATE inquiries SET mail_sent=1 WHERE id=?',(ident,))
-    return response(start,200,json.dumps({'ok':True,'mail_sent':sent}),content_type='application/json')
 
 def admin_shell(body,s):
     return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Verwaltung | Bienes Mützenparadies</title><link rel="stylesheet" href="/style.css"></head><body><header class="admin-header wrap"><a href="/">← Website</a><strong>Verwaltung</strong>{'<form method="post" action="/admin/logout"><input type="hidden" name="csrf" value="'+esc(s['csrf'])+'"><button>Abmelden</button></form>' if s else ''}</header><main class="wrap admin-main">{body}</main></body></html>'''
 def hidden_csrf(s):return f'<input type="hidden" name="csrf" value="{esc(s["csrf"])}">'
 def admin_home(s,query):
     tab=query.get('tab',['muster'])[0]
-    nav='<nav class="filter-row"><a class="chip" href="/admin?tab=muster">Muster</a><a class="chip" href="/admin?tab=anfragen">Anfragen</a><a class="chip" href="/admin?tab=groessen">Größen</a><a class="chip" href="/admin?tab=farben">Farben</a><a class="chip" href="/admin?tab=startseite">Startseite</a></nav>'
+    nav='<nav class="filter-row"><a class="chip" href="/admin?tab=muster">Muster</a><a class="chip" href="/admin?tab=groessen">Größen</a><a class="chip" href="/admin?tab=farben">Farben</a><a class="chip" href="/admin?tab=startseite">Startseite</a></nav>'
     with db() as c:
-        if tab=='anfragen':
-            rows=c.execute('SELECT * FROM inquiries ORDER BY id DESC').fetchall()
-            body='<h1>Anfragen</h1>'+''.join(f'<article class="admin-item"><h2>#{r["id"]} · {esc(r["name"])} <small>{esc(r["created_at"][:10])}</small></h2><p><a href="mailto:{esc(r["email"])}">{esc(r["email"])}</a> · {esc(r["subject"])}</p><p>Muster: {esc(r["pattern"])} · Größe: {esc(r["size"])} · Kopfumfang: {esc(r["head_cm"])} · Farbe: {esc(r["color"])}</p><p>Wünsche: {esc(r["wishes"])}</p><p class="message">{esc(r["message"])}</p><p>E-Mail-Benachrichtigung: {"gesendet" if r["mail_sent"] else "nicht versendet"}</p><form method="post" action="/admin/inquiry/{r["id"]}">{hidden_csrf(s)}<select name="status">'+''.join(f'<option {"selected" if r["status"]==st else ""}>{st}</option>' for st in ('Neue Anfrage','In Prüfung','Angebot versendet','Angenommen','Abgeschlossen','Abgelehnt'))+'</select><button class="btn btn-dark">Speichern</button><button class="btn btn-outline" name="delete" value="1" onclick="return confirm(\'Anfrage endgültig löschen?\')">Löschen</button></form></article>' for r in rows) or '<p>Noch keine Anfragen.</p>'
-        elif tab=='startseite':
+        if tab=='startseite':
             body='<h1>Bilder der Startseite</h1><p>Solange hier kein Foto hinterlegt ist, zeigt die Startseite eine als Demo gekennzeichnete Illustration. Bitte nur eigene, echte Fotos verwenden. Biene wird nicht mit Gesicht gezeigt.</p>'
             for key,label in SITE_IMAGES.items():
                 cur=c.execute('SELECT * FROM site_images WHERE key=?',(key,)).fetchone()
@@ -310,7 +290,7 @@ def admin_home(s,query):
             body+=f'<h2>Neu anlegen</h2><form class="admin-item admin-inline" method="post" action="/admin/{tab}/new">{hidden_csrf(s)}<input name="name" placeholder="Name" required><input name="{ "min_cm" if is_size else "hex" }" placeholder="{ "Minimum cm" if is_size else "#RRGGBB" }">'+('<input name="max_cm" placeholder="Maximum cm">' if is_size else '')+'<button class="btn btn-coral">Anlegen</button></form>'
         else:
             rows=c.execute('SELECT * FROM patterns ORDER BY id DESC').fetchall()
-            body='<h1>Muster</h1><p>Ein Muster wird nur veröffentlicht, wenn es mindestens ein echtes Produktfoto besitzt.</p><p><a class="btn btn-coral" href="/admin/pattern/new">Neues Muster</a></p><div class="admin-list">'+''.join(f'<a href="/admin/pattern/{r["id"]}"><strong>{esc(r["name"])}</strong><span>{esc(r["status"])} · {esc(r["category"])}</span></a>' for r in rows)+'</div>'
+            body='<h1>Muster</h1><p>Ein Muster lässt sich veröffentlichen, sobald Biene es freigegeben hat und es ein echtes Foto hat. Die mitgelieferten Motive haben eine Illustration und können bis zum Foto damit online gehen.</p><p><a class="btn btn-coral" href="/admin/pattern/new">Neues Muster</a></p><div class="admin-list">'+''.join(f'<a href="/admin/pattern/{r["id"]}"><strong>{esc(r["name"])}</strong><span>{esc(r["status"])} · {esc(r["category"])}</span></a>' for r in rows)+'</div>'
     return admin_shell(nav+body,s)
 
 def pattern_editor(s,p=None,error=''):
@@ -345,7 +325,7 @@ def upload_images(fs,pid):
 
 def admin_action(env,start,path,s):
     if path=='/admin/login':
-        f=fields(env);key='login:'+hashlib.sha256(env.get('REMOTE_ADDR','').encode()).hexdigest()
+        f=fields(env);key='login:'+hashlib.sha256(client_ip(env).encode()).hexdigest()
         if not rate_ok(key,8,900):return response(start,429,admin_shell('<h1>Bitte später erneut versuchen.</h1>',None))
         if not SECRET or not admin_password(f.get('password','')):return response(start,401,admin_shell('<h1>Anmelden</h1><p>Passwort nicht korrekt oder Zugang noch nicht eingerichtet.</p><form method="post"><input type="password" name="password" required><button class="btn btn-dark">Anmelden</button></form>',None))
         token=secrets.token_urlsafe(32);csrf=secrets.token_urlsafe(32)
@@ -378,12 +358,6 @@ def admin_action(env,start,path,s):
         elif cur and alt:
             with db() as c:c.execute('UPDATE site_images SET alt=? WHERE key=?',(alt,key))
         return redirect(start,'/admin?tab=startseite')
-    match=re.fullmatch(r'/admin/inquiry/(\d+)',path)
-    if match:
-        with db() as c:
-            if f.get('delete')=='1':c.execute('DELETE FROM inquiries WHERE id=?',(match[1],))
-            elif f.get('status') in ('Neue Anfrage','In Prüfung','Angebot versendet','Angenommen','Abgeschlossen','Abgelehnt'):c.execute('UPDATE inquiries SET status=? WHERE id=?',(f['status'],match[1]))
-        return redirect(start,'/admin?tab=anfragen')
     match=re.fullmatch(r'/admin/(groessen|farben)/(new|\d+)',path)
     if match:
         table='sizes' if match[1]=='groessen' else 'colors';name=f.get('name','').strip()[:80]
@@ -424,7 +398,7 @@ def admin_action(env,start,path,s):
                 if f.get('remove_'+str(im['id']))=='1':
                     c.execute('DELETE FROM images WHERE id=?',(im['id'],));(DATA/'uploads'/im['filename']).unlink(missing_ok=True)
                 else:c.execute('UPDATE images SET alt=?,position=? WHERE id=?',(f.get('alt_'+str(im['id']),im['alt'])[:180],int(f.get('pos_'+str(im['id']),im['position']) or 0),im['id']))
-            if status=='published' and not c.execute('SELECT 1 FROM images WHERE pattern_id=?',(pid,)).fetchone():c.execute("UPDATE patterns SET status='draft' WHERE id=?",(pid,))
+            if status=='published' and slug not in DEMO_ART and not c.execute('SELECT 1 FROM images WHERE pattern_id=?',(pid,)).fetchone():c.execute("UPDATE patterns SET status='draft' WHERE id=?",(pid,))
         return redirect(start,f'/admin/pattern/{pid}')
     match=re.fullmatch(r'/admin/pattern/(\d+)/delete',path)
     if match:
@@ -436,6 +410,7 @@ def admin_action(env,start,path,s):
 
 def app(env,start):
     init();path=unquote(env.get('PATH_INFO','/'));method=env.get('REQUEST_METHOD','GET')
+    if method=='HEAD':method='GET'  # Gunicorn sendet bei HEAD keinen Inhalt mit
     try:
         if path.startswith('/uploads/') and method=='GET':
             name=path.removeprefix('/uploads/')
@@ -448,7 +423,6 @@ def app(env,start):
             if not p.is_file():return response(start,404,'Nicht gefunden')
             cache='public, max-age=31536000, immutable' if path.startswith('/fonts/') else 'public, max-age=3600'
             return response(start,200,p.read_bytes(),content_type=STATIC[p.suffix],cache=cache)
-        if path=='/api/inquiry' and method=='POST':return inquiry(env,start)
         if path.startswith('/admin'):
             s=session(env)
             if method=='POST':return admin_action(env,start,path,s)

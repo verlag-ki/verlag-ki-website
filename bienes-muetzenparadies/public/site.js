@@ -1,17 +1,14 @@
 (() => {
   const WHATSAPP = '4915734487082';
   const dialog = document.getElementById('contact-dialog');
-  const choices = document.getElementById('contact-choices');
-  const form = document.getElementById('contact-form');
-  const feedback = document.getElementById('form-feedback');
-  const success = document.getElementById('form-success');
-  const fields = document.getElementById('form-pattern-fields');
   const whatsapp = document.getElementById('whatsapp-link');
+  const preview = document.getElementById('whatsapp-preview');
   const toggle = document.querySelector('.menu-toggle');
   const mobile = document.getElementById('mobile-nav');
   const state = {pattern: '', size: '', head_cm: '', color: '', wishes: ''};
   const general = 'Hallo Biene! 😊\n\nIch habe dein Mützenparadies entdeckt und würde gerne eine Mütze anfragen.\n\nKannst du mir sagen, ob mein Wunsch möglich ist?\n\nLiebe Grüße';
 
+  // Leere optionale Angaben erscheinen nicht in der Nachricht.
   const message = () => {
     if (!state.pattern) return general;
     const lines = ['Hallo Biene! 😊', '', 'Ich habe dein Mützenparadies entdeckt und interessiere mich für folgende Mütze:', '', `Muster: ${state.pattern}`];
@@ -23,27 +20,10 @@
     return lines.join('\n');
   };
 
-  // Überträgt die Auswahl in den WhatsApp-Link und in das Formular.
-  const update = () => {
-    whatsapp.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message())}`;
-    fields.hidden = !state.pattern;
-    for (const key of Object.keys(state)) {
-      const input = form.elements.namedItem(key);
-      if (input) {
-        input.value = state[key];
-        const wrap = input.closest('label');
-        // Leere optionale Angaben nicht als leeres Feld anzeigen
-        if (wrap && key !== 'pattern') wrap.hidden = !state[key];
-      }
-    }
-    const subject = form.elements.namedItem('subject');
-    if (!subject.dataset.touched) subject.value = state.pattern ? `Anfrage: ${state.pattern}` : 'Anfrage zu einer Häkelmütze';
-  };
-
-  const showChoices = () => { choices.hidden = false; form.hidden = true; success.hidden = true; };
-
   function openDialog() {
-    update(); showChoices(); feedback.textContent = ''; feedback.classList.remove('is-error');
+    const text = message();
+    whatsapp.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+    preview.textContent = text;
     closeMenu();
     if (!dialog.open) dialog.showModal();
   }
@@ -63,50 +43,6 @@
 
   document.querySelector('[data-close]').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-  form.elements.namedItem('subject').addEventListener('input', e => { e.target.dataset.touched = '1'; });
-
-  document.getElementById('show-form').addEventListener('click', () => {
-    choices.hidden = true; form.hidden = false; update();
-    form.elements.namedItem('name').focus();
-  });
-  document.getElementById('form-back').addEventListener('click', () => {
-    showChoices(); update(); whatsapp.focus();
-  });
-
-  const fail = (text, field) => {
-    feedback.textContent = text; feedback.classList.add('is-error');
-    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
-  };
-
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
-    feedback.classList.remove('is-error');
-    const el = name => form.elements.namedItem(name);
-    if (!el('name').value.trim()) return fail('Bitte gib deinen Namen an.', el('name'));
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el('email').value.trim())) return fail('Bitte gib eine gültige E-Mail-Adresse an, damit wir dir antworten können.', el('email'));
-    if (!el('subject').value.trim()) return fail('Bitte gib einen Betreff an.', el('subject'));
-    if (!el('message').value.trim()) return fail('Bitte schreib uns kurz, was du dir wünschst.', el('message'));
-
-    feedback.textContent = 'Deine Anfrage wird übermittelt …';
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true;
-    try {
-      const res = await fetch('/api/inquiry', {method: 'POST', body: new URLSearchParams(new FormData(form))});
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.ok) throw Error(data.error || 'Die Anfrage konnte nicht übermittelt werden. Bitte versuche es später erneut oder schreib uns per WhatsApp.');
-      form.hidden = true; choices.hidden = true; feedback.textContent = '';
-      document.getElementById('form-success-text').textContent = data.mail_sent
-        ? 'Deine Nachricht ist angekommen. Wir melden uns bei dir.'
-        : 'Deine Anfrage ist bei uns gespeichert. Die E-Mail-Benachrichtigung hat gerade nicht geklappt – für eine schnelle Antwort schreib uns gern zusätzlich per WhatsApp.';
-      success.hidden = false; success.focus();
-      form.reset(); delete el('subject').dataset.touched;
-    } catch (err) {
-      fail(err.message || 'Bitte versuche es später erneut.');
-    } finally {
-      button.disabled = false;
-    }
-  });
 
   // Mobile Navigation
   function closeMenu() {

@@ -1,4 +1,4 @@
-"""Small integration check for the critical inquiry and publication flows."""
+"""Integrationsprüfung: öffentliche Seiten, WhatsApp-Anfrage, Verwaltung und Veröffentlichung."""
 import hashlib
 import io
 import os
@@ -28,11 +28,15 @@ for page in ['/','/muster','/so-funktionierts','/groessenhilfe','/wunschfarben',
     assert request(page)['status'].startswith('200'),page
 assert 'froschmuetze' not in request('/sitemap.xml')['body']
 assert request('/muster/froschmuetze')['status'].startswith('404')
-assert request('/api/inquiry','POST',{'name':'A','email':'invalid','subject':'Hallo','message':'Test'})['status'].startswith('422')
-valid={'name':'Ada','email':'ada@example.org','subject':'Frage','message':'Hallo Biene','pattern':'','size':'','head_cm':'','color':'','wishes':''}
-submitted=request('/api/inquiry','POST',valid)
-assert submitted['status'].startswith('200') and '"mail_sent": false' in submitted['body']
-assert app.db().execute('SELECT name FROM inquiries').fetchone()['name']=='Ada'
+# Anfragen nur per WhatsApp: kein Formular, kein Formular-Endpunkt
+home=request('/')['body']
+assert 'contact-form' not in home and 'whatsapp-preview' in home and 'wa.me/4915734487082' in home
+assert not request('/api/inquiry','POST',{'name':'A'})['status'].startswith('200')
+# Hinter Nginx zählt die echte Besucheradresse, aber nur mit TRUST_PROXY=1
+assert app.client_ip({'REMOTE_ADDR':'127.0.0.1','HTTP_X_REAL_IP':'203.0.113.9'})=='127.0.0.1'
+os.environ['TRUST_PROXY']='1'
+assert app.client_ip({'REMOTE_ADDR':'127.0.0.1','HTTP_X_REAL_IP':'203.0.113.9'})=='203.0.113.9'
+del os.environ['TRUST_PROXY']
 login=request('/admin/login','POST',{'password':'test-password'})
 assert login['status'].startswith('303')
 cookie=login['headers']['Set-Cookie'].split(';')[0]
@@ -63,7 +67,7 @@ home=request('/')['body']
 order=['Hier gibt’s was','Muster entdecken','Beliebte Muster','Alle Muster ansehen','<h3>So funktioniert’s','Die richtige Größe','Deine Wunschfarbe','Mit Liebe gehäkelt.','Schon eine Lieblingsmütze entdeckt?','Jetzt unverbindlich anfragen']
 positions=[home.index(t,home.index('<main')) for t in order]
 assert positions==sorted(positions), 'Abschnittsreihenfolge der Startseite'
-assert 'Demo-Bild · KI-generiert' in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
+assert 'Demo-Illustration' in home and 'ki-hero.webp' not in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
 assert home.count('data-contact')>=4 and 'wa.me/4915734487082' in home and '"@type": "WebSite"' in home
 for asset in ['/style.css','/site.js','/favicon.svg','/brand/bee-mark.svg','/img/demo-hero.svg','/img/ki-hero.webp','/img/bee-flight.svg','/fonts/figtree-latin-wght-normal.woff2']:
     assert request(asset)['status'].startswith('200'),asset
@@ -73,9 +77,17 @@ buf=io.BytesIO();Image.new('RGB',(800,870),'#e4d6c1').save(buf,'JPEG')
 parts=[f'--{boundary}\r\nContent-Disposition: form-data; name="csrf"\r\n\r\n{csrf}\r\n'.encode(),f'--{boundary}\r\nContent-Disposition: form-data; name="alt"\r\n\r\nDrei gehäkelte Mützen auf einem Regal\r\n'.encode(),f'--{boundary}\r\nContent-Disposition: form-data; name="image"; filename="hero.jpg"\r\nContent-Type: image/jpeg\r\n\r\n'.encode()+buf.getvalue()+b'\r\n',f'--{boundary}--\r\n'.encode()]
 assert request('/admin/startseite/hero','POST',b''.join(parts),cookie,f'multipart/form-data; boundary={boundary}')['status'].startswith('303')
 home=request('/')['body']
-assert 'Drei gehäkelte Mützen auf einem Regal' in home and 'ki-hero.webp' not in home
+assert 'Drei gehäkelte Mützen auf einem Regal' in home and 'demo-hero.svg' not in home
 # Veröffentlichtes Muster erscheint mit Link auf der Startseite
 assert '/muster/echte-froschmuetze' in home
 detail=request('/muster/echte-froschmuetze')['body']
 assert 'Preis auf Anfrage' in detail and 'type="radio" name="color" value="Grün"' in detail and 'Unverbindlich anfragen' in detail
-print('OK: homepage structure, static assets, homepage photo upload, public routes, hidden demos, validation, inquiry storage, admin auth, size/color edit, image gate, publication and sitemap')
+# Mitgeliefertes Motiv mit Illustration lässt sich ohne Foto veröffentlichen
+fid=app.db().execute("SELECT id FROM patterns WHERE slug='froschmuetze'").fetchone()['id']
+frog={'csrf':csrf,'name':'Fritzi, der Frosch','slug':'froschmuetze','description':'Ein lustiger grüner Frosch mit großen Augen.','category':'Tiermützen','status':'published'}
+parts=[f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode() for k,v in frog.items()]+[f'--{boundary}--\r\n'.encode()]
+assert request(f'/admin/pattern/{fid}','POST',b''.join(parts),cookie,f'multipart/form-data; boundary={boundary}')['status'].startswith('303')
+frog_page=request('/muster/froschmuetze')
+assert frog_page['status'].startswith('200') and 'Illustration · Foto folgt' in frog_page['body'] and 'demo-frosch.svg' in frog_page['body']
+assert '/muster/froschmuetze' in request('/sitemap.xml')['body']
+print('OK: homepage structure, WhatsApp-only contact, proxy address, static assets, homepage photo upload, public routes, hidden demos, admin auth, size/color edit, image gate, illustrated publication, publication and sitemap')

@@ -1,0 +1,28 @@
+[Unit]
+Description=Bienes Mützenparadies (Gunicorn)
+After=network.target
+
+[Service]
+User=@USER@
+Group=@USER@
+WorkingDirectory=@APP_DIR@
+EnvironmentFile=@ENV_FILE@
+ExecStart=@APP_DIR@/.venv/bin/gunicorn --workers 2 --bind 127.0.0.1:@PORT@ --timeout 60 app:app
+Restart=on-failure
+RestartSec=3
+
+# Absicherung: nur das Datenverzeichnis ist beschreibbar
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=@DATA_DIR@
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
