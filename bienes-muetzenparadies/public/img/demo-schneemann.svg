@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Demo-Illustration einer Häkelmütze">
+<rect width="400" height="500" fill="#E6ECF0"/>
+<ellipse cx="200" cy="436" rx="150" ry="16" fill="#3A3027" opacity=".08"/>
+<g transform="translate(0 44)"><defs><pattern id="st-schneemann" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#F7F4EE"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#B9B1A6" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#B9B1A6" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-schneemann" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#B9B1A6"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern><pattern id="st-schneemannb" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#C65A66"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#C65A66" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#C65A66" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-schneemannb" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#C65A66"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern></defs>
+<circle cx="200" cy="112" r="30" fill="url(#st-schneemannb)" stroke="#3A3027" stroke-width="5"/>
+<path d="M84 336C80 206 138 128 200 128s120 78 116 208Z" fill="url(#st-schneemann)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M112 206c18-40 50-62 88-66" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
+<circle cx="166" cy="230" r="12" fill="#3A3027"/><circle cx="170.2" cy="225.2" r="3.84" fill="#fff"/><circle cx="234" cy="230" r="12" fill="#3A3027"/><circle cx="238.2" cy="225.2" r="3.84" fill="#fff"/><path d="M196 248l62 14-62 12Z" fill="#E48A3C" stroke="#3A3027" stroke-width="4.5" stroke-linejoin="round"/><path d="M214 256l4 13M232 259l3 8" stroke="#3A3027" stroke-width="3" stroke-linecap="round" opacity=".5"/><circle cx="160" cy="286" r="5.5" fill="#3A3027"/><circle cx="178" cy="296" r="5.5" fill="#3A3027"/><circle cx="200" cy="300" r="5.5" fill="#3A3027"/><circle cx="222" cy="296" r="5.5" fill="#3A3027"/><circle cx="240" cy="286" r="5.5" fill="#3A3027"/>
+<rect x="70" y="322" width="260" height="70" rx="26" fill="url(#rib-schneemannb)" stroke="#3A3027" stroke-width="5"/></g>
+</svg>

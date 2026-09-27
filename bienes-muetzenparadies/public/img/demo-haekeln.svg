@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" role="img" aria-label="Demo-Illustration: Wollknäuel, Häkelnadel, angefangene Mütze und Stoffetikett mit Bienenlogo">
+<rect width="800" height="640" fill="#E9ECE3"/>
+<g opacity=".35" stroke="#C9D0BE" stroke-width="2"><path d="M0 18h800"/><path d="M0 40h800"/><path d="M0 62h800"/><path d="M0 84h800"/><path d="M0 106h800"/><path d="M0 128h800"/><path d="M0 150h800"/><path d="M0 172h800"/><path d="M0 194h800"/><path d="M0 216h800"/><path d="M0 238h800"/><path d="M0 260h800"/><path d="M0 282h800"/><path d="M0 304h800"/><path d="M0 326h800"/><path d="M0 348h800"/><path d="M0 370h800"/><path d="M0 392h800"/><path d="M0 414h800"/><path d="M0 436h800"/><path d="M0 458h800"/><path d="M0 480h800"/><path d="M0 502h800"/><path d="M0 524h800"/><path d="M0 546h800"/><path d="M0 568h800"/><path d="M0 590h800"/><path d="M0 612h800"/><path d="M0 634h800"/></g>
+<g><clipPath id="y-s1"><circle cx="170" cy="180" r="88"/></clipPath>
+<circle cx="170" cy="180" r="88" fill="#8BA17F"/>
+<g clip-path="url(#y-s1)"><path d="M86.4 140.4q83.6 -48.400000000000006 167.2 0" fill="none" stroke="#5F7654" stroke-width="3" opacity=".55"/><path d="M86.4 171.2q83.6 -48.400000000000006 167.2 0" fill="none" stroke="#5F7654" stroke-width="3" opacity=".55"/><path d="M86.4 202.0q83.6 -48.400000000000006 167.2 0" fill="none" stroke="#5F7654" stroke-width="3" opacity=".55"/><path d="M134.8 92q-26.4 88 17.6 176M178.8 92q-35.2 88 30.799999999999997 176" fill="none" stroke="#5F7654" stroke-width="3" opacity=".45"/></g>
+<circle cx="170" cy="180" r="88" fill="none" stroke="#3A3027" stroke-width="4.5"/></g>
+<g><clipPath id="y-s2"><circle cx="300" cy="110" r="56"/></clipPath>
+<circle cx="300" cy="110" r="56" fill="#F3D68B"/>
+<g clip-path="url(#y-s2)"><path d="M246.8 84.8q53.199999999999996 -30.800000000000004 106.39999999999999 0" fill="none" stroke="#C9A24B" stroke-width="3" opacity=".55"/><path d="M246.8 104.4q53.199999999999996 -30.800000000000004 106.39999999999999 0" fill="none" stroke="#C9A24B" stroke-width="3" opacity=".55"/><path d="M246.8 124.0q53.199999999999996 -30.800000000000004 106.39999999999999 0" fill="none" stroke="#C9A24B" stroke-width="3" opacity=".55"/><path d="M277.6 54q-16.8 56 11.200000000000001 112M305.6 54q-22.400000000000002 56 19.599999999999998 112" fill="none" stroke="#C9A24B" stroke-width="3" opacity=".45"/></g>
+<circle cx="300" cy="110" r="56" fill="none" stroke="#3A3027" stroke-width="4.5"/></g>
+<g><clipPath id="y-s3"><circle cx="150" cy="380" r="62"/></clipPath>
+<circle cx="150" cy="380" r="62" fill="#C65A66"/>
+<g clip-path="url(#y-s3)"><path d="M91.1 352.1q58.9 -34.1 117.8 0" fill="none" stroke="#94404A" stroke-width="3" opacity=".55"/><path d="M91.1 373.8q58.9 -34.1 117.8 0" fill="none" stroke="#94404A" stroke-width="3" opacity=".55"/><path d="M91.1 395.5q58.9 -34.1 117.8 0" fill="none" stroke="#94404A" stroke-width="3" opacity=".55"/><path d="M125.2 318q-18.599999999999998 62 12.4 124M156.2 318q-24.8 62 21.7 124" fill="none" stroke="#94404A" stroke-width="3" opacity=".45"/></g>
+<circle cx="150" cy="380" r="62" fill="none" stroke="#3A3027" stroke-width="4.5"/></g>
+<path d="M246 214c60 30 110 70 160 64s60-40 110-20" fill="none" stroke="#5F7654" stroke-width="4" stroke-linecap="round"/>
+<g transform="translate(360 160) rotate(8)">
+<defs><pattern id="st-sh" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#8BA17F"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#5F7654" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#5F7654" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-sh" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#5F7654"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern></defs>
+<path d="M40 220C40 140 90 96 160 96s120 44 120 124Z" fill="url(#st-sh)" stroke="#3A3027" stroke-width="5" stroke-dasharray="0" />
+<path d="M40 220h240" stroke="#3A3027" stroke-width="5"/>
+<rect x="28" y="214" width="264" height="66" rx="24" fill="url(#rib-sh)" stroke="#3A3027" stroke-width="5"/>
+<path d="M150 96q10-26 40-36" fill="none" stroke="#5F7654" stroke-width="4" stroke-linecap="round"/>
+</g>
+<g transform="rotate(-18 520 520)"><rect x="370" y="512" width="300" height="14" rx="7" fill="#C9A24B" stroke="#3A3027" stroke-width="4.5"/><rect x="470" y="508" width="70" height="22" rx="8" fill="#F3D68B" stroke="#3A3027" stroke-width="4"/><path d="M670 519q18 0 18-13" fill="none" stroke="#3A3027" stroke-width="4.5" stroke-linecap="round"/></g>
+<g transform="translate(610 70) rotate(6)">
+<rect width="150" height="96" rx="6" fill="#FBF8F3" stroke="#3A3027" stroke-width="4"/>
+<path d="M0 12h150M0 84h150" stroke="#C65A66" stroke-width="2" stroke-dasharray="6 5"/>
+<g transform="translate(47 20) scale(.88)"><title id="st-t">Biene mit Häkelmütze</title>
+  <defs><clipPath id="st-body"><path d="M9.5 40.5c0-8.6 7.8-14.2 17.6-14.2 5 0 8.9 1.3 11.4 3.6l.3 20.4c-2.8 1.9-6.9 3-11.7 3-9.8 0-17.6-4.8-17.6-12.8Z"/></clipPath></defs>
+  <g fill="none" stroke="#3A3027" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24.5 27.5C17 22 12.5 14.5 16.5 11.5c4.2-3.1 10.5 5.2 11.8 14.2" fill="#FFFFFF"/>
+    <path d="M30.6 25.9c-.6-9.4 3.2-17.2 7.7-15.3 4.5 1.9 1.5 10.9-5 16.6" fill="#FFFFFF"/>
+    <path d="M9.5 40.5c0-8.6 7.8-14.2 17.6-14.2 5 0 8.9 1.3 11.4 3.6l.3 20.4c-2.8 1.9-6.9 3-11.7 3-9.8 0-17.6-4.8-17.6-12.8Z" fill="#F3D68B"/>
+    <path d="M9.6 40.6 5.4 41.8l4.5 2.1" fill="#3A3027"/>
+    <path d="M20.5 25.3c-1.8 3.8-2.8 10.6-2.6 15.4.2 4.3 1.5 10.4 3.2 13.3M29.3 24.4c-1.3 4.2-2 11.2-1.6 16 .3 4.6 1.5 10.7 3.1 14" stroke-width="4.6" clip-path="url(#st-body)"/>
+    <path d="M9.5 40.5c0-8.6 7.8-14.2 17.6-14.2 5 0 8.9 1.3 11.4 3.6l.3 20.4c-2.8 1.9-6.9 3-11.7 3-9.8 0-17.6-4.8-17.6-12.8Z"/>
+    <circle cx="46" cy="39.2" r="10.2" fill="#F3D68B"/>
+    <path d="M36.3 33.6c.6-6.1 4.8-10 9.9-10 5.2 0 9.4 3.9 10 10" fill="#C65A66"/>
+    <path d="M35.2 33.3h21.8v3.3H35.2z" fill="#C65A66"/>
+    <circle cx="46.2" cy="20.6" r="2.9" fill="#C65A66"/>
+    <path d="M47.8 42.9c1 1.4 2.6 2.1 4.2 1.4"/>
+  </g>
+  <circle cx="49.9" cy="39.7" r="1.7" fill="#3A3027"/>
+  <g stroke="#FBF8F3" stroke-width="1.1" stroke-linecap="round" opacity=".75"><path d="M39.2 34.1v1.9M42.3 34.1v1.9M45.4 34.1v1.9M48.5 34.1v1.9M51.6 34.1v1.9M54.7 34.1v1.9"/></g>
+</g>
+</g>
+</svg>

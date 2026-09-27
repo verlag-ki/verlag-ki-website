@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Demo-Illustration einer Häkelmütze">
+<rect width="400" height="500" fill="#ECE7F3"/>
+<ellipse cx="200" cy="436" rx="150" ry="16" fill="#3A3027" opacity=".08"/>
+<g transform="translate(0 44)"><defs><pattern id="st-monster" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#A897CC"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#7A68A6" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#7A68A6" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-monster" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#7A68A6"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern></defs>
+<path d="M146 152q-18-44 6-66 4 32 30 50Z" fill="#F3D68B" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/><path d="M254 152q18-44-6-66-4 32-30 50Z" fill="#F3D68B" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M84 336C80 206 138 128 200 128s120 78 116 208Z" fill="url(#st-monster)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M112 206c18-40 50-62 88-66" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
+<circle cx="122" cy="282" r="11" fill="#C9BDE3" opacity=".8"/><circle cx="282" cy="250" r="14" fill="#C9BDE3" opacity=".8"/><circle cx="262" cy="300" r="8" fill="#C9BDE3" opacity=".8"/><circle cx="138" cy="230" r="7" fill="#C9BDE3" opacity=".8"/><circle cx="200" cy="222" r="42" fill="#fff" stroke="#3A3027" stroke-width="5"/><circle cx="206" cy="228" r="19" fill="#3A3027"/><circle cx="212.65" cy="220.4" r="6.08" fill="#fff"/><path d="M160 290q40 22 80 0" fill="none" stroke="#3A3027" stroke-width="6" stroke-linecap="round"/><path d="M178 297l7 16 8-13M209 300l8 13 7-16" fill="#fff" stroke="#3A3027" stroke-width="4" stroke-linejoin="round"/>
+<rect x="70" y="322" width="260" height="70" rx="26" fill="url(#rib-monster)" stroke="#3A3027" stroke-width="5"/></g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Demo-Illustration einer Häkelmütze">
+<rect width="400" height="500" fill="#F8E7E5"/>
+<ellipse cx="200" cy="436" rx="150" ry="16" fill="#3A3027" opacity=".08"/>
+<g transform="translate(0 44)"><defs><pattern id="st-schweinchen" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#F0AFB2"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#D27C83" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#D27C83" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-schweinchen" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#D27C83"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern></defs>
+<path d="M108 214 94 128l76 42Z" fill="url(#st-schweinchen)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/><path d="M292 214l14-86-76 42Z" fill="url(#st-schweinchen)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M84 336C80 206 138 128 200 128s120 78 116 208Z" fill="url(#st-schweinchen)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M112 206c18-40 50-62 88-66" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
+<circle cx="160" cy="234" r="11" fill="#3A3027"/><circle cx="163.85" cy="229.6" r="3.52" fill="#fff"/><circle cx="240" cy="234" r="11" fill="#3A3027"/><circle cx="243.85" cy="229.6" r="3.52" fill="#fff"/><ellipse cx="200" cy="276" rx="42" ry="29" fill="#E3959B" stroke="#3A3027" stroke-width="5"/><ellipse cx="185" cy="276" rx="7" ry="10" fill="#3A3027"/><ellipse cx="215" cy="276" rx="7" ry="10" fill="#3A3027"/>
+<rect x="70" y="322" width="260" height="70" rx="26" fill="url(#rib-schweinchen)" stroke="#3A3027" stroke-width="5"/></g>
+</svg>

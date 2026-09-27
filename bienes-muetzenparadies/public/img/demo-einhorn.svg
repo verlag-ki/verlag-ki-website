@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Demo-Illustration einer Häkelmütze">
+<rect width="400" height="500" fill="#F7EFE4"/>
+<ellipse cx="200" cy="436" rx="150" ry="16" fill="#3A3027" opacity=".08"/>
+<g transform="translate(0 44)"><defs><pattern id="st-einhorn" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#FAF6F1"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#C9BFB4" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#C9BFB4" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-einhorn" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#C9BFB4"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern><pattern id="st-einhornb" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#E9A7B3"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#E9A7B3" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#E9A7B3" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-einhornb" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#E9A7B3"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern></defs>
+<path d="M150 168 130 118l44 22Z" fill="url(#st-einhorn)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/><path d="M250 168l20-50-44 22Z" fill="url(#st-einhorn)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/><path d="M180 146 200 58l20 88Z" fill="#F3D68B" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/><path d="M186 120l24-10M190 100l19-8M194 80l13-5" stroke="#3A3027" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+<path d="M84 336C80 206 138 128 200 128s120 78 116 208Z" fill="url(#st-einhorn)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M112 206c18-40 50-62 88-66" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
+<circle cx="248" cy="150" r="17" fill="#E9A7B3" stroke="#3A3027" stroke-width="4"/><circle cx="274" cy="172" r="17" fill="#C9BDE3" stroke="#3A3027" stroke-width="4"/><circle cx="292" cy="202" r="16" fill="#F3D68B" stroke="#3A3027" stroke-width="4"/><circle cx="304" cy="236" r="15" fill="#A9C7A0" stroke="#3A3027" stroke-width="4"/><circle cx="310" cy="272" r="14" fill="#E9A7B3" stroke="#3A3027" stroke-width="4"/><path d="M150 240q14 12 28 0M222 240q14 12 28 0" fill="none" stroke="#3A3027" stroke-width="5" stroke-linecap="round"/><path d="M152 246l-6 8M176 246l5 8M224 246l-5 8M248 246l6 8" stroke="#3A3027" stroke-width="3.5" stroke-linecap="round"/><circle cx="140" cy="272" r="13" fill="#E9A7B3" opacity=".6"/><circle cx="260" cy="272" r="13" fill="#E9A7B3" opacity=".6"/><path d="M186 286q14 10 28 0" fill="none" stroke="#3A3027" stroke-width="5" stroke-linecap="round"/>
+<rect x="70" y="322" width="260" height="70" rx="26" fill="url(#rib-einhornb)" stroke="#3A3027" stroke-width="5"/></g>
+</svg>

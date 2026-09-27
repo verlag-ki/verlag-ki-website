@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Demo-Illustration einer Häkelmütze">
+<rect width="400" height="500" fill="#F3E9DC"/>
+<ellipse cx="200" cy="436" rx="150" ry="16" fill="#3A3027" opacity=".08"/>
+<g transform="translate(0 44)"><defs><pattern id="st-baer" width="16" height="12" patternUnits="userSpaceOnUse">
+<rect width="16" height="12" fill="#B98B63"/>
+<path d="M1 6.5q3.5-5.5 7 0q3.5-5.5 7 0" fill="none" stroke="#87603F" stroke-width="1.6" stroke-linecap="round" opacity=".38"/>
+<path d="M-7 12.5q3.5-5.5 7 0M9 12.5q3.5-5.5 7 0" fill="none" stroke="#87603F" stroke-width="1.6" stroke-linecap="round" opacity=".22"/>
+</pattern>
+<pattern id="rib-baer" width="11" height="20" patternUnits="userSpaceOnUse">
+<rect width="11" height="20" fill="#87603F"/>
+<path d="M5.5 0v20" stroke="#fff" stroke-width="3.4" opacity=".16"/>
+</pattern></defs>
+<circle cx="118" cy="168" r="42" fill="url(#st-baer)" stroke="#3A3027" stroke-width="5"/><circle cx="118" cy="168" r="20" fill="#E3C3A1"/><circle cx="282" cy="168" r="42" fill="url(#st-baer)" stroke="#3A3027" stroke-width="5"/><circle cx="282" cy="168" r="20" fill="#E3C3A1"/>
+<path d="M84 336C80 206 138 128 200 128s120 78 116 208Z" fill="url(#st-baer)" stroke="#3A3027" stroke-width="5" stroke-linejoin="round"/>
+<path d="M112 206c18-40 50-62 88-66" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".22"/>
+<circle cx="164" cy="236" r="11" fill="#3A3027"/><circle cx="167.85" cy="231.6" r="3.52" fill="#fff"/><circle cx="236" cy="236" r="11" fill="#3A3027"/><circle cx="239.85" cy="231.6" r="3.52" fill="#fff"/><ellipse cx="200" cy="280" rx="46" ry="34" fill="#E3C3A1" stroke="#3A3027" stroke-width="5"/><path d="M186 268q14-10 28 0-4 12-14 14-10-2-14-14Z" fill="#3A3027"/><path d="M200 282v10m-12 4q12 8 24 0" fill="none" stroke="#3A3027" stroke-width="4" stroke-linecap="round"/>
+<rect x="70" y="322" width="260" height="70" rx="26" fill="url(#rib-baer)" stroke="#3A3027" stroke-width="5"/></g>
+</svg>
