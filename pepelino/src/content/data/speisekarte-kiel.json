@@ -1,0 +1,568 @@
+{
+  "notices": [
+    "Das Mitbringen und der Verzehr eigener Speisen und Getränke ist nicht gestattet.",
+    "Fragen zu Allergenen und Zusatzstoffen beantwortet gern unser Team vor Ort."
+  ],
+  "asOf": "Oktober 2025",
+  "sourceImages": [
+    {
+      "label": "Speisekarte Kiel (Bild)",
+      "url": "https://www.pepelino-fun.de/wp-content/uploads/2025/10/Kiel-Speisen.jpg"
+    },
+    {
+      "label": "Getränkekarte Kiel (Bild)",
+      "url": "https://www.pepelino-fun.de/wp-content/uploads/2025/10/Kiel-Getraenke.jpg"
+    }
+  ],
+  "provenance": {
+    "sourceUrl": "https://www.pepelino-fun.de/wp-content/uploads/2025/10/Kiel-Speisen.jpg",
+    "checkedAt": "2026-09-26",
+    "verificationStatus": "verified_public",
+    "note": "Aus Bilddatei transkribiert – Transkription vor Livegang vom Standort prüfen lassen."
+  },
+  "sections": [
+    {
+      "id": "snacks",
+      "title": "Snacks & Hauptgerichte",
+      "kind": "food",
+      "items": [
+        {
+          "detail": "",
+          "note": "",
+          "name": "Chicken Nuggets",
+          "variants": [
+            {
+              "size": "5 Stück",
+              "price": 3.9
+            },
+            {
+              "size": "9 Stück",
+              "price": 6.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Chicken Crossies",
+          "variants": [
+            {
+              "size": "5 Stück",
+              "price": 4.5
+            },
+            {
+              "size": "9 Stück",
+              "price": 6.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Chicken Wings",
+          "variants": [
+            {
+              "size": "6 Stück",
+              "price": 5.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Falafel",
+          "variants": [
+            {
+              "size": "5 Stück",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Wiener Würstchen mit Toast",
+          "variants": [
+            {
+              "size": "1 Paar",
+              "price": 3.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Currywurst",
+          "variants": [
+            {
+              "size": "",
+              "price": 5.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Currywurst mit Pommes",
+          "variants": [
+            {
+              "size": "",
+              "price": 8.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burger",
+      "title": "Burger",
+      "kind": "food",
+      "items": [
+        {
+          "detail": "",
+          "note": "",
+          "name": "Hamburger",
+          "variants": [
+            {
+              "size": "",
+              "price": 4.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Cheeseburger",
+          "variants": [
+            {
+              "size": "",
+              "price": 5.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Nugget-Burger",
+          "variants": [
+            {
+              "size": "",
+              "price": 5.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizza-pasta",
+      "title": "Pizza & Spaghetti",
+      "kind": "food",
+      "items": [
+        {
+          "detail": "",
+          "note": "Auf der Karte steht der Preis neben Margherita; Geltung für alle drei Sorten prüfen.",
+          "name": "Pizza Salami, Thunfisch oder Margherita",
+          "variants": [
+            {
+              "size": "",
+              "price": 6.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Spaghetti ohne Soße",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Spaghetti mit Tomatenketchup",
+          "variants": [
+            {
+              "size": "",
+              "price": 4.5
+            }
+          ]
+        },
+        {
+          "detail": "vegetarisch",
+          "note": "",
+          "name": "Spaghetti Napoli",
+          "variants": [
+            {
+              "size": "",
+              "price": 4.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beilagen",
+      "title": "Beilagen & Extras",
+      "kind": "food",
+      "items": [
+        {
+          "detail": "",
+          "note": "",
+          "name": "Pommes",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Country-Kartoffeln",
+          "variants": [
+            {
+              "size": "",
+              "price": 4.5
+            }
+          ]
+        },
+        {
+          "detail": "Curry- oder Tomatenketchup, Mayonnaise, Senf, Remoulade",
+          "note": "",
+          "name": "Dip",
+          "variants": [
+            {
+              "size": "",
+              "price": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "backwaren",
+      "title": "Backwaren & Süßes",
+      "kind": "food",
+      "items": [
+        {
+          "detail": "",
+          "note": "",
+          "name": "Laugenbrezel",
+          "variants": [
+            {
+              "size": "",
+              "price": 2.5
+            }
+          ]
+        },
+        {
+          "detail": "je nach Tagesangebot",
+          "note": "",
+          "name": "Torte",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "je nach Tagesangebot",
+          "note": "",
+          "name": "Weitere Backwaren",
+          "variants": [
+            {
+              "size": "",
+              "price": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kalt",
+      "title": "Kalte Getränke",
+      "kind": "drinks",
+      "items": [
+        {
+          "detail": "",
+          "note": "Größen-/Preiszuordnung aus dem Kartenlayout abgeleitet.",
+          "name": "Coca-Cola, Coca-Cola light, Mezzo Mix, Fanta, Sprite",
+          "variants": [
+            {
+              "size": "0,3 l",
+              "price": 2.5
+            },
+            {
+              "size": "1 l",
+              "price": 4.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "Auf der Karte ohne eigenen Preis.",
+          "name": "Apfelschorle",
+          "variants": [
+            {
+              "size": "",
+              "price": null
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Apfelsaft oder Orangensaft",
+          "variants": [
+            {
+              "size": "0,2 l",
+              "price": 2.9
+            },
+            {
+              "size": "0,7 l",
+              "price": 5.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Wasser classic oder still",
+          "variants": [
+            {
+              "size": "0,5 l",
+              "price": 1.9
+            },
+            {
+              "size": "1 l",
+              "price": 2.9
+            }
+          ]
+        },
+        {
+          "detail": "je nach Angebot",
+          "note": "",
+          "name": "Capri-Sonne",
+          "variants": [
+            {
+              "size": "",
+              "price": 1.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Red Bull",
+          "variants": [
+            {
+              "size": "0,25 l",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "verschiedene Sorten",
+          "note": "",
+          "name": "Slush",
+          "variants": [
+            {
+              "size": "0,2 l",
+              "price": 2.5
+            }
+          ]
+        },
+        {
+          "detail": "Limo Orange oder Zitrone; Bio-Apfel-, Trauben-, Rhabarbersaft, Apfel-Kirsch-Holunder",
+          "note": "Preis steht auf der Karte bei den Bio-Säften; Geltung für alle Sorten prüfen.",
+          "name": "fritz-limo & Bio-Säfte",
+          "variants": [
+            {
+              "size": "0,3 l",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Erdinger alkoholfrei",
+          "variants": [
+            {
+              "size": "0,5 l",
+              "price": 4.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heiss",
+      "title": "Heiße Getränke",
+      "kind": "drinks",
+      "items": [
+        {
+          "detail": "",
+          "note": "",
+          "name": "Filterkaffee",
+          "variants": [
+            {
+              "size": "Tasse",
+              "price": 2.5
+            },
+            {
+              "size": "Becher",
+              "price": 3.5
+            },
+            {
+              "size": "Kanne (1 l)",
+              "price": 9.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Kaffee Crema",
+          "variants": [
+            {
+              "size": "Tasse",
+              "price": 2.9
+            },
+            {
+              "size": "Becher",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Espresso",
+          "variants": [
+            {
+              "size": "",
+              "price": 2.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Milchkaffee",
+          "variants": [
+            {
+              "size": "",
+              "price": 4.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Cappuccino",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Schokocino",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Latte Macchiato",
+          "variants": [
+            {
+              "size": "",
+              "price": 4.5
+            }
+          ]
+        },
+        {
+          "detail": "je nach Angebot",
+          "note": "",
+          "name": "Kaffeearoma",
+          "variants": [
+            {
+              "size": "",
+              "price": 0.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Weiße Schokolade",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Heiße Schokolade",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.5
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Heiße Schokolade mit Sahne",
+          "variants": [
+            {
+              "size": "",
+              "price": 3.9
+            }
+          ]
+        },
+        {
+          "detail": "",
+          "note": "",
+          "name": "Becher Milch",
+          "variants": [
+            {
+              "size": "",
+              "price": 2.5
+            }
+          ]
+        },
+        {
+          "detail": "je nach Angebot",
+          "note": "",
+          "name": "Tee",
+          "variants": [
+            {
+              "size": "",
+              "price": 2.9
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

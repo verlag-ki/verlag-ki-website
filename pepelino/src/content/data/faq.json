@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "id": "food",
+      "question": "Dürfen wir eigenes Essen und Trinken mitbringen?",
+      "answer": "Bitte bringt keine eigenen Speisen und Getränke mit – in unserem Bistro findet ihr Snacks, warme Gerichte und Getränke. Für Geburtstagsfeiern gelten eigene Regeln, die ihr auf der Geburtstagsseite findet.",
+      "scope": "global",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "shoes",
+      "question": "Welche Schuhe brauchen die Kinder?",
+      "answer": "Straßenschuhe sind im Spielbereich nicht erlaubt. Aus Sicherheits- und Hygienegründen wird in den Spielgeräten mit Socken gespielt – nicht barfuß und nicht mit Hallenschuhen. Dicke Socken sind ideal.",
+      "scope": "global",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "parking",
+      "question": "Gibt es Parkplätze?",
+      "answer": "Ja, es gibt ausreichend kostenlose Parkplätze.",
+      "scope": "global",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "card",
+      "question": "Kann ich mit Karte bezahlen?",
+      "answer": "Ja, EC-Kartenzahlung ist ab einem Betrag von 10 € möglich.",
+      "scope": "global",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "vouchers",
+      "question": "Gibt es Geschenkgutscheine?",
+      "answer": "Ja. Gutscheine bekommt ihr direkt an unserer Kasse – ein schönes Geschenk zum Geburtstag, zu Weihnachten, Ostern oder zur Einschulung.",
+      "scope": "global",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": ""
+      }
+    },
+    {
+      "id": "birthday-kiel",
+      "question": "Wie melde ich einen Kindergeburtstag in Kiel an?",
+      "answer": "Wählt auf unserer Geburtstagsseite Kiel ein Paket und sendet uns eure Anfrage mit Wunschtermin. Wir melden uns per E-Mail oder Telefon zur Bestätigung.",
+      "scope": "kiel",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-kiel/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "verified_public",
+        "note": "Alter Link auf /kindergeburtstaganmeldung/ ersetzt."
+      }
+    },
+    {
+      "id": "birthday-rd",
+      "question": "Wie melde ich einen Kindergeburtstag in Westerrönfeld an?",
+      "answer": "Über das Anfrageformular auf unserer Geburtstagsseite Westerrönfeld. Wir melden uns mit einer Bestätigung oder einem Alternativtermin.",
+      "scope": "westerroenfeld",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/indoorspielplatz-rendsburg/",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "conflicting_public",
+        "note": "Alt-FAQ verweist auf Kieler Adresse info@sfc-mettenhof.de (E06); Zielroute klären."
+      }
+    }
+  ]
+}

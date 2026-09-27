@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "weekdays": ["fr", "sa", "so"],
+  "extraDates": [],
+  "blockedDates": [],
+  "slotStarts": ["11:00", "13:30", "16:00"],
+  "durationMinutes": 150,
+  "capacityPerSlot": 0,
+  "leadTimeDays": 3,
+  "maxDaysAhead": 180,
+  "note": "Wochentage öffentlich widersprüchlich (Mo–So vs. Fr–So, V02). Zeitfenster und Kapazität sind PLATZHALTER."
+}

@@ -1,0 +1,48 @@
+{
+  "slots": [
+    {
+      "days": [
+        "mo",
+        "di",
+        "mi",
+        "do"
+      ],
+      "opens": "",
+      "closes": ""
+    },
+    {
+      "days": [
+        "fr"
+      ],
+      "opens": "14:00",
+      "closes": "19:00"
+    },
+    {
+      "days": [
+        "sa",
+        "so"
+      ],
+      "opens": "11:00",
+      "closes": "19:00"
+    }
+  ],
+  "provenance": {
+    "sourceUrl": "https://www.pepelino-fun.de/kinderspieleparadies-rendsburg/",
+    "checkedAt": "2026-09-26",
+    "verificationStatus": "verified_public",
+    "note": ""
+  },
+  "exceptions": [
+    {
+      "label": "Ferien & Feiertage",
+      "text": "Gesonderte Zeiten – aktuelle Angaben bitte beim Standort erfragen.",
+      "provenance": {
+        "sourceUrl": "https://www.pepelino-fun.de/wp-content/uploads/2025/10/Rendsburg-Getraenke.jpg",
+        "checkedAt": "2026-09-26",
+        "verificationStatus": "unknown",
+        "note": "Getränkekarte nennt nur „Siehe Webseite“."
+      }
+    }
+  ],
+  "specialDates": []
+}
