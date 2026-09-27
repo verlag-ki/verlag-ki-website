@@ -14,7 +14,7 @@
 
   // Ohne Angaben entspricht die Nachricht genau dem festgelegten Begrüßungstext.
   const message = () => {
-    const lines = ['Hallo Biene! 😊', ''];
+    const lines = ['Hallo Bine! 😊', ''];
     if (state.pattern) lines.push('Ich habe dein Mützenparadies entdeckt und interessiere mich für folgende Mütze:', '', `Muster: ${state.pattern}`);
     else lines.push('Ich habe dein Mützenparadies entdeckt und würde gerne eine Mütze anfragen.');
     if (state.head_cm) lines.push(...(state.pattern ? [] : ['']), `Kopfumfang: ${state.head_cm} cm`);
@@ -83,7 +83,7 @@
       note.classList.remove('is-error');
       const contact = el('contact').value.trim();
       if (!el('name').value.trim()) return fail('Bitte gib deinen Namen an.', el('name'));
-      if (!contact.includes('@') && contact.replace(/\D/g, '').length < 6) return fail('Bitte gib eine Telefonnummer oder E-Mail-Adresse an, damit Biene dir antworten kann.', el('contact'));
+      if (!contact.includes('@') && contact.replace(/\D/g, '').length < 6) return fail('Bitte gib eine Telefonnummer oder E-Mail-Adresse an, damit Bine dir antworten kann.', el('contact'));
       if (!el('message').value.trim()) return fail('Bitte schreib uns kurz, was du dir wünschst.', el('message'));
       note.textContent = 'Wird gesendet …';
       const button = f.querySelector('button[type="submit"]');

@@ -1,16 +1,16 @@
-# Bienes Mützenparadies
+# Bines Mützenparadies
 
 Website für individuelle Häkelmützen auf Anfrage. Besucher suchen sich ein Muster aus oder beschreiben ein eigenes Wunschmotiv, geben ihren Kopfumfang in Zentimetern an (es gibt keine Größen wie S, M, L) und schicken ihre Anfrage **per WhatsApp** oder über das **Kontaktformular**. Das Formular verschickt keine E-Mails: Nachrichten landen in der Verwaltung. Es gibt keinen Warenkorb und keine Onlinezahlung.
 
 ## Was enthalten ist
 
-- **Startseite im Stil der Designvorlage (Variante 1):** Header mit Logo, handgeschriebene Überschriften mit kleinem Herz, fliegende Biene mit Flugbahn, großes Bild rechts mit weicher Ausblendung, vier Merkmale mit Symbolen, beliebte Muster, drei Infokarten, Abschnitt „Mit Liebe gehäkelt.“ und Kontaktbereich.
+- **Startseite im Stil der Designvorlage (Variante 1):** Header mit Logo, handgeschriebene Überschriften mit kleinem Herz, fliegende Bine mit Flugbahn, großes Bild rechts mit weicher Ausblendung, vier Merkmale mit Symbolen, beliebte Muster, drei Infokarten, Abschnitt „Mit Liebe gehäkelt.“ und Kontaktbereich.
 - **Muster & Ideen** mit Kategoriefilter, **Musterseiten** mit Galerie, Kopfumfang in cm und Wünschen, **Wunschmotive** (eigene Ideen anfragen), **So funktioniert’s**, **Kopfumfang messen** mit Anleitung und Zeichnung, **Impressum** und **Datenschutz**. Die alte Adresse `/wunschfarben` leitet auf `/wunschmotive` weiter.
 - **Kontaktfenster:** „Kontakt“, „Jetzt anfragen“ und alle Anfrage-Buttons öffnen dasselbe Fenster mit zwei Wegen: die vorbereitete WhatsApp-Nachricht an `+49 157 34487082` (mit Muster, Kopfumfang und Wünschen) oder das Kontaktformular (Name, Telefon oder E-Mail, Nachricht). WhatsApp öffnet sich erst nach dem Tippen, gesendet wird nichts automatisch.
 - **Verwaltung** unter `/admin` (ein Passwort): **Nachrichten** aus dem Kontaktformular lesen, als erledigt markieren oder löschen (mit Links „per WhatsApp antworten“ und „anrufen“; nach 6 Monaten automatisch gelöscht), **Muster** anlegen und bearbeiten, Fotos hochladen, **Startseite**-Bilder austauschen und **Impressum & Datenschutz** selbst ändern. Neue Muster brauchen kein neues Deployment.
 - **SEO:** eigene Titel und Beschreibungen, sprechende URLs, Sitemap, `robots.txt`, kanonische URLs, strukturierte Daten für Organisation und Website.
 - **Designsystem:** Farben als CSS-Variablen in `public/style.css`. Schriften lokal unter `public/fonts/`: Chewy (Überschriften, Apache 2.0) und Figtree (Text, SIL OFL). Keine externen Schriften, Skripte, Analyse- oder Chatdienste.
-- **Logo:** `brand/bee-mark.svg` (fliegende Biene mit Häkelmütze), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, `public/favicon.svg`, `public/img/bee-flight.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
+- **Logo:** `brand/bee-mark.svg` (fliegende Bine mit Häkelmütze), `logo-full.svg`, `logo-compact.svg`, `logo-monochrome.svg`, `public/favicon.svg`, `public/img/bee-flight.svg`. Die Schrift ist in Pfade umgewandelt, damit die Logos auch im Druck stimmen. Neu erzeugen mit `python3 tools/make_logos.py` (benötigt `fonttools` und `brotli`).
 
 ## Illustrationen, KI-Demobilder und echte Fotos
 
@@ -65,7 +65,7 @@ Das Skript erkennt den Webserver: **Läuft Caddy** (wie auf dem vorhandenen Hetz
    sudo ./deploy/setup.sh bines-muetzenparadies.de info@mieten-macht-sinn.de
    ```
    Das Skript installiert Nginx, Certbot und Python 3.12, legt den Systembenutzer `biene` an, fragt das Verwaltungspasswort ab, richtet Dienst, Webserver und die tägliche Sicherung ein und sorgt für HTTPS, sobald die Domain auf den Server zeigt. Es kann gefahrlos erneut ausgeführt werden.
-4. **In der Verwaltung** (`https://bines-muetzenparadies.de/admin`) die von Biene freigegebenen Muster auf `published` stellen und unter „Impressum & Datenschutz“ die gelb markierten Stellen ausfüllen.
+4. **In der Verwaltung** (`https://bines-muetzenparadies.de/admin`) die von Bine freigegebenen Muster auf `published` stellen und unter „Impressum & Datenschutz“ die gelb markierten Stellen ausfüllen.
 5. **Datenschutzerklärung und Impressum** vervollständigen (Stellen in eckigen Klammern bzw. gelb markiert), dann auf Handy und Computer durchklicken.
 
 **Updates** einspielen: neuen Stand holen (`git pull`), dann `sudo ./deploy/update.sh`. Das Skript sichert vorher die Daten.
@@ -82,8 +82,8 @@ In `/admin` unter „Impressum & Datenschutz“ stehen beide Texte in einem Text
 
 1. Unter „Muster“ ein Motiv anlegen oder eines der mitgelieferten bearbeiten: Name, URL-Kürzel, Beschreibung, Kategorie, optional ein freigegebener Preis.
 2. Fotos hochladen (JPEG, PNG, WebP). Der Server entfernt Metadaten, verkleinert und speichert WebP. Zu jedem Foto eine kurze, sachliche Bildbeschreibung eintragen.
-3. Status `published` erst nach Bienes Freigabe. `archived` nimmt ein Muster aus Katalog und Sitemap.
-4. Unter „Startseite“ lassen sich das große Bild oben und das Bild bei „Mit Liebe gehäkelt.“ austauschen. Biene bitte nicht mit Gesicht zeigen; Hände, Wolle oder Häkelnadel passen gut.
+3. Status `published` erst nach Bines Freigabe. `archived` nimmt ein Muster aus Katalog und Sitemap.
+4. Unter „Startseite“ lassen sich das große Bild oben und das Bild bei „Mit Liebe gehäkelt.“ austauschen. Bine bitte nicht mit Gesicht zeigen; Hände, Wolle oder Häkelnadel passen gut.
 
 ## Vor dem Livegang offen
 

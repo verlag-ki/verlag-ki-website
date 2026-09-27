@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Richtet Bienes Mützenparadies auf einem Ubuntu- oder Debian-Server ein.
+# Richtet Bines Mützenparadies auf einem Ubuntu- oder Debian-Server ein.
 # Aufruf als root aus dem Projektordner:   sudo ./deploy/setup.sh DOMAIN [E-MAIL-FÜR-LETSENCRYPT]
 # Beispiel:                                 sudo ./deploy/setup.sh bines-muetzenparadies.de info@mieten-macht-sinn.de
 # Läuft auf dem Server schon Caddy, wird die Seite dort eingehängt (Caddy holt das Zertifikat selbst).

@@ -1,5 +1,5 @@
 [Unit]
-Description=Sicherung Bienes Mützenparadies
+Description=Sicherung Bines Mützenparadies
 
 [Service]
 Type=oneshot

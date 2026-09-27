@@ -1,5 +1,5 @@
 [Unit]
-Description=Bienes Mützenparadies (Gunicorn)
+Description=Bines Mützenparadies (Gunicorn)
 After=network.target
 
 [Service]

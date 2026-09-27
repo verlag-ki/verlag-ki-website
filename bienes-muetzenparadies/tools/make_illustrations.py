@@ -1,6 +1,6 @@
 """Erzeugt die gekennzeichneten Demo-Illustrationen unter public/img/.
 
-Die Grafiken sind Platzhalter, bis echte Fotos von Bienes Mützen vorliegen.
+Die Grafiken sind Platzhalter, bis echte Fotos von Bines Mützen vorliegen.
 Aufruf: python3 tools/make_illustrations.py
 """
 from pathlib import Path

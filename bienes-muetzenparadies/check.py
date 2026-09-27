@@ -34,11 +34,15 @@ assert wf['status'].startswith('301') and wf['headers']['Location']=='/wunschmot
 for page in ['/','/muster','/wunschmotive','/so-funktionierts','/groessenhilfe']:
     assert 'farbe' not in request(page)['body'].lower(), f'Farbe noch erwähnt auf {page}'
 assert 'Wunschmotiv' in request('/')['body']
+import re as _re
+for page in ['/','/muster','/wunschmotive','/so-funktionierts','/groessenhilfe','/impressum','/datenschutz']:
+    assert not _re.search(r'\bBienes?\b',request(page)['body']), f'Noch „Biene“ auf {page}'
+assert 'Schreib Bine!' in request('/')['body'] and '<title>Bines Mützenparadies' in request('/')['body']
 # Kontaktfenster: WhatsApp und Kontaktformular
 home=request('/')['body']
 assert 'contact-form' in home and 'whatsapp-preview' in home and 'wa.me/4915734487082' in home
 assert request('/api/nachricht','POST',{'name':'Ada','contact':'','message':'Hallo'})['status'].startswith('422'), 'Kontakt fehlt'
-assert request('/api/nachricht','POST',{'name':'Ada','contact':'0151 2345678','message':'Hallo Biene','pattern':'Fritzi, der Frosch','head_cm':'52','wishes':'Mit Bommel'})['status'].startswith('200')
+assert request('/api/nachricht','POST',{'name':'Ada','contact':'0151 2345678','message':'Hallo Bine','pattern':'Fritzi, der Frosch','head_cm':'52','wishes':'Mit Bommel'})['status'].startswith('200')
 assert request('/api/nachricht','POST',{'name':'Bot','contact':'x@y.de','message':'Spam','website':'http://spam'})['status'].startswith('200')
 assert app.db().execute('SELECT COUNT(*) FROM messages').fetchone()[0]==1, 'Honeypot darf nichts speichern'
 # Rechtstexte: Standardtexte mit markierten offenen Stellen
@@ -69,9 +73,9 @@ assert app.db().execute('SELECT done FROM messages').fetchone()['done']==1
 assert request(f'/admin/nachricht/{mid}','POST',{'csrf':csrf,'delete':'1'},cookie)['status'].startswith('303')
 assert app.db().execute('SELECT COUNT(*) FROM messages').fetchone()[0]==0
 # Impressum in der Verwaltung ändern
-assert request('/admin/rechtliches/impressum','POST',{'csrf':csrf,'content':'## Angaben\nBiene Test\nMusterweg 1\n\nMail: test@example.org'},cookie)['status'].startswith('303')
+assert request('/admin/rechtliches/impressum','POST',{'csrf':csrf,'content':'## Angaben\nBine Test\nMusterweg 1\n\nMail: test@example.org'},cookie)['status'].startswith('303')
 imp=request('/impressum')['body']
-assert '<h2>Angaben</h2><p>Biene Test<br>Musterweg 1</p>' in imp and 'href="mailto:test@example.org"' in imp
+assert '<h2>Angaben</h2><p>Bine Test<br>Musterweg 1</p>' in imp and 'href="mailto:test@example.org"' in imp
 assert request('/admin/rechtliches/impressum','POST',{'csrf':csrf,'content':'<script>alert(1)</script>'},cookie)['status'].startswith('303')
 assert '<script>alert' not in request('/impressum')['body'], 'Rechtstexte werden nicht als HTML ausgeführt'
 pattern={'csrf':csrf,'name':'Echte Froschmütze','slug':'echte-froschmuetze','description':'Echte gehäkelte Mütze mit Froschmotiv.','category':'Tiermützen','status':'published','featured':'1'}
@@ -97,7 +101,7 @@ home=request('/')['body']
 order=['Hier gibt’s was','Muster entdecken','id="muster-title"','Alle Muster ansehen','<h3>So funktioniert’s','<h3>Kopfumfang messen','<h3>Dein Wunschmotiv','id="story-title"','Schon eine Lieblingsmütze entdeckt?','Jetzt unverbindlich anfragen']
 positions=[home.index(t,home.index('<main')) for t in order]
 assert positions==sorted(positions), 'Abschnittsreihenfolge der Startseite'
-assert 'Demo-Illustration' in home and 'ki-hero.webp' not in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
+assert 'Demo-Illustration' in home and 'ki-hero.webp' not in home and 'Bines Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
 assert 'id="home-contact-form"' in home and home.index('id="home-contact-form"')>home.index('id="cta-title"'), 'Formular unten auf der Startseite'
 assert f'/style.css?v={app.ASSET_VERSION}' in home and f'/site.js?v={app.ASSET_VERSION}' in home
 css_res={}

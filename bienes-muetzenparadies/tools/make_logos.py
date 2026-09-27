@@ -50,7 +50,7 @@ def logo(uid, w_mark, name_size, sub_size, mono=False):
     red = 'currentColor' if mono else CORAL
     gap = w_mark * .16
     x = w_mark + gap
-    top, top_w = text_path('Bienes', x, name_size * .92, name_size)
+    top, top_w = text_path('Bines', x, name_size * .92, name_size)
     bottom, bottom_w = text_path('Mützenparadies', x + name_size * .05, name_size * .92 + sub_size * 1.02, sub_size)
     height = name_size * .92 + sub_size * 1.25
     width = max(x + top_w + name_size * .62, x + bottom_w) + 4
@@ -59,7 +59,7 @@ def logo(uid, w_mark, name_size, sub_size, mono=False):
         mark = re.sub(r'fill="#(F3D68B|C65A66|FFFFFF|E4F1F6|F4FAFC|E98A93)"', 'fill="none"', mark).replace('stroke="#FBF8F3"', 'stroke="#3A3027"').replace('#3A3027', 'currentColor')
     scale = w_mark / 64
     mark_y = (height - w_mark) / 2
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" role="img" aria-label="Bienes Mützenparadies"{' color="#3A3027"' if mono else ''}>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" role="img" aria-label="Bines Mützenparadies"{' color="#3A3027"' if mono else ''}>
 <g transform="translate(0 {mark_y:.1f}) scale({scale:.3f})">{mark}</g>
 <path d="{top}" fill="{ink}"/>
 {heart(x + top_w + name_size * .04, name_size * .1, name_size * .4, red)}
