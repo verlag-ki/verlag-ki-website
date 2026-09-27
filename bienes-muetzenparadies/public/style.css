@@ -327,7 +327,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 legend { padding: 0; margin-bottom: .55rem; font-size: .95rem; font-weight: 700; }
 
 /* So funktioniert's */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; margin-bottom: 3rem; }
 .steps article { text-align: center; padding: 1rem .5rem; }
 .step-icon { position: relative; display: inline-block; margin-bottom: 1rem; }
 .step-icon .ci { width: 84px; height: 84px; }
@@ -339,6 +339,7 @@ legend { padding: 0; margin-bottom: .55rem; font-size: .95rem; font-weight: 700;
 .steps article:nth-child(2) .step-no { background: #5F8CAE; }
 .steps article:nth-child(3) .step-no { background: var(--sage-deep); }
 .steps article:nth-child(4) .step-no { background: var(--coral); }
+.steps article:nth-child(5) .step-no { background: #B0884F; }
 .steps h2 { margin: 0 0 .5rem; font-size: 1.55rem; }
 .steps p { margin: 0 auto; max-width: 16rem; color: #574D44; font-size: .96rem; }
 .callout { max-width: 46rem; margin: 0 auto 2rem; padding: 1.3rem 1.5rem; border-radius: var(--radius-s); background: var(--sage-soft); text-align: center; }
@@ -495,7 +496,7 @@ dialog > p { max-width: 36rem; margin: .8rem 0 0; color: var(--muted); }
   .header-inner { min-height: 76px; }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .steps { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
   .info-grid { grid-template-columns: 1fr; }
   .features { grid-template-columns: repeat(2, auto); }
 }

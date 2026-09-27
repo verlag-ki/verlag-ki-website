@@ -55,7 +55,7 @@ Für Anfragen bieten wir einen Direktlink zu WhatsApp an. Es ist kein WhatsApp-W
 
 Anbieter von WhatsApp ist die WhatsApp Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland. Dabei können Daten auch an die Meta Platforms, Inc. in den USA übermittelt werden. Details findest du in den Datenschutzhinweisen von WhatsApp: https://www.whatsapp.com/legal/privacy-policy-eea
 
-Schreibst du uns, verarbeiten wir deine Telefonnummer, deinen WhatsApp-Namen und den Inhalt eurer Nachrichten, um deine Anfrage zu beantworten und gegebenenfalls deine Mütze anzufertigen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Wir löschen den Chat, wenn deine Anfrage erledigt ist [Frist festlegen], soweit keine gesetzlichen Aufbewahrungspflichten bestehen, etwa für Rechnungen.
+Schreibst du uns, verarbeiten wir deine Telefonnummer, deinen WhatsApp-Namen und den Inhalt eurer Nachrichten, um deine Anfrage zu beantworten und gegebenenfalls deine Mütze anzufertigen und zu versenden. Deine Lieferadresse geben wir dafür an den Versanddienstleister weiter [Versanddienstleister eintragen, z. B. Deutsche Post/DHL]. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Wir löschen den Chat, wenn deine Anfrage erledigt ist [Frist festlegen], soweit keine gesetzlichen Aufbewahrungspflichten bestehen, etwa für Rechnungen.
 
 ## 7. Cookies
 Für Besucherinnen und Besucher setzt die Website keine Cookies. Nur im passwortgeschützten Verwaltungsbereich wird ein technisch notwendiges Sitzungs-Cookie für die Anmeldung gesetzt. Es läuft nach spätestens 8 Stunden ab (§ 25 Abs. 2 Nr. 2 TDDDG, Art. 6 Abs. 1 lit. f DSGVO). Zum Schutz vor Passwort-Ausprobieren speichern wir bei Anmeldeversuchen einen nicht rückrechenbaren Hashwert der IP-Adresse für höchstens 24 Stunden.
