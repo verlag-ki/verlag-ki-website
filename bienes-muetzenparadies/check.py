@@ -24,14 +24,27 @@ def request(path, method='GET', data=None, cookie='', content_type='application/
     result['body']=b''.join(app.app(env,start)).decode(errors='replace')
     return result
 
-for page in ['/','/muster','/so-funktionierts','/groessenhilfe','/wunschfarben','/impressum','/datenschutz','/sitemap.xml']:
+for page in ['/','/muster','/so-funktionierts','/groessenhilfe','/wunschmotive','/impressum','/datenschutz','/sitemap.xml']:
     assert request(page)['status'].startswith('200'),page
 assert 'froschmuetze' not in request('/sitemap.xml')['body']
 assert request('/muster/froschmuetze')['status'].startswith('404')
-# Anfragen nur per WhatsApp: kein Formular, kein Formular-Endpunkt
+# Alte Adresse leitet weiter, keine Größen oder Farben mehr
+wf=request('/wunschfarben')
+assert wf['status'].startswith('301') and wf['headers']['Location']=='/wunschmotive'
+assert 'Wunschfarbe' not in request('/')['body'] and 'Wunschmotiv' in request('/')['body']
+# Kontaktfenster: WhatsApp und Kontaktformular
 home=request('/')['body']
-assert 'contact-form' not in home and 'whatsapp-preview' in home and 'wa.me/4915734487082' in home
-assert not request('/api/inquiry','POST',{'name':'A'})['status'].startswith('200')
+assert 'contact-form' in home and 'whatsapp-preview' in home and 'wa.me/4915734487082' in home
+assert request('/api/nachricht','POST',{'name':'Ada','contact':'','message':'Hallo'})['status'].startswith('422'), 'Kontakt fehlt'
+assert request('/api/nachricht','POST',{'name':'Ada','contact':'0151 2345678','message':'Hallo Biene','pattern':'Fritzi, der Frosch','head_cm':'52','wishes':'Mit Bommel'})['status'].startswith('200')
+assert request('/api/nachricht','POST',{'name':'Bot','contact':'x@y.de','message':'Spam','website':'http://spam'})['status'].startswith('200')
+assert app.db().execute('SELECT COUNT(*) FROM messages').fetchone()[0]==1, 'Honeypot darf nichts speichern'
+# Rechtstexte: Standardtexte mit markierten offenen Stellen
+imp=request('/impressum')['body']
+assert 'Spreeallee 207' in imp and '<mark class="todo">' in imp and 'href="mailto:info@mieten-macht-sinn.de"' in imp
+# Ohne Größen: nur Kopfumfang in cm
+assert 'name="head_cm"' in request('/groessenhilfe')['body'] and 'Größenempfehlung' not in request('/groessenhilfe')['body']
+assert 'data-wishes-label="Mein Wunschmotiv"' in request('/wunschmotive')['body']
 # Hinter Nginx zählt die echte Besucheradresse, aber nur mit TRUST_PROXY=1
 assert app.client_ip({'REMOTE_ADDR':'127.0.0.1','HTTP_X_REAL_IP':'203.0.113.9'})=='127.0.0.1'
 os.environ['TRUST_PROXY']='1'
@@ -40,11 +53,21 @@ del os.environ['TRUST_PROXY']
 login=request('/admin/login','POST',{'password':'test-password'})
 assert login['status'].startswith('303')
 cookie=login['headers']['Set-Cookie'].split(';')[0]
-assert request('/admin',cookie=cookie)['status'].startswith('200')
+inbox=request('/admin',cookie=cookie)
+assert inbox['status'].startswith('200') and 'Nachrichten (1)' in inbox['body'] and 'wa.me/491512345678' in inbox['body'] and 'Mit Bommel' in inbox['body']
 csrf=app.session({'HTTP_COOKIE':cookie})['csrf']
-assert request('/admin/groessen/new','POST',{'csrf':csrf,'name':'Kind','min_cm':'50','max_cm':'54'},cookie)['status'].startswith('303')
-assert request('/admin/farben/new','POST',{'csrf':csrf,'name':'Grün','hex':'#39803A'},cookie)['status'].startswith('303')
-pattern={'csrf':csrf,'name':'Echte Froschmütze','slug':'echte-froschmuetze','description':'Echte gehäkelte Mütze mit Froschmotiv.','category':'Tiermützen','sizes':'Kind','colors':'Grün','status':'published','featured':'1'}
+mid=app.db().execute('SELECT id FROM messages').fetchone()['id']
+assert request(f'/admin/nachricht/{mid}','POST',{'csrf':csrf,'done':'1'},cookie)['status'].startswith('303')
+assert app.db().execute('SELECT done FROM messages').fetchone()['done']==1
+assert request(f'/admin/nachricht/{mid}','POST',{'csrf':csrf,'delete':'1'},cookie)['status'].startswith('303')
+assert app.db().execute('SELECT COUNT(*) FROM messages').fetchone()[0]==0
+# Impressum in der Verwaltung ändern
+assert request('/admin/rechtliches/impressum','POST',{'csrf':csrf,'content':'## Angaben\nBiene Test\nMusterweg 1\n\nMail: test@example.org'},cookie)['status'].startswith('303')
+imp=request('/impressum')['body']
+assert '<h2>Angaben</h2><p>Biene Test<br>Musterweg 1</p>' in imp and 'href="mailto:test@example.org"' in imp
+assert request('/admin/rechtliches/impressum','POST',{'csrf':csrf,'content':'<script>alert(1)</script>'},cookie)['status'].startswith('303')
+assert '<script>alert' not in request('/impressum')['body'], 'Rechtstexte werden nicht als HTML ausgeführt'
+pattern={'csrf':csrf,'name':'Echte Froschmütze','slug':'echte-froschmuetze','description':'Echte gehäkelte Mütze mit Froschmotiv.','category':'Tiermützen','status':'published','featured':'1'}
 assert request('/admin/pattern/new','POST',pattern,cookie)['status'].startswith('303')
 assert request('/muster/echte-froschmuetze')['status'].startswith('404'), 'Bildlose Muster dürfen nicht online gehen'
 # Check the successful image-assisted publication path with the same handler used by the admin.
@@ -64,7 +87,7 @@ assert 'echte-froschmuetze' in request('/sitemap.xml')['body']
 assert 'Gehäkelte Froschmütze' in request('/muster/echte-froschmuetze')['body']
 # Startseite: verbindliche Texte, Reihenfolge und Demo-Kennzeichnung
 home=request('/')['body']
-order=['Hier gibt’s was','Muster entdecken','Beliebte Muster','Alle Muster ansehen','<h3>So funktioniert’s','Die richtige Größe','Deine Wunschfarbe','Mit Liebe gehäkelt.','Schon eine Lieblingsmütze entdeckt?','Jetzt unverbindlich anfragen']
+order=['Hier gibt’s was','Muster entdecken','id="muster-title"','Alle Muster ansehen','<h3>So funktioniert’s','<h3>Kopfumfang messen','<h3>Dein Wunschmotiv','id="story-title"','Schon eine Lieblingsmütze entdeckt?','Jetzt unverbindlich anfragen']
 positions=[home.index(t,home.index('<main')) for t in order]
 assert positions==sorted(positions), 'Abschnittsreihenfolge der Startseite'
 assert 'Demo-Illustration' in home and 'ki-hero.webp' not in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
@@ -81,7 +104,7 @@ assert 'Drei gehäkelte Mützen auf einem Regal' in home and 'demo-hero.svg' not
 # Veröffentlichtes Muster erscheint mit Link auf der Startseite
 assert '/muster/echte-froschmuetze' in home
 detail=request('/muster/echte-froschmuetze')['body']
-assert 'Preis auf Anfrage' in detail and 'type="radio" name="color" value="Grün"' in detail and 'Unverbindlich anfragen' in detail
+assert 'Preis auf Anfrage' in detail and 'name="head_cm"' in detail and 'required' in detail and 'name="size"' not in detail and 'Unverbindlich anfragen' in detail
 # Mitgeliefertes Motiv mit Illustration lässt sich ohne Foto veröffentlichen
 fid=app.db().execute("SELECT id FROM patterns WHERE slug='froschmuetze'").fetchone()['id']
 frog={'csrf':csrf,'name':'Fritzi, der Frosch','slug':'froschmuetze','description':'Ein lustiger grüner Frosch mit großen Augen.','category':'Tiermützen','status':'published'}
@@ -90,4 +113,4 @@ assert request(f'/admin/pattern/{fid}','POST',b''.join(parts),cookie,f'multipart
 frog_page=request('/muster/froschmuetze')
 assert frog_page['status'].startswith('200') and 'Illustration · Foto folgt' in frog_page['body'] and 'demo-frosch.svg' in frog_page['body']
 assert '/muster/froschmuetze' in request('/sitemap.xml')['body']
-print('OK: homepage structure, WhatsApp-only contact, proxy address, static assets, homepage photo upload, public routes, hidden demos, admin auth, size/color edit, image gate, illustrated publication, publication and sitemap')
+print('OK: homepage structure, WhatsApp and contact form, message inbox, editable legal pages, head circumference only, wish motifs, proxy address, static assets, homepage photo upload, public routes, hidden demos, admin auth, image gate, illustrated publication, publication and sitemap')
