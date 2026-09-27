@@ -31,7 +31,9 @@ assert request('/muster/froschmuetze')['status'].startswith('404')
 # Alte Adresse leitet weiter, keine Größen oder Farben mehr
 wf=request('/wunschfarben')
 assert wf['status'].startswith('301') and wf['headers']['Location']=='/wunschmotive'
-assert 'Wunschfarbe' not in request('/')['body'] and 'Wunschmotiv' in request('/')['body']
+for page in ['/','/muster','/wunschmotive','/so-funktionierts','/groessenhilfe']:
+    assert 'farbe' not in request(page)['body'].lower(), f'Farbe noch erwähnt auf {page}'
+assert 'Wunschmotiv' in request('/')['body']
 # Kontaktfenster: WhatsApp und Kontaktformular
 home=request('/')['body']
 assert 'contact-form' in home and 'whatsapp-preview' in home and 'wa.me/4915734487082' in home
