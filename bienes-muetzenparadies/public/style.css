@@ -84,6 +84,7 @@ button:disabled { opacity: .55; cursor: wait; }
   color: var(--ink);
 }
 .lead { font-size: 1.15rem; color: #52483F; }
+.nowrap { white-space: nowrap; }
 
 /* Kleines Herz hinter Überschriften – nur dort, nicht als Deko verstreut */
 .h-heart { display: inline-block; width: .5em; height: .5em; margin-left: .18em; vertical-align: .42em; color: var(--coral); }
@@ -484,14 +485,14 @@ dialog > p { max-width: 36rem; margin: .8rem 0 0; color: var(--muted); }
   .hero-media img { object-position: 75% 50%; }
   .hero-media .demo-badge { bottom: auto; top: .8rem; }
   .hero-inner { padding: .5rem 0 3rem; }
-  .bee-flight { left: auto; right: -.4rem; top: 3.4rem; width: 120px; }
+  .bee-flight { left: auto; right: 0; top: -4.6rem; width: 120px; }
   .story-grid, .detail-grid, .size-grid { grid-template-columns: 1fr; }
   .section-head { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 560px) {
   body { font-size: 1rem; }
   .brand img { height: 46px; }
-  .hero-copy h1 { font-size: clamp(2.6rem, 12vw, 3.3rem); }
+  .hero-copy h1 { font-size: clamp(2.6rem, 12vw, 3.3rem); max-width: 10ch; }
   .hero-copy .btn { width: 100%; }
   .features { gap: 1rem; }
   .cards { gap: .7rem; }
