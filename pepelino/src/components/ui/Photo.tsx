@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getMedia } from "@/content/media";
+import { asset } from "@/lib/assets";
 
 type Props = {
   media: string;
@@ -18,7 +19,7 @@ export function Photo({ media: key, sizes, className = "", priority, fill = true
   if (fill) {
     return (
       <Image
-        src={m.src}
+        src={asset(m.src)}
         alt={alt ?? m.alt}
         fill
         sizes={sizes}
@@ -31,7 +32,7 @@ export function Photo({ media: key, sizes, className = "", priority, fill = true
   }
   return (
     <Image
-      src={m.src}
+      src={asset(m.src)}
       alt={alt ?? m.alt}
       width={m.width}
       height={m.height}

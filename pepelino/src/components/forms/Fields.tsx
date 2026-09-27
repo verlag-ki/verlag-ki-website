@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { FormState } from "@/lib/forms/state";
 import { todayInBerlin } from "@/lib/format";
@@ -209,9 +210,9 @@ export function PrivacyCheckbox({ state }: { state: FormState }) {
         />
         <label htmlFor="f-privacy" className="text-[0.95rem]">
           Ich habe die{" "}
-          <a href="/datenschutzerklaerung/" className="font-bold underline underline-offset-4">
+          <Link href="/datenschutzerklaerung/" className="font-bold underline underline-offset-4">
             Datenschutzhinweise
-          </a>{" "}
+          </Link>{" "}
           gelesen. Meine Angaben werden nur zur Bearbeitung dieser Anfrage verwendet. <span className="text-pink-strong">*</span>
         </label>
       </div>

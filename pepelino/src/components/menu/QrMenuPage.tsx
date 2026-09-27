@@ -6,6 +6,7 @@ import { media } from "@/content/media";
 import { menus } from "@/content/menus";
 import { Icon } from "@/components/ui/Icon";
 import { MenuView } from "./MenuView";
+import { asset } from "@/lib/assets";
 
 /** Mobil optimierte Speisekarte für gedruckte QR-Codes – gleiche Datenquelle wie die Speisekartenseiten. */
 export function QrMenuPage({ locationId }: { locationId: LocationId }) {
@@ -14,7 +15,7 @@ export function QrMenuPage({ locationId }: { locationId: LocationId }) {
     <div className="mx-auto max-w-xl px-5 pb-16">
       <header className="flex items-center justify-between gap-4 border-b border-line py-3">
         <Link href={loc.pages.location} aria-label={`Zu Pepelino ${loc.shortName}`}>
-          <Image src={media.logo.src} width={media.logo.width} height={media.logo.height} alt="" className="h-12 w-auto" sizes="70px" priority />
+          <Image src={asset(media.logo.src)} width={media.logo.width} height={media.logo.height} alt="" className="h-12 w-auto" sizes="70px" priority />
         </Link>
         <p className="text-right text-sm font-bold">{loc.name}</p>
       </header>

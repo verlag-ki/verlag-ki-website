@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 
+export const dynamic = "force-static";
+
 /** Nur indexierbare, kanonische Seiten. QR-Ziele und Archivseite sind bewusst nicht enthalten. */
 export const INDEXABLE_ROUTES = [
   "/",

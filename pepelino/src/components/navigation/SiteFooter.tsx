@@ -6,6 +6,7 @@ import { externalLinks, site } from "@/content/site";
 import { formatDays, formatTimeRange } from "@/lib/format";
 import { Icon } from "@/components/ui/Icon";
 import { ReviewMarker } from "@/components/ui/ReviewMarker";
+import { asset } from "@/lib/assets";
 
 const social = externalLinks.filter((l) => ["instagram", "facebook", "youtube", "tiktok"].includes(l.id));
 
@@ -14,7 +15,7 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-line bg-white">
       <div className="container-site grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1fr_0.9fr]">
         <div>
-          <Image src={media.logo.src} width={media.logo.width} height={media.logo.height} alt="Pepelino Spieleparadies" className="h-20 w-auto" sizes="110px" />
+          <Image src={asset(media.logo.src)} width={media.logo.width} height={media.logo.height} alt="Pepelino Spieleparadies" className="h-20 w-auto" sizes="110px" />
           <p className="mt-4 max-w-xs text-[0.95rem] text-ink-soft">{site.tagline}. Wetterunabhängig spielen, toben und feiern.</p>
           <div className="mt-5 text-[0.95rem]">
             <p className="font-extrabold">{site.central.label}</p>

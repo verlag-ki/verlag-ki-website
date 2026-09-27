@@ -7,7 +7,26 @@ import type { NextConfig } from "next";
  */
 const indexable = process.env.SITE_INDEXABLE === "true";
 
-const nextConfig: NextConfig = {
+/**
+ * Statische Vorschau (z. B. verlag-ki.de/pepelino): `npm run build:static`.
+ * Ohne Server-Funktionen – Formulare prüfen im Browser, Pflegebereich entfällt.
+ */
+const staticExport = process.env.STATIC_EXPORT === "1";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+const staticConfig: NextConfig = {
+  output: "export",
+  distDir: ".next-static",
+  basePath,
+  trailingSlash: true,
+  poweredByHeader: false,
+  images: { unoptimized: true },
+  // Typen werden im regulären Build/`npm run typecheck` geprüft; hier würden nur
+  // Verweise auf die für den statischen Bau beiseitegelegten Server-Dateien stören.
+  typescript: { ignoreBuildErrors: true },
+};
+
+const serverConfig: NextConfig = {
   trailingSlash: true,
   // Schrägstrich-Weiterleitung übernimmt src/proxy.ts (Ausnahme: Pflegebereich /keystatic).
   skipTrailingSlashRedirect: true,
@@ -33,4 +52,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default staticExport ? staticConfig : serverConfig;

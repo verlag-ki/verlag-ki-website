@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check": "npm run typecheck && npm run lint && npm run test && npm run build"
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "build:static": "node scripts/build-static.mjs /pepelino"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",

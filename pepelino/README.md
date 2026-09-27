@@ -46,6 +46,16 @@ node scripts/screenshots.mjs http://localhost:3100 docs/screenshots / /kindergeb
 `npm run check` führt Typecheck, Lint, Unit-Tests und Build nacheinander aus.
 Ergebnisse des letzten Laufs: [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md).
 
+## Statische Vorschau in einem Unterordner (z. B. verlag-ki.de/pepelino)
+
+```bash
+npm run build:static     # → dist-static/pepelino/ und dist-static/pepelino.zip
+```
+
+Den Ordner `pepelino/` in das Web-Verzeichnis des Servers kopieren (bei Caddy: in das `root` des `file_server`, sodass `…/pepelino/index.html` entsteht). Keine Server-Konfiguration nötig.
+
+Unterschiede zur vollen Fassung: Formulare prüfen im Browser (weiterhin Demo, kein Versand), kein Pflegebereich, keine Kalender-API, keine Weiterleitungen/HTTP-Header (Suchmaschinen-Sperre über `noindex` in jeder Seite). Das Skript legt Server-Dateien während des Baus kurz beiseite und stellt sie danach immer wieder her.
+
 ## Umgebungsvariablen
 
 | Variable | Standard | Zweck |

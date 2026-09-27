@@ -7,6 +7,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@/content/site";
 import { media } from "@/content/media";
 import { Icon } from "@/components/ui/Icon";
+import { asset } from "@/lib/assets";
 
 type NavItem = (typeof site.nav)[number];
 
@@ -110,7 +111,7 @@ export function SiteHeader({ voucherUrl }: { voucherUrl: string }) {
       <div className="container-site flex h-[76px] items-center justify-between gap-4 lg:h-[88px]">
         <Link href="/" className="flex shrink-0 items-center rounded-lg" aria-label="Pepelino – zur Startseite">
           <Image
-            src={logo.src}
+            src={asset(logo.src)}
             width={logo.width}
             height={logo.height}
             alt=""
