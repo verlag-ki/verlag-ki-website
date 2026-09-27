@@ -93,6 +93,14 @@ order=['Hier gibt’s was','Muster entdecken','id="muster-title"','Alle Muster a
 positions=[home.index(t,home.index('<main')) for t in order]
 assert positions==sorted(positions), 'Abschnittsreihenfolge der Startseite'
 assert 'Demo-Illustration' in home and 'ki-hero.webp' not in home and 'Bienes Mützenparadies | Lustige Häkelmützen nach Wunsch' in home
+assert 'id="home-contact-form"' in home and home.index('id="home-contact-form"')>home.index('id="cta-title"'), 'Formular unten auf der Startseite'
+assert f'/style.css?v={app.ASSET_VERSION}' in home and f'/site.js?v={app.ASSET_VERSION}' in home
+css_res={}
+def _s(st,h): css_res.update(st=st,h=dict(h))
+env={'PATH_INFO':'/style.css','QUERY_STRING':'v='+app.ASSET_VERSION,'REQUEST_METHOD':'GET','wsgi.input':io.BytesIO(),'REMOTE_ADDR':'127.0.0.1'}
+b''.join(app.app(env,_s)); assert 'immutable' in css_res['h']['Cache-Control']
+env.update(QUERY_STRING='',wsgi_input=None); env['wsgi.input']=io.BytesIO()
+b''.join(app.app(env,_s)); assert css_res['h']['Cache-Control']=='no-cache', 'Unversionierte Adresse nicht lange zwischenspeichern'
 assert home.count('data-contact')>=4 and 'wa.me/4915734487082' in home and '"@type": "WebSite"' in home
 for asset in ['/style.css','/site.js','/favicon.svg','/brand/bee-mark.svg','/img/demo-hero.svg','/img/ki-hero.webp','/img/bee-flight.svg','/fonts/figtree-latin-wght-normal.woff2']:
     assert request(asset)['status'].startswith('200'),asset

@@ -3,8 +3,8 @@
   const dialog = document.getElementById('contact-dialog');
   const choices = document.getElementById('contact-choices');
   const form = document.getElementById('contact-form');
-  const feedback = document.getElementById('form-feedback');
-  const success = document.getElementById('form-success');
+  const feedback = form.querySelector('.form-feedback');
+  const success = form.closest('.message-box').querySelector('.form-success');
   const summary = document.getElementById('form-summary');
   const whatsapp = document.getElementById('whatsapp-link');
   const preview = document.getElementById('whatsapp-preview');
@@ -67,36 +67,40 @@
   });
   document.getElementById('form-back').addEventListener('click', () => { showChoices(); whatsapp.focus(); });
 
-  const fail = (text, field) => {
-    feedback.textContent = text; feedback.classList.add('is-error');
-    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
-  };
-
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    form.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
-    feedback.classList.remove('is-error');
-    const el = name => form.elements.namedItem(name);
-    const contact = el('contact').value.trim();
-    if (!el('name').value.trim()) return fail('Bitte gib deinen Namen an.', el('name'));
-    if (!contact.includes('@') && contact.replace(/\D/g, '').length < 6) return fail('Bitte gib eine Telefonnummer oder E-Mail-Adresse an, damit Biene dir antworten kann.', el('contact'));
-    if (!el('message').value.trim()) return fail('Bitte schreib uns kurz, was du dir wünschst.', el('message'));
-
-    feedback.textContent = 'Wird gesendet …';
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true;
-    try {
-      const res = await fetch('/api/nachricht', {method: 'POST', body: new URLSearchParams(new FormData(form))});
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.ok) throw Error(data.error || 'Die Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut oder schreib per WhatsApp.');
-      form.hidden = true; feedback.textContent = '';
-      success.hidden = false; success.focus();
-      el('name').value = ''; el('contact').value = ''; el('message').value = '';
-    } catch (err) {
-      fail(err.message);
-    } finally {
-      button.disabled = false;
-    }
+  // Kontaktformulare (im Kontaktfenster und auf der Startseite): Erfolg erst nach Bestätigung des Servers
+  document.querySelectorAll('.message-form').forEach(f => {
+    const box = f.closest('.message-box');
+    const note = f.querySelector('.form-feedback');
+    const done = box.querySelector('.form-success');
+    const el = name => f.elements.namedItem(name);
+    const fail = (text, field) => {
+      note.textContent = text; note.classList.add('is-error');
+      if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+    };
+    f.addEventListener('submit', async event => {
+      event.preventDefault();
+      f.querySelectorAll('[aria-invalid]').forEach(x => x.removeAttribute('aria-invalid'));
+      note.classList.remove('is-error');
+      const contact = el('contact').value.trim();
+      if (!el('name').value.trim()) return fail('Bitte gib deinen Namen an.', el('name'));
+      if (!contact.includes('@') && contact.replace(/\D/g, '').length < 6) return fail('Bitte gib eine Telefonnummer oder E-Mail-Adresse an, damit Biene dir antworten kann.', el('contact'));
+      if (!el('message').value.trim()) return fail('Bitte schreib uns kurz, was du dir wünschst.', el('message'));
+      note.textContent = 'Wird gesendet …';
+      const button = f.querySelector('button[type="submit"]');
+      button.disabled = true;
+      try {
+        const res = await fetch('/api/nachricht', {method: 'POST', body: new URLSearchParams(new FormData(f))});
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw Error(data.error || 'Die Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut oder schreib per WhatsApp.');
+        f.hidden = true; note.textContent = '';
+        done.hidden = false; done.focus();
+        el('name').value = ''; el('contact').value = ''; el('message').value = '';
+      } catch (err) {
+        fail(err.message);
+      } finally {
+        button.disabled = false;
+      }
+    });
   });
 
   // Mobile Navigation
