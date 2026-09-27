@@ -49,6 +49,9 @@ assert app.db().execute('SELECT COUNT(*) FROM messages').fetchone()[0]==1, 'Hone
 imp=request('/impressum')['body']
 assert 'Spreeallee 207' in imp and '§ 5 DDG' in imp and '§ 19 Abs. 1 UStG' in imp and 'href="mailto:info@mieten-macht-sinn.de"' in imp
 assert '<mark class="todo">' not in imp and 'TMG' not in imp and 'ec.europa.eu/consumers/odr' not in imp, 'Impressum vollständig und aktuell'
+ds=request('/datenschutz')['body']
+assert '<mark class="todo">' not in ds and 'Nürnberg' in ds and 'DHL' in ds and 'Stand: Oktober 2026' in ds, 'Datenschutz vollständig'
+assert 'Gestaltungsbeispiele' not in request('/muster')['body'] and 'rechtlich geschützt' not in request('/wunschmotive')['body']
 # Unveränderte alte Vorlage wird beim Update ersetzt
 import legal_defaults
 with app.db() as c:c.execute("UPDATE legal SET content=? WHERE key='impressum'",(legal_defaults.PREVIOUS['impressum'][0],))
