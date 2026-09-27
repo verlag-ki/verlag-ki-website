@@ -1,4 +1,4 @@
-# Server-Protokolle nach 14 Tagen löschen (so steht es in der Datenschutzerklärung)
+# Fehlerprotokolle (nur bei Nginx) nach 14 Tagen löschen
 @LOG_DIR@/*.log {
     daily
     rotate 14

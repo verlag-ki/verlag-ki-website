@@ -49,7 +49,9 @@ Für die Verwaltung lokal `SECRET_KEY` und `ADMIN_PASSWORD_HASH` setzen (siehe `
 
 ## Veröffentlichen auf dem Hetzner-Server
 
-Voraussetzung: Ubuntu oder Debian mit Zugang als root bzw. per `sudo`. Andere Websites auf dem Server bleiben unberührt; die App läuft auf `127.0.0.1:8081` hinter Nginx. Ist der Port belegt, vor dem Aufruf `PORT=8090` voranstellen.
+Voraussetzung: Ubuntu oder Debian mit Zugang als root bzw. per `sudo`. Die App läuft auf `127.0.0.1:8081`. Ist der Port belegt, vor dem Aufruf `PORT=8090` voranstellen.
+
+Das Skript erkennt den Webserver: **Läuft Caddy** (wie auf dem vorhandenen Hetzner-Server), legt es `/etc/caddy/bienes-muetzenparadies.caddy` an, hängt es per `import` an das bestehende Caddyfile, prüft die Konfiguration mit `caddy validate` und lädt Caddy neu. Ist sie ungültig, stellt es das alte Caddyfile wieder her. Caddy holt das HTTPS-Zertifikat selbst. **Läuft kein Webserver**, richtet das Skript Nginx mit Certbot ein. Andere Websites auf dem Server bleiben in beiden Fällen unberührt.
 
 1. **DNS:** Beim Domain-Anbieter A-Einträge (und bei Bedarf AAAA-Einträge) für `bines-muetzenparadies.de` und `www.bines-muetzenparadies.de` auf die IP des Servers setzen.
 2. **Code auf den Server holen:**
@@ -62,7 +64,7 @@ Voraussetzung: Ubuntu oder Debian mit Zugang als root bzw. per `sudo`. Andere We
    ```bash
    sudo ./deploy/setup.sh bines-muetzenparadies.de info@mieten-macht-sinn.de
    ```
-   Das Skript installiert Nginx, Certbot und Python 3.12, legt den Systembenutzer `biene` an, fragt das Verwaltungspasswort ab, richtet Dienst, Nginx, Log-Löschung nach 14 Tagen und die tägliche Sicherung ein und holt das HTTPS-Zertifikat, sobald die Domain auf den Server zeigt. Es kann gefahrlos erneut ausgeführt werden.
+   Das Skript installiert Nginx, Certbot und Python 3.12, legt den Systembenutzer `biene` an, fragt das Verwaltungspasswort ab, richtet Dienst, Webserver und die tägliche Sicherung ein und sorgt für HTTPS, sobald die Domain auf den Server zeigt. Es kann gefahrlos erneut ausgeführt werden.
 4. **In der Verwaltung** (`https://bines-muetzenparadies.de/admin`) Größen mit echten Zentimetern und Wollfarben eintragen und die von Biene freigegebenen Muster auf `published` stellen.
 5. **Datenschutzerklärung und Impressum** vervollständigen (Stellen in eckigen Klammern bzw. gelb markiert), dann auf Handy und Computer durchklicken.
 
@@ -70,7 +72,7 @@ Voraussetzung: Ubuntu oder Debian mit Zugang als root bzw. per `sudo`. Andere We
 
 **Sicherungen** liegen täglich unter `/var/backups/bienes-muetzenparadies` (14 Tage). Da sie auf demselben Server liegen, zusätzlich die Backup-Funktion von Hetzner einschalten oder die Dateien regelmäßig woanders ablegen.
 
-**Nützliche Befehle:** `systemctl status bienes-muetzenparadies`, `journalctl -u bienes-muetzenparadies -n 50`, Server-Protokolle unter `/var/log/bienes-muetzenparadies/`.
+**Nützliche Befehle:** `systemctl status bienes-muetzenparadies`, `journalctl -u bienes-muetzenparadies -n 50`, bei Caddy `journalctl -u caddy -n 50`. Zugriffsprotokolle werden bewusst nicht geschrieben (siehe Datenschutzerklärung).
 
 ## Muster pflegen
 

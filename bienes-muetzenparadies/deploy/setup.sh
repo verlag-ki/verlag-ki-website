@@ -2,7 +2,9 @@
 # Richtet Bienes Mützenparadies auf einem Ubuntu- oder Debian-Server ein.
 # Aufruf als root aus dem Projektordner:   sudo ./deploy/setup.sh DOMAIN [E-MAIL-FÜR-LETSENCRYPT]
 # Beispiel:                                 sudo ./deploy/setup.sh bines-muetzenparadies.de info@mieten-macht-sinn.de
-# Das Skript lässt andere Websites auf dem Server unangetastet und kann gefahrlos erneut ausgeführt werden.
+# Läuft auf dem Server schon Caddy, wird die Seite dort eingehängt (Caddy holt das Zertifikat selbst).
+# Sonst richtet das Skript Nginx mit Certbot ein. Andere Websites bleiben unangetastet.
+# Das Skript kann gefahrlos erneut ausgeführt werden.
 set -euo pipefail
 
 DOMAIN="${1:?Bitte die Domain angeben, z. B. ./deploy/setup.sh bines-muetzenparadies.de}"
@@ -20,9 +22,24 @@ say() { printf '\n\033[1m==> %s\033[0m\n' "$*"; }
 [ "$(id -u)" -eq 0 ] || { echo "Bitte mit sudo ausführen."; exit 1; }
 command -v apt-get >/dev/null || { echo "Dieses Skript unterstützt Ubuntu und Debian."; exit 1; }
 
+say "Webserver erkennen"
+PORT80=$(ss -ltnpH '( sport = :80 )' 2>/dev/null || true)
+if systemctl is-active --quiet caddy; then
+  WEB=caddy
+  [ -f /etc/caddy/Caddyfile ] || { echo "Caddy läuft, aber /etc/caddy/Caddyfile fehlt. Bitte melden, dann passe ich das an."; exit 1; }
+elif [ -z "$PORT80" ] || echo "$PORT80" | grep -q nginx; then
+  WEB=nginx
+else
+  echo "Port 80 ist belegt, aber weder von Caddy noch von Nginx:"; echo "$PORT80"
+  echo "Nichts verändert. Bitte diese Ausgabe weitergeben."; exit 1
+fi
+echo "Webserver: $WEB"
+
 say "Pakete installieren"
 apt-get update -q
-DEBIAN_FRONTEND=noninteractive apt-get install -yq nginx certbot python3-certbot-nginx sqlite3 rsync curl python3-venv
+PKGS="sqlite3 rsync curl python3-venv"
+[ "$WEB" = nginx ] && PKGS="$PKGS nginx certbot python3-certbot-nginx"
+DEBIAN_FRONTEND=noninteractive apt-get install -yq $PKGS
 
 say "Python 3.12 bereitstellen"
 if command -v python3.12 >/dev/null; then
@@ -88,26 +105,57 @@ systemctl daemon-reload
 systemctl enable --now $NAME.service $NAME-backup.timer
 systemctl restart $NAME.service
 
-say "Nginx einrichten"
-if [ -d /etc/nginx/sites-available ]; then
-  NGINX_CONF=/etc/nginx/sites-available/$NAME
-  ln -sf $NGINX_CONF /etc/nginx/sites-enabled/$NAME
+if [ "$WEB" = nginx ]; then
+  say "Nginx einrichten"
+  if [ -d /etc/nginx/sites-available ]; then
+    NGINX_CONF=/etc/nginx/sites-available/$NAME
+    ln -sf $NGINX_CONF /etc/nginx/sites-enabled/$NAME
+  else
+    NGINX_CONF=/etc/nginx/conf.d/$NAME.conf
+  fi
+  # Eine bereits von certbot ergänzte Konfiguration nicht überschreiben
+  if [ ! -f $NGINX_CONF ] || ! grep -q "managed by Certbot" $NGINX_CONF; then
+    sed -e "s|@DOMAIN@|$DOMAIN|g" -e "s|@PORT@|$PORT|g" -e "s|@LOG_DIR@|$LOG_DIR|g" "$SRC_DIR/deploy/nginx.conf" > $NGINX_CONF
+  fi
+  sed -e "s|@LOG_DIR@|$LOG_DIR|g" "$SRC_DIR/deploy/logrotate" > /etc/logrotate.d/$NAME
+  nginx -t
+  systemctl reload nginx
 else
-  NGINX_CONF=/etc/nginx/conf.d/$NAME.conf
+  say "Caddy einrichten"
+  CADDY_MAIN=/etc/caddy/Caddyfile
+  SNIPPET=/etc/caddy/$NAME.caddy
+  sed -e "s|@DOMAIN@|$DOMAIN|g" -e "s|@PORT@|$PORT|g" "$SRC_DIR/deploy/caddy.conf" > $SNIPPET
+  chmod 644 $SNIPPET
+  BACKUP=""
+  if ! grep -qF "import $SNIPPET" $CADDY_MAIN; then
+    BACKUP=$CADDY_MAIN.vor-$NAME-$(date +%Y%m%d%H%M%S)
+    cp -a $CADDY_MAIN "$BACKUP"
+    printf '\nimport %s\n' "$SNIPPET" >> $CADDY_MAIN
+  fi
+  if ! caddy validate --config $CADDY_MAIN --adapter caddyfile >/tmp/$NAME-caddy.log 2>&1; then
+    tail -5 /tmp/$NAME-caddy.log
+    [ -n "$BACKUP" ] && cp -a "$BACKUP" $CADDY_MAIN
+    echo "Die Caddy-Konfiguration war ungültig. Der alte Stand ist wiederhergestellt, Caddy läuft unverändert weiter."
+    exit 1
+  fi
+  systemctl reload caddy
+  echo "Caddy kennt jetzt $DOMAIN (Sicherung der alten Konfiguration: ${BACKUP:-nicht nötig})."
 fi
-# Eine bereits von certbot ergänzte Konfiguration nicht überschreiben
-if [ ! -f $NGINX_CONF ] || ! grep -q "managed by Certbot" $NGINX_CONF; then
-  sed -e "s|@DOMAIN@|$DOMAIN|g" -e "s|@PORT@|$PORT|g" -e "s|@LOG_DIR@|$LOG_DIR|g" "$SRC_DIR/deploy/nginx.conf" > $NGINX_CONF
-fi
-sed -e "s|@LOG_DIR@|$LOG_DIR|g" "$SRC_DIR/deploy/logrotate" > /etc/logrotate.d/$NAME
-nginx -t
-systemctl reload nginx
 
 say "App-Test"
 sleep 1
 curl -fsS -o /dev/null "http://127.0.0.1:$PORT/" && echo "Die App antwortet auf Port $PORT."
 
-say "HTTPS-Zertifikat"
+say "HTTPS"
+if [ "$WEB" = caddy ]; then
+  echo "Caddy holt das Zertifikat automatisch. Warte bis zu zwei Minuten …"
+  for i in $(seq 1 24); do
+    if curl -fsS -o /dev/null --max-time 5 "https://$DOMAIN/"; then echo "Fertig: https://$DOMAIN"; exit 0; fi
+    sleep 5
+  done
+  echo "Noch kein HTTPS. Prüfe mit: journalctl -u caddy -n 50 --no-pager | grep -i $DOMAIN"
+  exit 1
+fi
 SERVER_IP=$(curl -4fsS https://api.ipify.org || true)
 DNS_IP=$(getent ahostsv4 "$DOMAIN" | awk 'NR==1{print $1}' || true)
 if [ -n "$DNS_IP" ] && [ "$DNS_IP" = "$SERVER_IP" ]; then
