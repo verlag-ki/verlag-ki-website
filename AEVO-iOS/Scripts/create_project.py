@@ -72,8 +72,10 @@ def main(root=ROOT, project_name="LearningApp"):
                shellScript='export PYTHONDONTWRITEBYTECODE=1\nexport PYTHONPYCACHEPREFIX="$DERIVED_FILE_DIR/pycache"\nif [ "$CONFIGURATION" = "Release" ]; then\n  /usr/bin/python3 "$SRCROOT/Scripts/validate_release.py" "$SRCROOT/Core/Resources/SelectedPack"\nfi\n')
     project_settings = dict(CLANG_ENABLE_MODULES="YES", CLANG_ENABLE_OBJC_ARC="YES", SDKROOT="iphoneos", IPHONEOS_DEPLOYMENT_TARGET="17.0", SWIFT_VERSION="5.0", ENABLE_USER_SCRIPT_SANDBOXING="YES")
     target_settings = dict(PRODUCT_BUNDLE_IDENTIFIER=config["bundleIdentifier"], PRODUCT_NAME=product_name, TARGETED_DEVICE_FAMILY="1", CODE_SIGN_STYLE="Automatic",
-        GENERATE_INFOPLIST_FILE="NO", INFOPLIST_FILE="Configuration/Info.plist", ASSETCATALOG_COMPILER_APPICON_NAME="AppIcon", CURRENT_PROJECT_VERSION="10",
-        MARKETING_VERSION="0.5.0", SWIFT_EMIT_LOC_STRINGS="YES", SUPPORTED_PLATFORMS="iphoneos iphonesimulator", SUPPORTS_MACCATALYST="NO",
+        GENERATE_INFOPLIST_FILE="NO", INFOPLIST_FILE="Configuration/Info.plist", ASSETCATALOG_COMPILER_APPICON_NAME="AppIcon", CURRENT_PROJECT_VERSION="11",
+        # Must match the version record in App Store Connect, otherwise the upload
+        # cannot be attached to it. That record is 1.0.
+        MARKETING_VERSION="1.0", SWIFT_EMIT_LOC_STRINGS="YES", SUPPORTED_PLATFORMS="iphoneos iphonesimulator", SUPPORTS_MACCATALYST="NO",
         LD_RUNPATH_SEARCH_PATHS=["$(inherited)", "@executable_path/Frameworks"], SWIFT_STRICT_CONCURRENCY="targeted")
     project_configs = []; target_configs = []
     for build_config in ["Debug", "Release"]:
