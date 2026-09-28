@@ -27,10 +27,23 @@ class ReleaseGateTests(unittest.TestCase):
         self.assertTrue(any("privacyURL" in item for item in issues))
 
     def test_approval_flag_alone_cannot_release_incomplete_documents(self):
-        self.legal["approved"] = True
-        issues = legal_issues(self.legal)
-        self.assertTrue(any("geprüft" in item for item in issues))
-        self.assertTrue(any("privacyURL" in item for item in issues))
+        # A release needs a recorded reviewer and date, not just the flag.
+        for missing in ["reviewedBy", "reviewedOn"]:
+            document = copy.deepcopy(self.legal)
+            document.update(approved=True, privacyURL="https://example.org/privacy",
+                            supportURL="https://example.org/support")
+            document[missing] = ""
+            self.assertTrue(any("geprüft" in item for item in legal_issues(document)), missing)
+        # And the released document still needs its public addresses.
+        self.assertTrue(any("privacyURL" in item for item in legal_issues(self.legal)))
+
+    def test_private_workspace_address_is_not_accepted_as_a_public_page(self):
+        value = self.complete_fixture()
+        value["privacyURL"] = "https://app.notion.com/p/3e17bc57948381d9aaa2e1db1493346b"
+        issues = legal_issues(value)
+        self.assertTrue(any("private Arbeitsadresse" in item for item in issues))
+        value["privacyURL"] = "https://aevo.notion.site/datenschutz"
+        self.assertEqual(legal_issues(value), [])
 
     def test_completed_fixture_and_rejected_unsafe_link(self):
         value = self.complete_fixture()

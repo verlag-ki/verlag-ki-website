@@ -9,6 +9,11 @@ from content_approval import load_confirmation, confirmed
 from validate_content_pack import validate
 
 
+# Workspace addresses that require a sign-in instead of serving the page to everyone.
+PRIVATE_PAGE_HOSTS = {"app.notion.com", "www.notion.so", "notion.so",
+                      "docs.google.com", "drive.google.com"}
+
+
 def present(value):
     return isinstance(value, str) and bool(value.strip())
 
@@ -30,6 +35,9 @@ def legal_issues(document):
         value = urlparse(document.get(field, ""))
         if value.scheme != "https" or not value.hostname or value.username or value.password:
             issues.append(f"Öffentliche HTTPS-Adresse fehlt oder ist ungültig: {field}.")
+        elif value.hostname in PRIVATE_PAGE_HOSTS:
+            issues.append(f"{field} verweist auf eine private Arbeitsadresse ({value.hostname}), "
+                          "die ohne Anmeldung keinen Inhalt zeigt. Die veröffentlichte Adresse eintragen.")
     for field in ["supportProcessing", "websiteProcessing"]:
         if not present(document.get(field)):
             issues.append(f"Verarbeitung und Löschfristen noch zu beschreiben: {field}.")

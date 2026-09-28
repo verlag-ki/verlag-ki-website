@@ -182,9 +182,8 @@ struct ContentChangesView: View {
                 } }
                 Text("Persönliche Fassungen werden niemals automatisch überschrieben. Wenn eine redaktionelle Änderungsbeschreibung mitgeliefert wurde, erscheint sie hier mit Datum.").font(.footnote).foregroundStyle(.secondary)
             }
-            Section("Deine gespeicherten Fehlermeldungen") { ForEach(store.state.coaching.feedback.reversed()) { report in
-                VStack(alignment: .leading, spacing: 8) { Text(report.contentID).font(.headline); Text(report.message); ShareLink("Meldung teilen", item: report.exportText); Text("Lokal gespeichert, nicht automatisch gesendet.").font(.caption) }
-            } }
+            // The content report box was removed; nothing creates new entries. Older entries
+            // stay in the saved data and in backups, they are simply no longer listed here.
         }.navigationTitle("Inhaltsänderungen").learningBackground()
     }
 }
