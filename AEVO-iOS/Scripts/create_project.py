@@ -54,10 +54,22 @@ def main(root=ROOT, project_name="LearningApp"):
     source_phase = add("sources", "PBXSourcesBuildPhase", buildActionMask=2147483647, files=builds, runOnlyForDeploymentPostprocessing=0)
     resource_phase = add("resources", "PBXResourcesBuildPhase", buildActionMask=2147483647, files=resources, runOnlyForDeploymentPostprocessing=0)
     framework_phase = add("frameworks", "PBXFrameworksBuildPhase", buildActionMask=2147483647, files=[linked_core], runOnlyForDeploymentPostprocessing=0)
-    gate_inputs = ["$(SRCROOT)/Core/Resources/SelectedPack", "$(SRCROOT)/Core/Resources/app-config.json", "$(SRCROOT)/Core/Resources/legal.json", "$(SRCROOT)/Scripts", "$(SRCROOT)/Schemas"]
+    # ENABLE_USER_SCRIPT_SANDBOXING lets a run script read only the inputs it declares, and
+    # a declared folder does not cover the files inside it. Naming folders made the archive
+    # fail with "Sandbox: deny file-read-data .../Scripts/validate_release.py". So every file
+    # the check opens is listed here, including the Python modules it imports.
+    gate_files = ["Scripts/validate_release.py", "Scripts/content_approval.py",
+                  "Scripts/validate_content_pack.py",
+                  "Core/Resources/app-config.json", "Core/Resources/legal.json"]
+    for folder in ["Core/Resources/SelectedPack", "Schemas"]:
+        gate_files += sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / folder).glob("*.json"))
+    gate_inputs = [f"$(SRCROOT)/{path}" for path in gate_files]
     gate = add("content-gate", "PBXShellScriptBuildPhase", buildActionMask=2147483647, files=[], inputPaths=gate_inputs, outputPaths=[],
                name="Paket und Veröffentlichung prüfen", runOnlyForDeploymentPostprocessing=0, shellPath="/bin/sh",
-               shellScript='export PYTHONDONTWRITEBYTECODE=1\nif [ "$CONFIGURATION" = "Release" ]; then\n  /usr/bin/python3 "$SRCROOT/Scripts/validate_release.py" "$SRCROOT/Core/Resources/SelectedPack"\nfi\n')
+               # Bytecode must not be written into the project, and an existing __pycache__
+               # there must not be read either: the sandbox would deny both. The prefix moves
+               # lookup and writing into the build folder.
+               shellScript='export PYTHONDONTWRITEBYTECODE=1\nexport PYTHONPYCACHEPREFIX="$DERIVED_FILE_DIR/pycache"\nif [ "$CONFIGURATION" = "Release" ]; then\n  /usr/bin/python3 "$SRCROOT/Scripts/validate_release.py" "$SRCROOT/Core/Resources/SelectedPack"\nfi\n')
     project_settings = dict(CLANG_ENABLE_MODULES="YES", CLANG_ENABLE_OBJC_ARC="YES", SDKROOT="iphoneos", IPHONEOS_DEPLOYMENT_TARGET="17.0", SWIFT_VERSION="5.0", ENABLE_USER_SCRIPT_SANDBOXING="YES")
     target_settings = dict(PRODUCT_BUNDLE_IDENTIFIER=config["bundleIdentifier"], PRODUCT_NAME=product_name, TARGETED_DEVICE_FAMILY="1", CODE_SIGN_STYLE="Automatic",
         GENERATE_INFOPLIST_FILE="NO", INFOPLIST_FILE="Configuration/Info.plist", ASSETCATALOG_COMPILER_APPICON_NAME="AppIcon", CURRENT_PROJECT_VERSION="10",

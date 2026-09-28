@@ -372,11 +372,31 @@
 
 			);
 			"inputPaths" = (
-				"$(SRCROOT)/Core/Resources/SelectedPack",
+				"$(SRCROOT)/Scripts/validate_release.py",
+				"$(SRCROOT)/Scripts/content_approval.py",
+				"$(SRCROOT)/Scripts/validate_content_pack.py",
 				"$(SRCROOT)/Core/Resources/app-config.json",
 				"$(SRCROOT)/Core/Resources/legal.json",
-				"$(SRCROOT)/Scripts",
-				"$(SRCROOT)/Schemas",
+				"$(SRCROOT)/Core/Resources/SelectedPack/approval.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/cards.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/exam_config.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/experience.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/learning_objectives.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/manifest.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/practice.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/questions.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/revisions.json",
+				"$(SRCROOT)/Core/Resources/SelectedPack/sources.json",
+				"$(SRCROOT)/Schemas/app_config.schema.json",
+				"$(SRCROOT)/Schemas/cards.schema.json",
+				"$(SRCROOT)/Schemas/exam_config.schema.json",
+				"$(SRCROOT)/Schemas/experience.schema.json",
+				"$(SRCROOT)/Schemas/learning_objectives.schema.json",
+				"$(SRCROOT)/Schemas/manifest.schema.json",
+				"$(SRCROOT)/Schemas/practice.schema.json",
+				"$(SRCROOT)/Schemas/questions.schema.json",
+				"$(SRCROOT)/Schemas/revisions.schema.json",
+				"$(SRCROOT)/Schemas/sources.schema.json",
 			);
 			"outputPaths" = (
 
@@ -384,7 +404,7 @@
 			"name" = "Paket und Veröffentlichung prüfen";
 			"runOnlyForDeploymentPostprocessing" = "0";
 			"shellPath" = "/bin/sh";
-			"shellScript" = "export PYTHONDONTWRITEBYTECODE=1\nif [ \"$CONFIGURATION\" = \"Release\" ]; then\n  /usr/bin/python3 \"$SRCROOT/Scripts/validate_release.py\" \"$SRCROOT/Core/Resources/SelectedPack\"\nfi\n";
+			"shellScript" = "export PYTHONDONTWRITEBYTECODE=1\nexport PYTHONPYCACHEPREFIX=\"$DERIVED_FILE_DIR/pycache\"\nif [ \"$CONFIGURATION\" = \"Release\" ]; then\n  /usr/bin/python3 \"$SRCROOT/Scripts/validate_release.py\" \"$SRCROOT/Core/Resources/SelectedPack\"\nfi\n";
 		};
 		"AB52CB08E0FDF02BF6C67C33" = {
 			"isa" = "XCBuildConfiguration";

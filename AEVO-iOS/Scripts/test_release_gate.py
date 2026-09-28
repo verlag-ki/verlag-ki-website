@@ -1,6 +1,11 @@
 """Prevent accidental publication with draft or incomplete legal information."""
 import copy
 import json
+import os
+import re
+import subprocess
+import sys
+import textwrap
 import tempfile
 import unittest
 from pathlib import Path
@@ -71,6 +76,51 @@ class ReleaseGateTests(unittest.TestCase):
             issues = release_issues(directory / "catalog.json")
             self.assertTrue(any("privacyURL" in item for item in issues))
             self.assertFalse(any("Inhalte haben" in item for item in issues))
+
+
+    def test_every_file_the_gate_opens_is_declared_as_a_build_input(self):
+        """Xcode sandboxes the run script: it may read only its declared input files.
+
+        A declared folder does not cover the files inside it, which once made the archive
+        fail on Scripts/validate_release.py. This runs the gate, records every project file
+        it opens, and compares that with the inputs in the generated project.
+        """
+        tracer = textwrap.dedent(f"""
+            import json, runpy, sys
+            from pathlib import Path
+            root = Path({str(ROOT)!r}).resolve()
+            seen = set()
+            def hook(event, args):
+                if event != "open":
+                    return
+                try:
+                    path = Path(str(args[0])).resolve()
+                except Exception:
+                    return
+                if path.is_file() and path.is_relative_to(root):
+                    seen.add(path.relative_to(root).as_posix())
+            sys.addaudithook(hook)
+            sys.path.insert(0, str(root / "Scripts"))
+            sys.argv = ["validate_release.py", str(root / "Core/Resources/SelectedPack")]
+            try:
+                runpy.run_path(str(root / "Scripts/validate_release.py"), run_name="__main__")
+            except SystemExit:
+                pass
+            print("FILES", json.dumps(sorted(seen)))
+        """)
+        # Same environment as the build phase, so the run is comparable.
+        environment = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1",
+                       "PYTHONPYCACHEPREFIX": tempfile.mkdtemp(prefix="gate-pycache-")}
+        result = subprocess.run([sys.executable, "-c", tracer], capture_output=True,
+                                text=True, env=environment)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        opened = json.loads(result.stdout.rsplit("FILES", 1)[1])
+        project = (ROOT / "LearningApp.xcodeproj/project.pbxproj").read_text()
+        block = re.search(r'"inputPaths" = \((.*?)\);', project, re.S)
+        declared = set(re.findall(r'\$\(SRCROOT\)/([^"]+)"', block.group(1)))
+        undeclared = sorted(f for f in opened if f not in declared)
+        self.assertEqual(undeclared, [], "nicht als Build-Eingabe deklariert")
+        self.assertIn("Scripts/validate_release.py", declared)
 
 
 if __name__ == "__main__":
