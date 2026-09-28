@@ -22,6 +22,12 @@ public enum StateMigration {
             guard stored.isSubset(of: known) else { throw LearningError.invalid("Die alte Sicherung enthält Inhalte, die diesem Paket nicht zugeordnet werden können.") }
             state.contentPackID = environment.pack.manifest.packId; state.appID = environment.config.appId
         }
+        // A target of 3 or 5 steps is no longer offered. The preference moves up to the
+        // smallest current target; days already recorded keep the target they were reached
+        // with, so no finished day and no streak is taken away.
+        if !DailyGoal.options.contains(state.settings.dailyGoal) {
+            state.settings.dailyGoal = DailyGoal.normalized(state.settings.dailyGoal)
+        }
         // Existing snapshots keep their questions and answers. Only missing rule metadata is added.
         if state.exam != nil && state.exam?.rules == nil { state.exam?.rules = environment.pack.exam }
         for index in state.examHistory.indices where state.examHistory[index].rules == nil {

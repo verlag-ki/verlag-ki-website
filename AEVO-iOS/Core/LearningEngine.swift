@@ -144,7 +144,10 @@ public enum LearningEngine {
     }
 
     public static func setDailyGoal(state: inout AppState, goal: Int, now: Date = Date(), calendar: Calendar = .current) throws {
-        guard [3, 5, 10].contains(goal) else { throw LearningError.invalid("Wähle ein Tagesziel von 3, 5 oder 10 Schritten.") }
+        guard DailyGoal.options.contains(goal) else {
+            let offered = DailyGoal.options.map(String.init).joined(separator: ", ")
+            throw LearningError.invalid("Wähle ein Tagesziel von \(offered) Lernschritten.")
+        }
         state.settings.dailyGoal = goal
         let key = CivilDay(now, calendar: calendar).id
         if var today = state.days[key], !today.achieved {

@@ -33,10 +33,12 @@ struct SettingsView: View {
                     Text("System").tag("system"); Text("Hell").tag("light"); Text("Dunkel").tag("dark")
                 }
                 Picker("Deine Tagesstrecke", selection: settingsBinding(\.dailyGoal)) {
-                    Text("3 Lernschritte").tag(3); Text("5 Lernschritte").tag(5); Text("10 Lernschritte").tag(10)
+                    ForEach(DailyGoal.options, id: \.self) { goal in
+                        Text("\(goal) Lernschritte").tag(goal)
+                    }
                 }
                 Toggle("Lernserie anzeigen", isOn: settingsBinding(\.showStreak))
-                Text("Du kannst immer weiterlernen. Das Ziel begrenzt keine Inhalte.").font(.footnote).foregroundStyle(.secondary)
+                Text("Ein Lernschritt ist eine bearbeitete Aufgabe mit gelesener Erklärung oder eine aufgedeckte und eingeschätzte Lernkarte. Dieselbe Aufgabe zählt pro Tag einmal. Du kannst immer weiterlernen, das Ziel begrenzt keine Inhalte.").font(.footnote).foregroundStyle(.secondary)
             }
             Section("Deine Vorbereitung") {
                 NavigationLink("Lernzeit & ruhiger Modus") { LearningPreferencesView() }

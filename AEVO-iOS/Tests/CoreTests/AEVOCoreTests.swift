@@ -140,21 +140,23 @@ final class AEVOCoreTests: XCTestCase {
 
     func testNoFarmingThroughRepeatedCardTapsAndNoRevocationOfAchievedGoal() {
         var state = AppState(now: now)
-        for _ in 0..<10 { LearningEngine.recallCard(state: &state, card: catalog.cards[0], understood: true, now: now, calendar: calendar) }
-        XCTAssertEqual(state.days[CivilDay(now, calendar: calendar).id]?.itemIDs.count, 1)
-        XCTAssertEqual(state.cardRecall[catalog.cards[0].id]?.level, 1)
-        for card in catalog.cards[1...2] { LearningEngine.recallCard(state: &state, card: card, understood: true, now: now, calendar: calendar) }
         state.settings.dailyGoal = 10
-        LearningEngine.recallCard(state: &state, card: catalog.cards[3], understood: true, now: now, calendar: calendar)
+        for _ in 0..<10 { LearningEngine.recallCard(state: &state, card: catalog.cards[0], understood: true, now: now, calendar: calendar) }
+        XCTAssertEqual(state.days[CivilDay(now, calendar: calendar).id]?.itemIDs.count, 1, "Dieselbe Karte zählt pro Tag einmal.")
+        XCTAssertEqual(state.cardRecall[catalog.cards[0].id]?.level, 1)
+        for index in 0..<9 { LearningEngine.recordStep(state: &state, id: "schritt-\(index)", now: now, calendar: calendar) }
+        state.settings.dailyGoal = 20
+        LearningEngine.recordStep(state: &state, id: "schritt-spaet", now: now, calendar: calendar)
         let today = state.days[CivilDay(now, calendar: calendar).id]!
-        XCTAssertTrue(today.achieved); XCTAssertEqual(today.goal, 3)
+        XCTAssertTrue(today.achieved); XCTAssertEqual(today.goal, 10, "Ein erreichter Tag behält sein Ziel.")
     }
 
     func testStreakCrossesDayBoundariesButPauseDoesNotRemoveBadges() {
         var state = AppState(now: now)
+        state.settings.dailyGoal = 10
         for offset in 0..<3 {
-            for card in catalog.cards.prefix(3) {
-                LearningEngine.recallCard(state: &state, card: card, understood: true, now: date(offset), calendar: calendar)
+            for index in 0..<10 {
+                LearningEngine.recordStep(state: &state, id: "tag\(offset)-schritt\(index)", now: date(offset), calendar: calendar)
             }
         }
         XCTAssertEqual(LearningEngine.streak(state: state, now: date(2), calendar: calendar), 3)
@@ -293,15 +295,38 @@ final class AEVOCoreTests: XCTestCase {
 
     func testChangingDailyGoalUpdatesTodayAndNeverRevokesAnAchievedGoal() throws {
         var state = AppState(now: now)
-        try LearningEngine.setDailyGoal(state: &state, goal: 5, now: now, calendar: calendar)
-        for card in catalog.cards.prefix(3) { LearningEngine.recallCard(state: &state, card: card, understood: true, now: now, calendar: calendar) }
+        XCTAssertEqual(state.settings.dailyGoal, 50, "Voreingestellt sind 50 Lernschritte.")
+        try LearningEngine.setDailyGoal(state: &state, goal: 20, now: now, calendar: calendar)
+        // Synthetic step identifiers keep this independent of how large the selected pack is.
+        for index in 0..<10 { LearningEngine.recordStep(state: &state, id: "schritt-\(index)", now: now, calendar: calendar) }
         let key = CivilDay(now, calendar: calendar).id
         XCTAssertFalse(state.days[key]!.achieved)
-        try LearningEngine.setDailyGoal(state: &state, goal: 3, now: now, calendar: calendar)
-        XCTAssertTrue(state.days[key]!.achieved)
         try LearningEngine.setDailyGoal(state: &state, goal: 10, now: now, calendar: calendar)
-        XCTAssertEqual(state.days[key]!.goal, 3)
         XCTAssertTrue(state.days[key]!.achieved)
+        try LearningEngine.setDailyGoal(state: &state, goal: 100, now: now, calendar: calendar)
+        XCTAssertEqual(state.days[key]!.goal, 10, "Ein erreichter Tag behält sein Ziel.")
+        XCTAssertTrue(state.days[key]!.achieved)
+        XCTAssertThrowsError(try LearningEngine.setDailyGoal(state: &state, goal: 5, now: now, calendar: calendar))
+        XCTAssertThrowsError(try LearningEngine.setDailyGoal(state: &state, goal: 75, now: now, calendar: calendar))
+    }
+
+    func testRetiredDailyGoalsStayReadableAndMoveUpToTheSmallestOfferedTarget() throws {
+        XCTAssertEqual(DailyGoal.options, [10, 20, 50, 100])
+        XCTAssertEqual(DailyGoal.normalized(3), 10)
+        XCTAssertEqual(DailyGoal.normalized(5), 10)
+        XCTAssertEqual(DailyGoal.normalized(10), 10)
+        XCTAssertEqual(DailyGoal.normalized(20), 20)
+        XCTAssertEqual(DailyGoal.normalized(1_000), 100)
+        // A day finished under the old target of three steps stays valid and stays achieved.
+        var state = AppState(now: now)
+        state.settings.dailyGoal = 3
+        var finished = DailyActivity(goal: 3)
+        finished.itemIDs = ["a", "b", "c"]; finished.achieved = true
+        state.days[CivilDay(date(-1), calendar: calendar).id] = finished
+        XCTAssertNoThrow(try StateCodec.validate(state))
+        let restored = try StateCodec.importBackup(StateCodec.export(state, now: now))
+        XCTAssertEqual(restored.days[CivilDay(date(-1), calendar: calendar).id]?.goal, 3)
+        XCTAssertTrue(restored.days[CivilDay(date(-1), calendar: calendar).id]!.achieved)
     }
 
     func testReminderTimeStaysLocalAcrossDaylightSavingChange() {

@@ -174,9 +174,25 @@ public struct ReminderSettings: Codable, Sendable {
     public init() {}
 }
 
+/// The daily target, in learning steps. A step is an answered question with its explanation
+/// opened, or a card revealed and rated. The target never limits access to further content.
+public enum DailyGoal {
+    /// Offered in the settings, smallest first.
+    public static let options = [10, 20, 50, 100]
+    public static let standard = 50
+    /// Versions up to 0.5.1 offered 3, 5 and 10 steps. Days already recorded keep those
+    /// values so an achieved day is never revoked, and older backups stay readable.
+    public static let retired = [3, 5]
+    public static let accepted = Set(options + retired)
+    /// Lifts a stored preference to the smallest offered target that is at least as large.
+    public static func normalized(_ goal: Int) -> Int {
+        options.first { $0 >= goal } ?? options[options.count - 1]
+    }
+}
+
 public struct Settings: Codable, Sendable {
     public var appearance = "system"
-    public var dailyGoal = 3
+    public var dailyGoal = DailyGoal.standard
     public var showStreak = true
     public var reminder = ReminderSettings()
     public var exams = ExamPlan()

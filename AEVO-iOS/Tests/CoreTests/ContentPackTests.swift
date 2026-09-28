@@ -50,6 +50,21 @@ final class ContentPackTests: XCTestCase {
         let restored = try StateMigration.migrate(StateCodec.importBackup(StateCodec.export(state)),environment:e)
         XCTAssertEqual(restored.cardStudy?.currentID,state.cardStudy?.currentID)
     }
+    func testRetiredDailyGoalMovesUpOnLoadWithoutTouchingFinishedDays() throws {
+        let e = try env()
+        var state = StateMigration.fresh(environment:e)
+        XCTAssertEqual(state.settings.dailyGoal,50)
+        state.settings.dailyGoal = 5
+        var finished = DailyActivity(goal:5)
+        finished.itemIDs = ["a","b","c","d","e"]; finished.achieved = true
+        state.days["2026-09-20"] = finished
+        let migrated = try StateMigration.migrate(state,environment:e)
+        XCTAssertEqual(migrated.settings.dailyGoal,10,"Ein zurückgezogenes Ziel rückt auf die kleinste angebotene Stufe.")
+        XCTAssertEqual(migrated.days["2026-09-20"]?.goal,5)
+        XCTAssertTrue(migrated.days["2026-09-20"]!.achieved,"Ein erreichter Tag bleibt erreicht.")
+        // Migrating again changes nothing further.
+        XCTAssertEqual(try StateMigration.migrate(migrated,environment:e).settings.dailyGoal,10)
+    }
     func testReal040BackupMigratesWithoutLosingPersonalDataOrCurrentSessions() throws {
         try PackRequirement.aevoPack("Die Sicherung im Format de.aevo.learning.backup")
         let e = try env()
@@ -59,6 +74,8 @@ final class ContentPackTests: XCTestCase {
         XCTAssertNil(old.contentPackID); XCTAssertEqual(new.contentPackID,"aevo-de")
         XCTAssertEqual(new.profile,old.profile); XCTAssertEqual(new.cardEdits,old.cardEdits); XCTAssertEqual(new.cardDrafts,old.cardDrafts)
         XCTAssertEqual(new.coaching,old.coaching); XCTAssertEqual(new.bookmarks,old.bookmarks); XCTAssertEqual(new.badges,old.badges)
+        XCTAssertEqual(old.settings.dailyGoal,3); XCTAssertEqual(new.settings.dailyGoal,10)
+        XCTAssertEqual(new.days["2026-09-20"]?.goal,3,"Ein bereits gespeicherter Tag wird nicht umgeschrieben.")
         XCTAssertEqual(new.settings.reminder.hour,17); XCTAssertEqual(new.settings.exams.written,old.settings.exams.written)
         XCTAssertEqual(new.settings.exams.practical,old.settings.exams.practical); XCTAssertEqual(new.settings.hideTipPrompts,old.settings.hideTipPrompts)
         XCTAssertEqual(new.session?.selections,old.session?.selections); XCTAssertEqual(new.session?.submitted,old.session?.submitted)

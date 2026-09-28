@@ -71,7 +71,7 @@ public enum StateCodec {
             throw LearningError.invalid("Die zusätzlichen Lernstände oder Texte sind ungültig.")
         }
         let settings = state.settings
-        guard [3, 5, 10].contains(settings.dailyGoal), ["system", "light", "dark"].contains(settings.appearance),
+        guard DailyGoal.accepted.contains(settings.dailyGoal), ["system", "light", "dark"].contains(settings.appearance),
               (0...23).contains(settings.reminder.hour), (0...59).contains(settings.reminder.minute),
               settings.reminder.weekdays.isSubset(of: Set(1...7)),
               !settings.reminder.enabled || !settings.reminder.weekdays.isEmpty,
@@ -84,7 +84,7 @@ public enum StateCodec {
             guard date.date() != nil else { throw LearningError.invalid("Ein Prüfungstermin ist ungültig.") }
         }
         for day in state.days.values {
-            guard [3, 5, 10].contains(day.goal), !day.achieved || day.itemIDs.count >= day.goal else {
+            guard DailyGoal.accepted.contains(day.goal), !day.achieved || day.itemIDs.count >= day.goal else {
                 throw LearningError.invalid("Ein Tagesfortschritt ist ungültig.")
             }
         }

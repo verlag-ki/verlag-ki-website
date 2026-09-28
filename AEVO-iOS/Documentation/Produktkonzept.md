@@ -65,7 +65,7 @@ Motivation entsteht durch abgeschlossene kleine Einheiten, zunehmend anspruchsvo
 
 ### Tagesstrecke und Lernserie
 
-Die Tagesstrecke ist ein selbst gewähltes Ziel von zunächst 3, 5 oder 10 Lernschritten. Der Startwert beträgt drei. Als Schritt zählt eine bearbeitete Aufgabe mit geöffneter Erklärung oder eine aufgedeckte und selbst eingeschätzte Kartenwiederholung. Dieselbe Aufgabe beziehungsweise Karte zählt pro lokalem Kalendertag nur einmal. Bloßes Öffnen der App, Kaufen oder schnelles mehrfaches Antippen zählen nicht zusätzlich. Das Tagesziel begrenzt niemals den Zugang zu weiteren Aufgaben.
+Die Tagesstrecke ist ein selbst gewähltes Ziel von 10, 20, 50 oder 100 Lernschritten. Der Startwert beträgt 50. Als Schritt zählt eine bearbeitete Aufgabe mit geöffneter Erklärung oder eine aufgedeckte und selbst eingeschätzte Kartenwiederholung. Dieselbe Aufgabe beziehungsweise Karte zählt pro lokalem Kalendertag nur einmal. Bloßes Öffnen der App, Kaufen oder schnelles mehrfaches Antippen zählen nicht zusätzlich. Das Tagesziel begrenzt niemals den Zugang zu weiteren Aufgaben.
 
 Die Lernserie zählt aufeinanderfolgende Kalendertage mit erreichtem Tagesziel. Vor Abschluss des heutigen Tages bleibt eine gestern fortgesetzte Serie aktiv. Nach einem ausgelassenen Tag beginnt die aktuelle Serie neu; frühere Abzeichen, längste Serie, Notizen und Lernfortschritt bleiben erhalten. Es gibt keine Zahlung zum Retten einer Serie und keine drohenden Nachrichten. Die Anzeige der Serie ist abschaltbar. Ein schon erreichtes Tagesziel wird bei einer späteren Zieländerung nicht rückwirkend entzogen.
 
