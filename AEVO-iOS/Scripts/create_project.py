@@ -94,7 +94,9 @@ def main(root=ROOT, project_name="LearningApp"):
     info = dict(CFBundleDevelopmentRegion="de", CFBundleDisplayName=config["appName"], CFBundleExecutable="$(EXECUTABLE_NAME)", CFBundleIdentifier="$(PRODUCT_BUNDLE_IDENTIFIER)",
         CFBundleInfoDictionaryVersion="6.0", CFBundleName="$(PRODUCT_NAME)", CFBundlePackageType="APPL", CFBundleShortVersionString="$(MARKETING_VERSION)", CFBundleVersion="$(CURRENT_PROJECT_VERSION)",
         NSMicrophoneUsageDescription="Wenn du möchtest, kannst du deine Antwort im Fachgespräch aufnehmen und selbst anhören. Die Aufnahme bleibt auf deinem iPhone.", LSRequiresIPhoneOS=True, UILaunchScreen={}, UIApplicationSceneManifest={"UIApplicationSupportsMultipleScenes": False},
-        UISupportedInterfaceOrientations=["UIInterfaceOrientationPortrait", "UIInterfaceOrientationLandscapeLeft", "UIInterfaceOrientationLandscapeRight"], ITSAppUsesNonExemptEncryption=False)
+        # Portrait only. Landscape was declared but never checked on a device, and the
+        # learning views are laid out as a single column for one-handed use.
+        UISupportedInterfaceOrientations=["UIInterfaceOrientationPortrait"], ITSAppUsesNonExemptEncryption=False)
     if not config["featureFlags"]["oralExam"]: info.pop("NSMicrophoneUsageDescription", None)
     (ROOT / "Configuration/Info.plist").write_bytes(plistlib.dumps(info))
     privacy = dict(NSPrivacyTracking=False, NSPrivacyTrackingDomains=[], NSPrivacyCollectedDataTypes=[],

@@ -66,7 +66,7 @@ Diese Liste ist vorbereitet. Sie ist noch nicht als ausgeführt markiert. Die Li
 
 - [ ] Kernwege mit VoiceOver, großer und sehr großer Schrift, erhöhtem Kontrast und reduzierter Bewegung ausprobieren.
 - [ ] Heller und dunkler Modus: Überschriften, Antworten, Erklärung, Texteditoren, Picker, Preise und Fehlermeldungen bleiben lesbar.
-- [ ] Kleines iPhone und Querformat: keine abgeschnittenen Antworten, alle Aktionen erreichbar.
+- [ ] Kleines iPhone: keine abgeschnittenen Antworten, alle Aktionen erreichbar. Die App ist auf Hochformat festgelegt; beim Drehen des Geräts darf sie sich nicht mitdrehen.
 - [ ] Kritische Speichermeldungen auch innerhalb einer geöffneten Karten- oder Lernsitzung sichtbar und verständlich.
 - [ ] Mindestens fünf Lernende bearbeiten neue Situationen und erklären ihre Lösung. Gestaltung und Wiedererkennen allein gelten nicht als Lernnachweis.
 
