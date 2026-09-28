@@ -27,12 +27,29 @@ CONFIGS = [ROOT / "AppConfigs/aevo.json", ROOT / "Core/Resources/app-config.json
 LEGAL = [ROOT / "AppConfigs/aevo/legal.json", ROOT / "Core/Resources/legal.json"]
 # Addresses that are private work links rather than published pages.
 PRIVATE_HOSTS = {"app.notion.com", "www.notion.so", "notion.so"}
-# A published page must contain this, otherwise the text is not actually being served.
-MARKER = "aevo"
+UNKNOWN_PATH = "/diese-seite-gibt-es-nicht-" + "9f3a7c21"
+
+
+def get(url):
+    """Fetch without credentials. Returns (body, error)."""
+    request = urllib.request.Request(url, headers={"User-Agent": "aevo-release-check"})
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            if response.status != 200:
+                return None, f"antwortet mit HTTP {response.status}"
+            return response.read(400_000), None
+    except (urllib.error.URLError, urllib.error.HTTPError, OSError) as error:
+        return None, f"nicht abrufbar: {error}"
 
 
 def check_public(url):
-    """Fetch without credentials and report why an address is not usable, or None."""
+    """Report why an address is not usable as a public page, or None if it is.
+
+    Notion and similar hosts render their pages in the browser, so the fetched HTML
+    of a published page contains no readable text. Searching for words in it would
+    reject correct addresses. What does distinguish them: an unknown path on the same
+    host returns the host's generic page, and a published page does not.
+    """
     parsed = urlparse(url)
     if parsed.scheme != "https" or not parsed.hostname:
         return "keine gültige HTTPS-Adresse"
@@ -40,16 +57,12 @@ def check_public(url):
         return "enthält Zugangsdaten"
     if parsed.hostname in PRIVATE_HOSTS:
         return f"{parsed.hostname} ist eine private Arbeitsadresse, keine veröffentlichte Seite"
-    request = urllib.request.Request(url, headers={"User-Agent": "aevo-release-check"})
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            if response.status != 200:
-                return f"antwortet mit HTTP {response.status}"
-            body = response.read(400_000).decode("utf-8", "replace")
-    except (urllib.error.URLError, urllib.error.HTTPError, OSError) as error:
-        return f"nicht abrufbar: {error}"
-    if MARKER.lower() not in body.lower():
-        return "liefert ohne Anmeldung keinen Seiteninhalt"
+    page, error = get(url)
+    if error:
+        return error
+    baseline, error = get(f"{parsed.scheme}://{parsed.netloc}{UNKNOWN_PATH}")
+    if error is None and page == baseline:
+        return "liefert dasselbe wie eine unbekannte Adresse, ist also nicht veröffentlicht"
     return None
 
 

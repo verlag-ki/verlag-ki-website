@@ -21,10 +21,15 @@ class ReleaseGateTests(unittest.TestCase):
         value["operatorInfo"].update(name="Test fixture", address="Test fixture", email="test@example.org")
         return value
 
-    def test_confirmed_content_does_not_release_incomplete_legal_information(self):
-        issues = release_issues(ROOT / "Core/Resources/SelectedPack")
-        self.assertFalse(any("Inhalte haben" in item for item in issues))
-        self.assertTrue(any("privacyURL" in item for item in issues))
+    def test_shipped_pack_and_legal_information_are_complete(self):
+        # The gate is open. Nothing here may report a missing prerequisite any more.
+        self.assertEqual(release_issues(ROOT / "Core/Resources/SelectedPack"), [])
+
+    def test_a_missing_public_address_still_blocks_the_release(self):
+        for field in ["privacyURL", "supportURL"]:
+            document = self.complete_fixture()
+            document[field] = ""
+            self.assertTrue(any(field in item for item in legal_issues(document)), field)
 
     def test_approval_flag_alone_cannot_release_incomplete_documents(self):
         # A release needs a recorded reviewer and date, not just the flag.
@@ -34,8 +39,10 @@ class ReleaseGateTests(unittest.TestCase):
                             supportURL="https://example.org/support")
             document[missing] = ""
             self.assertTrue(any("geprüft" in item for item in legal_issues(document)), missing)
-        # And the released document still needs its public addresses.
-        self.assertTrue(any("privacyURL" in item for item in legal_issues(self.legal)))
+        # Clearing the flag itself blocks the release too.
+        document = self.complete_fixture()
+        document["approved"] = False
+        self.assertTrue(any("geprüft" in item for item in legal_issues(document)))
 
     def test_private_workspace_address_is_not_accepted_as_a_public_page(self):
         value = self.complete_fixture()
@@ -58,7 +65,9 @@ class ReleaseGateTests(unittest.TestCase):
             directory = Path(folder)
             (directory / "catalog.json").write_text(json.dumps({"questions": [{"id": "fixture-q", "approved": True}], "cards": []}))
             (directory / "practice.json").write_text(json.dumps({"cases": [], "oral": []}))
-            (directory / "legal.json").write_text(json.dumps(self.legal))
+            incomplete = self.complete_fixture()
+            incomplete["privacyURL"] = ""
+            (directory / "legal.json").write_text(json.dumps(incomplete))
             issues = release_issues(directory / "catalog.json")
             self.assertTrue(any("privacyURL" in item for item in issues))
             self.assertFalse(any("Inhalte haben" in item for item in issues))

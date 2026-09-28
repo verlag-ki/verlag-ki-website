@@ -9,9 +9,9 @@
   "contentPackId": "aevo-de",
   "defaultTheme": "forest",
   "supportEmail": "kontakt@verlag-ki.de",
-  "privacyURL": "",
-  "imprintURL": "",
-  "supportURL": "",
+  "privacyURL": "https://lake-william-d41.notion.site/Datenschutzerkl-rung-aevo-3e17bc57948381d9aaa2e1db1493346b",
+  "imprintURL": "https://lake-william-d41.notion.site/Impressum-aevo-3e17bc57948381548a6fca05acbdc118",
+  "supportURL": "https://lake-william-d41.notion.site/Kontakt-Support-aevo-3e17bc57948381888acceb5a3363ef4d",
   "tipProductIds": [
     "de.juliankuerten.aevo.tip.small",
     "de.juliankuerten.aevo.tip.medium",

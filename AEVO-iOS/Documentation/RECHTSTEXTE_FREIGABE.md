@@ -31,17 +31,21 @@ Die drei Seiten sind fertig und tragen nicht mehr den Zusatz Entwurf:
 
 Alle drei entstehen aus `Core/Resources/legal.json`. `Scripts/render_public_pages.py` gibt sie als Markdown aus, damit Web und App nicht auseinanderlaufen.
 
-**Der letzte Schritt geht nicht über die Schnittstelle.** Die Freigabe zum Web lässt sich nur in Notion selbst umlegen. Der Konnektor kann Seiten anlegen und schreiben, aber nicht veröffentlichen. Ein Abruf der bisherigen Adresse ohne Anmeldung wurde geprüft: die Seite antwortet mit HTTP 200, liefert aber nur die Notion-Hülle mit Anmeldeverweis und kein Wort des Textes.
+**Erledigt am 28.09.2026.** Die drei Seiten sind über Notion im Web veröffentlicht und eingetragen:
 
-Vorgehen: die drei Unterseiten einzeln über Teilen im Web veröffentlichen, die Arbeitsübersicht dabei privat lassen, weil Notion Unterseiten mitveröffentlicht. Danach die ausgegebenen Adressen eintragen:
+| Zweck | Adresse |
+|---|---|
+| Datenschutz | `https://lake-william-d41.notion.site/Datenschutzerkl-rung-aevo-3e17bc57948381d9aaa2e1db1493346b` |
+| Support | `https://lake-william-d41.notion.site/Kontakt-Support-aevo-3e17bc57948381888acceb5a3363ef4d` |
+| Impressum | `https://lake-william-d41.notion.site/Impressum-aevo-3e17bc57948381548a6fca05acbdc118` |
 
-```bash
-python3 Scripts/set_public_urls.py \
-    --privacy https://<name>.notion.site/... \
-    --support https://<name>.notion.site/...
-```
+Damit meldet `Scripts/validate_release.py` keine offene Voraussetzung mehr.
 
-Das Skript ruft jede Adresse ohne Zugangsdaten ab und lehnt sie ab, wenn die Seite keinen Inhalt liefert. Es schreibt danach in App-Konfiguration und Rechtstextquelle.
+### Wie eine veröffentlichte Seite erkannt wird
+
+Die erste Fassung von `Scripts/set_public_urls.py` suchte im abgerufenen HTML nach einem Wort aus dem Text. Das war falsch und hätte alle drei richtigen Adressen abgelehnt: Notion baut seine Seiten erst im Browser auf, der abgerufene Quelltext enthält also kein Wort des Inhalts.
+
+Zuverlässig unterscheidbar sind sie anders. Ruft man auf demselben Host eine erfundene Adresse ab, liefert Notion seine allgemeine Seite. Eine veröffentlichte Seite liefert etwas anderes. Genau das vergleicht das Skript jetzt. Gemessen an den drei Seiten: die allgemeine Antwort ist bei Startseite und erfundener Adresse byteweise identisch, die drei Seiten weichen davon ab.
 
 ## Warum die Sperre jetzt mehr prüft
 
