@@ -96,6 +96,9 @@ else
   echo "$ENV_FILE existiert bereits und bleibt unverändert."
 fi
 
+say "Muster und Fotos übernehmen"
+runuser -u $SERVICE_USER -- env DATA_DIR=$DATA_DIR $APP_DIR/.venv/bin/python $APP_DIR/tools/import_catalog.py
+
 say "Dienst einrichten"
 sed -e "s|@PORT@|$PORT|g" -e "s|@APP_DIR@|$APP_DIR|g" -e "s|@DATA_DIR@|$DATA_DIR|g" -e "s|@ENV_FILE@|$ENV_FILE|g" -e "s|@USER@|$SERVICE_USER|g" \
   "$SRC_DIR/deploy/$NAME.service" > /etc/systemd/system/$NAME.service

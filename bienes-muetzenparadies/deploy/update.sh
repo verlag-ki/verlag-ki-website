@@ -9,6 +9,8 @@ SRC_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 rsync -a --delete --exclude '.venv' --exclude 'data' --exclude '__pycache__' --exclude '.env' --exclude '.git' "$SRC_DIR/" "$APP_DIR/"
 chown -R root:root $APP_DIR
 $APP_DIR/.venv/bin/pip install -q -r $APP_DIR/requirements.txt
+# Neue Muster und Fotos aus seed/katalog.json übernehmen (bestehende bleiben unverändert)
+runuser -u biene -- env DATA_DIR=/var/lib/$NAME $APP_DIR/.venv/bin/python $APP_DIR/tools/import_catalog.py
 systemctl restart $NAME
 sleep 1
 systemctl is-active --quiet $NAME && echo "Aktualisiert und neu gestartet."

@@ -78,6 +78,10 @@ Das Skript erkennt den Webserver: **Läuft Caddy** (wie auf dem vorhandenen Hetz
 
 In `/admin` unter „Impressum & Datenschutz“ stehen beide Texte in einem Textfeld. Schreibweise: `## Überschrift` für eine Zwischenüberschrift, eine Leerzeile für einen neuen Absatz. Text in [eckigen Klammern] wird auf der Website gelb markiert, damit offene Stellen auffallen. E-Mail-Adressen und Links werden automatisch anklickbar. HTML wird nicht ausgeführt. Die Vorlagen stehen in `legal_defaults.py` und werden nur beim allerersten Start übernommen.
 
+## Erstausstattung mit echten Fotos
+
+`seed/katalog.json` und `seed/fotos/` enthalten die ersten 13 Mützen mit Fotos sowie die beiden Bilder der Startseite. `tools/import_catalog.py` übernimmt sie in die Datenbank und läuft bei `deploy/setup.sh` und `deploy/update.sh` automatisch. Es legt nur fehlende Muster an, ergänzt Fotos nur, wo noch keins ist, und überschreibt nichts, was in der Verwaltung bearbeitet wurde. Zwei Mützen („Das grüne Grummelmonster“, „Das lila Brillenmonster“) kommen als Entwurf, weil sie stark an geschützte Filmfiguren erinnern.
+
 ## Muster pflegen
 
 1. Unter „Muster“ ein Motiv anlegen oder eines der mitgelieferten bearbeiten: Name, URL-Kürzel, Beschreibung, Kategorie, optional ein freigegebener Preis.

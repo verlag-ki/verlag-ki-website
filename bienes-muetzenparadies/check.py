@@ -135,4 +135,19 @@ assert request(f'/admin/pattern/{fid}','POST',b''.join(parts),cookie,f'multipart
 frog_page=request('/muster/froschmuetze')
 assert frog_page['status'].startswith('200') and 'Illustration · Foto folgt' in frog_page['body'] and 'demo-frosch.svg' in frog_page['body']
 assert '/muster/froschmuetze' in request('/sitemap.xml')['body']
+# Katalog mit echten Fotos: legt an, ergänzt nur Fehlendes, überschreibt nichts
+import subprocess
+before=app.db().execute("SELECT name,description FROM patterns WHERE slug='froschmuetze'").fetchone()
+out=subprocess.run([sys.executable,'tools/import_catalog.py'],env={**os.environ},capture_output=True,text=True,check=True).stdout
+assert 'Muster neu' in out
+db=app.db()
+assert db.execute("SELECT status FROM patterns WHERE slug='eulenmuetze'").fetchone()['status']=='published'
+assert db.execute("SELECT status FROM patterns WHERE slug='gruenes-grummelmonster'").fetchone()['status']=='draft'
+assert tuple(db.execute("SELECT name,description FROM patterns WHERE slug='froschmuetze'").fetchone())==tuple(before), 'Veröffentlichtes Muster bleibt unverändert'
+n=db.execute('SELECT COUNT(*) FROM images').fetchone()[0]
+subprocess.run([sys.executable,'tools/import_catalog.py'],env={**os.environ},capture_output=True,check=True)
+assert app.db().execute('SELECT COUNT(*) FROM images').fetchone()[0]==n, 'Zweiter Lauf fügt nichts hinzu'
+eule=request('/muster/eulenmuetze')
+assert eule['status'].startswith('200') and '/uploads/' in eule['body'] and 'Emma, die Eule' in eule['body']
+assert request('/muster/gruenes-grummelmonster')['status'].startswith('404')
 print('OK: homepage structure, WhatsApp and contact form, message inbox, editable legal pages, head circumference only, wish motifs, proxy address, static assets, homepage photo upload, public routes, hidden demos, admin auth, image gate, illustrated publication, publication and sitemap')
