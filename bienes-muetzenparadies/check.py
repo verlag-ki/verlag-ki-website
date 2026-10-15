@@ -32,8 +32,10 @@ assert request('/muster/froschmuetze')['status'].startswith('404')
 wf=request('/wunschfarben')
 assert wf['status'].startswith('301') and wf['headers']['Location']=='/wunschmotive'
 for page in ['/','/muster','/wunschmotive','/so-funktionierts','/groessenhilfe']:
-    assert 'farbe' not in request(page)['body'].lower(), f'Farbe noch erwähnt auf {page}'
+    assert 'wunschfarbe' not in request(page)['body'].lower(), f'Wunschfarbe noch erwähnt auf {page}'
 assert 'Wunschmotiv' in request('/')['body']
+assert 'data-preset-pattern="Mütze nach Foto"' in request('/wunschmotive')['body']
+assert 'doppeltem Faden' in request('/')['body'] and '30 °C' in request('/')['body']
 import re as _re
 for page in ['/','/muster','/wunschmotive','/so-funktionierts','/groessenhilfe','/impressum','/datenschutz']:
     assert not _re.search(r'\bBienes?\b',request(page)['body']), f'Noch „Biene“ auf {page}'
@@ -126,6 +128,7 @@ assert 'Drei gehäkelte Mützen auf einem Regal' in home and 'demo-hero.svg' not
 # Veröffentlichtes Muster erscheint mit Link auf der Startseite
 assert '/muster/echte-froschmuetze' in home
 detail=request('/muster/echte-froschmuetze')['body']
+assert 'name="ohrenklappen"' in detail and 'name="baender"' in detail and 'doppeltem Faden' in detail
 assert 'Preis auf Anfrage' in detail and 'name="head_cm"' in detail and 'required' in detail and 'name="size"' not in detail and 'Unverbindlich anfragen' in detail
 # Mitgeliefertes Motiv mit Illustration lässt sich ohne Foto veröffentlichen
 fid=app.db().execute("SELECT id FROM patterns WHERE slug='froschmuetze'").fetchone()['id']

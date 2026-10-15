@@ -447,6 +447,23 @@ dialog > p { max-width: 36rem; margin: .8rem 0 0; color: var(--muted); }
 .wish-form .field-help { margin: 0; }
 .more-ideas { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .6rem; margin: 2rem 0 0; color: var(--muted); }
 
+/* Ohrenklappen/Bänder und Eigenschaften */
+.choice-groups { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+.choice-row { display: flex; gap: .5rem; }
+.choice { position: relative; }
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice span { display: inline-flex; align-items: center; min-height: 44px; padding: .4rem 1.1rem; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper); font-weight: 600; font-size: .93rem; cursor: pointer; }
+.choice input:checked + span { border-color: var(--coral); box-shadow: 0 0 0 1px var(--coral); background: #fff; }
+.choice input:focus-visible + span { outline: 3px solid #2F6F7E; outline-offset: 2px; }
+.quality-box { margin-top: 2rem; padding: 1.4rem 1.5rem; border-radius: var(--radius); background: var(--sage-soft); }
+.quality-box h2 { margin: 0 0 .2rem; font-size: 1.6rem; }
+.quality-box .checklist { margin: .8rem 0 0; gap: .55rem; }
+.quality-box .checklist .i { background: var(--paper); }
+.wish-side { display: grid; gap: 1.2rem; align-content: start; }
+.photo-card { background: #E7F6EA; }
+.photo-card p { margin: 0 0 1.2rem; color: #574D44; }
+.photo-card .btn .i { width: 1.2rem; height: 1.2rem; }
+
 /* Rechtliche Seiten */
 .legal mark.todo { padding: 0 .2em; border-radius: 4px; background: #FFE9A8; color: #5A4526; }
 .legal-editor { font: 400 .92rem/1.55 ui-monospace, "SFMono-Regular", Menlo, monospace; }

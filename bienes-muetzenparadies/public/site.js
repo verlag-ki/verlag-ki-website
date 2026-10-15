@@ -10,7 +10,8 @@
   const preview = document.getElementById('whatsapp-preview');
   const toggle = document.querySelector('.menu-toggle');
   const mobile = document.getElementById('mobile-nav');
-  const state = {pattern: '', head_cm: '', wishes: '', wishesLabel: 'Besondere Wünsche'};
+  const state = {pattern: '', head_cm: '', options: [], wishes: '', wishesLabel: 'Besondere Wünsche'};
+  const reset = () => Object.assign(state, {pattern: '', head_cm: '', options: [], wishes: '', wishesLabel: 'Besondere Wünsche'});
 
   // Ohne Angaben entspricht die Nachricht genau dem festgelegten Begrüßungstext.
   const message = () => {
@@ -18,6 +19,7 @@
     if (state.pattern) lines.push('Ich habe dein Mützenparadies entdeckt und interessiere mich für folgende Mütze:', '', `Muster: ${state.pattern}`);
     else lines.push('Ich habe dein Mützenparadies entdeckt und würde gerne eine Mütze anfragen.');
     if (state.head_cm) lines.push(...(state.pattern ? [] : ['']), `Kopfumfang: ${state.head_cm} cm`);
+    for (const opt of state.options) lines.push(opt);
     if (state.wishes) lines.push('', `${state.wishesLabel}:`, state.wishes);
     lines.push('', state.pattern ? 'Kannst du mir sagen, ob das möglich ist und was die Mütze kosten würde?' : 'Kannst du mir sagen, ob mein Wunsch möglich ist?', '', 'Liebe Grüße');
     return lines.join('\n');
@@ -28,8 +30,10 @@
     const text = message();
     whatsapp.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
     preview.textContent = text;
-    for (const key of ['pattern', 'head_cm', 'wishes']) form.elements.namedItem(key).value = state[key];
-    const parts = [state.pattern && `Muster: ${state.pattern}`, state.head_cm && `Kopfumfang: ${state.head_cm} cm`, state.wishes && `${state.wishesLabel}: ${state.wishes}`].filter(Boolean);
+    form.elements.namedItem('pattern').value = state.pattern;
+    form.elements.namedItem('head_cm').value = state.head_cm;
+    form.elements.namedItem('wishes').value = [...state.options, state.wishes].filter(Boolean).join('\n');
+    const parts = [state.pattern && `Muster: ${state.pattern}`, state.head_cm && `Kopfumfang: ${state.head_cm} cm`, ...state.options, state.wishes && `${state.wishesLabel}: ${state.wishes}`].filter(Boolean);
     summary.hidden = !parts.length;
     summary.textContent = parts.length ? 'Wird mitgeschickt – ' + parts.join(' · ') : '';
   };
@@ -43,18 +47,24 @@
     if (!dialog.open) dialog.showModal();
   }
 
-  document.querySelectorAll('[data-contact]').forEach(el => el.addEventListener('click', () => {
-    Object.assign(state, {pattern: '', head_cm: '', wishes: '', wishesLabel: 'Besondere Wünsche'});
+  document.querySelectorAll('[data-contact]').forEach(el => el.addEventListener('click', () => { reset(); openDialog(); }));
+
+  // Vorbelegte Anfragen, z. B. „Mütze nach Foto“
+  document.querySelectorAll('[data-preset-pattern]').forEach(el => el.addEventListener('click', () => {
+    reset();
+    Object.assign(state, {pattern: el.dataset.presetPattern, wishes: el.dataset.presetWishes || '', wishesLabel: el.dataset.presetLabel || 'Besondere Wünsche'});
     openDialog();
   }));
 
   document.querySelectorAll('#pattern-form').forEach(el => el.addEventListener('submit', event => {
     event.preventDefault();
     const data = new FormData(el);
+    reset();
     state.pattern = el.dataset.pattern || '';
     state.wishesLabel = el.dataset.wishesLabel || 'Besondere Wünsche';
     state.head_cm = String(data.get('head_cm') || '').trim().replace('.', ',');
     state.wishes = String(data.get('wishes') || '').trim();
+    state.options = [['ohrenklappen', 'Ohrenklappen'], ['baender', 'Bänder']].filter(([k]) => data.get(k)).map(([k, label]) => `${label}: ${data.get(k)}`);
     openDialog();
   }));
 
