@@ -1,50 +1,207 @@
 {
   "hinweis": "Erstausstattung mit echten Fotos. tools/import_catalog.py legt fehlende Muster an und ergänzt Fotos nur dort, wo noch keins hinterlegt ist. Bestehende Muster werden nie überschrieben.",
   "muster": [
-    {"slug": "froschmuetze", "foto": "froschmuetze.webp", "name": "Fritzi, der Frosch", "kategorie": "Tiermützen", "status": "published", "startseite": true,
-     "beschreibung": "Ein fröhlicher Frosch mit Glubschaugen, roten Bäckchen und breitem Grinsen. Mit Ohrenklappen, damit es schön warm bleibt.",
-     "alt": "Grüne gehäkelte Froschmütze mit großen Augen, roten Wangen und Ohrenklappen"},
-    {"slug": "eulenmuetze", "foto": "eulenmuetze.webp", "name": "Emma, die Eule", "kategorie": "Tiermützen", "status": "published", "startseite": true,
-     "beschreibung": "Eine verschlafene Eule in Rosa und Beere mit geschlossenen Augen, gelbem Schnabel und kleinen Federbüscheln.",
-     "alt": "Rosa-lila gehäkelte Eulenmütze mit geschlossenen Augen und gelbem Schnabel"},
-    {"slug": "alpakamuetze", "foto": "alpakamuetze.webp", "name": "Alma, das Alpaka", "kategorie": "Tiermützen", "status": "published", "startseite": true,
-     "beschreibung": "Ein kuscheliges Alpaka mit wuscheliger Mähne, blauen Augen, Ohrenklappen und geflochtenen Zöpfen.",
-     "alt": "Cremefarbene gehäkelte Alpakamütze mit brauner Mähne, Ohrenklappen und Zöpfen"},
-    {"slug": "alpaka-paco", "foto": "alpaka-paco.webp", "name": "Paco, das Alpaka", "kategorie": "Tiermützen", "status": "published", "startseite": false,
-     "beschreibung": "Ein sanftes Alpaka in Beige mit heller Wuschelfrisur, langen Ohren und Ohrenklappen mit Zöpfen.",
-     "alt": "Beige gehäkelte Alpakamütze mit weißer Wollmähne und langen Ohren"},
-    {"slug": "zebramuetze", "foto": "zebramuetze.webp", "name": "Zora, das Zebra", "kategorie": "Tiermützen", "status": "published", "startseite": false,
-     "beschreibung": "Schwarz-weiß gestreift mit runden Ohren, kleiner Mähne und Ohrenklappen mit Zöpfen.",
-     "alt": "Schwarz-weiß gestreifte gehäkelte Zebramütze mit Ohren und Ohrenklappen"},
-    {"slug": "zackenmonster", "foto": "zackenmonster.webp", "name": "Zacki, das Zackenmonster", "kategorie": "Monster & Co.", "status": "published", "startseite": true,
-     "beschreibung": "Ein hellblaues Monster mit einem großen und einem kleinen Auge, bunten Zacken und frechem Zahn. Mit Ohrenklappen und Zöpfen.",
-     "alt": "Hellblaue gehäkelte Monstermütze mit bunten Zacken, zwei unterschiedlich großen Augen und Zöpfen"},
-    {"slug": "limettenmonster", "foto": "limettenmonster.webp", "name": "Limo, das Limettenmonster", "kategorie": "Monster & Co.", "status": "published", "startseite": false,
-     "beschreibung": "Ein limettengrünes Monster mit schiefem Grinsen, kleinen Hörnern, bunter Haartolle und Zöpfen in Rot, Gelb und Grün.",
-     "alt": "Limettengrüne gehäkelte Monstermütze mit Hörnern, Zähnen und bunten Zöpfen"},
-    {"slug": "flauschmonster", "foto": "flauschmonster.webp", "name": "Fluffi, das Flauschmonster", "kategorie": "Monster & Co.", "status": "published", "startseite": false,
-     "beschreibung": "Ein flauschiges blaues Monster mit großen Kulleraugen, spitzen Zähnchen und kleinen grauen Hörnern.",
-     "alt": "Blaue flauschige gehäkelte Monstermütze mit großen Augen und weißen Zähnen"},
-    {"slug": "schnuffelmonster", "foto": "schnuffelmonster.webp", "name": "Mo, das Schnuffelmonster", "kategorie": "Monster & Co.", "status": "published", "startseite": false,
-     "beschreibung": "Ein lila Monster mit runden Ohren, rosa Schnuffelnase und Ohrenklappen mit geflochtenen Zöpfen.",
-     "alt": "Lila gehäkelte Monstermütze mit runden Ohren, rosa Nase und Zöpfen"},
-    {"slug": "fanmuetze", "foto": "fanmuetze.webp", "name": "Die Fanmütze", "kategorie": "Weitere Ideen", "status": "published", "startseite": false,
-     "beschreibung": "Grau mit Streifen in Schwarz-Rot-Gold und Fußball-Aufnäher – für Spieltage, Public Viewing und echte Fans.",
-     "alt": "Graue gehäkelte Mütze mit schwarz-rot-goldenen Streifen und Fußball-Aufnäher"},
-    {"slug": "ringel-beanie", "foto": "ringel-beanie.webp", "name": "Die Ringel-Beanie", "kategorie": "Weitere Ideen", "status": "published", "startseite": false,
-     "beschreibung": "Schlicht und gemütlich: Streifen in Natur und Grau mit dickem Bommel obendrauf.",
-     "alt": "Gestreifte gehäkelte Beanie in Natur und Grau mit cremefarbenem Bommel"},
-    {"slug": "gruenes-grummelmonster", "foto": "gruenes-grummelmonster.webp", "name": "Das grüne Grummelmonster", "kategorie": "Monster & Co.", "status": "draft", "startseite": false,
-     "beschreibung": "Ein grünes Monster mit buschigen Augenbrauen, gelben Augen, frechem Grinsen und Bommel.",
-     "alt": "Grüne gehäkelte Monstermütze mit gelben Augen, buschigen Augenbrauen und Bommel",
-     "pruefen": "Erinnert stark an eine bekannte geschützte Filmfigur. Vor dem Veröffentlichen rechtlich prüfen."},
-    {"slug": "lila-brillenmonster", "foto": "lila-brillenmonster.webp", "name": "Das lila Brillenmonster", "kategorie": "Monster & Co.", "status": "draft", "startseite": false,
-     "beschreibung": "Ein lila Monster mit großen Augen, Zähnchen, Bommel und Ohrenklappen mit Zöpfen.",
-     "alt": "Lila gehäkelte Monstermütze mit großen Augen, Zähnen und Bommel",
-     "pruefen": "Erinnert stark an eine bekannte geschützte Filmfigur. Vor dem Veröffentlichen rechtlich prüfen."}
+    {
+      "slug": "froschmuetze",
+      "foto": "froschmuetze.webp",
+      "name": "Fritzi, der Frosch",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": true,
+      "beschreibung": "Ein fröhlicher Frosch mit Glubschaugen, roten Bäckchen und breitem Grinsen. Mit Ohrenklappen, damit es schön warm bleibt.",
+      "alt": "Grüne gehäkelte Froschmütze mit großen Augen, roten Wangen und Ohrenklappen"
+    },
+    {
+      "slug": "eulenmuetze",
+      "foto": "eulenmuetze.webp",
+      "name": "Emma, die Eule",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": true,
+      "beschreibung": "Eine verschlafene Eule in Rosa und Beere mit geschlossenen Augen, gelbem Schnabel und kleinen Federbüscheln.",
+      "alt": "Rosa-lila gehäkelte Eulenmütze mit geschlossenen Augen und gelbem Schnabel"
+    },
+    {
+      "slug": "alpakamuetze",
+      "foto": "alpakamuetze.webp",
+      "name": "Alma, das Alpaka",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": true,
+      "beschreibung": "Ein kuscheliges Alpaka mit wuscheliger Mähne, blauen Augen, Ohrenklappen und geflochtenen Zöpfen.",
+      "alt": "Cremefarbene gehäkelte Alpakamütze mit brauner Mähne, Ohrenklappen und Zöpfen"
+    },
+    {
+      "slug": "alpaka-paco",
+      "foto": "alpaka-paco.webp",
+      "name": "Paco, das Alpaka",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein sanftes Alpaka in Beige mit heller Wuschelfrisur, langen Ohren und Ohrenklappen mit Zöpfen.",
+      "alt": "Beige gehäkelte Alpakamütze mit weißer Wollmähne und langen Ohren"
+    },
+    {
+      "slug": "zebramuetze",
+      "foto": "zebramuetze.webp",
+      "name": "Zora, das Zebra",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Schwarz-weiß gestreift mit runden Ohren, kleiner Mähne und Ohrenklappen mit Zöpfen.",
+      "alt": "Schwarz-weiß gestreifte gehäkelte Zebramütze mit Ohren und Ohrenklappen"
+    },
+    {
+      "slug": "zackenmonster",
+      "foto": "zackenmonster.webp",
+      "name": "Zacki, das Zackenmonster",
+      "kategorie": "Monster & Co.",
+      "status": "published",
+      "startseite": true,
+      "beschreibung": "Ein hellblaues Monster mit einem großen und einem kleinen Auge, bunten Zacken und frechem Zahn. Mit Ohrenklappen und Zöpfen.",
+      "alt": "Hellblaue gehäkelte Monstermütze mit bunten Zacken, zwei unterschiedlich großen Augen und Zöpfen"
+    },
+    {
+      "slug": "limettenmonster",
+      "foto": "limettenmonster.webp",
+      "name": "Limo, das Limettenmonster",
+      "kategorie": "Monster & Co.",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein limettengrünes Monster mit schiefem Grinsen, kleinen Hörnern, bunter Haartolle und Zöpfen in Rot, Gelb und Grün.",
+      "alt": "Limettengrüne gehäkelte Monstermütze mit Hörnern, Zähnen und bunten Zöpfen"
+    },
+    {
+      "slug": "flauschmonster",
+      "foto": "flauschmonster.webp",
+      "name": "Fluffi, das Flauschmonster",
+      "kategorie": "Monster & Co.",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein flauschiges blaues Monster mit großen Kulleraugen, spitzen Zähnchen und kleinen grauen Hörnern.",
+      "alt": "Blaue flauschige gehäkelte Monstermütze mit großen Augen und weißen Zähnen"
+    },
+    {
+      "slug": "schnuffelmonster",
+      "foto": "schnuffelmonster.webp",
+      "name": "Mo, das Schnuffelmonster",
+      "kategorie": "Monster & Co.",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein lila Monster mit runden Ohren, rosa Schnuffelnase und Ohrenklappen mit geflochtenen Zöpfen.",
+      "alt": "Lila gehäkelte Monstermütze mit runden Ohren, rosa Nase und Zöpfen"
+    },
+    {
+      "slug": "fanmuetze",
+      "foto": "fanmuetze.webp",
+      "name": "Die Fanmütze",
+      "kategorie": "Weitere Ideen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Grau mit Streifen in Schwarz-Rot-Gold und Fußball-Aufnäher – für Spieltage, Public Viewing und echte Fans.",
+      "alt": "Graue gehäkelte Mütze mit schwarz-rot-goldenen Streifen und Fußball-Aufnäher"
+    },
+    {
+      "slug": "ringel-beanie",
+      "foto": "ringel-beanie.webp",
+      "name": "Die Ringel-Beanie",
+      "kategorie": "Weitere Ideen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Schlicht und gemütlich: Streifen in Natur und Grau mit dickem Bommel obendrauf.",
+      "alt": "Gestreifte gehäkelte Beanie in Natur und Grau mit cremefarbenem Bommel"
+    },
+    {
+      "slug": "gruenes-grummelmonster",
+      "foto": "gruenes-grummelmonster.webp",
+      "name": "Das grüne Grummelmonster",
+      "kategorie": "Monster & Co.",
+      "status": "draft",
+      "startseite": false,
+      "beschreibung": "Ein grünes Monster mit buschigen Augenbrauen, gelben Augen, frechem Grinsen und Bommel.",
+      "alt": "Grüne gehäkelte Monstermütze mit gelben Augen, buschigen Augenbrauen und Bommel",
+      "pruefen": "Erinnert stark an eine bekannte geschützte Filmfigur. Vor dem Veröffentlichen rechtlich prüfen."
+    },
+    {
+      "slug": "lila-brillenmonster",
+      "foto": "lila-brillenmonster.webp",
+      "name": "Das lila Brillenmonster",
+      "kategorie": "Monster & Co.",
+      "status": "draft",
+      "startseite": false,
+      "beschreibung": "Ein lila Monster mit großen Augen, Zähnchen, Bommel und Ohrenklappen mit Zöpfen.",
+      "alt": "Lila gehäkelte Monstermütze mit großen Augen, Zähnen und Bommel",
+      "pruefen": "Erinnert stark an eine bekannte geschützte Filmfigur. Vor dem Veröffentlichen rechtlich prüfen."
+    },
+    {
+      "slug": "eisbaermuetze",
+      "foto": "eisbaermuetze.webp",
+      "name": "Ole, der Eisbär",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein schneeweißer Eisbär mit runden Ohren, dunklen Knopfaugen und Ohrenklappen – kuschelig für kalte Tage.",
+      "alt": "Weiße gehäkelte Eisbärmütze mit runden Ohren, schwarzen Augen und Ohrenklappen"
+    },
+    {
+      "slug": "baer",
+      "foto": "baer.webp",
+      "name": "Bruno, der Bär",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein gemütlicher brauner Bär mit runden Ohren, heller Schnauze und Ohrenklappen.",
+      "alt": "Braune gehäkelte Bärenmütze mit runden Ohren, heller Schnauze und Ohrenklappen"
+    },
+    {
+      "slug": "fuchsmuetze",
+      "foto": "fuchsmuetze.webp",
+      "name": "Finn, der Fuchs",
+      "kategorie": "Tiermützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Ein pfiffiger Fuchs in leuchtendem Rotorange mit hellem Gesicht, spitzen Ohren und schwarzer Nase.",
+      "alt": "Rotorange Fuchsmütze mit hellem Gesicht, spitzen Ohren und schwarzer Nase"
+    },
+    {
+      "slug": "rosenmuetze",
+      "foto": "rosenmuetze.webp",
+      "name": "Die Rosenmütze",
+      "kategorie": "Blumenmützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Schlichtes Grau mit himbeerrotem Rand und einer großen gehäkelten Rose an der Seite.",
+      "alt": "Graue gehäkelte Mütze mit himbeerrotem Rand und großer Rose"
+    },
+    {
+      "slug": "lila-bluetenmuetze",
+      "foto": "lila-bluetenmuetze.webp",
+      "name": "Die lila Blütenmütze",
+      "kategorie": "Blumenmützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Kräftiges Lila mit hellem Band und gehäkelten Blüten rundherum.",
+      "alt": "Lila gehäkelte Mütze mit hellem Band und aufgenähten Blüten"
+    },
+    {
+      "slug": "pastell-bluetenmuetze",
+      "foto": "pastell-bluetenmuetze.webp",
+      "name": "Die Pastell-Blütenmütze",
+      "kategorie": "Blumenmützen",
+      "status": "published",
+      "startseite": false,
+      "beschreibung": "Bunte Pastellwolle in Rosa, Gelb und Blau mit drei aufgenähten Blüten.",
+      "alt": "Gehäkelte Mütze in Pastellfarben mit rosa Rand und drei Blüten"
+    }
   ],
   "startseite": {
-    "hero": {"foto": "hero.webp", "alt": "Zwei gehäkelte Mützen nebeneinander: eine rosa Eule und ein grüner Frosch mit roten Bäckchen"},
-    "haekeln": {"foto": "haekeln.webp", "alt": "Zwei gehäkelte Mützen: ein hellblaues Zackenmonster und ein schwarz-weißes Zebra"}
+    "hero": {
+      "foto": "hero.webp",
+      "alt": "Zwei gehäkelte Mützen nebeneinander: eine rosa Eule und ein grüner Frosch mit roten Bäckchen"
+    },
+    "haekeln": {
+      "foto": "haekeln.webp",
+      "alt": "Zwei gehäkelte Mützen: ein hellblaues Zackenmonster und ein schwarz-weißes Zebra"
+    }
   }
 }
